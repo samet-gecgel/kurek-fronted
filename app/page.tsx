@@ -1,101 +1,190 @@
-import Image from "next/image";
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight, Calendar, Users, Award, Dumbbell, Target, Clock, Star } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="bg-zinc-950 text-zinc-50 min-h-screen pt-16">
+      {/* Hero Section with Neon Effect */}
+      <div className="relative container mx-auto px-4 py-24">
+        {/* Neon background efektleri */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[500px]">
+          <div className="absolute inset-0 bg-blue-500/10 blur-[120px] rounded-full" />
+          <div className="absolute inset-0 bg-purple-500/10 blur-[120px] rounded-full" />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center relative z-10"
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+            Profesyonel Kürek Eğitimi
+          </h1>
+          <p className="text-xl text-zinc-300 mb-8 max-w-2xl mx-auto">
+            Deneyimli antrenörlerimiz ve modern ekipmanlarımızla kürek sporunda mükemmelliği hedefliyoruz.
+          </p>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Link 
+              href="/register" 
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full inline-flex items-center gap-2 shadow-[0_0_15px_rgba(59,130,246,0.5)]"
+            >
+              Hemen Başla <ArrowRight className="w-5 h-5" />
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* Stats Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-center p-6"
+          >
+            <h3 className="text-4xl font-bold text-blue-500 mb-2">400+</h3>
+            <p className="text-zinc-400">Üye</p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-center p-6"
+          >
+            <h3 className="text-4xl font-bold text-purple-500 mb-2">50+</h3>
+            <p className="text-zinc-400">Antrenör</p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-center p-6"
+          >
+            <h3 className="text-4xl font-bold text-blue-500 mb-2">200+</h3>
+            <p className="text-zinc-400">Antrenman</p>
+          </motion.div>
+        </div>
+
+        {/* Features Grid */}
+        <div className="grid md:grid-cols-3 gap-8 mt-24 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="bg-zinc-900/50 p-8 rounded-xl border border-zinc-800 hover:border-blue-500/50 transition-colors group"
+          >
+            <Calendar className="w-12 h-12 text-blue-500 mb-4 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+            <h2 className="text-xl font-bold mb-2">Esnek Antrenman</h2>
+            <p className="text-zinc-400">
+              Bireysel veya takım olarak, size uygun saatlerde antrenman yapın. Su üstü ve kara antrenmanları.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="bg-zinc-900/50 p-8 rounded-xl border border-zinc-800 hover:border-purple-500/50 transition-colors group"
+          >
+            <Users className="w-12 h-12 text-purple-500 mb-4 group-hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.5)]" />
+            <h2 className="text-xl font-bold mb-2">Uzman Eğitmenler</h2>
+            <p className="text-zinc-400">
+              Milli takım deneyimli antrenörlerimizle profesyonel kürek eğitimi alın.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="bg-zinc-900/50 p-8 rounded-xl border border-zinc-800 hover:border-blue-500/50 transition-colors group"
+          >
+            <Award className="w-12 h-12 text-blue-500 mb-4 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+            <h2 className="text-xl font-bold mb-2">Özel Programlar</h2>
+            <p className="text-zinc-400">
+              Başlangıç seviyesinden yarışma hazırlığına özel antrenman programları.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Additional Features */}
+        <div className="grid md:grid-cols-4 gap-6 mt-16 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+            className="flex items-center gap-3 bg-zinc-900/30 p-4 rounded-lg"
+          >
+            <Dumbbell className="w-8 h-8 text-blue-500" />
+            <span className="text-zinc-300">Modern Ekipmanlar</span>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4 }}
+            className="flex items-center gap-3 bg-zinc-900/30 p-4 rounded-lg"
+          >
+            <Target className="w-8 h-8 text-purple-500" />
+            <span className="text-zinc-300">Yarışma Hazırlık</span>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5 }}
+            className="flex items-center gap-3 bg-zinc-900/30 p-4 rounded-lg"
+          >
+            <Clock className="w-8 h-8 text-blue-500" />
+            <span className="text-zinc-300">Düzenli Antrenman</span>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6 }}
+            className="flex items-center gap-3 bg-zinc-900/30 p-4 rounded-lg"
+          >
+            <Star className="w-8 h-8 text-purple-500" />
+            <span className="text-zinc-300">Elit Performans</span>
+          </motion.div>
+        </div>
+
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="mt-24 text-center relative z-10"
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 p-12 rounded-2xl border border-zinc-800">
+            <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+              Yolculuğunuza bugün başlayın!
+            </h2>
+            <p className="text-lg mb-8 max-w-xl mx-auto text-zinc-300">
+              Size özel hazırlanmış antrenman programları ve profesyonel antrenörlerimizle tanışın.
+            </p>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="space-x-4"
+            >
+              <Link 
+                href="/packages" 
+                className="bg-white text-zinc-900 px-8 py-4 rounded-full inline-flex items-center gap-2 font-semibold hover:bg-zinc-100 transition-colors"
+              >
+                Paketleri İncele <ArrowRight className="w-5 h-5" />
+              </Link>
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 }
