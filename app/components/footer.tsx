@@ -72,7 +72,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2 hover:text-white transition-colors group">
                 <Phone size={16} className="group-hover:text-blue-500 transition-colors" />
-                +90 (212) 000 01 23 
+                0 (212) 000 01 23 
               </li>
               <li className="flex items-center gap-2 hover:text-white transition-colors group">
                 <Mail size={16} className="group-hover:text-blue-500 transition-colors" />

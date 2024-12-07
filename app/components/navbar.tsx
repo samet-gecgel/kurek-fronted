@@ -55,13 +55,13 @@ export function Navbar() {
           {/* Auth Buttons - Desktop */}
           <div className="hidden md:flex items-center space-x-4">
             <Link 
-              href="/trainer-login"
+              href="/trainer/login"
               className="text-zinc-300 hover:text-white px-4 py-2 rounded-lg transition-all hover:scale-105 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] duration-200"
             >
               Antrenör Girişi
             </Link>
             <Link 
-              href="/login"
+              href="/user/login"
               className="text-zinc-900 bg-white hover:bg-zinc-100 px-4 py-2 rounded-lg transition-all hover:scale-105 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] duration-200"
             >
               Üye Girişi
