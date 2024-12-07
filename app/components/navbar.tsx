@@ -117,14 +117,14 @@ export function Navbar() {
             </Link>
             <div className="pt-4 space-y-2">
               <Link
-                href="/trainer-login"
+                href="/trainer/login"
                 className="block text-center text-zinc-300 hover:text-white px-4 py-2 rounded-lg transition-all hover:scale-105 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] duration-200"
                 onClick={() => setIsOpen(false)}
               >
                 Antrenör Girişi
               </Link>
               <Link
-                href="/login"
+                href="/user/login"
                 className="block text-center text-zinc-900 bg-white hover:bg-zinc-100 px-4 py-2 rounded-lg transition-all hover:scale-105 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] duration-200"
                 onClick={() => setIsOpen(false)}
               >

@@ -26,7 +26,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center relative z-10"
           >
-            <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">
               Profesyonel Kürek Eğitimi
             </h1>
             <p className="text-xl text-zinc-300 mb-8 max-w-2xl mx-auto">
