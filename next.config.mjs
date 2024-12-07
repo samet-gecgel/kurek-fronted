@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const config = {
+  images: {
+    domains: ['e1.pxfuel.com', 'cdn-icons-png.flaticon.com',  'cdn.icon-icons.com'],
+  },
+}
 
-export default nextConfig;
+export default config;
