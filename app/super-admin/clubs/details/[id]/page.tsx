@@ -75,8 +75,8 @@ export default function ClubDetailsPage({ params }: { params: { id: string } }) 
   const [club, setClub] = useState<Club | null>(null);
 
   useEffect(() => {
-    const clubData = clubs.find(c => c.id === parseInt(params.id));
-    setClub(clubData || null);
+    const clubData = clubs.find(c => c.id === parseInt(params.id)) || null;
+    setClub(clubData);
   }, [params.id]);
 
   if (!club) return null;
