@@ -34,7 +34,7 @@ export default function ClubManagerRegister() {
       
       // Başarılı kayıt sonrası details sayfasına yönlendirme
       router.push("/club-manager/register/details");
-    } catch (error) {
+    } catch{
       setError("Kayıt işlemi sırasında bir hata oluştu");
     }
   };

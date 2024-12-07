@@ -26,7 +26,7 @@ export default function SuperAdminLogin() {
       
       // Başarılı giriş sonrası yönlendirme
       router.push("/super-admin/dashboard");
-    } catch (error) {
+    } catch {
       setError("Giriş yapılırken bir hata oluştu");
     }
   };
