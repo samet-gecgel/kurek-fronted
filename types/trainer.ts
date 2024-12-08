@@ -1,20 +1,18 @@
-export interface Trainer {
-    id: number;
-    name: string;
-    image: string;
-    specialization: string;
-    club: string;
-    location: string;
-    experience: string;
-    phone: string;
-    email: string;
-    startDate: string;
-    boatClasses: string[];
-    trainingTypes: string[];
-    education: {
-        title: string;
-        date: string;
-        institution: string;
-    }[];
-    bio: string;
+export type TrainerStatus = "pending" | "approved" | "rejected";
+
+export interface TrainerDetail {
+  id: number;
+  fullName: string;
+  identityNumber: string;
+  phone: string;
+  birthDate: string;
+  image: string;
+  specialization: string;
+  experience: string;
+  education: string;
+  certificates: string;
+  achievements: string;
+  bio: string;
+  status: TrainerStatus;
+  rejectionReason?: string;
 }

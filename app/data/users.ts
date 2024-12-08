@@ -1,0 +1,32 @@
+export const users = [
+  {
+    id: 1,
+    name: "Mehmet Yılmaz",
+    image: "https://cdn.icon-icons.com/icons2/3550/PNG/512/trainer_man_people_avatar_person_icon_224822.png",
+    location: "İstanbul, Türkiye",
+    phone: "+90 (532) 111 22 33",
+    email: "mehmet@example.com",
+    joinDate: "2024-01-15",
+    status: "Onay Bekliyor",
+  },
+  {
+    id: 2,
+    name: "Ayşe Kaya",
+    image: "https://cdn-icons-png.flaticon.com/512/3048/3048229.png",
+    location: "Ankara, Türkiye",
+    phone: "+90 (533) 222 33 44",
+    email: "ayse@example.com",
+    joinDate: "2024-02-20",
+    status: "Onaylandı",
+  },
+  {
+    id: 3,
+    name: "Ali Demir",
+    image: "https://cdn-icons-png.flaticon.com/512/3048/3048229.png",
+    location: "İzmir, Türkiye",
+    phone: "+90 (533) 333 44 55",
+    email: "ali@example.com",
+    joinDate: "2024-02-25",
+    status: "Reddedildi",
+  },
+]; 

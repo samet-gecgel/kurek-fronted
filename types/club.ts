@@ -1,16 +1,15 @@
-import { Trainer } from "./trainer";
 
-interface Manager {
-  id: number;
-  name: string;
-  image: string;
-  phone: string;
-  email: string;
-  startDate: string;
-  role: string;
-}
+// interface Manager {
+//   id: number;
+//   name: string;
+//   image: string;
+//   phone: string;
+//   email: string;
+//   startDate: string;
+//   role: string;
+// }
 
-interface ClubTrainer {
+export interface ClubTrainer {
   id: number;
   name: string;
   image: string;

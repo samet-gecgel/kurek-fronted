@@ -1,48 +1,66 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import {
-  ChevronRight,
   User,
+  Mail,
   Phone,
   Calendar,
-  Award,
-  Trophy,
-  BookOpen,
-  FileText,
+  MapPin,
+  Droplets,
+  Briefcase,
+  Building,
   Check,
   X,
+  ChevronRight,
+  LucideIcon,
 } from "lucide-react";
+import { UserDetail, AccountStatus, RegistrationType } from "@/app/types/user";
 import Sidebar from "@/app/components/Sidebar";
-import { TrainerDetail, TrainerStatus } from "@/types/trainer";
 import { Dialog } from "@/app/components/Dialog";
 
-// Örnek veri - Gerçek uygulamada API'den gelecek
-const mockTrainerDetail: TrainerDetail = {
-  id: 1,
-  fullName: "Ahmet Yılmaz",
+// Bu örnek veriyi API'den alacaksınız
+const mockUserDetail: UserDetail = {
+  id: "1",
+  fullName: "Mehmet Yılmaz",
   identityNumber: "12345678901",
-  phone: "+90 (532) 111 22 33",
+  email: "mehmet@example.com",
+  phone: "+90 532 111 22 33",
   birthDate: "1990-05-15",
-  image: "https://cdn.icon-icons.com/icons2/3550/PNG/512/trainer_man_people_avatar_person_icon_224822.png",
-  specialization: "Kürek Antrenörü",
-  experience: "8",
-  education: "İstanbul Üniversitesi Spor Bilimleri Fakültesi - Antrenörlük Eğitimi Bölümü\nMarmara Üniversitesi - Spor Yönetimi Yüksek Lisans\nSpor Bilimleri ve Teknolojisi Yüksekokulu - Doktora Programı",
-  certificates: "World Sailing Level 2 Antrenör Sertifikası\nİleri Düzey Yelken Eğitmenliği Sertifikası\nUluslararası Kürek Federasyonu Antrenörlük Lisansı\nSpor Psikolojisi Uzmanlık Sertifikası",
-  achievements: "2019 Türkiye Şampiyonası Birincilik - Takım Koçluğu\n15+ Milli Sporcu Yetiştirme Başarısı\n2020 Avrupa Gençler Şampiyonası - En İyi Antrenör Ödülü\n2021 Olimpiyat Oyunları Milli Takım Antrenörlüğü",
-  bio: "15 yaşından beri yelken sporuyla iç içeyim. Ulusal ve uluslararası yarışlarda edindiğim deneyimleri, genç sporculara aktarmaktan büyük keyif alıyorum.",
-  status: "pending",
+  birthPlace: "İstanbul",
+  bloodType: "A Rh+",
+  canSwim: true,
+  profession: "Mühendis",
+  emergencyContact: {
+    fullName: "Ayşe Yılmaz",
+    relation: "Eş",
+    phone: "+90 533 222 33 44",
+  },
+  registrationType: "individual",
+  profileImage: "https://cdn.icon-icons.com/icons2/3550/PNG/512/trainer_man_people_avatar_person_icon_224822.png",
+  accountStatus: "pending",
+  createdAt: "2024-03-15",
 };
 
-export default function TrainerDetailsPage({ params }: { params: { id: string } }) {
+// Kayıt şekli çevirisi için yardımcı fonksiyon
+const getRegistrationTypeText = (type: RegistrationType): string => {
+  const types = {
+    individual: "Bireysel",
+    highschool: "Lise",
+    university: "Üniversite",
+    corporate: "Kurumsal"
+  };
+  return types[type];
+};
+
+export default function UserDetailPage({ params }: { params: { id: string } }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [trainerDetail, setTrainerDetail] = useState<TrainerDetail>(() => {
-    console.log('Fetching trainer with ID:', params.id);
-    return mockTrainerDetail;
+  const [userDetail, setUserDetail] = useState<UserDetail>(() => {
+    console.log('Fetching user with ID:', params.id);
+    return mockUserDetail;
   });
-  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [rejectionReason, setRejectionReason] = useState("");
   const [dialogConfig, setDialogConfig] = useState<{
     show: boolean;
@@ -55,8 +73,9 @@ export default function TrainerDetailsPage({ params }: { params: { id: string } 
     title: '',
     message: '',
   });
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
-  const getStatusColor = (status: TrainerStatus) => {
+  const getStatusColor = (status: AccountStatus) => {
     switch (status) {
       case "approved":
         return "bg-green-500/10 text-green-500";
@@ -67,7 +86,7 @@ export default function TrainerDetailsPage({ params }: { params: { id: string } 
     }
   };
 
-  const getStatusText = (status: TrainerStatus) => {
+  const getStatusText = (status: AccountStatus) => {
     switch (status) {
       case "approved":
         return "Onaylandı";
@@ -78,17 +97,19 @@ export default function TrainerDetailsPage({ params }: { params: { id: string } 
     }
   };
 
-  const handleStatusUpdate = async (newStatus: TrainerStatus) => {
+  const handleStatusUpdate = async (newStatus: AccountStatus) => {
+    // Red/Kısıtlama işlemi için modal göster
     if (newStatus === "rejected") {
       setIsUpdateModalOpen(true);
       return;
     }
 
+    // Onaylama işlemi
     if (newStatus === "approved") {
       setDialogConfig({
         show: true,
         title: 'Onaylama',
-        message: 'Bu antrenörü onaylamak istediğinize emin misiniz?',
+        message: 'Bu hesabı onaylamak istediğinize emin misiniz?',
         type: 'confirm',
         action: () => {
           updateStatus(newStatus);
@@ -98,11 +119,12 @@ export default function TrainerDetailsPage({ params }: { params: { id: string } 
       return;
     }
 
+    // Aktifleştirme işlemi
     if (newStatus === "pending") {
       setDialogConfig({
         show: true,
         title: 'Aktifleştirme',
-        message: 'Bu antrenörü aktifleştirmek istediğinize emin misiniz?',
+        message: 'Bu hesabı aktifleştirmek istediğinize emin misiniz?',
         type: 'confirm',
         action: () => {
           updateStatus(newStatus);
@@ -113,13 +135,12 @@ export default function TrainerDetailsPage({ params }: { params: { id: string } 
     }
   };
 
-  const updateStatus = (newStatus: TrainerStatus) => {
-    setTrainerDetail(prev => ({
+  const updateStatus = (newStatus: AccountStatus) => {
+    setUserDetail(prev => ({
       ...prev,
-      status: newStatus,
+      accountStatus: newStatus,
       rejectionReason: newStatus === "rejected" ? rejectionReason : undefined
     }));
-    setIsUpdateModalOpen(false);
     setRejectionReason("");
     setDialogConfig({ show: false, title: '', message: '' });
   };
@@ -142,16 +163,16 @@ export default function TrainerDetailsPage({ params }: { params: { id: string } 
                   Ana Panel
                 </Link>
                 <ChevronRight size={16} />
-                <Link href="/super-admin/trainers" className="hover:text-white">
-                  Antrenörler
+                <Link href="/super-admin/users" className="hover:text-white">
+                  Üyeler
                 </Link>
                 <ChevronRight size={16} />
-                <span className="text-white">Antrenör Detayı</span>
+                <span className="text-white">Üye Detayı</span>
               </div>
-              <h1 className="text-2xl font-bold text-white">{trainerDetail.fullName}</h1>
+              <h1 className="text-2xl font-bold text-white">{userDetail.fullName}</h1>
             </div>
-            <span className={`px-4 py-2 rounded-lg text-sm font-medium ${getStatusColor(trainerDetail.status)}`}>
-              {getStatusText(trainerDetail.status)}
+            <span className={`px-4 py-2 rounded-lg text-sm font-medium ${getStatusColor(userDetail.accountStatus)}`}>
+              {getStatusText(userDetail.accountStatus)}
             </span>
           </div>
 
@@ -161,63 +182,63 @@ export default function TrainerDetailsPage({ params }: { params: { id: string } 
               <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 sticky top-8">
                 <div className="relative w-full aspect-square rounded-xl overflow-hidden mb-6 ring-2 ring-zinc-800">
                   <Image
-                    src={trainerDetail.image}
-                    alt={trainerDetail.fullName}
+                    src={userDetail.profileImage}
+                    alt={userDetail.fullName}
                     fill
                     className="object-cover"
                   />
                 </div>
 
-                {trainerDetail.status === "pending" && (
+                {userDetail.accountStatus === "pending" && (
                   <div className="space-y-3">
                     <button
                       onClick={() => handleStatusUpdate("approved")}
                       className="w-full py-3 px-4 bg-green-500/10 hover:bg-green-500/20 text-green-500 rounded-xl flex items-center justify-center gap-2 transition-colors font-medium"
                     >
                       <Check size={20} />
-                      Antrenörü Onayla
+                      Hesabı Onayla
                     </button>
                     <button
                       onClick={() => handleStatusUpdate("rejected")}
                       className="w-full py-3 px-4 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-xl flex items-center justify-center gap-2 transition-colors font-medium"
                     >
                       <X size={20} />
-                      Antrenörü Reddet
+                      Hesabı Reddet
                     </button>
                   </div>
                 )}
 
-                {trainerDetail.status === "approved" && (
+                {userDetail.accountStatus === "approved" && (
                   <div className="space-y-3">
                     <button
                       onClick={() => handleStatusUpdate("rejected")}
                       className="w-full py-3 px-4 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-xl flex items-center justify-center gap-2 transition-colors font-medium"
                     >
                       <X size={20} />
-                      Antrenörü Kısıtla
+                      Hesabı Kısıtla
                     </button>
                   </div>
                 )}
 
-                {trainerDetail.status === "rejected" && (
+                {userDetail.accountStatus === "rejected" && (
                   <div className="space-y-3">
                     <button
                       onClick={() => handleStatusUpdate("pending")}
                       className="w-full py-3 px-4 bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-500 rounded-xl flex items-center justify-center gap-2 transition-colors font-medium"
                     >
                       <Check size={20} />
-                      Antrenörü Aktifleştir
+                      Hesabı Aktifleştir
                     </button>
                   </div>
                 )}
 
-                {trainerDetail.status === "rejected" && trainerDetail.rejectionReason && (
+                {userDetail.accountStatus === "rejected" && userDetail.rejectionReason && (
                   <div className="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
                     <h4 className="text-red-500 font-medium mb-2 flex items-center gap-2">
                       <X size={16} />
                       Red Nedeni
                     </h4>
-                    <p className="text-zinc-400 text-sm leading-relaxed">{trainerDetail.rejectionReason}</p>
+                    <p className="text-zinc-400 text-sm leading-relaxed">{userDetail.rejectionReason}</p>
                   </div>
                 )}
               </div>
@@ -232,26 +253,29 @@ export default function TrainerDetailsPage({ params }: { params: { id: string } 
                   Kişisel Bilgiler
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <InfoItem icon={User} label="Ad Soyad" value={trainerDetail.fullName} />
-                  <InfoItem icon={User} label="TC Kimlik No" value={trainerDetail.identityNumber} />
-                  <InfoItem icon={Phone} label="Telefon" value={trainerDetail.phone} />
-                  <InfoItem icon={Calendar} label="Doğum Tarihi" value={trainerDetail.birthDate} />
+                  <InfoItem icon={User} label="Ad Soyad" value={userDetail.fullName} />
+                  <InfoItem icon={User} label="TC Kimlik No" value={userDetail.identityNumber} />
+                  <InfoItem icon={Mail} label="E-posta" value={userDetail.email} />
+                  <InfoItem icon={Phone} label="Telefon" value={userDetail.phone} />
+                  <InfoItem icon={Calendar} label="Doğum Tarihi" value={userDetail.birthDate} />
+                  <InfoItem icon={MapPin} label="Doğum Yeri" value={userDetail.birthPlace} />
+                  <InfoItem icon={Droplets} label="Kan Grubu" value={userDetail.bloodType} />
+                  <InfoItem icon={Droplets} label="Yüzme Bilgisi" value={userDetail.canSwim ? "Evet" : "Hayır"} />
+                  <InfoItem icon={Briefcase} label="Meslek" value={userDetail.profession} />
+                  <InfoItem icon={Building} label="Kayıt Şekli" value={getRegistrationTypeText(userDetail.registrationType)} />
                 </div>
               </div>
 
-              {/* Mesleki Bilgiler */}
+              {/* Acil Durum İletişim Bilgileri */}
               <div>
                 <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                  <Award className="text-blue-400" size={24} />
-                  Mesleki Bilgiler
+                  <Phone className="text-blue-400" size={24} />
+                  Acil Durum İletişim Bilgileri
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <InfoItem icon={Award} label="Uzmanlık Alanı" value={trainerDetail.specialization} />
-                  <InfoItem icon={Trophy} label="Deneyim" value={`${trainerDetail.experience} Yıl`} />
-                  <InfoItem icon={BookOpen} label="Eğitim Bilgileri" value={trainerDetail.education} multiline />
-                  <InfoItem icon={Award} label="Sertifikalar" value={trainerDetail.certificates} multiline />
-                  <InfoItem icon={Trophy} label="Başarılar" value={trainerDetail.achievements} multiline />
-                  <InfoItem icon={FileText} label="Kısa Biyografi" value={trainerDetail.bio} multiline />
+                  <InfoItem icon={User} label="Ad Soyad" value={userDetail.emergencyContact.fullName} />
+                  <InfoItem icon={User} label="Yakınlık" value={userDetail.emergencyContact.relation} />
+                  <InfoItem icon={Phone} label="Telefon" value={userDetail.emergencyContact.phone} />
                 </div>
               </div>
             </div>
@@ -276,14 +300,14 @@ export default function TrainerDetailsPage({ params }: { params: { id: string } 
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-40">
           <div className="bg-zinc-900 rounded-xl p-6 max-w-md w-full">
             <h3 className="text-xl font-semibold text-white mb-4">
-              {trainerDetail.status === "pending" ? "Red Nedeni" : "Kısıtlama Nedeni"}
+              {userDetail.accountStatus === "pending" ? "Red Nedeni" : "Kısıtlama Nedeni"}
             </h3>
             <textarea
               value={rejectionReason}
               onChange={(e) => setRejectionReason(e.target.value)}
               className="w-full bg-zinc-800 border border-zinc-700 rounded-lg p-3 text-white mb-4"
               rows={4}
-              placeholder={trainerDetail.status === "pending" ? "Red nedenini yazınız..." : "Kısıtlama nedenini yazınız..."}
+              placeholder={userDetail.accountStatus === "pending" ? "Red nedenini yazınız..." : "Kısıtlama nedenini yazınız..."}
             />
             <div className="flex justify-end gap-3">
               <button
@@ -305,21 +329,20 @@ export default function TrainerDetailsPage({ params }: { params: { id: string } 
                   }
                   setDialogConfig({
                     show: true,
-                    title: trainerDetail.status === "pending" ? 'Reddetme' : 'Kısıtlama',
-                    message: trainerDetail.status === "pending"
-                      ? 'Bu antrenörü reddetmek istediğinize emin misiniz?'
-                      : 'Bu antrenörü kısıtlamak istediğinize emin misiniz?',
+                    title: userDetail.accountStatus === "pending" ? 'Reddetme' : 'Kısıtlama',
+                    message: userDetail.accountStatus === "pending"
+                      ? 'Bu hesabı reddetmek istediğinize emin misiniz?'
+                      : 'Bu hesabı kısıtlamak istediğinize emin misiniz?',
                     type: 'confirm',
                     action: () => {
                       updateStatus("rejected");
                       setIsUpdateModalOpen(false);
-                      setDialogConfig({ show: false, title: '', message: '' });
                     }
                   });
                 }}
                 className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg"
               >
-                {trainerDetail.status === "pending" ? "Reddet" : "Kısıtla"}
+                {userDetail.accountStatus === "pending" ? "Reddet" : "Kısıtla"}
               </button>
             </div>
           </div>
@@ -330,46 +353,12 @@ export default function TrainerDetailsPage({ params }: { params: { id: string } 
 }
 
 interface InfoItemProps {
-  icon: React.ElementType;
+  icon: LucideIcon;
   label: string;
   value: string;
-  multiline?: boolean;
 }
 
-function InfoItem({ icon: Icon, label, value, multiline }: InfoItemProps) {
-  if (multiline) {
-    const items = value.split('\n').filter(item => item.trim());
-    
-    return (
-      <div className="col-span-full bg-zinc-800/50 rounded-lg p-4 border border-zinc-700/50 hover:border-zinc-600/50 transition-colors">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="bg-blue-500/10 rounded-lg p-2">
-            <Icon className="text-blue-400" size={20} />
-          </div>
-          <h3 className="text-sm font-medium text-zinc-400">{label}</h3>
-        </div>
-        
-        <div className={`grid gap-3 pl-11 ${
-          label === "Kısa Biyografi" ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2"
-        }`}>
-          {items.map((item, index) => (
-            <div 
-              key={index}
-              className="bg-zinc-900/50 rounded-lg p-3 border border-zinc-800/50 hover:border-zinc-700/50 transition-colors"
-            >
-              <div className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-2" />
-                <p className="text-white text-sm leading-relaxed flex-1">
-                  {item.replace(/^-\s*/, '')}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
+function InfoItem({ icon: Icon, label, value }: InfoItemProps) {
   return (
     <div className="bg-zinc-800/50 rounded-lg p-4 border border-zinc-700/50 hover:border-zinc-600/50 transition-colors">
       <div className="flex items-start gap-3">
@@ -383,5 +372,4 @@ function InfoItem({ icon: Icon, label, value, multiline }: InfoItemProps) {
       </div>
     </div>
   );
-}
-
+} 
