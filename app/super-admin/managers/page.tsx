@@ -65,7 +65,7 @@ const managers = [
   },
   {
     id: 2,
-    name: "Ay��e Kaya",
+    name: "Ayşe Kaya",
     image: "https://cdn-icons-png.flaticon.com/512/3048/3048229.png",
     role: "Kulüp Yöneticisi",
     club: "Antalya Spor Kulübü",

@@ -1,62 +1,67 @@
-"use client";
+'use client';
 
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
+  Package,
   Users,
-  Building2,
-  UserCog,
-  Dumbbell,
-  BarChart3,
+  Calendar,
+  MessageSquare,
+  BarChart,
   Settings,
-  LogOut,
   ChevronLeft,
   ChevronRight,
-  Calendar,
-} from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
+  Activity,
+  UserCog,
+  LogOut
+} from 'lucide-react';
 
 const menuItems = [
   {
-    title: "Ana Panel",
+    title: 'Ana Panel',
     icon: LayoutDashboard,
-    href: "/super-admin/dashboard",
+    href: '/club-manager/dashboard',
   },
   {
-    title: "Kulüpler",
-    icon: Building2,
-    href: "/super-admin/clubs",
+    title: 'Paket Yönetimi',
+    icon: Package,
+    href: '/club-manager/packages',
   },
   {
-    title: "Kulüp Yöneticileri",
-    icon: UserCog,
-    href: "/super-admin/managers",
-  },
-  {
-    title: "Antrenörler",
-    icon: Dumbbell,
-    href: "/super-admin/trainers",
-  },
-  {
-    title: "Üyeler",
+    title: 'Üye Yönetimi',
     icon: Users,
-    href: "/super-admin/users",
+    href: '/club-manager/members',
   },
   {
-    title: "Rezervasyonlar",
+    title: 'Rezervasyonlar',
     icon: Calendar,
-    href: "/super-admin/reservations",
+    href: '/club-manager/reservations',
   },
   {
-    title: "Raporlar",
-    icon: BarChart3,
-    href: "/super-admin/reports",
+    title: 'Antrenör Yönetimi',
+    icon: UserCog,
+    href: '/club-manager/trainers',
   },
   {
-    title: "Ayarlar",
+    title: 'Etkinlikler',
+    icon: Activity,
+    href: '/club-manager/events',
+  },
+  {
+    title: 'Mesajlar',
+    icon: MessageSquare,
+    href: '/club-manager/messages',
+  },
+  {
+    title: 'Raporlar',
+    icon: BarChart,
+    href: '/club-manager/reports',
+  },
+  {
+    title: 'Ayarlar',
     icon: Settings,
-    href: "/super-admin/settings",
+    href: '/club-manager/settings',
   },
 ];
 
@@ -65,35 +70,29 @@ interface SidebarProps {
   onToggle: () => void;
 }
 
-export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
+export const ManagerSidebar = ({ isOpen, onToggle }: SidebarProps) => {
   const pathname = usePathname();
   const router = useRouter();
 
   const handleLogout = () => {
-    router.push('/super-admin/login');
+    router.push('/club-manager/login');
   };
 
   return (
-    <div className={`fixed h-screen bg-zinc-900/50 border-r border-zinc-800 transition-all duration-300 ease-in-out ${
-      isOpen ? 'w-64' : 'w-20'
-    }`}>
-      {/* Toggle butonu */}
-      <button 
+    <div className="h-full bg-zinc-900 border-r border-zinc-800 relative">
+      <button
         onClick={onToggle}
         className="absolute -right-3 top-10 bg-zinc-800 rounded-full p-1.5 hover:bg-zinc-700 transition-colors"
       >
         {isOpen ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
       </button>
 
-      {/* Sidebar içeriği - flex yapısı ekledik */}
       <div className="flex flex-col h-full p-4">
-        {/* Logo ve başlık */}
         <div className="flex items-center gap-3 mb-8">
-          <div className="w-8 h-8 bg-red-500 rounded-lg" />
-          {isOpen && <h1 className="text-lg font-semibold text-white">Super Admin</h1>}
+          <div className="w-8 h-8 bg-blue-500 rounded-lg" />
+          {isOpen && <h1 className="text-lg font-semibold text-white">Kulüp Yönetimi</h1>}
         </div>
 
-        {/* Menü öğeleri */}
         <nav className="space-y-2">
           {menuItems.map((item) => (
             <Link
@@ -111,7 +110,6 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
           ))}
         </nav>
 
-        {/* Çıkış Yap butonu - mt-auto ile en alta sabitlendi */}
         <div className="mt-auto pt-4 border-t border-zinc-800">
           <button
             onClick={handleLogout}
@@ -124,4 +122,4 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
       </div>
     </div>
   );
-} 
+}; 
