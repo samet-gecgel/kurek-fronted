@@ -16,8 +16,8 @@ import {
   Trash2,
   Clock,
 } from "lucide-react";
-import Sidebar from "@/app/components/Sidebar";
 import { Club } from "@/types/club";
+import Sidebar from "@/components/layout/sidebar";
 
 
 const clubs = [
@@ -136,32 +136,38 @@ export default function ClubDetailsPage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Main Info Card */}
-            <div className="lg:col-span-2">
+          <div className="grid grid-cols-12 gap-6">
+            {/* Üst Sıra - Kulüp Bilgileri ve Kulüp Yöneticisi */}
+            <div className="col-span-12 lg:col-span-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6"
+                className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 h-full"
               >
                 <h2 className="text-lg font-semibold text-white mb-4">Kulüp Bilgileri</h2>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-zinc-400 mt-1" />
+                    <div className="p-2 bg-zinc-800/50 rounded-lg">
+                      <MapPin className="w-5 h-5 text-blue-500" />
+                    </div>
                     <div>
                       <p className="text-sm font-medium text-zinc-400">Adres</p>
                       <p className="text-white">{club.address}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-zinc-400" />
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 bg-zinc-800/50 rounded-lg">
+                      <Phone className="w-5 h-5 text-green-500" />
+                    </div>
                     <div>
                       <p className="text-sm font-medium text-zinc-400">Telefon</p>
                       <p className="text-white">{club.phone}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Mail className="w-5 h-5 text-zinc-400" />
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 bg-zinc-800/50 rounded-lg">
+                      <Mail className="w-5 h-5 text-purple-500" />
+                    </div>
                     <div>
                       <p className="text-sm font-medium text-zinc-400">E-posta</p>
                       <p className="text-white">{club.email}</p>
@@ -171,63 +177,12 @@ export default function ClubDetailsPage({ params }: { params: { id: string } }) 
               </motion.div>
             </div>
 
-            {/* Stats Cards */}
-            <div className="space-y-4">
+            <div className="col-span-12 lg:col-span-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6"
-              >
-                <h2 className="text-lg font-semibold text-white mb-4">İstatistikler</h2>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Users className="w-5 h-5 text-blue-500" />
-                      <span className="text-zinc-400">Toplam Üye</span>
-                    </div>
-                    <span className="text-xl font-bold text-white">{club.memberCount}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Dumbbell className="w-5 h-5 text-green-500" />
-                      <span className="text-zinc-400">Antrenör Sayısı</span>
-                    </div>
-                    <span className="text-xl font-bold text-white">{club.trainerCount}</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6"
-              >
-                <h2 className="text-lg font-semibold text-white mb-4">Tarihler</h2>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-5 h-5 text-purple-500" />
-                      <span className="text-zinc-400">Kayıt Tarihi</span>
-                    </div>
-                    <span className="text-white">{club.createdAt}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-5 h-5 text-orange-500" />
-                      <span className="text-zinc-400">Son Güncelleme</span>
-                    </div>
-                    <span className="text-white">{club.lastUpdated}</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6"
+                className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 h-full"
               >
                 <h2 className="text-lg font-semibold text-white mb-4">Kulüp Yöneticisi</h2>
                 <div className="flex items-start gap-4">
@@ -262,60 +217,124 @@ export default function ClubDetailsPage({ params }: { params: { id: string } }) 
                 </div>
               </motion.div>
             </div>
-          </div>
 
-          <div className="mt-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="mt-6 bg-zinc-900/50 border border-zinc-800 rounded-xl p-6"
-            >
-              <h2 className="text-lg font-semibold text-white mb-4">Antrenörler</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {club.trainers.map((trainer) => (
-                  <motion.div
-                    key={trainer.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    whileHover={{ scale: 1.02 }}
-                    className="bg-zinc-800/50 border border-zinc-700 rounded-lg p-4 hover:bg-zinc-800 transition-all duration-300"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                        <Image
-                          src={trainer.image}
-                          alt={trainer.name}
-                          fill
-                          className="object-cover"
-                        />
+            {/* Alt Sıra - Tarihler ve İstatistikler */}
+            <div className="col-span-12 lg:col-span-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 h-full"
+              >
+                <h2 className="text-lg font-semibold text-white mb-4">Tarihler</h2>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-3 bg-zinc-800/50 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-purple-500/10 rounded-lg">
+                        <Calendar className="w-5 h-5 text-purple-500" />
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-white font-semibold">{trainer.name}</h3>
-                        <div className="flex items-center gap-2 mt-1">
-                          <span className="px-2 py-1 bg-blue-500/10 text-blue-500 text-xs rounded-full">
-                            {trainer.specialization}
-                          </span>
-                          <span className="text-zinc-400 text-sm">
-                            {trainer.experience} deneyim
-                          </span>
-                        </div>
-                        <div className="mt-3 space-y-1">
-                          <div className="flex items-center gap-2 text-sm text-zinc-400">
-                            <Phone size={14} />
-                            <span>{trainer.phone}</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-sm text-zinc-400">
-                            <Mail size={14} />
-                            <span>{trainer.email}</span>
-                          </div>
-                        </div>
-                      </div>
+                      <span className="text-zinc-400">Kayıt Tarihi</span>
                     </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+                    <span className="text-white">{club.createdAt}</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-zinc-800/50 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-orange-500/10 rounded-lg">
+                        <Clock className="w-5 h-5 text-orange-500" />
+                      </div>
+                      <span className="text-zinc-400">Son Güncelleme</span>
+                    </div>
+                    <span className="text-white">{club.lastUpdated}</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            <div className="col-span-12 lg:col-span-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 h-full"
+              >
+                <h2 className="text-lg font-semibold text-white mb-4">İstatistikler</h2>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-3 bg-zinc-800/50 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-blue-500/10 rounded-lg">
+                        <Users className="w-5 h-5 text-blue-500" />
+                      </div>
+                      <span className="text-zinc-400">Toplam Üye</span>
+                    </div>
+                    <span className="text-xl font-bold text-white">{club.memberCount}</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-zinc-800/50 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-green-500/10 rounded-lg">
+                        <Dumbbell className="w-5 h-5 text-green-500" />
+                      </div>
+                      <span className="text-zinc-400">Antrenör Sayısı</span>
+                    </div>
+                    <span className="text-xl font-bold text-white">{club.trainerCount}</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Antrenörler - Alt Kısım */}
+            <div className="col-span-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6"
+              >
+                <h2 className="text-lg font-semibold text-white mb-4">Antrenörler</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {club.trainers.map((trainer) => (
+                    <motion.div
+                      key={trainer.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      whileHover={{ scale: 1.02 }}
+                      className="bg-zinc-800/50 border border-zinc-700 rounded-lg p-4 hover:bg-zinc-800 transition-all duration-300"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                          <Image
+                            src={trainer.image}
+                            alt={trainer.name}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-white font-semibold">{trainer.name}</h3>
+                          <div className="flex items-center gap-2 mt-1">
+                            <span className="px-2 py-1 bg-blue-500/10 text-blue-500 text-xs rounded-full">
+                              {trainer.specialization}
+                            </span>
+                            <span className="text-zinc-400 text-sm">
+                              {trainer.experience} deneyim
+                            </span>
+                          </div>
+                          <div className="mt-3 space-y-1">
+                            <div className="flex items-center gap-2 text-sm text-zinc-400">
+                              <Phone size={14} />
+                              <span>{trainer.phone}</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm text-zinc-400">
+                              <Mail size={14} />
+                              <span>{trainer.email}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>

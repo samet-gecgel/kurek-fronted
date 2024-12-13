@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { ManagerSidebar } from "../../components/ManagerSidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, ArrowLeft } from "lucide-react";
+import { ManagerSidebar } from "@/components/layout/manager-sidebar";
 
 interface LocationForm {
   name: string;

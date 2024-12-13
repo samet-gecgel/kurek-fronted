@@ -17,9 +17,9 @@ import {
   ChevronRight,
   LucideIcon,
 } from "lucide-react";
-import { UserDetail, AccountStatus, RegistrationType } from "@/app/types/user";
-import Sidebar from "@/app/components/Sidebar";
-import { Dialog } from "@/app/components/Dialog";
+import { AccountStatus, RegistrationType, UserDetail } from "@/types/user";
+import Sidebar from "@/components/layout/sidebar";
+import { Dialog } from "@/components/ui/dialogCustom";
 
 // Bu örnek veriyi API'den alacaksınız
 const mockUserDetail: UserDetail = {

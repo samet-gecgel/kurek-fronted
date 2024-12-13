@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ManagerSidebar } from "../components/ManagerSidebar";
+import { ManagerSidebar } from "@/components/layout/manager-sidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Package, Plus, MoreVertical, Edit2, Trash2, MapPin } from "lucide-react";

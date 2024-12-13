@@ -11,8 +11,8 @@ import {
   Building2,
   Calendar,
 } from "lucide-react";
-import Sidebar from "@/app/components/Sidebar";
-import { Pagination } from "@/app/components/pagination";
+import Sidebar from "@/components/layout/sidebar";
+import { Pagination } from "@/components/ui/pagination";
 import Link from "next/link";
 
 type TabType = 'all' | 'approved' | 'pending' | 'rejected';

@@ -1,13 +1,4 @@
 
-// interface Manager {
-//   id: number;
-//   name: string;
-//   image: string;
-//   phone: string;
-//   email: string;
-//   startDate: string;
-//   role: string;
-// }
 
 export interface ClubTrainer {
   id: number;

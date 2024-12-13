@@ -13,9 +13,9 @@ import {
   Check,
   X,
 } from "lucide-react";
-import Sidebar from "@/app/components/Sidebar";
-import { Dialog } from "@/app/components/Dialog";
 import { ManagerDetail, ManagerStatus } from "@/types/manager";
+import Sidebar from "@/components/layout/sidebar";
+import { Dialog } from "@/components/ui/dialogCustom";
 
 // Örnek veri - Gerçek uygulamada API'den gelecek
 const mockManagerDetail: ManagerDetail = {

@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Calendar, Users, Award, Dumbbell, Target, Clock, Star } from "lucide-react";
-import { Counter } from "@/app/components/ui/counter";
-import { Navbar } from "./components/navbar";
-import { Footer } from "./components/footer";
+import { Counter } from "@/components/ui/counter";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 
 export default function Home() {
   return (

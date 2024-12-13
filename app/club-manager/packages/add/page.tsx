@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { ManagerSidebar } from "../../components/ManagerSidebar";
+import { ManagerSidebar } from "@/components/layout/manager-sidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Package, ArrowLeft } from "lucide-react";
@@ -15,6 +15,7 @@ interface PackageForm {
   credits: string;
   price: string;
   locationId: string;
+  description: string;
   features: string[];
   paymentOptions: ('cash' | 'credit_card' | 'iban' | 'corporate' | 'multisport')[];
 }
@@ -50,6 +51,7 @@ export default function AddPackage() {
     credits: '',
     price: '',
     locationId: '',
+    description: '',
     features: defaultFeatures,
     paymentOptions: ['cash', 'credit_card', 'iban', 'corporate', 'multisport']
   });
@@ -211,6 +213,18 @@ export default function AddPackage() {
                         onChange={(e) => setFormData(prev => ({ ...prev, price: e.target.value }))}
                         className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-md text-white"
                         placeholder="0.00"
+                      />
+                    </div>
+
+                    <div className="space-y-2 md:col-span-2">
+                      <label className="text-sm font-medium text-white">
+                        Açıklama
+                      </label>
+                      <textarea
+                        value={formData.description}
+                        onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+                        className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-md text-white min-h-[100px]"
+                        placeholder="Paket hakkında detaylı açıklama yazın..."
                       />
                     </div>
                   </div>

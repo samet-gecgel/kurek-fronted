@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { ManagerSidebar } from "../../../components/ManagerSidebar";
+import { ManagerSidebar } from "@/components/layout/manager-sidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Package, ArrowLeft, Edit2, Trash2 } from "lucide-react";
@@ -116,6 +116,11 @@ export default function PackageDetails() {
                   <div>
                     <p className="text-3xl font-bold text-white">₺{packageData.price.toLocaleString()}</p>
                     <p className="text-sm text-zinc-400">{packageData.duration} günlük paket</p>
+                  </div>
+
+                  <div className="pt-4 border-t border-zinc-800">
+                    <p className="text-sm font-medium text-white mb-2">Açıklama</p>
+                    <p className="text-zinc-400 whitespace-pre-wrap">{packageData.description}</p>
                   </div>
 
                   <div className="flex items-center gap-2">

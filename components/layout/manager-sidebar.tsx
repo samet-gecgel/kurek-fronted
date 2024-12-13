@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
   Package,
-  Users,
+ // Users,
   Calendar,
   MessageSquare,
   BarChart,
@@ -28,11 +28,11 @@ const menuItems = [
     icon: Package,
     href: '/club-manager/packages',
   },
-  {
-    title: 'Üye Yönetimi',
-    icon: Users,
-    href: '/club-manager/members',
-  },
+  // {
+  //   title: 'Üye Yönetimi',
+  //   icon: Users,
+  //   href: '/club-manager/users',
+  // },
   {
     title: 'Rezervasyonlar',
     icon: Calendar,

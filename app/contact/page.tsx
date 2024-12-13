@@ -10,8 +10,8 @@ import {
   AlertCircle
 } from "lucide-react";
 import { useState } from "react";
-import { Navbar } from "../components/navbar";
-import { Footer } from "../components/footer";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 
 export default function Contact() {
   const [formData, setFormData] = useState({

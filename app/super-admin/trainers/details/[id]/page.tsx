@@ -15,9 +15,9 @@ import {
   Check,
   X,
 } from "lucide-react";
-import Sidebar from "@/app/components/Sidebar";
 import { TrainerDetail, TrainerStatus } from "@/types/trainer";
-import { Dialog } from "@/app/components/Dialog";
+import Sidebar from "@/components/layout/sidebar";
+import { Dialog } from "@/components/ui/dialogCustom";
 
 // Örnek veri - Gerçek uygulamada API'den gelecek
 const mockTrainerDetail: TrainerDetail = {
@@ -384,4 +384,3 @@ function InfoItem({ icon: Icon, label, value, multiline }: InfoItemProps) {
     </div>
   );
 }
-

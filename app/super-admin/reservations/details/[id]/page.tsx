@@ -17,7 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import Sidebar from "@/app/components/Sidebar";
+import Sidebar from "@/components/layout/sidebar";
 interface Trainer {
   id: string;
   name: string;

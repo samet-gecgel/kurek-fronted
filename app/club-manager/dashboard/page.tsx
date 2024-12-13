@@ -4,8 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ManagerSidebar } from "../components/ManagerSidebar";
 import { Users, Calendar, CreditCard, TrendingUp, Clock, Package } from "lucide-react";
+import { ManagerSidebar } from "@/components/layout/manager-sidebar";
 
 // Mock data for charts
 const monthlyData = [

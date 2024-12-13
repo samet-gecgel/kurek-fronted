@@ -27,7 +27,7 @@ import {
   Bar,
 } from 'recharts';
 import { useState } from "react";
-import Sidebar from "@/app/components/Sidebar";
+import Sidebar from "@/components/layout/sidebar";
 
 const monthlyData = [
   { name: 'Oca', üye: 400, kulüp: 5 },

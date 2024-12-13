@@ -15,11 +15,11 @@ import {
   Trash2,
   Eye,
 } from "lucide-react";
-import Sidebar from "@/app/components/Sidebar";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Pagination } from "@/app/components/pagination";
+import { Pagination } from "@/components/ui/pagination";
+import Sidebar from "@/components/layout/sidebar";
 
 // Örnek veri
 const clubs = [

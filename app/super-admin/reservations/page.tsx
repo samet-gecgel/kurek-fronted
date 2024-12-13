@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Sidebar from "@/app/components/Sidebar";
+import Sidebar from "@/components/layout/sidebar";
 import { useRouter } from 'next/navigation';
 
 type TabType = 'new' | 'pending' | 'completed' | 'cancelled';

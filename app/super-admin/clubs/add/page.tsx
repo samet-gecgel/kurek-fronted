@@ -16,7 +16,7 @@ import {
   Save,
 } from "lucide-react";
 import Link from "next/link";
-import Sidebar from "@/app/components/Sidebar";
+import Sidebar from "@/components/layout/sidebar";
 
 export default function AddClubPage() {
   const router = useRouter();
