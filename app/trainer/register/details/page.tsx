@@ -1,28 +1,45 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { User, Phone, Calendar, Medal, Briefcase, FileText, Trophy } from "lucide-react";
+import { User, Phone, Calendar, Medal, Briefcase, FileText, Upload, X } from "lucide-react";
 import Image from "next/image";
-
+import DatePicker from "@/components/ui/datePicker";
 
 export default function TrainerRegisterDetails() {
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showCertDatePicker, setShowCertDatePicker] = useState<number | null>(null);
+
   const [formData, setFormData] = useState({
     name: "",
-    tcNo: "",
     phone: "",
-    birthDate: "",
-    address: "",
-    specialization: "", // Uzmanlık alanı
-    experience: "", // Deneyim yılı
-    certificates: "", // Sertifikalar
-    education: "", // Eğitim bilgileri
-    achievements: "", // Başarılar
-    availability: "", // Müsait olduğu zamanlar
-    bio: "", // Kısa biyografi
+    birthDate: new Date().toLocaleDateString('tr-TR'),
+    specialization: "",
+    experience: "",
+    personalMessage: "",
     privacyAccepted: false,
-    consentAccepted: false
+    consentAccepted: false,
+    profileImage: null as File | null,
+    certificates: [] as {
+      name: string;
+      institution: string;
+      date: string;
+      file: File | null;
+    }[]
   });
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.date-picker-container') && !target.closest('.date-input')) {
+        setShowDatePicker(false);
+        setShowCertDatePicker(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,6 +53,49 @@ export default function TrainerRegisterDetails() {
       ...prev,
       [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
     }));
+  };
+
+  const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFormData(prev => ({
+        ...prev,
+        profileImage: e.target.files![0]
+      }));
+    }
+  };
+
+  const handleAddCertificate = () => {
+    setFormData(prev => ({
+      ...prev,
+      certificates: [...prev.certificates, {
+        name: "",
+        institution: "",
+        date: "",
+        file: null
+      }]
+    }));
+  };
+
+  const handleRemoveCertificate = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      certificates: prev.certificates.filter((_, i) => i !== index)
+    }));
+  };
+
+  const handleDateSelect = (date: Date) => {
+    setFormData(prev => ({
+      ...prev,
+      birthDate: date.toLocaleDateString('tr-TR')
+    }));
+    setShowDatePicker(false);
+  };
+
+  const handleCertDateSelect = (date: Date, index: number) => {
+    const newCerts = [...formData.certificates];
+    newCerts[index].date = date.toLocaleDateString('tr-TR');
+    setFormData(prev => ({ ...prev, certificates: newCerts }));
+    setShowCertDatePicker(null);
   };
 
   return (
@@ -65,8 +125,41 @@ export default function TrainerRegisterDetails() {
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Profil Resmi Yükleme */}
+            <div className="flex justify-center mb-6">
+              <div className="relative">
+                <input
+                  type="file"
+                  id="profileImage"
+                  accept="image/*"
+                  onChange={handleProfileImageChange}
+                  className="hidden"
+                />
+                <label
+                  htmlFor="profileImage"
+                  className="cursor-pointer flex flex-col items-center justify-center w-32 h-32 rounded-full bg-zinc-800 border-2 border-dashed border-zinc-600 hover:border-blue-500 transition-colors"
+                >
+                  {formData.profileImage ? (
+                    <div className="w-32 h-32 relative">
+                      <Image
+                        src={URL.createObjectURL(formData.profileImage)}
+                        alt="Profile"
+                        fill
+                        className="rounded-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <>
+                      <Upload className="w-8 h-8 text-zinc-400" />
+                      <span className="text-sm text-zinc-400 mt-2">Profil Resmi Ekle</span>
+                    </>
+                  )}
+                </label>
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-6">
-              {/* Kişisel Bilgiler */}
+              {/* Ad Soyad */}
               <div className="space-y-2">
                 <label className="text-sm text-zinc-400 block">Ad Soyad</label>
                 <div className="relative">
@@ -77,22 +170,6 @@ export default function TrainerRegisterDetails() {
                     value={formData.name}
                     onChange={handleChange}
                     className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-2 px-10 text-white placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
-                    required
-                  />
-                </div>
-              </div>
-
-              {/* TC Kimlik No */}
-              <div className="space-y-2">
-                <label className="text-sm text-zinc-400 block">TC Kimlik No</label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    name="tcNo"
-                    value={formData.tcNo}
-                    onChange={handleChange}
-                    maxLength={11}
-                    className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-2 px-4 text-white placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
                     required
                   />
                 </div>
@@ -114,123 +191,69 @@ export default function TrainerRegisterDetails() {
                 </div>
               </div>
 
-              {/* Doğum Tarihi */}
+              {/* Doğum Tarihi - DatePicker ile */}
               <div className="space-y-2">
                 <label className="text-sm text-zinc-400 block">Doğum Tarihi</label>
                 <div className="relative">
                   <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400" />
                   <input
-                    type="date"
-                    name="birthDate"
+                    type="text"
                     value={formData.birthDate}
-                    onChange={handleChange}
-                    className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-2 px-10 text-white placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
-                    required
+                    onClick={() => setShowDatePicker(true)}
+                    readOnly
+                    className="date-input w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-2 px-10 text-white cursor-pointer focus:outline-none focus:border-blue-500 transition-colors"
                   />
-                </div>
-              </div>
-
-              {/* Uzmanlık Alanı */}
-              <div className="space-y-2">
-                <label className="text-sm text-zinc-400 block">Uzmanlık Alanı</label>
-                <div className="relative">
-                  <Medal className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400" />
-                  <input
-                    type="text"
-                    name="specialization"
-                    value={formData.specialization}
-                    onChange={handleChange}
-                    className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-2 px-10 text-white placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
-                    placeholder="Örn: Kürek Antrenörü"
-                    required
-                  />
-                </div>
-              </div>
-
-              {/* Deneyim */}
-              <div className="space-y-2">
-                <label className="text-sm text-zinc-400 block">Deneyim (Yıl)</label>
-                <div className="relative">
-                  <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400" />
-                  <input
-                    type="text"
-                    name="experience"
-                    value={formData.experience}
-                    onChange={(e) => {
-                      const value = e.target.value.replace(/[^0-9]/g, '');
-                      handleChange({
-                        target: {
-                          name: 'experience',
-                          value
-                        }
-                      } as React.ChangeEvent<HTMLInputElement>);
-                    }}
-                    className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-2 px-10 text-white placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
-                    placeholder="Yıl olarak deneyiminiz"
-                    required
-                  />
+                  {showDatePicker && (
+                    <div className="date-picker-container absolute z-10 mt-1">
+                      <DatePicker onDateSelect={handleDateSelect} />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
 
-            {/* Eğitim Bilgileri */}
+            {/* Uzmanlık Alanı - Grid dışında */}
             <div className="space-y-2">
-              <label className="text-sm text-zinc-400 block">Eğitim Bilgileri</label>
+              <label className="text-sm text-zinc-400 block">Uzmanlık Alanları</label>
               <div className="relative">
-                <FileText className="absolute left-3 top-3 w-5 h-5 text-zinc-400" />
-                <textarea
-                  name="education"
-                  value={formData.education}
+                <Medal className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400" />
+                <input
+                  type="text"
+                  name="specialization"
+                  value={formData.specialization}
                   onChange={handleChange}
-                  rows={3}
                   className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-2 px-10 text-white placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="Eğitim geçmişinizi detaylı bir şekilde yazınız"
+                  placeholder="Örn: Kürek, Tekne Sınıfı A, Antrenman Programlama"
                   required
                 />
               </div>
             </div>
 
-            {/* Sertifikalar */}
+            {/* Deneyim - Grid dışında */}
             <div className="space-y-2">
-              <label className="text-sm text-zinc-400 block">Sertifikalar</label>
+              <label className="text-sm text-zinc-400 block">Deneyim</label>
               <div className="relative">
-                <Medal className="absolute left-3 top-3 w-5 h-5 text-zinc-400" />
+                <Briefcase className="absolute left-3 top-3 w-5 h-5 text-zinc-400" />
                 <textarea
-                  name="certificates"
-                  value={formData.certificates}
+                  name="experience"
+                  value={formData.experience}
                   onChange={handleChange}
                   rows={3}
                   className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-2 px-10 text-white placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="Sahip olduğunuz sertifikaları listeleyiniz"
+                  placeholder="Deneyimlerinizi detaylı bir şekilde yazınız"
                   required
                 />
               </div>
             </div>
 
-            {/* Başarılar */}
+            {/* Kişisel Mesaj */}
             <div className="space-y-2">
-              <label className="text-sm text-zinc-400 block">Başarılar</label>
-              <div className="relative">
-                <Trophy className="absolute left-3 top-3 w-5 h-5 text-zinc-400" />
-                <textarea
-                  name="achievements"
-                  value={formData.achievements}
-                  onChange={handleChange}
-                  rows={3}
-                  className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-2 px-10 text-white placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="Sportif başarılarınızı ve antrenörlük başarılarınızı yazınız"
-                />
-              </div>
-            </div>
-
-            {/* Biyografi */}
-            <div className="space-y-2">
-              <label className="text-sm text-zinc-400 block">Kısa Biyografi</label>
+              <label className="text-sm text-zinc-400 block">Kişisel Mesaj</label>
               <div className="relative">
                 <FileText className="absolute left-3 top-3 w-5 h-5 text-zinc-400" />
                 <textarea
-                  name="bio"
-                  value={formData.bio}
+                  name="personalMessage"
+                  value={formData.personalMessage}
                   onChange={handleChange}
                   rows={4}
                   className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-2 px-10 text-white placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
@@ -238,6 +261,91 @@ export default function TrainerRegisterDetails() {
                   required
                 />
               </div>
+            </div>
+
+            {/* Sertifikalar */}
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <label className="text-sm text-zinc-400">Sertifikalar</label>
+                <button
+                  type="button"
+                  onClick={handleAddCertificate}
+                  className="text-sm text-blue-500 hover:text-blue-400"
+                >
+                  + Yeni Sertifika Ekle
+                </button>
+              </div>
+              
+              {formData.certificates.map((cert, index) => (
+                <div key={index} className="space-y-4 p-4 bg-zinc-800/30 rounded-lg relative">
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveCertificate(index)}
+                    className="absolute right-2 top-2 p-1 hover:bg-zinc-700 rounded-full transition-colors"
+                  >
+                    <X className="w-4 h-4 text-zinc-400" />
+                  </button>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-sm text-zinc-400">Sertifika Adı</label>
+                      <input
+                        type="text"
+                        value={cert.name}
+                        onChange={(e) => {
+                          const newCerts = [...formData.certificates];
+                          newCerts[index].name = e.target.value;
+                          setFormData(prev => ({ ...prev, certificates: newCerts }));
+                        }}
+                        className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-2 px-4 text-white"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm text-zinc-400">Kurum</label>
+                      <input
+                        type="text"
+                        value={cert.institution}
+                        onChange={(e) => {
+                          const newCerts = [...formData.certificates];
+                          newCerts[index].institution = e.target.value;
+                          setFormData(prev => ({ ...prev, certificates: newCerts }));
+                        }}
+                        className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-2 px-4 text-white"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-sm text-zinc-400">Alınma Tarihi</label>
+                      <div className="relative">
+                        <input
+                          type="text"
+                          value={cert.date}
+                          onClick={() => setShowCertDatePicker(index)}
+                          readOnly
+                          className="date-input w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-2 px-4 text-white cursor-pointer"
+                        />
+                        {showCertDatePicker === index && (
+                          <div className="date-picker-container absolute z-10 mt-1">
+                            <DatePicker onDateSelect={(date) => handleCertDateSelect(date, index)} />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm text-zinc-400">Sertifika Dosyası</label>
+                      <input
+                        type="file"
+                        onChange={(e) => {
+                          const newCerts = [...formData.certificates];
+                          newCerts[index].file = e.target.files?.[0] || null;
+                          setFormData(prev => ({ ...prev, certificates: newCerts }));
+                        }}
+                        className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg py-1 px-4 text-white"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Onay Checkboxları */}
