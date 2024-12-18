@@ -12,6 +12,9 @@ export interface UserDetail {
   bloodType: string;
   canSwim: boolean;
   profession: string;
+  isVIR: boolean;
+  isProblematic: boolean;
+  notes: string;
   emergencyContact: {
     fullName: string;
     relation: string;

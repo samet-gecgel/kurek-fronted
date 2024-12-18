@@ -16,6 +16,8 @@ import {
   X,
   ChevronRight,
   LucideIcon,
+  Crown,
+  AlertTriangle,
 } from "lucide-react";
 import { AccountStatus, RegistrationType, UserDetail } from "@/types/user";
 import Sidebar from "@/components/layout/sidebar";
@@ -42,6 +44,9 @@ const mockUserDetail: UserDetail = {
   profileImage: "https://cdn.icon-icons.com/icons2/3550/PNG/512/trainer_man_people_avatar_person_icon_224822.png",
   accountStatus: "pending",
   createdAt: "2024-03-15",
+  isVIR: false,
+  isProblematic: false,
+  notes: "",
 };
 
 // Kayıt şekli çevirisi için yardımcı fonksiyon
@@ -74,6 +79,8 @@ export default function UserDetailPage({ params }: { params: { id: string } }) {
     message: '',
   });
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const getStatusColor = (status: AccountStatus) => {
     switch (status) {
@@ -145,6 +152,35 @@ export default function UserDetailPage({ params }: { params: { id: string } }) {
     setDialogConfig({ show: false, title: '', message: '' });
   };
 
+  const handleUserFlagUpdate = (field: 'isVIR' | 'isProblematic', value: boolean) => {
+    setUserDetail(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleNotesUpdate = (notes: string) => {
+    setUserDetail(prev => ({
+      ...prev,
+      notes
+    }));
+  };
+
+  const handleSaveChanges = async () => {
+    setIsUpdating(true);
+    try {
+      // API çağrısı burada yapılacak
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simüle edilmiş API çağrısı
+      
+      setShowSuccessMessage(true);
+      setTimeout(() => setShowSuccessMessage(false), 3000);
+    } catch (error) {
+      console.error('Değişiklikler kaydedilemedi:', error);
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
   return (
     <div className="flex min-h-screen bg-zinc-950">
       <div className={`transition-all duration-300 ease-in-out ${
@@ -153,7 +189,7 @@ export default function UserDetailPage({ params }: { params: { id: string } }) {
         <Sidebar isOpen={isSidebarOpen} onToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
       </div>
 
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-8 mb-20">
         {/* Breadcrumb */}
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-8">
@@ -241,6 +277,118 @@ export default function UserDetailPage({ params }: { params: { id: string } }) {
                     <p className="text-zinc-400 text-sm leading-relaxed">{userDetail.rejectionReason}</p>
                   </div>
                 )}
+
+                <div className="space-y-4 mt-6 pt-6 border-t border-zinc-800">
+                  <div className="flex flex-col gap-6">
+                    <div className="bg-zinc-800/30 rounded-lg p-4 space-y-4">
+                      <h3 className="text-sm font-medium text-zinc-300">Üye Durumu</h3>
+                      
+                      {/* Checkbox'lar */}
+                      <div className="space-y-3">
+                        <label className="relative flex items-center gap-3">
+                          <input
+                            type="checkbox"
+                            checked={userDetail.isVIR}
+                            onChange={(e) => handleUserFlagUpdate('isVIR', e.target.checked)}
+                            className="peer sr-only"
+                          />
+                          <div className="h-6 w-6 rounded border border-zinc-700 bg-zinc-800/50 peer-checked:bg-blue-500/20 peer-checked:border-blue-500/50 transition-colors">
+                            <Check 
+                              size={16} 
+                              className={`text-blue-500 transition-opacity ${
+                                userDetail.isVIR ? 'opacity-100' : 'opacity-0'
+                              }`}
+                            />
+                          </div>
+                          <span className="text-sm text-zinc-400 peer-checked:text-blue-400 transition-colors">
+                            VIR Üye
+                          </span>
+                        </label>
+
+                        <label className="relative flex items-center gap-3">
+                          <input
+                            type="checkbox"
+                            checked={userDetail.isProblematic}
+                            onChange={(e) => handleUserFlagUpdate('isProblematic', e.target.checked)}
+                            className="peer sr-only"
+                          />
+                          <div className="h-6 w-6 rounded border border-zinc-700 bg-zinc-800/50 peer-checked:bg-red-500/20 peer-checked:border-red-500/50 transition-colors">
+                            <Check 
+                              size={16} 
+                              className={`text-red-500 transition-opacity ${
+                                userDetail.isProblematic ? 'opacity-100' : 'opacity-0'
+                              }`}
+                            />
+                          </div>
+                          <span className="text-sm text-zinc-400 peer-checked:text-red-400 transition-colors">
+                            Dikkat! (Sorunlu Üye)
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Notlar */}
+                    <div className="bg-zinc-800/30 rounded-lg p-4 space-y-2">
+                      <label className="text-sm font-medium text-zinc-300">Notlar</label>
+                      <textarea
+                        value={userDetail.notes}
+                        onChange={(e) => handleNotesUpdate(e.target.value)}
+                        placeholder="Üye hakkında notlar..."
+                        rows={4}
+                        className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg p-3 text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-zinc-600"
+                      />
+                    </div>
+
+                    {/* Badge'ler */}
+                    <div className="flex gap-4">
+                      {userDetail.isVIR && (
+                        <div className="flex-1 p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                          <p className="text-blue-400 text-sm flex items-center gap-2">
+                            <Crown size={16} />
+                            VIR Üye
+                          </p>
+                        </div>
+                      )}
+
+                      {userDetail.isProblematic && (
+                        <div className="flex-1 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
+                          <p className="text-red-400 text-sm flex items-center gap-2">
+                            <AlertTriangle size={16} />
+                            Dikkat! Sorunlu Üye
+                          </p>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Kaydet Butonu */}
+                    <div className="relative">
+                      <button
+                        onClick={handleSaveChanges}
+                        disabled={isUpdating}
+                        className="w-full py-3 px-4 bg-white/5 hover:bg-white/10 text-white rounded-lg flex items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {isUpdating ? (
+                          <>
+                            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            Kaydediliyor...
+                          </>
+                        ) : (
+                          'Değişiklikleri Kaydet'
+                        )}
+                      </button>
+
+                      {/* Başarılı mesajı */}
+                      {showSuccessMessage && (
+                        <div className="absolute top-full left-0 right-0 mt-2 p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
+                          <p className="text-green-400 text-sm flex items-center gap-2">
+                            <Check size={16} />
+                            Değişiklikler kaydedildi
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
