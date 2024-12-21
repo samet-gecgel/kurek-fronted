@@ -1,4 +1,7 @@
+"use client";
+
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "./button";
 
 interface PaginationProps {
   currentPage: number;
@@ -7,57 +10,59 @@ interface PaginationProps {
 }
 
 export function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
-  const nextPage = () => {
-    if (currentPage < totalPages) {
-      onPageChange(currentPage + 1);
-    }
-  };
-
-  const prevPage = () => {
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  
+  const handlePrevious = () => {
     if (currentPage > 1) {
       onPageChange(currentPage - 1);
     }
   };
 
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      onPageChange(currentPage + 1);
+    }
+  };
+
   return (
-    <div className="mt-8 flex items-center justify-center gap-2">
-      <button
-        onClick={prevPage}
+    <div className="flex items-center gap-2">
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={handlePrevious}
         disabled={currentPage === 1}
-        className={`p-2 rounded-lg ${
-          currentPage === 1 
-            ? 'text-zinc-600 cursor-not-allowed' 
-            : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
-        }`}
+        className="h-8 w-8 bg-zinc-900 border-zinc-800 text-zinc-400 hover:bg-zinc-800/50 hover:text-white disabled:opacity-50"
       >
-        <ChevronLeft size={20} />
-      </button>
+        <ChevronLeft className="h-4 w-4" />
+      </Button>
 
-      {[...Array(totalPages)].map((_, index) => (
-        <button
-          key={index + 1}
-          onClick={() => onPageChange(index + 1)}
-          className={`w-10 h-10 rounded-lg ${
-            currentPage === index + 1
-              ? 'bg-blue-500 text-white'
-              : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
-          }`}
-        >
-          {index + 1}
-        </button>
-      ))}
+      <div className="flex gap-1">
+        {pages.map((page) => (
+          <Button
+            key={page}
+            variant={currentPage === page ? "default" : "outline"}
+            size="icon"
+            onClick={() => onPageChange(page)}
+            className={`h-8 w-8 ${
+              currentPage === page
+                ? "bg-blue-600 hover:bg-blue-700 text-white"
+                : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:bg-zinc-800/50 hover:text-white"
+            }`}
+          >
+            {page}
+          </Button>
+        ))}
+      </div>
 
-      <button
-        onClick={nextPage}
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={handleNext}
         disabled={currentPage === totalPages}
-        className={`p-2 rounded-lg ${
-          currentPage === totalPages 
-            ? 'text-zinc-600 cursor-not-allowed' 
-            : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
-        }`}
+        className="h-8 w-8 bg-zinc-900 border-zinc-800 text-zinc-400 hover:bg-zinc-800/50 hover:text-white disabled:opacity-50"
       >
-        <ChevronRight size={20} />
-      </button>
+        <ChevronRight className="h-4 w-4" />
+      </Button>
     </div>
   );
 } 

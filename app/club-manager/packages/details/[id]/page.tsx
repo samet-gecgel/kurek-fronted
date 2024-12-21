@@ -33,7 +33,7 @@ export default function PackageDetails() {
 
   // Mock veri - gerçek uygulamada API'den gelecek
   const packageData = {
-    id: params.id,
+    id: params!.id,
     name: "Aylık Paket",
     price: 2500,
     description: "30 gün boyunca 8 kullanım hakkı",
@@ -50,7 +50,7 @@ export default function PackageDetails() {
 
   const handleDelete = () => {
     // API çağrısı yapılacak
-    console.log('Paket silindi:', params.id);
+    console.log('Paket silindi:', params!.id);
     setShowDeleteDialog(false);
     router.push('/club-manager/packages');
   };
@@ -83,7 +83,7 @@ export default function PackageDetails() {
             </div>
             
             <div className="flex gap-2">
-              <Link href={`/club-manager/packages/details/edit/${params.id}`}>
+              <Link href={`/club-manager/packages/details/edit/${params!.id}`}>
                 <Button className="bg-blue-600 hover:bg-blue-700">
                   <Edit2 className="w-4 h-4 mr-2" />
                   Paketi Düzenle

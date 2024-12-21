@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Save, Trophy, GraduationCap, Users, PartyPopper, Calendar } from "lucide-react";
+import { ArrowLeft, Save, Trophy, GraduationCap, Users, PartyPopper, Calendar, MapPin, CreditCard, Users2, Banknote, Building2, Briefcase, Dumbbell } from "lucide-react";
 import { ManagerSidebar } from "@/components/layout/manager-sidebar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,6 +12,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import DatePicker from "@/components/ui/datePicker";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Switch } from "@/components/ui/switch";
+import { IBANInput } from "@/components/ui/iban-input";
 
 interface EventForm {
   title: string;
@@ -19,8 +21,14 @@ interface EventForm {
   date: string;
   time: string;
   location: string;
+  mapUrl: string;
   maxParticipants: number;
   description: string;
+  isClubOnly: boolean;
+  isPaid: boolean;
+  price: number;
+  paymentTypes: string[];
+  bankAccount?: string;
 }
 
 const eventTypes = [
@@ -30,14 +38,28 @@ const eventTypes = [
   { value: 'sosyal', label: 'Sosyal Etkinlik', icon: PartyPopper }
 ] as const;
 
+const paymentOptions = [
+  { id: 'cash', label: 'Nakit', icon: Banknote },
+  { id: 'credit_card', label: 'Kredi Kartı', icon: CreditCard },
+  { id: 'bank_transfer', label: 'IBAN', icon: Building2 },
+  { id: 'corporate', label: 'Kurumsal', icon: Briefcase },
+  { id: 'multisport', label: 'Multisport', icon: Dumbbell },
+] as const;
+
 const initialFormData: EventForm = {
   title: '',
   type: '',
   date: '',
   time: '',
   location: '',
+  mapUrl: '',
   maxParticipants: 0,
   description: '',
+  isClubOnly: false,
+  isPaid: false,
+  price: 0,
+  paymentTypes: [],
+  bankAccount: '',
 };
 
 export default function CreateEventPage() {
@@ -175,19 +197,38 @@ export default function CreateEventPage() {
                     />
                   </div>
 
-                  {/* Konum */}
-                  <div className="space-y-2">
-                    <Label htmlFor="location" className="text-gray-200 font-medium">
-                      Konum
-                    </Label>
-                    <Input
-                      id="location"
-                      name="location"
-                      value={formData.location}
-                      onChange={handleChange}
-                      className="bg-zinc-800/50 border-zinc-700/50 text-white h-12 text-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
-                      placeholder="Etkinlik konumunu girin"
-                    />
+                  {/* Konum ve Harita */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="location" className="text-gray-200 font-medium">
+                        Konum
+                      </Label>
+                      <div className="relative">
+                        <Input
+                          id="location"
+                          name="location"
+                          value={formData.location}
+                          onChange={handleChange}
+                          className="bg-zinc-800/50 border-zinc-700/50 text-white h-12 pl-10 text-lg"
+                          placeholder="Etkinlik konumunu girin"
+                        />
+                        <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 w-5 h-5" />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="mapUrl" className="text-gray-200 font-medium">
+                        Harita Bağlantısı
+                      </Label>
+                      <Input
+                        id="mapUrl"
+                        name="mapUrl"
+                        value={formData.mapUrl}
+                        onChange={handleChange}
+                        className="bg-zinc-800/50 border-zinc-700/50 text-white h-12 text-lg"
+                        placeholder="Google Maps bağlantısını yapıştırın"
+                      />
+                    </div>
                   </div>
 
                   {/* Maksimum Katılımcı */}
@@ -205,6 +246,124 @@ export default function CreateEventPage() {
                       placeholder="0"
                       min="0"
                     />
+                  </div>
+
+                  {/* Kayıt Türü ve Ücret Bilgileri */}
+                  <div className="grid grid-cols-2 gap-4 col-span-2">
+                    {/* Kayıt Türü */}
+                    <div className="space-y-2">
+                      <Label className="text-gray-200 font-medium">Kayıt Türü</Label>
+                      <div className="flex items-center justify-between bg-zinc-800/30 p-5 rounded-xl border border-zinc-700/50">
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 rounded-lg bg-zinc-800">
+                            <Users2 className="w-5 h-5 text-zinc-400" />
+                          </div>
+                          <span className="text-zinc-200 font-medium">Sadece kulüp üyelerine özel</span>
+                        </div>
+                        <Switch
+                          checked={formData.isClubOnly}
+                          onCheckedChange={(checked) => 
+                            setFormData(prev => ({ ...prev, isClubOnly: checked }))
+                          }
+                        />
+                      </div>
+                    </div>
+
+                    {/* Ücret Bilgileri */}
+                    <div className="space-y-2">
+                      <Label className="text-gray-200 font-medium">Ücret Bilgileri</Label>
+                      <div className="flex items-center justify-between bg-zinc-800/30 p-5 rounded-xl border border-zinc-700/50">
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 rounded-lg bg-zinc-800">
+                            <CreditCard className="w-5 h-5 text-zinc-400" />
+                          </div>
+                          <span className="text-zinc-200 font-medium">Ücretli Etkinlik</span>
+                        </div>
+                        <Switch
+                          checked={formData.isPaid}
+                          onCheckedChange={(checked) => 
+                            setFormData(prev => ({ 
+                              ...prev, 
+                              isPaid: checked,
+                              paymentTypes: checked ? ['credit_card', 'bank_transfer'] : [],
+                              price: checked ? prev.price : 0
+                            }))
+                          }
+                        />
+                      </div>
+                    </div>
+
+                    {/* Ücret Detayları - Tam Genişlik */}
+                    {formData.isPaid && (
+                      <div className="col-span-2 mt-4 space-y-4 bg-zinc-800/30 p-5 rounded-xl border border-zinc-700/50">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <Label htmlFor="price" className="text-gray-200">
+                              Ücret (TL)
+                            </Label>
+                            <Input
+                              id="price"
+                              name="price"
+                              type="number"
+                              value={formData.price}
+                              onChange={handleChange}
+                              className="bg-zinc-800/50 border-zinc-700/50 text-white h-12"
+                              min="0"
+                              step="0.01"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Ödeme Seçenekleri */}
+                        <div className="space-y-2">
+                          <Label className="text-gray-200">Ödeme Seçenekleri</Label>
+                          <div className="grid grid-cols-5 gap-3">
+                            {paymentOptions.map((option) => {
+                              const Icon = option.icon;
+                              const isSelected = formData.paymentTypes.includes(option.id);
+
+                              return (
+                                <div
+                                  key={option.id}
+                                  onClick={() => {
+                                    setFormData(prev => ({
+                                      ...prev,
+                                      paymentTypes: isSelected
+                                        ? prev.paymentTypes.filter(id => id !== option.id)
+                                        : [...prev.paymentTypes, option.id]
+                                    }));
+                                  }}
+                                  className={`flex flex-col items-center gap-2 p-3 rounded-xl border cursor-pointer transition-all duration-200 ${
+                                    isSelected 
+                                      ? 'bg-blue-500/10 border-blue-500/50 text-blue-500' 
+                                      : 'bg-zinc-800/50 border-zinc-700/50 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300'
+                                  }`}
+                                >
+                                  <Icon className="w-5 h-5" />
+                                  <span className="text-xs font-medium">{option.label}</span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* IBAN alanı */}
+                        {formData.paymentTypes.includes('bank_transfer') && (
+                          <div className="space-y-2">
+                            <Label htmlFor="bankAccount" className="text-gray-200">
+                              IBAN
+                            </Label>
+                            <IBANInput
+                              id="bankAccount"
+                              value={formData.bankAccount || ''}
+                              onChange={(value) => 
+                                setFormData(prev => ({ ...prev, bankAccount: value }))
+                              }
+                            />
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
 

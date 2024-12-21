@@ -90,7 +90,7 @@ export default function ReservationDetails() {
   useEffect(() => {
     // Rezervasyon detaylarını getir
     setReservation({
-      id: params.id as string,
+      id: params!.id as string,
       memberName: "Elif Yıldız",
       selectedTrainer: "2",
       reservationDate: "2024-03-21",
@@ -132,7 +132,7 @@ export default function ReservationDetails() {
         availableSlots: ["08:00", "12:00", "17:00"]
       }
     ]);
-  }, [params.id]);
+  }, [params]);
 
   const handleAssignTrainer = () => {
     if (!selectedTrainer) {
@@ -195,7 +195,7 @@ export default function ReservationDetails() {
             className="mb-8"
           >
             <h1 className="text-2xl font-bold text-white">Rezervasyon Detayı</h1>
-            <p className="text-zinc-400">#{params.id}</p>
+            <p className="text-zinc-400">#{params!.id}</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-8">
