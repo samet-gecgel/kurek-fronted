@@ -44,6 +44,11 @@ const menuItems = [
     href: "/super-admin/users",
   },
   {
+    title: "Adminler",
+    icon: UserCog,
+    href: "/super-admin/admins",
+  },
+  {
     title: "Rezervasyonlar",
     icon: Calendar,
     href: "/super-admin/reservations",
