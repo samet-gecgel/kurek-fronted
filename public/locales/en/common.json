@@ -780,7 +780,8 @@
       "birthDate": "Birth Date",
       "expertise": {
         "label": "Areas of Expertise",
-        "placeholder": "Ex: Rowing, Boat Class A, Training Programming"
+        "placeholder": "Add new expertise",
+        "add": "Add"
       },
       "experience": {
         "label": "Experience",

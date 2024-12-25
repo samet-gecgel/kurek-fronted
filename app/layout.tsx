@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Kürek Takımı",
+  title: "Aviron Company",
   description: "Kürek Takımı Yönetim Sistemi",
 };
 

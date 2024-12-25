@@ -34,7 +34,7 @@ const mockUserDetail: UserDetail = {
   birthPlace: "İstanbul",
   bloodType: "A Rh+",
   canSwim: true,
-  profession: "Mühendis",
+  occupation: "Mühendis",
   emergencyContact: {
     fullName: "Ayşe Yılmaz",
     relation: "Eş",
@@ -409,7 +409,7 @@ export default function UserDetailPage({ params }: { params: { id: string } }) {
                   <InfoItem icon={MapPin} label="Doğum Yeri" value={userDetail.birthPlace} />
                   <InfoItem icon={Droplets} label="Kan Grubu" value={userDetail.bloodType} />
                   <InfoItem icon={Droplets} label="Yüzme Bilgisi" value={userDetail.canSwim ? "Evet" : "Hayır"} />
-                  <InfoItem icon={Briefcase} label="Meslek" value={userDetail.profession} />
+                  <InfoItem icon={Briefcase} label="Meslek" value={userDetail.occupation} />
                   <InfoItem icon={Building} label="Kayıt Şekli" value={getRegistrationTypeText(userDetail.registrationType)} />
                 </div>
               </div>

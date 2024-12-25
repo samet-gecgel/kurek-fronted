@@ -769,7 +769,8 @@
       "birthDate": "Doğum Tarihi",
       "expertise": {
         "label": "Uzmanlık Alanları",
-        "placeholder": "Örn: Kürek, Tekne Sınıfı A, Antrenman Programlama"
+        "placeholder": "Yeni uzmanlık alanı ekle",
+        "add": "Ekle"
       },
       "experience": {
         "label": "Deneyim",
@@ -882,7 +883,7 @@
       "generalError": "Kayıt işlemi sırasında bir hata oluştu"
     },
     "login": {
-      "text": "Zaten hesab��nız var mı?",
+      "text": "Zaten hesabınız var mı?",
       "link": "Giriş Yapın"
     },
     "backToLogin": "Giriş Sayfasına Dön"

@@ -31,12 +31,20 @@ interface Certificate {
   pdfUrl?: string;
 }
 
+// Trainer-Expertise ilişkisi için basit interface
+interface TrainerExpertise {
+  id: string;
+  name: string;
+  trainerId: string;
+}
+
+
 interface TrainerProfile {
   fullName: string;
   email: string;
   phone: string;
   birthDate: Date;
-  expertise: string[];
+  trainerExpertise: TrainerExpertise[];
   experience: string;
   certificates: Certificate[];
   photoUrl: string;
@@ -49,6 +57,8 @@ interface PasswordForm {
   confirmPassword: string;
 }
 
+
+
 export default function ProfilePage() {
   const t = useTranslations('trainerProfile');
   const params = useParams();
@@ -60,7 +70,7 @@ export default function ProfilePage() {
     email: "ahmet@example.com",
     phone: "+90 555 123 4567",
     birthDate: new Date(1990, 0, 1),
-    expertise: ["Kürek", "Tekne Sınıfı A", "Antrenman Programlama"],
+    trainerExpertise: [],
     experience: "10 yıllık kürek antrenörlüğü deneyimi",
     certificates: [
       {
@@ -89,6 +99,8 @@ export default function ProfilePage() {
   const [showCertDatePicker, setShowCertDatePicker] = useState<number | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const [expertiseInput, setExpertiseInput] = useState('');
 
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -133,6 +145,30 @@ export default function ProfilePage() {
     setProfile({ ...profile, certificates: newCerts });
     setShowCertDatePicker(null);
   };
+
+  const handleAddExpertise = () => {
+    if (expertiseInput.trim()) {
+      const newExpertise: TrainerExpertise = {
+        id: Date.now().toString(),
+        name: expertiseInput.trim(),
+        trainerId: "1" // Geçici trainer ID
+      };
+
+      setProfile({
+        ...profile,
+        trainerExpertise: [...profile.trainerExpertise, newExpertise]
+      });
+      setExpertiseInput('');
+    }
+  };
+
+  const handleRemoveExpertise = (expertiseId: string) => {
+    setProfile({
+      ...profile,
+      trainerExpertise: profile.trainerExpertise.filter(exp => exp.id !== expertiseId)
+    });
+  };
+
 
   // Input ve Textarea için ortak className
   const inputClassName = "bg-zinc-900 border-zinc-700 text-zinc-100 focus:border-blue-500/50 focus:ring-blue-500/20 placeholder:text-zinc-500";
@@ -206,9 +242,9 @@ export default function ProfilePage() {
                     <span className="text-sm">{profile.email}</span>
                   </div>
                   <div className="flex flex-wrap gap-2 mt-4 justify-center">
-                    {profile.expertise.map((exp, index) => (
-                      <Badge key={index} className="bg-blue-500/10 text-blue-400 border-blue-500/20">
-                        {exp}
+                    {profile.trainerExpertise.map((exp) => (
+                      <Badge key={exp.id} className="bg-blue-500/10 text-blue-400 border-blue-500/20">
+                        {exp.name}
                       </Badge>
                     ))}
                   </div>
@@ -312,16 +348,52 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Uzmanlık Alanları */}
-                <div>
-                  <label className="text-sm font-medium text-zinc-400 block mb-2">
-                    {t('form.expertise.label')}
-                  </label>
-                  <Input
-                    value={profile.expertise.join(", ")}
-                    onChange={(e) => setProfile({...profile, expertise: e.target.value.split(",")})}
-                    className={inputClassName}
-                    placeholder={t('form.expertise.placeholder')}
-                  />
+                <div className="col-span-2">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <label className="text-sm font-medium text-zinc-400">
+                        {t('form.expertise.label')}
+                      </label>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      {profile.trainerExpertise.map((exp) => (
+                        <div
+                          key={exp.id}
+                          className="group flex items-center gap-2 bg-zinc-800/50 text-zinc-100 px-3 py-1.5 rounded-lg text-sm border border-zinc-700"
+                        >
+                          <span>{exp.name}</span>
+                          <button
+                            onClick={() => handleRemoveExpertise(exp.id)}
+                            className="opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <X size={14} className="text-zinc-400 hover:text-zinc-200" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex gap-2">
+                      <Input
+                        value={expertiseInput}
+                        onChange={(e) => setExpertiseInput(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            handleAddExpertise();
+                          }
+                        }}
+                        placeholder={t('form.expertise.placeholder')}
+                        className="flex-1 bg-zinc-800/50 border-zinc-700 placeholder:text-zinc-500 text-zinc-100"
+                      />
+                      <Button
+                        onClick={handleAddExpertise}
+                        className="bg-blue-500 hover:bg-blue-600"
+                      >
+                        <Plus size={16} className="mr-2" />
+                        {t('form.expertise.add')}
+                      </Button>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Deneyim */}

@@ -23,7 +23,6 @@ interface Friend {
   name: string;
   email: string;
   avatar?: string;
-  isOnline: boolean;
   isFriend: boolean;
 }
 
@@ -34,7 +33,7 @@ interface FriendRequest {
     name: string;
     avatar?: string;
   };
-  status: 'pending' | 'accepted' | 'rejected';
+  status: 'pending' | 'approved' | 'rejected';
   createdAt: string;
 }
 
@@ -45,7 +44,6 @@ const friends: Friend[] = [
     name: 'Ahmet Yılmaz',
     email: 'ahmet@example.com',
     avatar: 'https://cdn.icon-icons.com/icons2/3550/PNG/512/trainer_man_people_avatar_person_icon_224822.png',
-    isOnline: true,
     isFriend: true
   },
   {
@@ -53,7 +51,6 @@ const friends: Friend[] = [
     name: 'Ayşe Demir',
     email: 'ayse@example.com',
     avatar: 'https://cdn.icon-icons.com/icons2/3550/PNG/512/trainer_man_people_avatar_person_icon_224822.png',
-    isOnline: false,
     isFriend: true
   },
   {
@@ -61,14 +58,12 @@ const friends: Friend[] = [
     name: 'Mehmet Kaya',
     email: 'mehmet@example.com',
     avatar: 'https://cdn.icon-icons.com/icons2/3550/PNG/512/trainer_man_people_avatar_person_icon_224822.png',
-    isOnline: true,
     isFriend: false
   },
   {
     id: '4',
     name: 'Zeynep Şahin',
     email: 'zeynep@example.com',
-    isOnline: false,
     isFriend: false
   },
   {
@@ -76,14 +71,12 @@ const friends: Friend[] = [
     name: 'Can Yıldız',
     email: 'can@example.com',
     avatar: 'https://cdn.icon-icons.com/icons2/3550/PNG/512/trainer_man_people_avatar_person_icon_224822.png',
-    isOnline: true,
     isFriend: false
   },
   {
     id: '6',
     name: 'Elif Öztürk',
     email: 'elif@example.com',
-    isOnline: true,
     isFriend: false
   },
   {
@@ -91,14 +84,12 @@ const friends: Friend[] = [
     name: 'Burak Aydın',
     email: 'burak@example.com',
     avatar: 'https://cdn.icon-icons.com/icons2/3550/PNG/512/trainer_man_people_avatar_person_icon_224822.png',
-    isOnline: false,
     isFriend: false
   },
   {
     id: '8',
     name: 'Deniz Kara',
     email: 'deniz@example.com',
-    isOnline: true,
     isFriend: false
   },
   {
@@ -106,14 +97,12 @@ const friends: Friend[] = [
     name: 'Selin Aksoy',
     email: 'selin@example.com',
     avatar: 'https://cdn.icon-icons.com/icons2/3550/PNG/512/trainer_man_people_avatar_person_icon_224822.png',
-    isOnline: false,
     isFriend: false
   },
   {
     id: '10',
     name: 'Mert Çelik',
     email: 'mert@example.com',
-    isOnline: true,
     isFriend: false
   },
   {
@@ -121,7 +110,6 @@ const friends: Friend[] = [
     name: 'İrem Yılmaz',
     email: 'irem@example.com',
     avatar: "",
-    isOnline: true,
     isFriend: false
   },
   {
@@ -129,7 +117,6 @@ const friends: Friend[] = [
     name: 'Emre Demir',
     email: 'emre@example.com',
     avatar: 'https://cdn.icon-icons.com/icons2/3550/PNG/512/trainer_man_people_avatar_person_icon_224822.png',
-    isOnline: false,
     isFriend: false
   }
 ];

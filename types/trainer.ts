@@ -16,3 +16,21 @@ export interface TrainerDetail {
   status: TrainerStatus;
   rejectionReason?: string;
 }
+
+// Uzmanlık alanı için tip tanımı
+interface Expertise {
+  id: string;
+  name: string;
+  category: string; // Örn: "Tekne Sınıfları", "Antrenman Tipleri", "Özel Alanlar"
+  description?: string;
+}
+
+// Antrenör-Uzmanlık ilişkisi için tip
+interface TrainerExpertise {
+  id: string;
+  trainerId: string;
+  expertiseId: string;
+  yearsOfExperience?: number;
+  certificationDate?: Date;
+  certificationNumber?: string;
+}

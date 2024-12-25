@@ -11,7 +11,7 @@ export interface UserDetail {
   birthPlace: string;
   bloodType: string;
   canSwim: boolean;
-  profession: string;
+  occupation: string;
   isVIR: boolean;
   isProblematic: boolean;
   notes: string;

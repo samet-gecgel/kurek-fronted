@@ -296,11 +296,13 @@ export default function TrainersPage() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-            />
+            <div className="py-8">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
+            </div>
           )}
         </div>
       </div>
