@@ -3,63 +3,53 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { 
-  User,
-  Package,
-  Calendar,
-  Users,
-  LogOut,
-  ChevronLeft,
-  ChevronRight,
-  Activity,
+  User, Package, Calendar, Users, LogOut,
+  ChevronLeft, ChevronRight, Activity
 } from "lucide-react";
+import { useTranslations } from 'next-intl';
+import { LanguageSelector } from "@/components/language-selector";
 
-const menuItems = [
-  {
-    title: "Profilim",
-    href: "/user/profile",
-    icon: User,
-  },
-  {
-    title: "Paketler",
-    href: "/user/packages",
-    icon: Package,
-  },
-  {
-    title: 'Etkinlikler',
-    icon: Activity,
-    href: '/user/events',
-  },
-  {
-    title: "Rezervasyonlarım",
-    href: "/user/reservations",
-    icon: Calendar,
-  },
-  {
-    title: "Arkadaşlarım",
-    href: "/user/friends",
-    icon: Users,
-  },
-];
-
-interface UserSidebarProps {
-  isOpen: boolean;
-  onToggle: () => void;
-}
-
-export function UserSidebar({ isOpen, onToggle }: UserSidebarProps) {
+export function UserSidebar({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => void }) {
+  const t = useTranslations('userSidebar');
   const pathname = usePathname();
   const router = useRouter();
+
+  const menuItems = [
+    {
+      title: t('profile'),
+      href: "/user/profile",
+      icon: User,
+    },
+    {
+      title: t('packages'),
+      href: "/user/packages",
+      icon: Package,
+    },
+    {
+      title: t('events'),
+      href: '/user/events',
+      icon: Activity,
+    },
+    {
+      title: t('reservations'),
+      href: "/user/reservations",
+      icon: Calendar,
+    },
+    {
+      title: t('friends'),
+      href: "/user/friends",
+      icon: Users,
+    },
+  ];
 
   const handleLogout = () => {
     router.push('/');
   };
 
   return (
-    <div 
-      className={`fixed top-0 left-0 h-full bg-zinc-900/50 border-r border-zinc-800/50 backdrop-blur-sm transition-all duration-300 ${
-        isOpen ? 'w-64' : 'w-20'
-      }`}
-    >
+    <div className={`fixed top-0 left-0 h-full bg-zinc-900/50 border-r border-zinc-800/50 backdrop-blur-sm transition-all duration-300 ${
+      isOpen ? 'w-64' : 'w-20'
+    }`}>
       {/* Toggle butonu */}
       <button 
         onClick={onToggle}
@@ -68,13 +58,19 @@ export function UserSidebar({ isOpen, onToggle }: UserSidebarProps) {
         {isOpen ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
       </button>
 
-      {/* Sidebar içeriği */}
       <div className="flex flex-col h-full p-4">
         {/* Logo ve başlık */}
         <div className="flex items-center gap-3 mb-8">
           <div className="w-8 h-8 bg-blue-500 rounded-lg" />
-          {isOpen && <h1 className="text-lg font-semibold text-white">Kullanıcı Paneli</h1>}
+          {isOpen && <h1 className="text-lg font-semibold text-white">{t('title')}</h1>}
         </div>
+
+        {/* Dil seçici */}
+        {isOpen && (
+          <div className="mb-4">
+            <LanguageSelector />
+          </div>
+        )}
 
         {/* Menü öğeleri */}
         <nav className="space-y-2">
@@ -101,7 +97,7 @@ export function UserSidebar({ isOpen, onToggle }: UserSidebarProps) {
             className="flex items-center gap-2 w-full px-3 py-2 text-red-500 hover:bg-red-500/10 rounded-lg transition-colors"
           >
             <LogOut size={20} />
-            {isOpen && <span>Çıkış Yap</span>}
+            {isOpen && <span>{t('logout')}</span>}
           </button>
         </div>
       </div>

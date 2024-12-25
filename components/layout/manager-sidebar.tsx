@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import {
   LayoutDashboard,
   Package,
- // Users,
   Calendar,
   MessageSquare,
   BarChart,
@@ -16,50 +16,46 @@ import {
   UserCog,
   LogOut
 } from 'lucide-react';
+import { LanguageSelector } from "@/components/language-selector";
 
 const menuItems = [
   {
-    title: 'Ana Panel',
+    titleKey: 'dashboard',
     icon: LayoutDashboard,
     href: '/club-manager/dashboard',
   },
   {
-    title: 'Paket Yönetimi',
+    titleKey: 'packages',
     icon: Package,
     href: '/club-manager/packages',
   },
-  // {
-  //   title: 'Üye Yönetimi',
-  //   icon: Users,
-  //   href: '/club-manager/users',
-  // },
   {
-    title: 'Rezervasyonlar',
+    titleKey: 'reservations',
     icon: Calendar,
     href: '/club-manager/reservations',
   },
   {
-    title: 'Antrenör Yönetimi',
+    titleKey: 'trainers',
     icon: UserCog,
     href: '/club-manager/trainers',
   },
   {
-    title: 'Etkinlikler',
+    titleKey: 'events',
     icon: Activity,
     href: '/club-manager/events',
   },
   {
-    title: 'Mesajlar',
+    titleKey: 'messages',
     icon: MessageSquare,
     href: '/club-manager/messages',
   },
   {
-    title: 'Raporlar',
+    titleKey: 'reports',
     icon: BarChart,
     href: '/club-manager/reports',
   },
   {
-    title: 'Ayarlar',
+    titleKey: 'settings',
     icon: Settings,
     href: '/club-manager/settings',
   },
@@ -71,6 +67,7 @@ interface SidebarProps {
 }
 
 export const ManagerSidebar = ({ isOpen, onToggle }: SidebarProps) => {
+  const t = useTranslations('managerSidebar');
   const pathname = usePathname();
   const router = useRouter();
 
@@ -88,10 +85,17 @@ export const ManagerSidebar = ({ isOpen, onToggle }: SidebarProps) => {
       </button>
 
       <div className="flex flex-col h-full p-4">
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-4">
           <div className="w-8 h-8 bg-blue-500 rounded-lg" />
-          {isOpen && <h1 className="text-lg font-semibold text-white">Kulüp Yönetimi</h1>}
+          {isOpen && <h1 className="text-lg font-semibold text-white">{t('title')}</h1>}
         </div>
+
+        {/* Language Selector */}
+        {isOpen && (
+          <div className="mb-6">
+            <LanguageSelector />
+          </div>
+        )}
 
         <nav className="space-y-2">
           {menuItems.map((item) => (
@@ -105,7 +109,7 @@ export const ManagerSidebar = ({ isOpen, onToggle }: SidebarProps) => {
               }`}
             >
               <item.icon size={20} />
-              {isOpen && <span>{item.title}</span>}
+              {isOpen && <span>{t(`menu.${item.titleKey}`)}</span>}
             </Link>
           ))}
         </nav>
@@ -116,7 +120,7 @@ export const ManagerSidebar = ({ isOpen, onToggle }: SidebarProps) => {
             className="flex items-center gap-2 w-full px-3 py-2 text-red-500 hover:bg-red-500/10 rounded-lg transition-colors"
           >
             <LogOut size={20} />
-            {isOpen && <span>Çıkış Yap</span>}
+            {isOpen && <span>{t('logout')}</span>}
           </button>
         </div>
       </div>

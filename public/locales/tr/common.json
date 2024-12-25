@@ -1,0 +1,1012 @@
+{
+  "adminSidebar": {
+    "dashboard": "Ana Panel",
+    "clubs": "Kulüpler",
+    "managers": "Kulüp Yöneticileri",
+    "trainers": "Antrenörler",
+    "users": "Üyeler",
+    "admins": "Yöneticiler",
+    "reservations": "Rezervasyonlar",
+    "reports": "Raporlar",
+    "settings": "Ayarlar",
+    "logout": "Çıkış Yap"
+  },
+  "navigation": {
+    "home": "Anasayfa",
+    "packages": "Paketler",
+    "trainers": "Antrenörler",
+    "contact": "İletişim",
+    "trainerLogin": "Antrenör Girişi",
+    "userLogin": "Üye Girişi"
+  },
+  "footer": {
+    "quickLinks": "Hızlı Linkler",
+    "description": "Profesyonel kürek eğitimi ve antrenmanlarıyla, sporcularımızı ulusal ve uluslararası başarılara taşıyoruz.",
+    "links": {
+      "about": "Hakkımızda",
+      "packages": "Eğitim Paketleri",
+      "trainers": "Antrenörlerimiz",
+      "schedule": "Antrenman Programı"
+    },
+    "contact": {
+      "title": "İletişim",
+      "address": "Akat Mh. Selçuklar Sokak 16/2 Beşiktaş Istanbul",
+      "phone": "0 (212) 000 01 23",
+      "email": "info@kurektakimi.com"
+    },
+    "social": {
+      "title": "Bizi Takip Edin",
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "twitter": "Twitter"
+    },
+    "copyright": "© 2024 Kürek Takımı. Tüm hakları saklıdır."
+  },
+  "actions": {
+    "add": "Ekle",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "search": "Ara"
+  },
+  "notFound": {
+    "title": "Sayfa Bulunamadı",
+    "description": "Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış olabilir.",
+    "homeButton": "Ana Sayfaya Dön",
+    "backButton": "Geri Dön"
+  },
+  "home": {
+    "hero": {
+      "title": "Profesyonel Kürek Eğitimi",
+      "description": "Deneyimli antrenörlerimiz ve modern ekipmanlarımızla kürek sporunda mükemmelliği hedefliyoruz.",
+      "button": "Hemen Başla"
+    },
+    "stats": {
+      "members": "Üye",
+      "trainers": "Antrenör",
+      "trainings": "Antrenman"
+    },
+    "features": {
+      "flexibleTraining": {
+        "title": "Esnek Antrenman",
+        "description": "Bireysel veya takım olarak, size uygun saatlerde antrenman yapın. Su üstü ve kara antrenmanları."
+      },
+      "expertTrainers": {
+        "title": "Uzman Eğitmenler",
+        "description": "Milli takım deneyimli antrenörlerimizle profesyonel kürek eğitimi alın."
+      },
+      "specialPrograms": {
+        "title": "Özel Programlar",
+        "description": "Başlangıç seviyesinden yarışma hazırlığına özel antrenman programları."
+      }
+    },
+    "additionalFeatures": {
+      "modernEquipment": "Modern Ekipmanlar",
+      "competitionPrep": "Yarışma Hazırlık",
+      "regularTraining": "Düzenli Antrenman",
+      "elitePerformance": "Elit Performans"
+    },
+    "cta": {
+      "title": "Yolculuğunuza bugün başlayın!",
+      "description": "Size özel hazırlanmış antrenman programları ve profesyonel antrenörlerimizle tanışın.",
+      "button": "Paketleri İncele"
+    }
+  },
+  "packages": {
+    "title": "Kürek Antrenman Paketleri",
+    "description": "İhtiyaçlarınıza uygun paketlerimizi inceleyin",
+    "categories": {
+      "events": "Etkinlik ve Eğitim Paketleri",
+      "individual": "Bireysel Paketler",
+      "training": "Grup Eğitim Paketleri"
+    },
+    "packages": {
+      "events": {
+        "basic": {
+          "name": "Etkinlik Paketi Basic",
+          "features": [
+            "2 saatlik etkinlik süresi",
+            "Temel kürek eğitimi",
+            "Güvenlik ekipmanları",
+            "Eğitmen desteği"
+          ]
+        },
+        "premium": {
+          "name": "Etkinlik Paketi Premium",
+          "features": [
+            "3 saatlik etkinlik süresi",
+            "İleri seviye kürek eğitimi",
+            "Özel ekipman desteği",
+            "2 eğitmen desteği",
+            "Video çekim hizmeti"
+          ]
+        }
+      },
+      "individual": {
+        "starter": {
+          "name": "Bireysel Başlangıç",
+          "features": [
+            "Birebir eğitmen desteği",
+            "Temel kürek teknikleri",
+            "Ekipman kullanımı",
+            "Fitness değerlendirmesi"
+          ]
+        },
+        "development": {
+          "name": "Bireysel Gelişim",
+          "features": [
+            "Birebir eğitmen desteği",
+            "İleri kürek teknikleri",
+            "Video analiz desteği",
+            "Özel program hazırlama",
+            "Performans takibi"
+          ]
+        },
+        "pro": {
+          "name": "Bireysel Pro",
+          "features": [
+            "Birebir eğitmen desteği",
+            "Profesyonel kürek teknikleri",
+            "Haftalık video analiz",
+            "Yarışma hazırlık programı",
+            "Beslenme danışmanlığı"
+          ]
+        }
+      },
+      "training": {
+        "basic": {
+          "name": "Grup Eğitim Basic",
+          "features": [
+            "4 kişilik grup dersleri",
+            "Temel kürek eğitimi",
+            "Ekip çalışması",
+            "Teknik geliştirme"
+          ]
+        },
+        "premium": {
+          "name": "Grup Eğitim Premium",
+          "features": [
+            "4 kişilik grup dersleri",
+            "İleri seviye teknikler",
+            "Takım koordinasyonu",
+            "Yarışma hazırlığı",
+            "Video analiz desteği"
+          ]
+        }
+      }
+    },
+    "duration": "Ay",
+    "sessions": "Antrenman",
+    "selectPackage": "Paketi Seç"
+  },
+  "trainers": {
+    "hero": {
+      "title": "Profesyonel Antrenör Kadromuz",
+      "description": "Deneyimli ve uzman antrenörlerimizle birlikte kürek sporunda mükemmelliğe ulaşın"
+    },
+    "achievements": {
+      "certifiedTrainers": {
+        "number": "15+",
+        "text": "Sertifikalı Antrenör"
+      },
+      "nationalSuccess": {
+        "number": "50+",
+        "text": "Ulusal Başarı"
+      },
+      "experience": {
+        "number": "10+",
+        "text": "Yıllık Deneyim"
+      }
+    },
+    "categories": {
+      "title": "Uzmanlık Alanlarımız",
+      "description": "Her seviyede sporcuya özel eğitim programları ve profesyonel gelişim imkanları sunuyoruz",
+      "racing": {
+        "title": "Yarış Antrenörleri",
+        "description": "Profesyonel yarışlara hazırlık ve performans odaklı antrenman programları",
+        "specialties": [
+          "Sprint yarışları hazırlığı",
+          "Dayanıklılık yarışları antrenmanı",
+          "Teknik geliştirme",
+          "Taktik analiz"
+        ]
+      },
+      "basic": {
+        "title": "Temel Eğitim Antrenörleri",
+        "description": "Kürek sporuna yeni başlayanlar için temel teknik ve beceri eğitimi",
+        "specialties": [
+          "Temel kürek teknikleri",
+          "Güvenlik eğitimi",
+          "Ekipman kullanımı",
+          "Fiziksel hazırlık"
+        ]
+      },
+      "team": {
+        "title": "Takım Antrenörleri",
+        "description": "Takım koordinasyonu ve grup performansı geliştirme",
+        "specialties": [
+          "Takım senkronizasyonu",
+          "Grup dinamiği",
+          "Takım stratejisi",
+          "Motivasyon yönetimi"
+        ]
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "İletişime Geçin",
+      "description": "Sorularınız için bize ulaşın, en kısa sürede size dönüş yapalım"
+    },
+    "info": {
+      "address": {
+        "title": "Adres",
+        "content": "İstanbul, Türkiye",
+        "details": "Kürek Kulübü Tesisleri"
+      },
+      "phone": {
+        "title": "Telefon",
+        "content": "0 (212) 000 01 23",
+        "details": "Pazartesi - Pazar 09:00 - 18:00"
+      },
+      "email": {
+        "title": "E-posta",
+        "content": "info@kurekkulubu.com",
+        "details": "7/24 hizmetinizdeyiz"
+      }
+    },
+    "form": {
+      "title": "Mesaj Gönderin",
+      "name": {
+        "label": "Adınız Soyadınız",
+        "placeholder": "Adınızı ve soyadınızı girin"
+      },
+      "email": {
+        "label": "E-posta Adresiniz",
+        "placeholder": "E-posta adresinizi girin"
+      },
+      "subject": {
+        "label": "Konu",
+        "placeholder": "Mesaj konunuzu girin"
+      },
+      "message": {
+        "label": "Mesajınız",
+        "placeholder": "Mesajınızı buraya yazın"
+      },
+      "submit": {
+        "sending": "Gönderiliyor...",
+        "send": "Mesaj Gönder"
+      },
+      "status": {
+        "error": "Mesajınız gönderilemedi. Lütfen tekrar deneyin.",
+        "success": "Mesajınız başarıyla gönderildi!"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Üye Girişi",
+      "backToHome": "Ana Sayfaya Dön",
+      "socialLogin": {
+        "google": "Google ile Giriş Yap",
+        "apple": "Apple ile Giriş Yap"
+      },
+      "divider": "veya",
+      "form": {
+        "email": {
+          "label": "E-posta Adresi",
+          "placeholder": "ornek@email.com"
+        },
+        "password": {
+          "label": "Şifre",
+          "placeholder": "••••••••"
+        },
+        "forgotPassword": "Şifremi Unuttum",
+        "submit": "Giriş Yap"
+      },
+      "register": {
+        "text": "Hesabınız yok mu?",
+        "link": "Hemen Kaydolun"
+      }
+    },
+    "register": {
+      "title": "Üye Ol",
+      "backToHome": "Ana Sayfaya Dön",
+      "form": {
+        "email": {
+          "label": "E-posta Adresi",
+          "placeholder": "ornek@email.com"
+        },
+        "password": {
+          "label": "Şifre",
+          "placeholder": "••••••••"
+        },
+        "confirmPassword": {
+          "label": "Şifre Tekrar",
+          "placeholder": "••••••••"
+        },
+        "submit": "Üye Ol"
+      },
+      "login": {
+        "text": "Zaten hesabınız var mı?",
+        "link": "Giriş Yapın"
+      }
+    },
+    "registerDetails": {
+      "title": "Kullanıcı Bilgileri",
+      "description": "Lütfen bilgilerinizi eksiksiz doldurunuz",
+      "profileImage": {
+        "label": "Profil Resmi Ekle"
+      },
+      "basicInfo": {
+        "title": "Temel Bilgiler",
+        "fullName": "Ad Soyad",
+        "tcNo": "TC Kimlik No",
+        "phone": "Telefon"
+      },
+      "personalInfo": {
+        "title": "Kişisel Bilgiler",
+        "birthDate": "Doğum Tarihi",
+        "birthPlace": "Doğum Yeri",
+        "bloodType": {
+          "label": "Kan Grubu",
+          "select": "Seçiniz"
+        },
+        "occupation": "Meslek",
+        "canSwim": {
+          "label": "Yüzme Biliyor musunuz?",
+          "yes": "Evet",
+          "no": "Hayır"
+        }
+      },
+      "photoConsent": {
+        "label": "Fotoğraflarınızı paylaşmamızı istiyor musunuz?",
+        "instagram": "@kullaniciadi"
+      },
+      "emergency": {
+        "title": "Acil Durum İletişim Bilgileri",
+        "name": "Ad Soyad",
+        "phone": "Telefon",
+        "relation": "Yakınlık"
+      },
+      "registrationType": {
+        "title": "Kayıt Şekli",
+        "individual": "Bireysel",
+        "student": "Öğrenci",
+        "corporate": "Kurumsal"
+      },
+      "submit": "Kaydı Tamamla"
+    }
+  },
+  "language": {
+    "tr": "Türkçe",
+    "en": "English",
+    "select": "Dil Seçin"
+  },
+  "superAdminSidebar": {
+    "title": "Super Admin",
+    "dashboard": "Ana Panel",
+    "clubs": "Kulüpler",
+    "managers": "Kulüp Yöneticileri",
+    "trainers": "Antrenörler",
+    "users": "Üyeler",
+    "admins": "Yöneticiler",
+    "reservations": "Rezervasyonlar",
+    "reports": "Raporlar",
+    "settings": "Ayarlar",
+    "logout": "Çıkış Yap"
+  },
+  "managerSidebar": {
+    "title": "Kulüp Yönetimi",
+    "menu": {
+      "dashboard": "Ana Panel",
+      "packages": "Paket Yönetimi",
+      "reservations": "Rezervasyonlar",
+      "trainers": "Antrenör Yönetimi",
+      "events": "Etkinlikler",
+      "messages": "Mesajlar",
+      "reports": "Raporlar",
+      "settings": "Ayarlar"
+    },
+    "logout": "Çıkış Yap"
+  },
+  "userSidebar": {
+    "title": "Kullanıcı Paneli",
+    "profile": "Profilim",
+    "packages": "Paketlerim",
+    "events": "Etkinlikler",
+    "friends": "Arkadaşlarım",
+    "reservations": "Rezervasyonlarım",
+    "logout": "Çıkış Yap"
+  },
+  "profile": {
+    "title": "Profil Bilgileri",
+    "description": "Kişisel bilgilerinizi düzenleyin",
+    "saveButton": "Değişiklikleri Kaydet",
+    "photo": {
+      "change": "Fotoğraf Değiştir",
+      "sizeError": "Dosya boyutu 5MB'dan küçük olmalıdır",
+      "typeError": "Lütfen bir resim dosyası seçin"
+    },
+    "basicInfo": {
+      "title": "Temel Bilgiler",
+      "fullName": "Ad Soyad",
+      "tcNo": "TC Kimlik No",
+      "email": "E-posta",
+      "phone": "Telefon"
+    },
+    "personalInfo": {
+      "title": "Kişisel Bilgiler",
+      "birthDate": "Doğum Tarihi",
+      "birthPlace": "Doğum Yeri",
+      "bloodType": {
+        "label": "Kan Grubu",
+        "select": "Kan Grubu Seçin"
+      },
+      "occupation": "Meslek",
+      "canSwim": {
+        "label": "Yüzme Biliyor musunuz?",
+        "yes": "Evet",
+        "no": "Hayır"
+      }
+    },
+    "emergency": {
+      "title": "Acil Durum İletişim",
+      "name": "Ad Soyad",
+      "phone": "Telefon",
+      "relation": "Yakınlık"
+    },
+    "photoConsent": {
+      "label": "Fotoğraflarınızı paylaşmamızı istiyor musunuz?",
+      "instagram": "@kullaniciadi"
+    },
+    "password": {
+      "title": "Şifre Değiştirme",
+      "description": "Hesap güvenliğiniz için şifrenizi düzenli olarak değiştirin",
+      "change": "Şifre Değiştir",
+      "current": "Mevcut Şifre",
+      "new": "Yeni Şifre",
+      "confirm": "Şifre Tekrar",
+      "cancel": "İptal",
+      "save": "Kaydet"
+    },
+    "billing": {
+      "title": "Fatura Bilgileri",
+      "edit": "Fatura Bilgilerini Düzenle",
+      "type": {
+        "label": "Fatura Tipi",
+        "individual": "Bireysel",
+        "corporate": "Kurumsal"
+      },
+      "fullName": "Ad Soyad",
+      "phone": "Telefon",
+      "city": "İl",
+      "district": "İlçe",
+      "address": "Adres",
+      "addressTitle": "Adres Başlığı",
+      "companyName": "Firma Adı",
+      "taxNumber": "Vergi Numarası",
+      "taxOffice": "Vergi Dairesi",
+      "cancel": "İptal",
+      "save": "Kaydet"
+    }
+  },
+  "userEvents": {
+    "title": "Etkinlikler",
+    "subtitle": "Yaklaşan etkinlikleri keşfedin",
+    "tabs": {
+      "all": "Tüm Etkinlikler",
+      "club": "Kulüp Etkinlikleri",
+      "registered": "Kayıtlı Olduklarım"
+    },
+    "search": {
+      "placeholder": "Etkinlik ara..."
+    },
+    "event": {
+      "participants": "Katılımcı",
+      "status": {
+        "upcoming": "Yaklaşan",
+        "past": "Geçmiş",
+        "cancelled": "İptal Edildi"
+      },
+      "joinButton": "Katıl",
+      "fullButton": "Kontenjan Dolu",
+      "type": {
+        "competition": "Yarışma",
+        "training": "Antrenman",
+        "social": "Sosyal Etkinlik"
+      }
+    }
+  },
+  "userEventDetails": {
+    "title": "Etkinlik Detayları",
+    "subtitle": "Etkinlik detayları ve yönetimi",
+    "status": {
+      "upcoming": "Yaklaşan",
+      "past": "Geçmiş",
+      "cancelled": "İptal Edildi"
+    },
+    "info": {
+      "date": "Tarih",
+      "time": "Saat",
+      "location": "Konum",
+      "participants": "Katılımcı",
+      "description": "Açıklama",
+      "createdAt": "Oluşturulma",
+      "updatedAt": "Güncellenme"
+    },
+    "dialog": {
+      "title": "Etkinliğe Katılm",
+      "confirmMessage": "Bu etkinliğe katılmak istediğinizden emin misiniz?",
+      "cancel": "İptal",
+      "confirm": "Katıl"
+    },
+    "buttons": {
+      "join": "Etkinliğe Katıl",
+      "registered": "Kayıtlı",
+      "full": "Kontenjan Dolu"
+    }
+  },
+  "userFriends": {
+    "title": "Arkadaşlar",
+    "subtitle": "Arkadaşlarını yönet ve yeni arkadaşlar ekle",
+    "search": {
+      "friends": "Arkadaşlarında ara...",
+      "addFriend": "İsim ile ara..."
+    },
+    "notifications": {
+      "title": "Arkadaşlık İstekleri",
+      "empty": "Bekleyen arkadaşlık isteği yok",
+      "close": "Kapat"
+    },
+    "addFriend": {
+      "button": "Arkadaş Ekle",
+      "title": "Arkadaş Ekle",
+      "noResults": "Kullanıcı bulunamadı",
+      "startSearch": "Aramaya başlayın",
+      "addButton": "Ekle",
+      "close": "Kapat"
+    },
+    "requests": {
+      "accept": "Kabul Et",
+      "reject": "Reddet"
+    },
+    "buttons": {
+      "remove": "Arkadaşlıktan Çıkar"
+    }
+  },
+  "trainerLogin": {
+    "title": "Antrenör Girişi",
+    "subtitle": "Antrenör panelinize erişmek için giriş yapın",
+    "backToHome": "Ana Sayfaya Dön",
+    "form": {
+      "email": {
+        "label": "E-posta Adresi",
+        "placeholder": "ornek@email.com"
+      },
+      "password": {
+        "label": "Şifre",
+        "placeholder": "••••••••"
+      },
+      "forgotPassword": "Şifremi Unuttum",
+      "submit": "Giriş Yap"
+    },
+    "register": {
+      "text": "Hesabınız yok mu?",
+      "link": "Hemen Kaydolun"
+    },
+    "contact": {
+      "text": "Giriş yapamıyor musunuz?",
+      "link": "Yönetici ile iletişime geçin"
+    }
+  },
+  "trainerRegister": {
+    "title": "Antrenör Kaydı",
+    "subtitle": "Antrenör ekibimize katılmak için kayıt olun",
+    "backToHome": "Ana Sayfaya Dön",
+    "form": {
+      "email": {
+        "label": "E-posta Adresi",
+        "placeholder": "ornek@email.com"
+      },
+      "password": {
+        "label": "Şifre",
+        "placeholder": "••••••••"
+      },
+      "confirmPassword": {
+        "label": "Şifre Tekrar",
+        "placeholder": "••••••••"
+      },
+      "submit": "Devam Et"
+    },
+    "errors": {
+      "passwordMatch": "Şifreler eşleşmiyor!",
+      "passwordLength": "Şifre en az 6 karakter olmalıdır!"
+    },
+    "login": {
+      "text": "Zaten hesabınız var mı?",
+      "link": "Giriş Yapın"
+    }
+  },
+  "trainerRegisterDetails": {
+    "title": "Antrenör Bilgileri",
+    "subtitle": "Lütfen antrenör bilgilerinizi eksiksiz doldurunuz",
+    "form": {
+      "profileImage": {
+        "label": "Profil Resmi Ekle"
+      },
+      "basicInfo": {
+        "fullName": "Ad Soyad",
+        "phone": "Telefon",
+        "birthDate": "Doğum Tarihi",
+        "phoneError": "Telefon numarası 10 haneli olmalıdır"
+      },
+      "specialization": {
+        "label": "Uzmanlık Alanları",
+        "placeholder": "Örn: Kürek, Tekne Sınıfı A, Antrenman Programlama"
+      },
+      "experience": {
+        "label": "Deneyim",
+        "placeholder": "Deneyimlerinizi detaylı bir şekilde yazınız"
+      },
+      "personalMessage": {
+        "label": "Kişisel Mesaj",
+        "placeholder": "Kendinizi kısaca tanıtın"
+      },
+      "certificates": {
+        "title": "Sertifikalar",
+        "addNew": "Yeni Sertifika Ekle",
+        "name": "Sertifika Adı",
+        "institution": "Kurum",
+        "date": "Alınma Tarihi",
+        "file": "Sertifika Dosyası",
+        "selectFile": "Dosya Seç",
+        "noFileSelected": "Dosya seçilmedi",
+        "selected": "Seçilen dosya:"
+      },
+      "consent": {
+        "privacy": "Gizlilik sözleşmesini okudum ve kabul ediyorum",
+        "dataProcessing": "Açık rıza metnini okudum ve kabul ediyorum"
+      },
+      "submit": "Kaydı Tamamla"
+    }
+  },
+  "trainerCalendar": {
+    "title": "Ders Takvimi",
+    "subtitle": "Günlük ders programınızı takip edin ve yoklama alın",
+    "attendance": {
+      "title": "Yoklama",
+      "take": "Yoklama Al",
+      "present": "Geldi",
+      "absent": "Gelmedi",
+      "cancel": "İptal",
+      "save": "Kaydet",
+      "saved": "Yoklama kaydedildi",
+      "actions": {
+        "present": "Geldi",
+        "absent": "Gelmedi",
+        "presentIcon": "✓",
+        "absentIcon": "✕"
+      }
+    },
+    "status": {
+      "title": "Durum Göstergeleri",
+      "present": "Derse katıldı",
+      "absent": "Derse katılmadı",
+      "pending": "Beklemede"
+    },
+    "noLessons": {
+      "title": "Bu tarihte planlanmış ders bulunmamaktadır.",
+      "subtitle": "Başka bir tarih seçerek dersleri görüntüleyebilirsiniz."
+    },
+    "loading": "Yükleniyor...",
+    "dateFormat": {
+      "fullDate": "d MMMM yyyy"
+    }
+  },
+  "trainerSidebar": {
+    "title": "Antrenör Paneli",
+    "menu": {
+      "calendar": "Takvim",
+      "availability": "Müsaitlik",
+      "profile": "Profil"
+    },
+    "logout": "Çıkış Yap"
+  },
+  "calendar": {
+    "months": {
+      "january": "Ocak",
+      "february": "Şubat",
+      "march": "Mart",
+      "april": "Nisan",
+      "may": "Mayıs",
+      "june": "Haziran",
+      "july": "Temmuz",
+      "august": "Ağustos",
+      "september": "Eylül",
+      "october": "Ekim",
+      "november": "Kasım",
+      "december": "Aralık"
+    },
+    "weekDays": {
+      "monday": "Pt",
+      "tuesday": "Sa",
+      "wednesday": "Ça",
+      "thursday": "Pe",
+      "friday": "Cu",
+      "saturday": "Ct",
+      "sunday": "Pa"
+    }
+  },
+  "trainerAvailability": {
+    "title": "Müsaitlik Durumu",
+    "subtitle": "Haftalık müsaitlik durumunuzu belirleyin",
+    "save": "Kaydet",
+    "saved": "Müsaitlik durumu kaydedildi",
+    "timeSlot": {
+      "available": "Müsait",
+      "notAvailable": "Müsait Değil",
+      "pastDate": "Geçmiş Tarih"
+    }
+  },
+  "trainerProfile": {
+    "title": "Profil Bilgileri",
+    "subtitle": "Kişisel bilgilerinizi düzenleyin",
+    "save": "Değişiklikleri Kaydet",
+    "saved": "Profil güncellendi",
+    "photo": {
+      "change": "Fotoğraf Değiştir",
+      "errors": {
+        "type": "Lütfen bir resim dosyası seçin",
+        "size": "Dosya boyutu 5MB'dan küçük olmalıdır"
+      }
+    },
+    "form": {
+      "fullName": "Ad Soyad",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "birthDate": "Doğum Tarihi",
+      "expertise": {
+        "label": "Uzmanlık Alanları",
+        "placeholder": "Örn: Kürek, Tekne Sınıfı A, Antrenman Programlama"
+      },
+      "experience": {
+        "label": "Deneyim",
+        "placeholder": "Deneyimlerinizi buraya yazın..."
+      },
+      "bio": {
+        "label": "Kişisel Mesaj",
+        "placeholder": "Kendinizi kısaca tanıtın..."
+      }
+    },
+    "certificates": {
+      "title": "Sertifikalar",
+      "addNew": "Yeni Sertifika Ekle",
+      "delete": "Sertifikayı Sil",
+      "form": {
+        "name": {
+          "label": "Sertifika Adı",
+          "placeholder": "Örn: Level 1 Antrenörlük"
+        },
+        "institution": {
+          "label": "Kurum",
+          "placeholder": "Örn: Türkiye Kürek Federasyonu"
+        },
+        "date": "Alınma Tarihi",
+        "file": {
+          "label": "Sertifika Dosyası",
+          "select": "Dosya Seç",
+          "noFile": "Dosya seçilmedi",
+          "selected": "Dosya seçildi"
+        }
+      }
+    },
+    "password": {
+      "change": "Şifre Değiştir",
+      "title": "Şifre Değiştir",
+      "form": {
+        "current": {
+          "label": "Mevcut Şifre",
+          "show": "Şifreyi Göster",
+          "hide": "Şifreyi Gizle"
+        },
+        "new": {
+          "label": "Yeni Şifre",
+          "show": "Şifreyi Göster",
+          "hide": "Şifreyi Gizle"
+        },
+        "confirm": {
+          "label": "Yeni Şifre (Tekrar)",
+          "show": "Şifreyi Göster",
+          "hide": "Şifreyi Gizle"
+        }
+      },
+      "save": "Şifreyi Güncelle",
+      "saved": "Şifre güncellendi",
+      "subtitle": "Hesap güvenliğiniz için şifrenizi düzenli olarak değiştirin"
+    }
+  },
+  "clubManagerLogin": {
+    "title": "Kulüp Yöneticisi Girişi",
+    "subtitle": "Kulüp yönetim panelinize erişmek için giriş yapın",
+    "form": {
+      "email": {
+        "label": "E-posta Adresi",
+        "placeholder": "example@email.com"
+      },
+      "password": {
+        "label": "Şifre",
+        "placeholder": "••••••••",
+        "show": "Şifreyi Göster",
+        "hide": "Şifreyi Gizle"
+      },
+      "forgotPassword": "Şifremi Unuttum",
+      "submit": "Giriş Yap"
+    },
+    "socialLogin": {
+      "google": "Google ile Giriş Yap",
+      "apple": "Apple ile Giriş Yap",
+      "or": "veya"
+    },
+    "register": {
+      "text": "Hesabınız yok mu?",
+      "link": "Hemen Kaydolun"
+    },
+    "backToHome": "Ana Sayfaya Dön"
+  },
+  "clubManagerRegister": {
+    "title": "Kulüp Yöneticisi Kaydı",
+    "subtitle": "Kulübünüzü yönetmek için hesap oluşturun",
+    "form": {
+      "email": {
+        "label": "E-posta Adresi",
+        "placeholder": "ornek@email.com"
+      },
+      "password": {
+        "label": "Şifre",
+        "placeholder": "••••••••",
+        "show": "Şifreyi Göster",
+        "hide": "Şifreyi Gizle"
+      },
+      "confirmPassword": {
+        "label": "Şifre Tekrar",
+        "placeholder": "••••••••",
+        "show": "Şifreyi Göster",
+        "hide": "Şifreyi Gizle"
+      },
+      "submit": "Devam Et"
+    },
+    "errors": {
+      "passwordMatch": "Şifreler eşleşmiyor",
+      "generalError": "Kayıt işlemi sırasında bir hata oluştu"
+    },
+    "login": {
+      "text": "Zaten hesab��nız var mı?",
+      "link": "Giriş Yapın"
+    },
+    "backToLogin": "Giriş Sayfasına Dön"
+  },
+  "clubManagerRegisterDetails": {
+    "title": "Kulüp Bilgileri",
+    "subtitle": "Kulübünüz hakkında detaylı bilgileri doldurun",
+    "logo": {
+      "upload": "Logo Yükle",
+      "change": "Logoyu Değiştir",
+      "remove": "Logoyu Kaldır",
+      "errors": {
+        "type": "Lütfen bir resim dosyası seçin",
+        "size": "Dosya boyutu 5MB'dan küçük olmalıdır"
+      }
+    },
+    "form": {
+      "clubName": "Kulüp Adı",
+      "managerName": "Yönetici Adı Soyadı",
+      "phone": "Telefon Numarası",
+      "address": "Kulüp Adresi",
+      "description": {
+        "label": "Kulüp Hakkında Kısa Açıklama",
+        "placeholder": "Kulübünüz hakkında kısa bir açıklama yazın..."
+      }
+    },
+    "submit": "Kaydı Tamamla",
+    "submitSuccess": "Kayıt başarılı! Admin onayı bekleniyor.",
+    "pendingApproval": "Bilgileriniz admin onayından sonra aktif olacaktır"
+  },
+  "dashboard": {
+    "welcome": "Hoş Geldiniz 👋",
+    "subtitle": "Kulübünüzün güncel durumunu takip edin",
+    "stats": {
+      "totalMembers": {
+        "title": "Toplam Üye",
+        "value": "2,834",
+        "change": "+12.5%"
+      },
+      "activeReservations": {
+        "title": "Aktif Rezervasyon",
+        "value": "48",
+        "change": "+8.2%"
+      },
+      "monthlyIncome": {
+        "title": "Aylık Gelir",
+        "value": "₺142,384",
+        "change": "+15.3%"
+      },
+      "occupancyRate": {
+        "title": "Doluluk Oranı",
+        "value": "%78",
+        "change": "+4.1%"
+      }
+    },
+    "charts": {
+      "monthlyActivity": {
+        "title": "Aylık Üye Aktivitesi"
+      },
+      "packageDistribution": {
+        "title": "Paket Dağılımı",
+        "total": "Paket Satışı"
+      }
+    },
+    "recentActivities": {
+      "title": "Son Aktiviteler",
+      "types": {
+        "reservation_cancel": "Rezervasyon İptali",
+        "reservation": "Yeni Rezervasyon",
+        "package_renewal": "Paket Yenileme",
+        "session_complete": "Antrenman Tamamlandı"
+      },
+      "timeAgo": {
+        "minutes": "dakika önce",
+        "hours": "saat önce"
+      }
+    },
+    "upcomingReservations": {
+      "title": "Yaklaşan Rezervasyonlar",
+      "status": {
+        "confirmed": "Onaylı",
+        "pending": "Beklemede"
+      },
+      "today": "Bugün",
+      "tomorrow": "Yarın"
+    },
+    "popularPackages": {
+      "title": "Popüler Paketler",
+      "sales": "satış"
+    },
+    "packages": {
+      "monthly": "Aylık Paket",
+      "threeMonth": "3 Aylık Paket",
+      "sixMonth": "6 Aylık Paket",
+      "annual": "Yıllık Paket",
+      "monthlyUnlimited": "Aylık Sınırsız",
+      "trial": "Deneme Paketi"
+    },
+    "currency": "₺",
+    "months": {
+      "jan": "Oca",
+      "feb": "Şub",
+      "mar": "Mar",
+      "apr": "Nis",
+      "may": "May",
+      "jun": "Haz"
+    },
+    "activities": {
+      "descriptions": {
+        "cancelledTraining": "Ahmet Yılmaz bugünkü antrenmanını iptal etti",
+        "newReservation": "Mehmet Demir 15:00 antrenman rezervasyonu",
+        "renewedPackage": "Ayşe Kaya 3 aylık paketini yeniledi",
+        "completedTraining": "Can Yıldız antrenmanını tamamladı"
+      }
+    },
+    "names": {
+      "members": {
+        "emily": "Ayşe Yılmaz",
+        "michael": "Mehmet Demir",
+        "jessica": "Zeynep Ak",
+        "john": "Ahmet Demir",
+        "sarah": "Ayşe Kaya",
+        "mike": "Mehmet Can"
+      }
+    }
+  }
+}

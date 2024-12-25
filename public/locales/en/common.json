@@ -1,0 +1,1023 @@
+{
+  "adminSidebar": {
+    "dashboard": "Dashboard",
+    "clubs": "Clubs",
+    "managers": "Club Managers",
+    "trainers": "Trainers",
+    "users": "Users",
+    "admins": "Administrators",
+    "reservations": "Reservations",
+    "reports": "Reports",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "clubManagerSidebar": {
+    "dashboard": "Dashboard",
+    "packages": "Package Management",
+    "reservations": "Reservations",
+    "trainers": "Trainer Management",
+    "events": "Events",
+    "messages": "Messages",
+    "reports": "Reports",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "userSidebar": {
+    "title": "User Panel",
+    "profile": "My Profile",
+    "packages": "My Packages",
+    "events": "Events",
+    "friends": "Friends",
+    "reservations": "My Reservations",
+    "logout": "Logout"
+  },
+  "navigation": {
+    "home": "Home",
+    "packages": "Packages",
+    "trainers": "Trainers",
+    "contact": "Contact",
+    "trainerLogin": "Trainer Login",
+    "userLogin": "User Login"
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "description": "With our professional rowing training and practices, we carry our athletes to national and international success.",
+    "links": {
+      "about": "About Us",
+      "packages": "Training Packages",
+      "trainers": "Our Trainers",
+      "schedule": "Training Schedule"
+    },
+    "contact": {
+      "title": "Contact",
+      "address": "Akat Mh. Selçuklar Sokak 16/2 Beşiktaş Istanbul",
+      "phone": "0 (212) 000 01 23",
+      "email": "info@kurektakimi.com"
+    },
+    "social": {
+      "title": "Follow Us",
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "twitter": "Twitter"
+    },
+    "copyright": "© 2024 Rowing Team. All rights reserved."
+  },
+  "actions": {
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "search": "Search"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for might have been moved, deleted, or never existed.",
+    "homeButton": "Back to Home",
+    "backButton": "Go Back"
+  },
+  "home": {
+    "hero": {
+      "title": "Professional Rowing Training",
+      "description": "We aim for excellence in rowing with our experienced trainers and modern equipment.",
+      "button": "Get Started"
+    },
+    "stats": {
+      "members": "Members",
+      "trainers": "Trainers",
+      "trainings": "Trainings"
+    },
+    "features": {
+      "flexibleTraining": {
+        "title": "Flexible Training",
+        "description": "Train individually or as a team at times that suit you. On-water and land training."
+      },
+      "expertTrainers": {
+        "title": "Expert Trainers",
+        "description": "Get professional rowing training with our national team experienced trainers."
+      },
+      "specialPrograms": {
+        "title": "Special Programs",
+        "description": "Special training programs from beginner level to competition preparation."
+      }
+    },
+    "additionalFeatures": {
+      "modernEquipment": "Modern Equipment",
+      "competitionPrep": "Competition Prep",
+      "regularTraining": "Regular Training",
+      "elitePerformance": "Elite Performance"
+    },
+    "cta": {
+      "title": "Start your journey today!",
+      "description": "Meet our professional trainers and custom training programs designed for you.",
+      "button": "View Packages"
+    }
+  },
+  "packages": {
+    "title": "Rowing Training Packages",
+    "description": "Explore our packages suitable for your needs",
+    "categories": {
+      "events": "Event and Training Packages",
+      "individual": "Individual Packages",
+      "training": "Group Training Packages"
+    },
+    "packages": {
+      "events": {
+        "basic": {
+          "name": "Event Package Basic",
+          "features": [
+            "2 hours event duration",
+            "Basic rowing training",
+            "Safety equipment",
+            "Trainer support"
+          ]
+        },
+        "premium": {
+          "name": "Event Package Premium",
+          "features": [
+            "3 hours event duration",
+            "Advanced rowing training",
+            "Special equipment support",
+            "2 trainer support",
+            "Video recording service"
+          ]
+        }
+      },
+      "individual": {
+        "starter": {
+          "name": "Individual Starter",
+          "features": [
+            "One-on-one trainer support",
+            "Basic rowing techniques",
+            "Equipment usage",
+            "Fitness assessment"
+          ]
+        },
+        "development": {
+          "name": "Individual Development",
+          "features": [
+            "One-on-one trainer support",
+            "Advanced rowing techniques",
+            "Video analysis support",
+            "Custom program preparation",
+            "Performance tracking"
+          ]
+        },
+        "pro": {
+          "name": "Individual Pro",
+          "features": [
+            "One-on-one trainer support",
+            "Professional rowing techniques",
+            "Weekly video analysis",
+            "Competition preparation program",
+            "Nutrition consultancy"
+          ]
+        }
+      },
+      "training": {
+        "basic": {
+          "name": "Group Training Basic",
+          "features": [
+            "4-person group lessons",
+            "Basic rowing training",
+            "Team work",
+            "Technical development"
+          ]
+        },
+        "premium": {
+          "name": "Group Training Premium",
+          "features": [
+            "4-person group lessons",
+            "Advanced techniques",
+            "Team coordination",
+            "Competition preparation",
+            "Video analysis support"
+          ]
+        }
+      }
+    },
+    "duration": "Month",
+    "sessions": "Sessions",
+    "selectPackage": "Select Package"
+  },
+  "trainers": {
+    "hero": {
+      "title": "Our Professional Trainer Team",
+      "description": "Achieve excellence in rowing with our experienced and expert trainers"
+    },
+    "achievements": {
+      "certifiedTrainers": {
+        "number": "15+",
+        "text": "Certified Trainers"
+      },
+      "nationalSuccess": {
+        "number": "50+",
+        "text": "National Success"
+      },
+      "experience": {
+        "number": "10+",
+        "text": "Years Experience"
+      }
+    },
+    "categories": {
+      "title": "Our Areas of Expertise",
+      "description": "We offer specialized training programs and professional development opportunities for athletes at all levels",
+      "racing": {
+        "title": "Racing Trainers",
+        "description": "Performance-focused training programs for professional race preparation",
+        "specialties": [
+          "Sprint race preparation",
+          "Endurance race training",
+          "Technical development",
+          "Tactical analysis"
+        ]
+      },
+      "basic": {
+        "title": "Basic Training Trainers",
+        "description": "Basic technique and skill training for rowing beginners",
+        "specialties": [
+          "Basic rowing techniques",
+          "Safety training",
+          "Equipment usage",
+          "Physical preparation"
+        ]
+      },
+      "team": {
+        "title": "Team Trainers",
+        "description": "Team coordination and group performance development",
+        "specialties": [
+          "Team synchronization",
+          "Group dynamics",
+          "Team strategy",
+          "Motivation management"
+        ]
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Contact Us",
+      "description": "Get in touch with us, we'll get back to you as soon as possible"
+    },
+    "info": {
+      "address": {
+        "title": "Address",
+        "content": "Istanbul, Turkey",
+        "details": "Rowing Club Facilities"
+      },
+      "phone": {
+        "title": "Phone",
+        "content": "0 (212) 000 01 23",
+        "details": "Monday - Sunday 09:00 - 18:00"
+      },
+      "email": {
+        "title": "Email",
+        "content": "info@kurekkulubu.com",
+        "details": "24/7 at your service"
+      }
+    },
+    "form": {
+      "title": "Send Message",
+      "name": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "Enter your email address"
+      },
+      "subject": {
+        "label": "Subject",
+        "placeholder": "Enter message subject"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Write your message here"
+      },
+      "submit": {
+        "sending": "Sending...",
+        "send": "Send Message"
+      },
+      "status": {
+        "error": "Your message could not be sent. Please try again.",
+        "success": "Your message has been sent successfully!"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "User Login",
+      "backToHome": "Back to Home",
+      "socialLogin": {
+        "google": "Sign in with Google",
+        "apple": "Sign in with Apple"
+      },
+      "divider": "or",
+      "form": {
+        "email": {
+          "label": "Email Address",
+          "placeholder": "example@email.com"
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": "••••••••"
+        },
+        "forgotPassword": "Forgot Password",
+        "submit": "Sign In"
+      },
+      "register": {
+        "text": "Don't have an account?",
+        "link": "Register Now"
+      }
+    },
+    "register": {
+      "title": "Register",
+      "backToHome": "Back to Home",
+      "form": {
+        "email": {
+          "label": "Email Address",
+          "placeholder": "example@email.com"
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": "••••••••"
+        },
+        "confirmPassword": {
+          "label": "Confirm Password",
+          "placeholder": "••••••••"
+        },
+        "submit": "Register"
+      },
+      "login": {
+        "text": "Already have an account?",
+        "link": "Sign In"
+      }
+    },
+    "registerDetails": {
+      "title": "User Details",
+      "description": "Please fill in your information completely",
+      "profileImage": {
+        "label": "Add Profile Picture"
+      },
+      "basicInfo": {
+        "title": "Basic Information",
+        "fullName": "Full Name",
+        "tcNo": "ID Number",
+        "phone": "Phone"
+      },
+      "personalInfo": {
+        "title": "Personal Information",
+        "birthDate": "Birth Date",
+        "birthPlace": "Birth Place",
+        "bloodType": {
+          "label": "Blood Type",
+          "select": "Select"
+        },
+        "occupation": "Occupation",
+        "canSwim": {
+          "label": "Can you swim?",
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+      "photoConsent": {
+        "label": "Would you like us to share your photos?",
+        "instagram": "@username"
+      },
+      "emergency": {
+        "title": "Emergency Contact Information",
+        "name": "Full Name",
+        "phone": "Phone",
+        "relation": "Relation"
+      },
+      "registrationType": {
+        "title": "Registration Type",
+        "individual": "Individual",
+        "student": "Student",
+        "corporate": "Corporate"
+      },
+      "submit": "Complete Registration"
+    }
+  },
+  "language": {
+    "tr": "Türkçe",
+    "en": "English",
+    "select": "Select Language"
+  },
+  "superAdminSidebar": {
+    "title": "Super Admin",
+    "dashboard": "Dashboard",
+    "clubs": "Clubs",
+    "managers": "Club Managers",
+    "trainers": "Trainers",
+    "users": "Users",
+    "admins": "Administrators",
+    "reservations": "Reservations",
+    "reports": "Reports",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "managerSidebar": {
+    "title": "Club Management",
+    "menu": {
+      "dashboard": "Dashboard",
+      "packages": "Package Management",
+      "reservations": "Reservations",
+      "trainers": "Trainer Management",
+      "events": "Events",
+      "messages": "Messages",
+      "reports": "Reports",
+      "settings": "Settings"
+    },
+    "logout": "Logout"
+  },
+  "profile": {
+    "title": "Profile Information",
+    "description": "Edit your personal information",
+    "saveButton": "Save Changes",
+    "photo": {
+      "change": "Change Photo",
+      "sizeError": "File size must be less than 5MB",
+      "typeError": "Please select an image file"
+    },
+    "basicInfo": {
+      "title": "Basic Information",
+      "fullName": "Full Name",
+      "tcNo": "ID Number",
+      "email": "Email",
+      "phone": "Phone"
+    },
+    "personalInfo": {
+      "title": "Personal Information",
+      "birthDate": "Birth Date",
+      "birthPlace": "Birth Place",
+      "bloodType": {
+        "label": "Blood Type",
+        "select": "Select Blood Type"
+      },
+      "occupation": "Occupation",
+      "canSwim": {
+        "label": "Can you swim?",
+        "yes": "Yes",
+        "no": "No"
+      }
+    },
+    "emergency": {
+      "title": "Emergency Contact",
+      "name": "Full Name",
+      "phone": "Phone",
+      "relation": "Relation"
+    },
+    "photoConsent": {
+      "label": "Would you like us to share your photos?",
+      "instagram": "@username"
+    },
+    "password": {
+      "title": "Change Password",
+      "description" : "Change your password regularly to ensure your account security.",
+      "change": "Change Password",
+      "current": "Current Password",
+      "new": "New Password",
+      "confirm": "Confirm Password",
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+    "billing": {
+      "title": "Billing Information",
+      "edit": "Edit Billing Information",
+      "type": {
+        "label": "Billing Type",
+        "individual": "Individual",
+        "corporate": "Corporate"
+      },
+      "fullName": "Full Name",
+      "phone": "Phone",
+      "city": "City",
+      "district": "District",
+      "address": "Address",
+      "addressTitle": "Address Title",
+      "companyName": "Company Name",
+      "taxNumber": "Tax Number",
+      "taxOffice": "Tax Office",
+      "cancel": "Cancel",
+      "save": "Save"
+    }
+  },
+  "userEvents": {
+    "title": "Events",
+    "subtitle": "Discover upcoming events",
+    "tabs": {
+      "all": "All Events",
+      "club": "Club Events",
+      "registered": "My Registrations"
+    },
+    "search": {
+      "placeholder": "Search events..."
+    },
+    "event": {
+      "participants": "Participants",
+      "status": {
+        "upcoming": "Upcoming",
+        "past": "Past",
+        "cancelled": "Cancelled"
+      },
+      "joinButton": "Join",
+      "fullButton": "Full",
+      "type": {
+        "competition": "Competition",
+        "training": "Training",
+        "social": "Social Event"
+      }
+    }
+  },
+  "userEventDetails": {
+    "title": "Event Details",
+    "subtitle": "Event details and management",
+    "status": {
+      "upcoming": "Upcoming",
+      "past": "Past",
+      "cancelled": "Cancelled"
+    },
+    "info": {
+      "date": "Date",
+      "time": "Time",
+      "location": "Location",
+      "participants": "Participants",
+      "description": "Description",
+      "createdAt": "Created at",
+      "updatedAt": "Updated at"
+    },
+    "dialog": {
+      "title": "Event Registration",
+      "confirmMessage": "Are you sure you want to join this event?",
+      "cancel": "Cancel",
+      "confirm": "Join"
+    },
+    "buttons": {
+      "join": "Join Event",
+      "registered": "Registered",
+      "full": "Full"
+    }
+  },
+  "userFriends": {
+    "title": "Friends",
+    "subtitle": "Manage your friends and add new ones",
+    "search": {
+      "friends": "Search friends...",
+      "addFriend": "Search by name..."
+    },
+    "notifications": {
+      "title": "Friend Requests",
+      "empty": "No pending friend requests",
+      "close": "Close"
+    },
+    "addFriend": {
+      "button": "Add Friend",
+      "title": "Add Friend",
+      "noResults": "No users found",
+      "startSearch": "Start searching",
+      "addButton": "Add",
+      "close": "Close"
+    },
+    "requests": {
+      "accept": "Accept",
+      "reject": "Reject"
+    },
+    "buttons": {
+      "remove": "Remove Friend"
+    }
+  },
+  "trainerLogin": {
+    "title": "Trainer Login",
+    "subtitle": "Sign in to access your trainer panel",
+    "backToHome": "Back to Home",
+    "form": {
+      "email": {
+        "label": "Email Address",
+        "placeholder": "example@email.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "••••••••"
+      },
+      "forgotPassword": "Forgot Password",
+      "submit": "Sign In"
+    },
+    "register": {
+      "text": "Don't have an account?",
+      "link": "Register Now"
+    },
+    "contact": {
+      "text": "Can't sign in?",
+      "link": "Contact administrator"
+    }
+  },
+  "trainerRegister": {
+    "title": "Trainer Registration",
+    "subtitle": "Register to join our trainer team",
+    "backToHome": "Back to Home",
+    "form": {
+      "email": {
+        "label": "Email Address",
+        "placeholder": "example@email.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "••••••••"
+      },
+      "confirmPassword": {
+        "label": "Confirm Password",
+        "placeholder": "••••••••"
+      },
+      "submit": "Continue"
+    },
+    "errors": {
+      "passwordMatch": "Passwords do not match!",
+      "passwordLength": "Password must be at least 6 characters!"
+    },
+    "login": {
+      "text": "Already have an account?",
+      "link": "Sign In"
+    }
+  },
+  "trainerRegisterDetails": {
+    "title": "Trainer Information",
+    "subtitle": "Please fill in your trainer information completely",
+    "form": {
+      "profileImage": {
+        "label": "Add Profile Picture"
+      },
+      "basicInfo": {
+        "fullName": "Full Name",
+        "phone": "Phone",
+        "birthDate": "Birth Date",
+        "phoneError": "Phone number must be 10 digits"
+      },
+      "specialization": {
+        "label": "Areas of Expertise",
+        "placeholder": "Ex: Rowing, Boat Class A, Training Programming"
+      },
+      "experience": {
+        "label": "Experience",
+        "placeholder": "Please describe your experience in detail"
+      },
+      "personalMessage": {
+        "label": "Personal Message",
+        "placeholder": "Briefly introduce yourself"
+      },
+      "certificates": {
+        "title": "Certificates",
+        "addNew": "Add New Certificate",
+        "name": "Certificate Name",
+        "institution": "Institution",
+        "date": "Date Received",
+        "file": "Certificate File",
+        "selectFile": "Select File",
+        "noFileSelected": "No file selected",
+        "selected": "Selected file:"
+      },
+      "consent": {
+        "privacy": "I have read and accept the privacy agreement",
+        "dataProcessing": "I have read and accept the explicit consent text"
+      },
+      "submit": "Complete Registration"
+    }
+  },
+  "trainerCalendar": {
+    "title": "Lesson Calendar",
+    "subtitle": "Track your daily lesson schedule and take attendance",
+    "attendance": {
+      "title": "Attendance",
+      "take": "Take Attendance",
+      "present": "Present",
+      "absent": "Absent",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saved": "Attendance saved",
+      "actions": {
+        "present": "Present",
+        "absent": "Absent",
+        "presentIcon": "✓",
+        "absentIcon": "✕"
+      }
+    },
+    "status": {
+      "title": "Status Indicators",
+      "present": "Attended class",
+      "absent": "Did not attend",
+      "pending": "Pending"
+    },
+    "noLessons": {
+      "title": "No lessons scheduled for this date.",
+      "subtitle": "You can view lessons by selecting another date."
+    },
+    "loading": "Loading...",
+    "dateFormat": {
+      "fullDate": "MMMM d, yyyy"
+    }
+  },
+  "trainerSidebar": {
+    "title": "Trainer Panel",
+    "menu": {
+      "calendar": "Calendar",
+      "availability": "Availability",
+      "profile": "Profile"
+    },
+    "logout": "Logout"
+  },
+  "calendar": {
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    },
+    "weekDays": {
+      "monday": "Mo",
+      "tuesday": "Tu",
+      "wednesday": "We",
+      "thursday": "Th",
+      "friday": "Fr",
+      "saturday": "Sa",
+      "sunday": "Su"
+    }
+  },
+  "trainerAvailability": {
+    "title": "Availability Status",
+    "subtitle": "Set your weekly availability",
+    "save": "Save",
+    "saved": "Availability status saved",
+    "timeSlot": {
+      "available": "Available",
+      "notAvailable": "Not Available",
+      "pastDate": "Past Date"
+    }
+  },
+  "trainerProfile": {
+    "title": "Profile Information",
+    "subtitle": "Edit your personal information",
+    "save": "Save Changes",
+    "saved": "Profile updated",
+    "photo": {
+      "change": "Change Photo",
+      "errors": {
+        "type": "Please select an image file",
+        "size": "File size must be less than 5MB"
+      }
+    },
+    "form": {
+      "fullName": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "birthDate": "Birth Date",
+      "expertise": {
+        "label": "Areas of Expertise",
+        "placeholder": "Ex: Rowing, Boat Class A, Training Programming"
+      },
+      "experience": {
+        "label": "Experience",
+        "placeholder": "Write your experience here..."
+      },
+      "bio": {
+        "label": "Personal Message",
+        "placeholder": "Briefly introduce yourself..."
+      }
+    },
+    "certificates": {
+      "title": "Certificates",
+      "addNew": "Add New Certificate",
+      "delete": "Delete Certificate",
+      "form": {
+        "name": {
+          "label": "Certificate Name",
+          "placeholder": "Ex: Level 1 Training"
+        },
+        "institution": {
+          "label": "Institution",
+          "placeholder": "Ex: Rowing Federation"
+        },
+        "date": "Date Received",
+        "file": {
+          "label": "Certificate File",
+          "select": "Choose File",
+          "noFile": "No file chosen",
+          "selected": "File selected"
+        }
+      }
+    },
+    "password": {
+      "change": "Change Password",
+      "title": "Change Password",
+      "form": {
+        "current": {
+          "label": "Current Password",
+          "show": "Show Password",
+          "hide": "Hide Password"
+        },
+        "new": {
+          "label": "New Password",
+          "show": "Show Password",
+          "hide": "Hide Password"
+        },
+        "confirm": {
+          "label": "Confirm New Password",
+          "show": "Show Password",
+          "hide": "Hide Password"
+        }
+      },
+      "save": "Update Password",
+      "saved": "Password updated",
+      "subtitle": "Change your password regularly for account security"
+    }
+  },
+  "clubManagerLogin": {
+    "title": "Club Manager Login",
+    "subtitle": "Sign in to access your club management panel",
+    "form": {
+      "email": {
+        "label": "Email Address",
+        "placeholder": "example@email.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "••••••••",
+        "show": "Show Password",
+        "hide": "Hide Password"
+      },
+      "forgotPassword": "Forgot Password",
+      "submit": "Sign In"
+    },
+    "socialLogin": {
+      "google": "Sign in with Google",
+      "apple": "Sign in with Apple",
+      "or": "or"
+    },
+    "register": {
+      "text": "Don't have an account?",
+      "link": "Register Now"
+    },
+    "backToHome": "Back to Home"
+  },
+  "clubManagerRegister": {
+    "title": "Club Manager Registration",
+    "subtitle": "Create an account to manage your club",
+    "form": {
+      "email": {
+        "label": "Email Address",
+        "placeholder": "example@email.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "••••••••",
+        "show": "Show Password",
+        "hide": "Hide Password"
+      },
+      "confirmPassword": {
+        "label": "Confirm Password",
+        "placeholder": "••••••••",
+        "show": "Show Password",
+        "hide": "Hide Password"
+      },
+      "submit": "Continue"
+    },
+    "errors": {
+      "passwordMatch": "Passwords do not match",
+      "generalError": "An error occurred during registration"
+    },
+    "login": {
+      "text": "Already have an account?",
+      "link": "Sign In"
+    },
+    "backToLogin": "Back to Login"
+  },
+  "clubManagerRegisterDetails": {
+    "title": "Club Information",
+    "subtitle": "Fill in detailed information about your club",
+    "logo": {
+      "upload": "Upload Logo",
+      "change": "Change Logo",
+      "remove": "Remove Logo",
+      "errors": {
+        "type": "Please select an image file",
+        "size": "File size must be less than 5MB"
+      }
+    },
+    "form": {
+      "clubName": "Club Name",
+      "managerName": "Manager Full Name",
+      "phone": "Phone Number",
+      "address": "Club Address",
+      "description": {
+        "label": "Brief Description About Club",
+        "placeholder": "Write a brief description about your club..."
+      }
+    },
+    "submit": "Complete Registration",
+    "submitSuccess": "Registration successful! Waiting for admin approval.",
+    "pendingApproval": "Your information will be active after admin approval"
+  },
+  "dashboard": {
+    "welcome": "Welcome 👋",
+    "subtitle": "Monitor your club's current status",
+    "stats": {
+      "totalMembers": {
+        "title": "Total Members",
+        "value": "2,834",
+        "change": "+12.5%"
+      },
+      "activeReservations": {
+        "title": "Active Reservations",
+        "value": "48",
+        "change": "+8.2%"
+      },
+      "monthlyIncome": {
+        "title": "Monthly Income",
+        "value": "₺142,384",
+        "change": "+15.3%"
+      },
+      "occupancyRate": {
+        "title": "Occupancy Rate",
+        "value": "78%",
+        "change": "+4.1%"
+      }
+    },
+    "charts": {
+      "monthlyActivity": {
+        "title": "Monthly Member Activity"
+      },
+      "packageDistribution": {
+        "title": "Package Distribution",
+        "total": "Package Sales"
+      }
+    },
+    "recentActivities": {
+      "title": "Recent Activities",
+      "types": {
+        "reservation_cancel": "Reservation Cancelled",
+        "reservation": "New Reservation",
+        "package_renewal": "Package Renewed",
+        "session_complete": "Session Completed"
+      },
+      "timeAgo": {
+        "minutes": "minutes ago",
+        "hours": "hours ago"
+      }
+    },
+    "upcomingReservations": {
+      "title": "Upcoming Reservations",
+      "status": {
+        "confirmed": "Confirmed",
+        "pending": "Pending"
+      },
+      "today": "Today",
+      "tomorrow": "Tomorrow"
+    },
+    "popularPackages": {
+      "title": "Popular Packages",
+      "sales": "sales"
+    },
+    "packages": {
+      "monthly": "Monthly Package",
+      "threeMonth": "3 Month Package",
+      "sixMonth": "6 Month Package",
+      "annual": "Annual Package",
+      "monthlyUnlimited": "Monthly Unlimited",
+      "trial": "Trial Package"
+    },
+    "currency": "$",
+    "months": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun"
+    },
+    "activities": {
+      "descriptions": {
+        "cancelledTraining": "John Smith cancelled today's training",
+        "newReservation": "Mike Johnson reserved 15:00 training",
+        "renewedPackage": "Sarah Brown renewed 3-month package",
+        "completedTraining": "Tom Wilson completed training"
+      }
+    },
+    "names": {
+      "members": {
+        "emily": "Emily Davis",
+        "michael": "Michael Brown",
+        "jessica": "Jessica White",
+        "john": "John Smith",
+        "sarah": "Sarah Johnson",
+        "mike": "Mike Thompson"
+      }
+    }
+  }
+}

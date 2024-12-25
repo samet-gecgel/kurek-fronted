@@ -11,32 +11,38 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useState } from "react";
-
-const menuItems = [
-  {
-    title: "Takvim",
-    href: "/trainer/calendar",
-    icon: Calendar,
-  },
-  {
-    title: "Müsaitlik",
-    href: "/trainer/availability",
-    icon: Clock,
-  },
-  {
-    title: "Profil",
-    href: "/trainer/profile",
-    icon: User,
-  },
-];
+import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
+import { LanguageSelector } from "@/components/language-selector";
 
 export function TrainerSidebar() {
+  const t = useTranslations('trainerSidebar');
   const pathname = usePathname();
   const router = useRouter();
+  const params = useParams();
+  const locale = params.locale as string;
   const [isOpen, setIsOpen] = useState(true);
 
+  const menuItems = [
+    {
+      title: t('menu.calendar'),
+      href: `/${locale}/trainer/calendar`,
+      icon: Calendar,
+    },
+    {
+      title: t('menu.availability'),
+      href: `/${locale}/trainer/availability`,
+      icon: Clock,
+    },
+    {
+      title: t('menu.profile'),
+      href: `/${locale}/trainer/profile`,
+      icon: User,
+    },
+  ];
+
   const handleLogout = () => {
-    router.push('/login');
+    router.push(`/${locale}/login`);
   };
 
   return (
@@ -56,8 +62,15 @@ export function TrainerSidebar() {
         {/* Logo ve başlık */}
         <div className="flex items-center gap-3 mb-8">
           <div className="w-8 h-8 bg-blue-500 rounded-lg" />
-          {isOpen && <h1 className="text-lg font-semibold text-white">Antrenör Paneli</h1>}
+          {isOpen && <h1 className="text-lg font-semibold text-white">{t('title')}</h1>}
         </div>
+
+        {/* Dil seçici */}
+        {isOpen && (
+          <div className="mb-4">
+            <LanguageSelector />
+          </div>
+        )}
 
         {/* Menü öğeleri */}
         <nav className="space-y-2">
@@ -84,7 +97,7 @@ export function TrainerSidebar() {
             className="flex items-center gap-2 w-full px-3 py-2 text-red-500 hover:bg-red-500/10 rounded-lg transition-colors"
           >
             <LogOut size={20} />
-            {isOpen && <span>Çıkış Yap</span>}
+            {isOpen && <span>{t('logout')}</span>}
           </button>
         </div>
       </div>
