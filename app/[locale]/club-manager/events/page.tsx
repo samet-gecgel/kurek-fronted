@@ -203,10 +203,16 @@ export default function EventsPage() {
   const totalPages = Math.ceil(filteredEvents.length / itemsPerPage);
 
   return (
-    <div className="flex h-screen bg-zinc-950">
-      <ManagerSidebar isOpen={isSidebarOpen} onToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
-      
-      <div className="flex-1 overflow-auto">
+    <div className="flex h-screen bg-zinc-950 overflow-hidden">
+      <div className={`fixed top-0 left-0 h-full transition-all duration-300 ease-in-out ${
+        isSidebarOpen ? 'w-64' : 'w-20'
+      }`}>
+        <ManagerSidebar isOpen={isSidebarOpen} onToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
+      </div>
+
+      <div className={`flex-1 overflow-y-auto transition-all duration-300 ${
+        isSidebarOpen ? 'ml-64' : 'ml-20'
+      }`}>
         <div className="container mx-auto p-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
             <div>
