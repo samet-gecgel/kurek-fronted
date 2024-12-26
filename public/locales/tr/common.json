@@ -1052,6 +1052,7 @@
     "letsCreate": "Şimdi kulübünüzü oluşturalım",
     "title": "Kulüp Bilgileri",
     "subtitle": "Kulübünüz hakkında bilgileri girin",
+    "success": "Kulübünüz başarıyla oluşturuldu!",
     "form": {
       "logo": {
         "upload": "Logo Yükle",
@@ -1082,7 +1083,8 @@
           "saturday": "Cumartesi",
           "sunday": "Pazar"
         },
-        "status": "Açık"
+        "open": "Açık",
+        "close": "Kapalı"
       }
     },
     "submit": "Kaydı Tamamla"
@@ -1106,6 +1108,8 @@
     },
     "workingHours": {
       "title": "Çalışma Saatleri",
+      "open": "Açık",
+      "close": "Kapalı",
       "days": {
         "monday": "Pazartesi",
         "tuesday": "Salı",

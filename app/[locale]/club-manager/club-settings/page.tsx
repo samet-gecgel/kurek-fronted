@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { TimePicker } from "@/components/ui/time-picker";
+import { Switch } from "@/components/ui/switch";
 import { Upload, Camera, MapPin, Instagram, Facebook, Youtube } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
 import { ManagerSidebar } from "@/components/layout/manager-sidebar";
@@ -108,7 +109,7 @@ export default function ClubSettingsPage() {
       <ManagerSidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
       
       <div className="flex-1 overflow-auto">
-        <div className="p-8 max-w-6xl mx-auto">
+        <div className="p-8 max-w-7xl mx-auto">
           {/* Header */}
           <div className="flex justify-between items-center mb-8">
             <div>
@@ -292,20 +293,18 @@ export default function ClubSettingsPage() {
                       />
                     </div>
 
-                    <div className="flex items-center gap-2 ml-auto">
-                      <input
-                        type="checkbox"
+                    <div className="flex items-center gap-2">
+                      <span className="text-zinc-400 text-sm w-14 text-right">
+                        {hours.isOpen ? t('workingHours.open') : t('workingHours.close')}
+                      </span>
+                      <Switch
                         checked={hours.isOpen}
-                        onChange={(e) => handleWorkingHourChange(
+                        onCheckedChange={(checked) => handleWorkingHourChange(
                           day as keyof ClubSettings['workingHours'],
                           'isOpen',
-                          e.target.checked
+                          checked
                         )}
-                        className="w-4 h-4 rounded border-zinc-600 text-blue-600 focus:ring-blue-500"
                       />
-                      <span className="text-zinc-400 text-sm">
-                        {t('workingHours.status')}
-                      </span>
                     </div>
                   </div>
                 ))}

@@ -1069,6 +1069,7 @@
     "letsCreate": "Let's create your club",
     "title": "Club Information",
     "subtitle": "Enter information about your club",
+    "success": "Your club has been successfully created!",
     "form": {
       "logo": {
         "upload": "Upload Logo",
@@ -1099,7 +1100,8 @@
           "saturday": "Saturday",
           "sunday": "Sunday"
         },
-        "status": "Open"
+        "open": "Open",
+        "close": "Close"
       }
     },
     "submit": "Complete Registration"
@@ -1123,6 +1125,8 @@
     },
     "workingHours": {
       "title": "Working Hours",
+      "open": "Open",
+      "close": "Closed",
       "days": {
         "monday": "Monday",
         "tuesday": "Tuesday",

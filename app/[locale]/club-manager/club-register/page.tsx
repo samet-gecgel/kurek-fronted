@@ -7,7 +7,8 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Upload, Camera, Phone, MapPin, Instagram, Facebook, Youtube } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { Upload, Camera, Phone, MapPin, Instagram, Facebook, Youtube, Check } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
 import { useTranslations } from 'next-intl';
 import { PhoneInput } from "@/components/ui/phone-input";
@@ -48,6 +49,7 @@ export default function ClubRegisterPage() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [showNextStep, setShowNextStep] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const [formData, setFormData] = useState<ClubDetails>({
     logo: null,
@@ -99,16 +101,12 @@ export default function ClubRegisterPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Burada API çağrısı ve kayıt işlemleri yapılabilir
-    // try {
-    //   await registerClub(formData);
-    // } catch (error) {
-    //   console.error('Kayıt hatası:', error);
-    //   return;
-    // }
-
-    // Başarılı kayıt sonrası dashboard'a yönlendir
-    router.push('/club-manager/dashboard');
+    setIsSuccess(true);
+    
+    // 2 saniye sonra dashboard'a yönlendir
+    setTimeout(() => {
+      router.push('/club-manager/dashboard');
+    }, 3000);
   };
 
   // Çalışma saati değiştirme fonksiyonu
@@ -132,6 +130,49 @@ export default function ClubRegisterPage() {
   return (
     <div className="min-h-screen bg-zinc-950 font-poppins">
       <AnimatePresence>
+        {/* Başarılı Kayıt Animasyonu */}
+        {isSuccess && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 flex items-center justify-center bg-zinc-950/50 backdrop-blur-sm z-50"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 20
+              }}
+              className="flex flex-col items-center gap-4"
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{
+                  delay: 0.2,
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20
+                }}
+                className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center"
+              >
+                <Check className="w-10 h-10 text-white" />
+              </motion.div>
+              <motion.h2
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-xl font-medium text-white"
+              >
+                {t('success')}
+              </motion.h2>
+            </motion.div>
+          </motion.div>
+        )}
+
         {showWelcome && (
           <motion.div
             {...welcomeAnimation}
@@ -381,20 +422,18 @@ export default function ClubRegisterPage() {
                           />
                         </div>
 
-                        <div className="flex items-center gap-2 ml-auto">
-                          <input
-                            type="checkbox"
+                        <div className="flex items-center gap-2">
+                          <span className="text-zinc-400 text-sm w-14 text-right">
+                            {hours.isOpen ? t('form.workingHours.open') : t('form.workingHours.close')}
+                          </span>
+                          <Switch
                             checked={hours.isOpen}
-                            onChange={(e) => handleWorkingHourChange(
+                            onCheckedChange={(checked) => handleWorkingHourChange(
                               day as keyof ClubDetails['workingHours'],
                               'isOpen',
-                              e.target.checked
+                              checked
                             )}
-                            className="w-4 h-4 rounded border-zinc-600 text-blue-600 focus:ring-blue-500"
                           />
-                          <span className="text-zinc-400 text-sm">
-                            {t('form.workingHours.status')}
-                          </span>
                         </div>
                       </div>
                     ))}
