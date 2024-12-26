@@ -340,7 +340,7 @@ export default function UserDetailPage({ params }: { params: { id: string } }) {
                     </div>
 
                     {/* Badge'ler */}
-                    <div className="flex gap-4">
+                    <div className="flex flex-col gap-4">
                       {userDetail.isVIR && (
                         <div className="flex-1 p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
                           <p className="text-blue-400 text-sm flex items-center gap-2">
