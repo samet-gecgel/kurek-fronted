@@ -15,7 +15,8 @@ import {
   Activity,
   UserCog,
   LogOut,
-  Users
+  Users,
+  User
 } from 'lucide-react';
 import { LanguageSelector } from "@/components/language-selector";
 
@@ -61,10 +62,15 @@ const menuItems = [
     href: '/club-manager/reports',
   },
   {
-    titleKey: 'settings',
+    titleKey: 'clubSettings',
     icon: Settings,
-    href: '/club-manager/settings',
+    href: '/club-manager/club-settings',
   },
+  {
+    titleKey: 'profile',
+    icon: User,
+    href: '/club-manager/profile'
+  }
 ];
 
 interface SidebarProps {

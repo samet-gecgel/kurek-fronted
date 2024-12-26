@@ -427,7 +427,8 @@
       "events": "Events",
       "messages": "Messages",
       "reports": "Reports",
-      "settings": "Settings",
+      "clubSettings": "Club Settings",
+      "profile": "Profile",
       "officeManagers": "Office Managers"
     },
     "logout": "Logout"
@@ -475,7 +476,7 @@
     },
     "password": {
       "title": "Change Password",
-      "description" : "Change your password regularly to ensure your account security.",
+      "description": "Change your password regularly to ensure your account security.",
       "change": "Change Password",
       "current": "Current Password",
       "new": "New Password",
@@ -927,7 +928,7 @@
     "pendingApproval": "Your information will be active after admin approval"
   },
   "dashboard": {
-    "welcome": "Welcome 👋",
+    "welcome": "Welcome",
     "subtitle": "Monitor your club's current status",
     "stats": {
       "totalMembers": {
@@ -1042,5 +1043,97 @@
     },
     "add": "Add",
     "cancel": "Cancel"
+  },
+  "managerRegisterDetails": {
+    "title": "Personal Information",
+    "subtitle": "Please enter your information",
+    "basicInfo": {
+      "title": "Basic Information"
+    },
+    "photo": {
+      "upload": "Upload Photo",
+      "errors": {
+        "type": "Please upload a valid image file",
+        "size": "File size must be less than 5MB"
+      }
+    },
+    "form": {
+      "fullName": "Full Name",
+      "position": "Position in Club",
+      "phone": "Phone Number"
+    },
+    "submit": "Continue"
+  },
+  "clubRegister": {
+    "welcome": "Welcome",
+    "letsCreate": "Let's create your club",
+    "title": "Club Information",
+    "subtitle": "Enter information about your club",
+    "form": {
+      "logo": {
+        "upload": "Upload Logo",
+        "change": "Change Logo"
+      },
+      "name": "Club Name",
+      "phone": "Phone Number",
+      "address": "Club Address",
+      "description": {
+        "label": "About Club",
+        "placeholder": "Write a brief description about your club..."
+      },
+      "social": {
+        "title": "Social Media",
+        "instagram": "Instagram Username",
+        "facebook": "Facebook Username",
+        "youtube": "Youtube Channel",
+        "twitter": "X (Twitter) Username"
+      },
+      "workingHours": {
+        "title": "Working Hours",
+        "days": {
+          "monday": "Monday",
+          "tuesday": "Tuesday",
+          "wednesday": "Wednesday",
+          "thursday": "Thursday",
+          "friday": "Friday",
+          "saturday": "Saturday",
+          "sunday": "Sunday"
+        },
+        "status": "Open"
+      }
+    },
+    "submit": "Complete Registration"
+  },
+  "clubSettings": {
+    "title": "Club Settings",
+    "subtitle": "Update your club information",
+    "logo": {
+      "title": "Logo",
+      "description": "Update your club logo. Should be PNG or JPG format, maximum 5MB in size."
+    },
+    "basicInfo": {
+      "title": "Basic Information",
+      "name": "Club Name",
+      "phone": "Phone Number",
+      "address": "Club Address",
+      "description": "About Club"
+    },
+    "social": {
+      "title": "Social Media"
+    },
+    "workingHours": {
+      "title": "Working Hours",
+      "days": {
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+      },
+      "status": "Open"
+    },
+    "saveButton": "Save Changes"
   }
 }

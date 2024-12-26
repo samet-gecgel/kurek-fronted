@@ -407,7 +407,8 @@
       "events": "Etkinlikler",
       "messages": "Mesajlar",
       "reports": "Raporlar",
-      "settings": "Ayarlar",
+      "clubSettings": "Kulüp Ayarları",
+      "profile": "Profil",
       "officeManagers": "Ofis Sorumluları"
     },
     "logout": "Çıkış Yap"
@@ -464,7 +465,7 @@
     },
     "password": {
       "title": "Şifre Değiştirme",
-      "description": "Hesap güvenliğiniz için şifrenizi düzenli olarak değiştirin",
+      "description": "Hesap güvenliğiniz için şifrenizi düzenli olarak değiştirin.",
       "change": "Şifre Değiştir",
       "current": "Mevcut Şifre",
       "new": "Yeni Şifre",
@@ -890,33 +891,27 @@
     "backToLogin": "Giriş Sayfasına Dön"
   },
   "clubManagerRegisterDetails": {
-    "title": "Kulüp Bilgileri",
-    "subtitle": "Kulübünüz hakkında detaylı bilgileri doldurun",
-    "logo": {
-      "upload": "Logo Yükle",
-      "change": "Logoyu Değiştir",
-      "remove": "Logoyu Kaldır",
+    "title": "Kişisel Bilgileriniz",
+    "subtitle": "Lütfen bilgilerinizi girin",
+    "basicInfo": {
+      "title": "Temel Bilgiler"
+    },
+    "photo": {
+      "upload": "Fotoğraf Yükle",
       "errors": {
-        "type": "Lütfen bir resim dosyası seçin",
+        "type": "Lütfen geçerli bir resim dosyası yükleyin",
         "size": "Dosya boyutu 5MB'dan küçük olmalıdır"
       }
     },
     "form": {
-      "clubName": "Kulüp Adı",
-      "managerName": "Yönetici Adı Soyadı",
-      "phone": "Telefon Numarası",
-      "address": "Kulüp Adresi",
-      "description": {
-        "label": "Kulüp Hakkında Kısa Açıklama",
-        "placeholder": "Kulübünüz hakkında kısa bir açıklama yazın..."
-      }
+      "fullName": "Ad Soyad",
+      "position": "Kulüpteki Göreviniz",
+      "phone": "Telefon Numarası"
     },
-    "submit": "Kaydı Tamamla",
-    "submitSuccess": "Kayıt başarılı! Admin onayı bekleniyor.",
-    "pendingApproval": "Bilgileriniz admin onayından sonra aktif olacaktır"
+    "submit": "Devam Et"
   },
   "dashboard": {
-    "welcome": "Hoş Geldiniz 👋",
+    "welcome": "Hoş Geldiniz",
     "subtitle": "Kulübünüzün güncel durumunu takip edin",
     "stats": {
       "totalMembers": {
@@ -1031,5 +1026,97 @@
     },
     "add": "Ekle",
     "cancel": "İptal"
+  },
+  "managerRegisterDetails": {
+    "title": "Kişisel Bilgileriniz",
+    "subtitle": "Lütfen bilgilerinizi girin",
+    "basicInfo": {
+      "title": "Temel Bilgiler"
+    },
+    "photo": {
+      "upload": "Fotoğraf Yükle",
+      "errors": {
+        "type": "Lütfen geçerli bir resim dosyası yükleyin",
+        "size": "Dosya boyutu 5MB'dan küçük olmalıdır"
+      }
+    },
+    "form": {
+      "fullName": "Ad Soyad",
+      "position": "Kulüpteki Göreviniz",
+      "phone": "Telefon Numarası"
+    },
+    "submit": "Devam Et"
+  },
+  "clubRegister": {
+    "welcome": "Hoşgeldiniz",
+    "letsCreate": "Şimdi kulübünüzü oluşturalım",
+    "title": "Kulüp Bilgileri",
+    "subtitle": "Kulübünüz hakkında bilgileri girin",
+    "form": {
+      "logo": {
+        "upload": "Logo Yükle",
+        "change": "Logoyu Değiştir"
+      },
+      "name": "Kulüp Adı",
+      "phone": "Telefon Numarası",
+      "address": "Kulüp Adresi",
+      "description": {
+        "label": "Kulüp Hakkında",
+        "placeholder": "Kulübünüz hakkında kısa bir açıklama yazın..."
+      },
+      "social": {
+        "title": "Sosyal Medya",
+        "instagram": "Instagram Kullanıcı Adı",
+        "facebook": "Facebook Kullanıcı Adı",
+        "youtube": "Youtube Kanal Adı",
+        "twitter": "X (Twitter) Kullanıcı Adı"
+      },
+      "workingHours": {
+        "title": "Çalışma Saatleri",
+        "days": {
+          "monday": "Pazartesi",
+          "tuesday": "Salı",
+          "wednesday": "Çarşamba",
+          "thursday": "Perşembe",
+          "friday": "Cuma",
+          "saturday": "Cumartesi",
+          "sunday": "Pazar"
+        },
+        "status": "Açık"
+      }
+    },
+    "submit": "Kaydı Tamamla"
+  },
+  "clubSettings": {
+    "title": "Kulüp Ayarları",
+    "subtitle": "Kulübünüzün bilgilerini güncelleyin",
+    "logo": {
+      "title": "Logo",
+      "description": "Kulübünüzün logosunu güncelleyin. PNG veya JPG formatında, maksimum 5MB boyutunda olmalıdır."
+    },
+    "basicInfo": {
+      "title": "Temel Bilgiler",
+      "name": "Kulüp Adı",
+      "phone": "Telefon Numarası",
+      "address": "Kulüp Adresi",
+      "description": "Kulüp Hakkında"
+    },
+    "social": {
+      "title": "Sosyal Medya"
+    },
+    "workingHours": {
+      "title": "Çalışma Saatleri",
+      "days": {
+        "monday": "Pazartesi",
+        "tuesday": "Salı",
+        "wednesday": "Çarşamba",
+        "thursday": "Perşembe",
+        "friday": "Cuma",
+        "saturday": "Cumartesi",
+        "sunday": "Pazar"
+      },
+      "status": "Açık"
+    },
+    "saveButton": "Değişiklikleri Kaydet"
   }
 }

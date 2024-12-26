@@ -627,7 +627,7 @@ export default function ProfilePage() {
             <Button
               variant="outline"
               onClick={() => setIsPasswordModalOpen(false)}
-              className="bg-zinc-800 text-white hover:bg-zinc-700 border-zinc-700"
+              className="bg-zinc-800 text-white hover:bg-zinc-700 border-zinc-700 hover:text-white" 
             >
               {t('password.cancel')}
             </Button>

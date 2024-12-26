@@ -1,9 +1,10 @@
 "use client";
 
-import { Facebook, Instagram, Twitter, Mail, MapPin, Phone } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
+import { FaXTwitter } from "react-icons/fa6";
 
 export function Footer() {
   const t = useTranslations('footer');
@@ -88,27 +89,15 @@ export function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">{t('social.title')}</h3>
             <div className="flex space-x-4">
-              <a
-                href="#"
-                className="hover:text-white transition-all hover:scale-110 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] duration-200"
-                aria-label={t('social.facebook')}
-              >
-                <Facebook size={20} />
-              </a>
-              <a
-                href="#"
-                className="hover:text-white transition-all hover:scale-110 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] duration-200"
-                aria-label={t('social.instagram')}
-              >
-                <Instagram size={20} />
-              </a>
-              <a
-                href="#"
-                className="hover:text-white transition-all hover:scale-110 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] duration-200"
-                aria-label={t('social.twitter')}
-              >
-                <Twitter size={20} />
-              </a>
+              <Link href="#" className="text-zinc-400 hover:text-zinc-100 transition-colors">
+                <Facebook className="w-5 h-5" />
+              </Link>
+              <Link href="#" className="text-zinc-400 hover:text-zinc-100 transition-colors">
+                <FaXTwitter className="w-5 h-5" />
+              </Link>
+              <Link href="#" className="text-zinc-400 hover:text-zinc-100 transition-colors">
+                <Instagram className="w-5 h-5" />
+              </Link>
             </div>
           </div>
         </div>

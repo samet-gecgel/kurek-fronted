@@ -153,7 +153,7 @@ export default function Dashboard() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-8"
           >
-            <h1 className="text-2xl font-bold text-white">{t('welcome')}</h1>
+            <h1 className="text-2xl font-bold text-white">{t('welcome')}👋</h1>
             <p className="text-zinc-400">{t('subtitle')}</p>
           </motion.div>
 
