@@ -36,10 +36,16 @@ export default function SendMessagePage() {
   };
 
   return (
-    <div className="flex h-screen bg-zinc-950">
-      <ManagerSidebar isOpen={isSidebarOpen} onToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
-      
-      <div className="flex-1 overflow-auto">
+    <div className="flex h-screen bg-zinc-950 overflow-hidden">
+      <div className={`fixed top-0 left-0 h-full transition-all duration-300 ease-in-out ${
+        isSidebarOpen ? 'w-64' : 'w-20'
+      }`}>
+        <ManagerSidebar isOpen={isSidebarOpen} onToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
+      </div>
+
+      <div className={`flex-1 overflow-y-auto transition-all duration-300 ${
+        isSidebarOpen ? 'ml-64' : 'ml-20'
+      }`}>
         <div className="p-8">
           {/* Header */}
           <div className="flex items-center gap-4 mb-8">

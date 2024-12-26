@@ -407,7 +407,8 @@
       "events": "Etkinlikler",
       "messages": "Mesajlar",
       "reports": "Raporlar",
-      "settings": "Ayarlar"
+      "settings": "Ayarlar",
+      "officeManagers": "Ofis Sorumluları"
     },
     "logout": "Çıkış Yap"
   },
@@ -1009,5 +1010,26 @@
         "mike": "Mehmet Can"
       }
     }
+  },
+  "officeManagers": {
+    "title": "Ofis Sorumluları",
+    "subtitle": "Ofis sorumlularını görüntüleyin ve yönetin",
+    "addNew": "Yeni Ofis Sorumlusu",
+    "search": "Ara...",
+    "added": "Eklenme Tarihi",
+    "deleteConfirm": "Bu ofis sorumlusunu silmek istediğinizden emin misiniz?",
+    "form": {
+      "fullName": "Ad Soyad",
+      "fullNamePlaceholder": "Ad ve soyadı girin",
+      "email": "E-posta",
+      "emailPlaceholder": "E-posta adresini girin",
+      "password": "Şifre",
+      "passwordPlaceholder": "Şifre girin",
+      "errors": {
+        "required": "Lütfen tüm alanları doldurun"
+      }
+    },
+    "add": "Ekle",
+    "cancel": "İptal"
   }
 }

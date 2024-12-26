@@ -34,8 +34,8 @@ interface Certificate {
 // Trainer-Expertise ilişkisi için basit interface
 interface TrainerExpertise {
   id: string;
-  name: string;
   trainerId: string;
+  name: string;
 }
 
 

@@ -14,7 +14,8 @@ import {
   ChevronRight,
   Activity,
   UserCog,
-  LogOut
+  LogOut,
+  Users
 } from 'lucide-react';
 import { LanguageSelector } from "@/components/language-selector";
 
@@ -38,6 +39,11 @@ const menuItems = [
     titleKey: 'trainers',
     icon: UserCog,
     href: '/club-manager/trainers',
+  },
+  {
+    titleKey: 'officeManagers',
+    icon: Users,
+    href: '/club-manager/office-managers',
   },
   {
     titleKey: 'events',

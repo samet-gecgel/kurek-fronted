@@ -427,7 +427,8 @@
       "events": "Events",
       "messages": "Messages",
       "reports": "Reports",
-      "settings": "Settings"
+      "settings": "Settings",
+      "officeManagers": "Office Managers"
     },
     "logout": "Logout"
   },
@@ -1020,5 +1021,26 @@
         "mike": "Mike Thompson"
       }
     }
+  },
+  "officeManagers": {
+    "title": "Office Managers",
+    "subtitle": "View and manage office managers",
+    "addNew": "New Office Manager",
+    "search": "Search...",
+    "added": "Added Date",
+    "deleteConfirm": "Are you sure you want to delete this office manager?",
+    "form": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Enter full name",
+      "email": "Email",
+      "emailPlaceholder": "Enter email address",
+      "password": "Password",
+      "passwordPlaceholder": "Enter password",
+      "errors": {
+        "required": "Please fill in all fields"
+      }
+    },
+    "add": "Add",
+    "cancel": "Cancel"
   }
 }
