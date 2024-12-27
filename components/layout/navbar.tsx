@@ -131,28 +131,58 @@ export function Navbar() {
           exit={{ opacity: 0, y: -20 }}
           className="md:hidden bg-zinc-900/95 border-b border-zinc-800"
         >
-          <div className="container mx-auto px-4 py-4 space-y-4">
-            <Link href="/" onClick={() => setIsOpen(false)}>
-              {t('home')}
-            </Link>
-            <Link href="/packages" onClick={() => setIsOpen(false)}>
-              {t('packages')}
-            </Link>
-            <Link href="/trainers" onClick={() => setIsOpen(false)}>
-              {t('trainers')}
-            </Link>
-            <Link href="/contact" onClick={() => setIsOpen(false)}>
-              {t('contact')}
-            </Link>
-            
-            {/* Mobil Dil Seçici */}
-            <LanguageSelector currentLocale={currentLocale} onChange={handleLanguageChange} />
+          <div className="container mx-auto px-4 py-6">
+            <div className="flex flex-col space-y-4">
+              <Link 
+                href="/" 
+                onClick={() => setIsOpen(false)}
+                className="text-lg text-zinc-200 hover:text-white transition-colors px-4 py-2 rounded-lg hover:bg-white/5"
+              >
+                {t('home')}
+              </Link>
+              <Link 
+                href="/packages" 
+                onClick={() => setIsOpen(false)}
+                className="text-lg text-zinc-200 hover:text-white transition-colors px-4 py-2 rounded-lg hover:bg-white/5"
+              >
+                {t('packages')}
+              </Link>
+              <Link 
+                href="/trainers" 
+                onClick={() => setIsOpen(false)}
+                className="text-lg text-zinc-200 hover:text-white transition-colors px-4 py-2 rounded-lg hover:bg-white/5"
+              >
+                {t('trainers')}
+              </Link>
+              <Link 
+                href="/contact" 
+                onClick={() => setIsOpen(false)}
+                className="text-lg text-zinc-200 hover:text-white transition-colors px-4 py-2 rounded-lg hover:bg-white/5"
+              >
+                {t('contact')}
+              </Link>
 
-            <div className="pt-4 space-y-2">
-              <Link href="/trainer/login" onClick={() => setIsOpen(false)}>
+              <div className="h-px bg-zinc-800/50 my-4" />
+
+              {/* Mobil Dil Seçici */}
+              <div className="px-4">
+                <LanguageSelector currentLocale={currentLocale} onChange={handleLanguageChange} />
+              </div>
+
+              <div className="h-px bg-zinc-800/50 my-4" />
+
+              <Link 
+                href="/trainer/login" 
+                onClick={() => setIsOpen(false)}
+                className="text-lg text-zinc-200 hover:text-white transition-colors px-4 py-2 rounded-lg hover:bg-white/5"
+              >
                 {t('trainerLogin')}
               </Link>
-              <Link href="/user/login" onClick={() => setIsOpen(false)}>
+              <Link 
+                href="/user/login" 
+                onClick={() => setIsOpen(false)}
+                className="text-lg font-medium text-zinc-900 bg-white hover:bg-zinc-100 transition-colors px-4 py-2 rounded-lg"
+              >
                 {t('userLogin')}
               </Link>
             </div>
