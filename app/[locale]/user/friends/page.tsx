@@ -356,14 +356,17 @@ export default function FriendsPage() {
           </div>
 
           {/* Arama */}
-          <div className="relative mb-6">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
-            <Input
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={t('search')}
-              className="pl-10 bg-zinc-800/50 border-zinc-700/50 text-white focus:border-blue-500/50 focus:ring-blue-500/20"
-            />
+          <div className="mb-8">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400" size={20} />
+              <Input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 bg-zinc-800/50 border-zinc-800/50 text-zinc-100 w-full placeholder:text-zinc-500 focus:border-blue-500/50 focus:ring-blue-500/20"
+                placeholder={t('search.friends')}
+              />
+            </div>
           </div>
 
           {/* Arkadaş Listesi */}
