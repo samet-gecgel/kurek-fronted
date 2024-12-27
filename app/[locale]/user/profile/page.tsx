@@ -164,15 +164,15 @@ export default function ProfilePage() {
   const inputClassName = "bg-zinc-900 border-zinc-700 text-zinc-100 focus:border-blue-500/50 focus:ring-blue-500/20 placeholder:text-zinc-500";
 
   return (
-    <div className="flex h-screen bg-[#09090B]">
+    <div className="flex md:flex-row flex-col h-screen bg-[#09090B]">
       <UserSidebar 
         isOpen={isSidebarOpen} 
         onToggle={() => setIsSidebarOpen(!isSidebarOpen)} 
       />
       <div className={`flex-1 overflow-y-auto transition-all duration-300 ${
-        isSidebarOpen ? 'ml-64' : 'ml-20'
-      }`}>
-        <div className="container mx-auto p-8">
+        isSidebarOpen ? 'md:ml-64' : 'md:ml-20'
+      } relative z-0`}>
+        <div className="container mx-auto p-4 md:p-8 mt-14 md:mt-0 relative">
           {/* Header */}
           <motion.div 
             className="mb-8"

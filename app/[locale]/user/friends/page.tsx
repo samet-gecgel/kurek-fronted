@@ -18,6 +18,7 @@ import {
   DialogClose
 } from "@/components/ui/dialog";
 
+
 interface Friend {
   id: string;
   name: string;
@@ -178,17 +179,22 @@ export default function FriendsPage() {
   };
 
   return (
-    <div className="flex h-screen bg-zinc-950">
+    <div className="flex md:flex-row flex-col h-screen bg-[#09090B]">
       <UserSidebar isOpen={isSidebarOpen} onToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
       
-      <div className={`flex-1 overflow-auto transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-20'}`}>
-        <div className="container mx-auto p-8 max-w-[1200px]">
+      <div className={`flex-1 overflow-y-auto transition-all duration-300 ${
+        isSidebarOpen ? 'md:ml-64' : 'md:ml-20'
+      } relative z-0`}>
+        <div className="container mx-auto p-4 md:p-8 mt-14 md:mt-0 relative">
           {/* Üst Başlık */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+          <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-2xl font-bold text-white">{t('title')}</h1>
-              <p className="text-zinc-400 mt-1">{t('subtitle')}</p>
+              <h1 className="text-2xl font-semibold text-white">{t('title')}</h1>
+              <p className="text-sm text-zinc-400 mt-1">{t('subtitle')}</p>
             </div>
+          </div>
+
+          <div className="flex justify-between items-center gap-4 mb-8">
             <div className="flex gap-3">
               <Dialog>
                 <DialogTrigger asChild>
@@ -276,19 +282,9 @@ export default function FriendsPage() {
                 </DialogContent>
               </Dialog>
 
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 w-4 h-4" />
-                <Input
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-zinc-800/50 border-zinc-700/50 text-white hover:bg-zinc-800 transition-colors w-72"
-                  placeholder={t('search.friends')}
-                />
-              </div>
-              
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                  <Button className="bg-blue-600 hover:bg-blue-700">
                     <Plus className="w-4 h-4 mr-2" />
                     {t('addFriend.button')}
                   </Button>
@@ -359,16 +355,27 @@ export default function FriendsPage() {
             </div>
           </div>
 
+          {/* Arama */}
+          <div className="relative mb-6">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+            <Input
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={t('search')}
+              className="pl-10 bg-zinc-800/50 border-zinc-700/50 text-white focus:border-blue-500/50 focus:ring-blue-500/20"
+            />
+          </div>
+
           {/* Arkadaş Listesi */}
-          <div className="grid gap-4">
+          <div className="grid gap-3">
             {filteredFriends.map((friend) => (
               <Card 
                 key={friend.id}
-                className="bg-zinc-900/50 border-zinc-800/50 backdrop-blur-sm p-4 hover:bg-zinc-800 transition-colors"
+                className="bg-zinc-900/50 border-zinc-800/50 backdrop-blur-sm py-2.5 px-3 hover:bg-zinc-800 transition-colors"
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   <div className="relative">
-                    <Avatar className="h-12 w-12">
+                    <Avatar className="h-10 w-10">
                       <AvatarImage src={friend.avatar} />
                       {!friend.avatar && (
                         <AvatarFallback className="bg-blue-500/10 text-blue-500">
@@ -379,17 +386,17 @@ export default function FriendsPage() {
                   </div>
                   
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-white">{friend.name}</h3>
+                    <h3 className="text-base font-medium text-white">{friend.name}</h3>
                   </div>
 
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => handleRemoveFriend(friend.id)}
-                    className="h-9 w-9 text-red-400 hover:text-red-300 hover:bg-red-500/20 transition-colors"
+                    className="h-8 w-8 text-red-400 hover:text-red-300 hover:bg-red-500/20 transition-colors"
                     title={t('buttons.remove')}
                   >
-                    <UserMinus2 className="w-4 h-4" />
+                    <UserMinus2 className="w-3.5 h-3.5" />
                   </Button>
                 </div>
               </Card>

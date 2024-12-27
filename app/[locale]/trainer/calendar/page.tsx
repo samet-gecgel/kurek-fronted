@@ -82,6 +82,7 @@ export default function CalendarPage() {
   });
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
   const [isAttendanceDialogOpen, setIsAttendanceDialogOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const [lessons, setLessons] = useState<Lesson[]>([
     {
@@ -207,7 +208,10 @@ export default function CalendarPage() {
   if (!mounted) {
     return (
       <div className="flex h-screen bg-[#0A0A0B]">
-        <TrainerSidebar />
+              <TrainerSidebar 
+        isOpen={isSidebarOpen} 
+        onToggle={() => setIsSidebarOpen(!isSidebarOpen)} 
+      />
         <div className="flex-1 overflow-y-auto ml-20 lg:ml-64 p-8">
           <div className="flex items-center justify-center h-full">
             <div className="text-zinc-400">{t('loading')}</div>
@@ -221,17 +225,17 @@ export default function CalendarPage() {
     <motion.div
       key={lesson.id}
       variants={lessonCardVariants}
-      className="relative group"
+      className="relative group md:pl-16"
     >
-      <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-white/20 via-zinc-700 to-transparent" />
+      <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-white/20 via-zinc-700 to-transparent hidden md:block" />
       
-      <div className="pl-16 relative">
-        <div className="absolute left-6 top-2 w-4 h-4 rounded-full bg-white/10 border-4 border-zinc-900 group-hover:border-white/20 group-hover:bg-white/20 transition-all duration-300" />
+      <div className="relative">
+        <div className="absolute left-6 top-2 w-4 h-4 rounded-full bg-white/10 border-4 border-zinc-900 group-hover:border-white/20 group-hover:bg-white/20 transition-all duration-300 hidden md:block" />
         <div className="bg-zinc-900/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-white/10 transition-all duration-300 shadow-lg hover:shadow-xl">
-          <div className="p-6 flex items-center justify-between border-b border-zinc-800/50">
-            <div className="flex items-center gap-4">
+          <div className="p-4 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-800/50">
+            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
               <h3 className="text-3xl font-bold text-white">{lesson.time}</h3>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <Badge className="bg-zinc-800/80 text-zinc-300 px-3 py-1">
                   {lesson.boatType}
                 </Badge>
@@ -248,8 +252,11 @@ export default function CalendarPage() {
             </Button>
           </div>
 
-          <div className="p-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="p-4 md:p-6">
+            <motion.div
+              variants={studentCardVariants}
+              className="grid grid-cols-1 md:grid-cols-2 gap-4"
+            >
               {lesson.students.map((student) => (
                 <motion.div
                   key={student.id}
@@ -270,7 +277,7 @@ export default function CalendarPage() {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -285,14 +292,14 @@ export default function CalendarPage() {
 
   const attendanceDialog = (
     <Dialog open={isAttendanceDialogOpen} onOpenChange={setIsAttendanceDialogOpen}>
-      <DialogContent className="bg-zinc-900 border border-zinc-800 text-white max-w-4xl">
+      <DialogContent className="bg-zinc-900 border-zinc-800 w-[95%] max-w-lg mx-auto">
         <DialogHeader>
-          <DialogTitle>
-            {t('attendance.title')} - {selectedLesson?.time}
+          <DialogTitle className="text-xl font-semibold text-white">
+            {selectedLesson?.time} - {t('attendance.title')}
           </DialogTitle>
         </DialogHeader>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
+        <div className="grid grid-cols-1 gap-3 mt-4">
           {selectedLesson?.students.map((student) => (
             <div key={student.id} className="bg-zinc-800/50 p-4 rounded-lg">
               <div className="flex flex-col gap-3">
@@ -353,89 +360,95 @@ export default function CalendarPage() {
   );
 
   return (
-    <div className="flex h-screen bg-[#09090B]">
-      <TrainerSidebar />
+    <div className="flex md:flex-row flex-col h-screen bg-[#09090B]">
+      <TrainerSidebar 
+        isOpen={isSidebarOpen} 
+        onToggle={() => setIsSidebarOpen(!isSidebarOpen)} 
+      />
+      
       <motion.div 
-        className="flex-1 overflow-y-auto ml-20 lg:ml-64 p-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        className={`flex-1 overflow-y-auto transition-all duration-300 ${
+          isSidebarOpen ? 'md:ml-64' : 'md:ml-20'
+        } relative z-0`}
       >
-        <motion.div 
-          className="mb-8"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-1 bg-gradient-to-b from-white via-white/50 to-transparent rounded-full" />
-            <h1 className="text-3xl font-bold text-white">{t('title')}</h1>
-          </div>
-          <p className="text-zinc-400 mt-2 ml-3">{t('subtitle')}</p>
-        </motion.div>
+        <div className="container mx-auto p-4 md:p-8 mt-14 md:mt-0 relative">
+          <motion.div 
+            className="mb-8"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <div className="flex items-center gap-2">
+              <div className="h-8 w-1 bg-gradient-to-b from-white via-white/50 to-transparent rounded-full" />
+              <h1 className="text-3xl font-bold text-white">{t('title')}</h1>
+            </div>
+            <p className="text-zinc-400 mt-2 ml-3">{t('subtitle')}</p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-4">
-            <div className="space-y-3">
-              <Card className="bg-[#18181B] border-zinc-800 overflow-hidden">
-                <CardContent className="p-0">
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={(date) => date && handleDateSelect(date)}
-                    className="w-full border-0 shadow-none bg-transparent"
-                    locale={locale === 'tr' ? tr : enUS}
-                  />
-                </CardContent>
-              </Card>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div className="lg:col-span-5">
+              <div className="space-y-3">
+                <Card className="bg-[#18181B] border-zinc-800 overflow-hidden">
+                  <CardContent className="p-0">
+                    <Calendar
+                      mode="single"
+                      selected={date}
+                      onSelect={(date) => date && handleDateSelect(date)}
+                      className="w-full border-0 shadow-none bg-transparent text-sm md:text-base"
+                      locale={locale === 'tr' ? tr : enUS}
+                    />
+                  </CardContent>
+                </Card>
 
-              <div className="bg-[#18181B] border border-zinc-800 rounded-lg">
-                <div className="p-3 border-b border-zinc-800">
-                  <p className="text-sm font-medium text-white">{t('status.title')}</p>
-                </div>
-                <div className="p-3 space-y-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500" />
-                    <span className="text-sm text-zinc-400">{t('status.present')}</span>
+                <div className="bg-[#18181B] border border-zinc-800 rounded-lg">
+                  <div className="p-3 border-b border-zinc-800">
+                    <p className="text-sm font-medium text-white">{t('status.title')}</p>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-red-500" />
-                    <span className="text-sm text-zinc-400">{t('status.absent')}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-zinc-500" />
-                    <span className="text-sm text-zinc-400">{t('status.pending')}</span>
+                  <div className="p-3 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-green-500" />
+                      <span className="text-sm text-zinc-400">{t('status.present')}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-red-500" />
+                      <span className="text-sm text-zinc-400">{t('status.absent')}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-zinc-500" />
+                      <span className="text-sm text-zinc-400">{t('status.pending')}</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="lg:col-span-8">
-            <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-semibold text-white flex items-center gap-3 bg-zinc-900/50 px-4 py-2 rounded-xl border border-white/5">
-                  <span className="text-4xl">📅</span>
-                  <span>{dateFormatter.format(date)}</span>
-                </h2>
-              </div>
+            <div className="lg:col-span-7">
+              <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-6">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-2xl font-semibold text-white flex items-center gap-3 bg-zinc-900/50 px-4 py-2 rounded-xl border border-white/5">
+                    <span className="text-4xl">📅</span>
+                    <span>{dateFormatter.format(date)}</span>
+                  </h2>
+                </div>
 
-              {selectedDateLessons.length === 0 ? (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="bg-zinc-900/30 backdrop-blur-sm rounded-2xl p-12 text-center border border-white/5"
-                >
-                  <div className="text-zinc-400 text-lg space-y-2">
-                    <span className="text-4xl mb-4 block">📭</span>
-                    <p>{t('noLessons.title')}</p>
-                    <p className="text-sm text-zinc-500">{t('noLessons.subtitle')}</p>
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.div className="space-y-6">
-                  {lessonContent}
-                </motion.div>
-              )}
-            </motion.div>
+                {selectedDateLessons.length === 0 ? (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="bg-zinc-900/30 backdrop-blur-sm rounded-2xl p-12 text-center border border-white/5"
+                  >
+                    <div className="text-zinc-400 text-lg space-y-2">
+                      <span className="text-4xl mb-4 block">📭</span>
+                      <p>{t('noLessons.title')}</p>
+                      <p className="text-sm text-zinc-500">{t('noLessons.subtitle')}</p>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div className="space-y-6">
+                    {lessonContent}
+                  </motion.div>
+                )}
+              </motion.div>
+            </div>
           </div>
         </div>
       </motion.div>

@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Calendar, Clock, MapPin, Users } from "lucide-react";
+import { Calendar, Clock, MapPin, Users, ArrowLeft } from "lucide-react";
 import { UserSidebar } from "@/components/layout/user-sidebar";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,6 +16,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { motion } from "framer-motion";
 
 // Mock veri - çoklu dil desteği ile
 const eventData = {
@@ -44,6 +45,7 @@ const eventData = {
 };
 
 export default function EventDetailsPage() {
+  const router = useRouter();
   const t = useTranslations('userEventDetails');
   const eventT = useTranslations('userEvents');
   const params = useParams();
@@ -58,69 +60,86 @@ export default function EventDetailsPage() {
   };
 
   return (
-    <div className="flex h-screen bg-[#09090B]">
+    <div className="flex md:flex-row flex-col h-screen bg-[#09090B]">
       <UserSidebar isOpen={isSidebarOpen} onToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
       
-      <div className={`flex-1 overflow-auto transition-all duration-300 ${
-        isSidebarOpen ? 'ml-64' : 'ml-20'
-      }`}>
-        <div className="p-8">
-          {/* Başlık */}
-          <h1 className="text-2xl font-bold text-white mb-1">
-            {eventData.title[locale as keyof typeof eventData.title]}
-          </h1>
-          <p className="text-zinc-400 text-sm">{t('subtitle')}</p>
+      <div className={`flex-1 overflow-y-auto transition-all duration-300 ${
+        isSidebarOpen ? 'md:ml-64' : 'md:ml-20'
+      } relative z-0`}>
+        <div className="container mx-auto p-4 md:p-8 mt-14 md:mt-0 relative">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            {/* Başlık */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-4">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => router.back()}
+                  className="h-8 w-8 bg-zinc-800 border-zinc-700 hover:bg-zinc-700"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </Button>
+                <div>
+                  <h1 className="text-2xl font-semibold text-white">{t('title')}</h1>
+                  <p className="text-sm text-zinc-400 mt-1">{t('subtitle')}</p>
+                </div>
+              </div>
+            </div>
 
-          {/* Etiketler */}
-          <div className="flex items-center gap-2 mt-6">
-            <span className="px-2.5 py-1 bg-emerald-500/20 text-emerald-400 text-xs rounded-full">
-              {t(`status.${eventData.status}`)}
-            </span>
-            <span className="px-2.5 py-1 bg-blue-500/10 text-blue-500 text-xs rounded-full">
-              {eventT(`event.type.${eventData.type}`)}
-            </span>
-          </div>
+            {/* Etiketler */}
+            <div className="flex items-center gap-2 mt-6">
+              <span className="px-2.5 py-1 bg-emerald-500/20 text-emerald-400 text-xs rounded-full">
+                {t(`status.${eventData.status}`)}
+              </span>
+              <span className="px-2.5 py-1 bg-blue-500/10 text-blue-500 text-xs rounded-full">
+                {eventT(`event.type.${eventData.type}`)}
+              </span>
+            </div>
 
-          {/* Detaylar */}
-          <div className="mt-8 space-y-3">
-            <div className="flex items-center gap-2 text-zinc-400">
-              <Calendar className="w-4 h-4" />
-              <span>{t('info.date')}: {eventData.date}</span>
+            {/* Detaylar */}
+            <div className="mt-8 space-y-3">
+              <div className="flex items-center gap-2 text-zinc-400">
+                <Calendar className="w-4 h-4" />
+                <span>{t('info.date')}: {eventData.date}</span>
+              </div>
+              <div className="flex items-center gap-2 text-zinc-400">
+                <Clock className="w-4 h-4" />
+                <span>{t('info.time')}: {eventData.time}</span>
+              </div>
+              <div className="flex items-center gap-2 text-zinc-400">
+                <MapPin className="w-4 h-4" />
+                <span>{t('info.location')}: {eventData.location[locale as keyof typeof eventData.location]}</span>
+              </div>
+              <div className="flex items-center gap-2 text-zinc-400">
+                <Users className="w-4 h-4" />
+                <span>{eventData.participants}/{eventData.maxParticipants} {t('info.participants')}</span>
+              </div>
             </div>
-            <div className="flex items-center gap-2 text-zinc-400">
-              <Clock className="w-4 h-4" />
-              <span>{t('info.time')}: {eventData.time}</span>
-            </div>
-            <div className="flex items-center gap-2 text-zinc-400">
-              <MapPin className="w-4 h-4" />
-              <span>{t('info.location')}: {eventData.location[locale as keyof typeof eventData.location]}</span>
-            </div>
-            <div className="flex items-center gap-2 text-zinc-400">
-              <Users className="w-4 h-4" />
-              <span>{eventData.participants}/{eventData.maxParticipants} {t('info.participants')}</span>
-            </div>
-          </div>
 
-          {/* Açıklama ve Tarihler */}
-          <div className="mt-8">
-            <h3 className="text-sm font-medium text-white mb-2">{t('info.description')}</h3>
-            <p className="text-zinc-400 text-sm">
-              {eventData.description[locale as keyof typeof eventData.description]}
-            </p>
-            <div className="mt-4 text-xs text-zinc-500">
-              {t('info.createdAt')}: {eventData.createdAt}
+            {/* Açıklama ve Tarihler */}
+            <div className="mt-8">
+              <h3 className="text-sm font-medium text-white mb-2">{t('info.description')}</h3>
+              <p className="text-zinc-400 text-sm">
+                {eventData.description[locale as keyof typeof eventData.description]}
+              </p>
+              <div className="mt-4 text-xs text-zinc-500">
+                {t('info.createdAt')}: {eventData.createdAt}
+              </div>
             </div>
-          </div>
 
-          {/* Katıl Butonu */}
-          {!eventData.isRegistered && (
-            <Button 
-              className="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white py-6 text-sm font-medium"
-              onClick={() => setShowRegisterDialog(true)}
-            >
-              {t('buttons.join')}
-            </Button>
-          )}
+            {/* Katıl Butonu */}
+            {!eventData.isRegistered && (
+              <Button 
+                className="mt-8 bg-blue-600 hover:bg-blue-700 text-white h-10 px-8 text-sm font-medium"
+                onClick={() => setShowRegisterDialog(true)}
+              >
+                {t('buttons.join')}
+              </Button>
+            )}
+          </motion.div>
         </div>
       </div>
 

@@ -45,6 +45,8 @@ export default function AvailabilityPage() {
     }))
   );
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
   const isDateSelectable = (date: Date) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -80,116 +82,121 @@ export default function AvailabilityPage() {
   };
 
   return (
-    <div className="flex h-screen bg-[#09090B]">
-      <TrainerSidebar />
+    <div className="flex md:flex-row flex-col h-screen bg-[#09090B]">
+      <TrainerSidebar 
+        isOpen={isSidebarOpen} 
+        onToggle={() => setIsSidebarOpen(!isSidebarOpen)} 
+      />
       <motion.div 
-        className="flex-1 overflow-y-auto ml-20 lg:ml-64 p-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        className={`flex-1 overflow-y-auto transition-all duration-300 ${
+          isSidebarOpen ? 'md:ml-64' : 'md:ml-20'
+        } relative z-0`}
       >
-        <motion.div 
-          className="mb-8"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-1 bg-gradient-to-b from-white via-white/50 to-transparent rounded-full" />
-            <h1 className="text-3xl font-bold text-white">{t('title')}</h1>
-          </div>
-          <p className="text-zinc-400 mt-2 ml-3">{t('subtitle')}</p>
-        </motion.div>
-
-        <Card className="bg-zinc-900/50 border-zinc-800">
-          <div className="p-6">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center">
-                <h2 className="text-xl font-semibold text-white">
-                  {format(currentWeekStart, locale === 'tr' ? 'd MMMM' : 'MMMM d', { locale: dateLocale })}
-                  {" "}-{" "}
-                  {format(addDays(currentWeekStart, 6), locale === 'tr' ? 'd MMMM yyyy' : 'MMMM d, yyyy', { locale: dateLocale })}
-                </h2>
-              </div>
-              <Button
-                onClick={handleSave}
-                className="bg-blue-500 hover:bg-blue-600"
-              >
-                {t('save')}
-              </Button>
+       <div className="w-full p-4 md:p-8 mt-14 md:mt-0 relative">
+          <motion.div 
+            className="mb-8"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <div className="flex items-center gap-2">
+              <div className="h-8 w-1 bg-gradient-to-b from-white via-white/50 to-transparent rounded-full" />
+              <h1 className="text-3xl font-bold text-white">{t('title')}</h1>
             </div>
+            <p className="text-zinc-400 mt-2 ml-3">{t('subtitle')}</p>
+          </motion.div>
 
-            <div className="grid grid-cols-8 gap-4">
-              {/* Saat sütunu */}
-              <div>
-                <div className="h-12" />
-                <div className="grid gap-2">
-                  {TIME_SLOTS.map((slot) => (
-                    <div
-                      key={slot.id}
-                      className="h-12 flex items-center justify-end pr-4 text-sm text-zinc-400"
-                    >
-                      {slot.time}
-                    </div>
-                  ))}
+          <Card className="bg-zinc-900/50 border-zinc-800">
+            <div className="p-4 md:p-6 overflow-x-auto">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center">
+                  <h2 className="text-base md:text-xl font-semibold text-white">
+                    {format(currentWeekStart, locale === 'tr' ? 'd MMMM' : 'MMMM d', { locale: dateLocale })}
+                    {" "}-{" "}
+                    {format(addDays(currentWeekStart, 6), locale === 'tr' ? 'd MMMM yyyy' : 'MMMM d, yyyy', { locale: dateLocale })}
+                  </h2>
                 </div>
+                <Button
+                  onClick={handleSave}
+                  className="bg-blue-500 hover:bg-blue-600"
+                >
+                  {t('save')}
+                </Button>
               </div>
 
-              {/* Günler */}
-              {weekSchedule.map((day, dayIndex) => {
-                const isSelectable = isDateSelectable(day.date);
-                return (
-                  <div key={dayIndex}>
-                    <div className="h-12 flex flex-col items-center justify-center">
-                      <div className={`text-sm font-medium ${
-                        isSelectable ? 'text-zinc-300' : 'text-zinc-600'
-                      }`}>
-                        {format(day.date, "EEEE", { locale: dateLocale })}
+              <div className="grid grid-cols-8 gap-2 md:gap-4 min-w-[650px]">
+                {/* Saat sütunu */}
+                <div>
+                  <div className="h-12" />
+                  <div className="grid gap-2">
+                    {TIME_SLOTS.map((slot) => (
+                      <div
+                        key={slot.id}
+                        className="h-12 flex items-center md:justify-end justify-center  md:pr-4 text-xs md:text-sm text-zinc-400"
+                      >
+                        {slot.time}
                       </div>
-                      <div className={`text-xs ${
-                        isSelectable ? 'text-zinc-500' : 'text-zinc-700'
-                      }`}>
-                        {format(day.date, locale === 'tr' ? 'd MMM' : 'MMM d', { locale: dateLocale })}
-                      </div>
-                    </div>
-                    <div className="grid gap-2">
-                      {day.timeSlots.map((slot) => (
-                        <button
-                          key={slot.id}
-                          onClick={() => handleTimeSlotToggle(dayIndex, slot.id)}
-                          disabled={!isSelectable}
-                          title={!isSelectable ? t('timeSlot.pastDate') : 
-                                 slot.isAvailable ? t('timeSlot.available') : 
-                                 t('timeSlot.notAvailable')}
-                          className={`
-                            h-12 w-full rounded-md border relative
-                            transition-all duration-200 group
-                            ${!isSelectable 
-                              ? "opacity-50 cursor-not-allowed bg-zinc-800/10 border-zinc-800/30" 
-                              : slot.isAvailable 
-                                ? "bg-blue-500/20 border-blue-500/50 hover:bg-blue-500/30" 
-                                : "bg-zinc-800/20 border-zinc-800/50 hover:bg-zinc-800/40"}
-                          `}
-                        >
-                          {slot.isAvailable && (
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <Check className="w-5 h-5 text-blue-400" />
-                            </div>
-                          )}
-                          <div className={`
-                            absolute inset-0 flex items-center justify-center
-                            opacity-0 group-hover:opacity-100 transition-opacity
-                            ${slot.isAvailable ? "text-blue-400" : "text-zinc-400"}
-                          `}>
-                            <Check className="w-5 h-5" />
-                          </div>
-                        </button>
-                      ))}
-                    </div>
+                    ))}
                   </div>
-                );
-              })}
+                </div>
+
+                {/* Günler */}
+                {weekSchedule.map((day, dayIndex) => {
+                  const isSelectable = isDateSelectable(day.date);
+                  return (
+                    <div key={dayIndex}>
+                      <div className="h-12 flex flex-col items-center justify-center">
+                        <div className={`text-sm font-medium ${
+                          isSelectable ? 'text-zinc-300' : 'text-zinc-600'
+                        }`}>
+                          {format(day.date, "EEEE", { locale: dateLocale })}
+                        </div>
+                        <div className={`text-xs ${
+                          isSelectable ? 'text-zinc-500' : 'text-zinc-700'
+                        }`}>
+                          {format(day.date, locale === 'tr' ? 'd MMM' : 'MMM d', { locale: dateLocale })}
+                        </div>
+                      </div>
+                      <div className="grid gap-2">
+                        {day.timeSlots.map((slot) => (
+                          <button
+                            key={slot.id}
+                            onClick={() => handleTimeSlotToggle(dayIndex, slot.id)}
+                            disabled={!isSelectable}
+                            title={!isSelectable ? t('timeSlot.pastDate') : 
+                                   slot.isAvailable ? t('timeSlot.available') : 
+                                   t('timeSlot.notAvailable')}
+                            className={`
+                              h-12 w-full rounded-md border relative
+                              transition-all duration-200 group
+                              ${!isSelectable 
+                                ? "opacity-50 cursor-not-allowed bg-zinc-800/10 border-zinc-800/30" 
+                                : slot.isAvailable 
+                                  ? "bg-blue-500/20 border-blue-500/50 hover:bg-blue-500/30" 
+                                  : "bg-zinc-800/20 border-zinc-800/50 hover:bg-zinc-800/40"}
+                            `}
+                          >
+                            {slot.isAvailable && (
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <Check className="w-5 h-5 text-blue-400" />
+                              </div>
+                            )}
+                            <div className={`
+                              absolute inset-0 flex items-center justify-center
+                              opacity-0 group-hover:opacity-100 transition-opacity
+                              ${slot.isAvailable ? "text-blue-400" : "text-zinc-400"}
+                            `}>
+                              <Check className="w-5 h-5" />
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        </Card>
+          </Card>
+        </div>
       </motion.div>
     </div>
   );
