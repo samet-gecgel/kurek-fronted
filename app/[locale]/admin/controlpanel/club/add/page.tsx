@@ -648,7 +648,7 @@ export default function AddClub() {
                     Tüm saatleri görmek ve Açık/Kapalı durumları için sağa kaydırın →
                   </p>
                   <div className="mt-4 overflow-x-auto lg:overflow-visible">
-                    <div className="min-w-[600px] lg:min-w-0 grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div className="min-w-[600px] lg:min-w-0 grid grid-cols-1 lg:grid-cols-1 gap-4">
                       {Object.entries(formData.workingHours).map(([day, hours]) => (
                         <div key={day} className="flex items-center gap-4 p-3 bg-zinc-800/50 rounded-lg">
                           <div className="w-28">

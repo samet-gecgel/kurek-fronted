@@ -16,8 +16,9 @@ import {
   Search,
   Trash2,
   Shield,
-  
-  Briefcase
+  Briefcase,
+  Eye,
+  EyeOff
 } from "lucide-react";
 import {
   Dialog,
@@ -72,6 +73,8 @@ export default function ClubManagers() {
     phone: '',
     password: ''
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const getInitials = (name: string) => {
     return name
@@ -277,14 +280,25 @@ export default function ClubManagers() {
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
                         <Input
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           value={formData.password}
                           onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
-                          placeholder="••••••••"
-                          className={`pl-10 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400 ${
+                          placeholder="••••••"
+                          className={`px-10 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400 ${
                             errors.password ? 'border-red-500' : ''
                           }`}
                         />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-300 transition-colors"
+                        >
+                          {showPassword ? (
+                            <Eye size={20} />
+                          ) : (
+                            <EyeOff size={20} />
+                          )}
+                        </button>
                       </div>
                       {errors.password && (
                         <p className="text-sm text-red-500">{errors.password}</p>

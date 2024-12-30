@@ -32,9 +32,20 @@ export default function AddUser() {
   const [emergencyPhone, setEmergencyPhone] = useState('');
   const [birthDate, setBirthDate] = useState<Date | null>(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [occupation, setOccupation] = useState<string>('');
+  const [occupation, setOccupation] = useState<{type: string; other?: string}>({ type: '' });
   const [invoicePhone, setInvoicePhone] = useState('');
   const [invoiceType, setInvoiceType] = useState<string>('');
+
+  const occupationOptions = [
+    { value: 'student', label: 'Öğrenci' },
+    { value: 'teacher', label: 'Öğretmen' },
+    { value: 'engineer', label: 'Mühendis' },
+    { value: 'doctor', label: 'Doktor' },
+    { value: 'lawyer', label: 'Avukat' },
+    { value: 'accountant', label: 'Muhasebeci' },
+    { value: 'architect', label: 'Mimar' },
+    { value: 'other', label: 'Diğer' }
+  ];
 
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -291,54 +302,6 @@ export default function AddUser() {
                   </Select>
                 </div>
 
-                {/* Eğitim Durumu */}
-                <div>
-                  <Label className="text-white">Eğitim Durumu</Label>
-                  <Select>
-                    <SelectTrigger className="bg-zinc-800/50 border-zinc-700 text-white mt-2">
-                      <SelectValue placeholder="Eğitim durumu seçin" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-zinc-800 border-zinc-700">
-                      <SelectItem 
-                        value="primary"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        İlkokul
-                      </SelectItem>
-                      <SelectItem 
-                        value="secondary"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Ortaokul
-                      </SelectItem>
-                      <SelectItem 
-                        value="highschool"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Lise
-                      </SelectItem>
-                      <SelectItem 
-                        value="university"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Üniversite
-                      </SelectItem>
-                      <SelectItem 
-                        value="master"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Yüksek Lisans
-                      </SelectItem>
-                      <SelectItem 
-                        value="doctorate"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Doktora
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
                 {/* Üyelik Tipi */}
                 <div>
                   <Label className="text-white">Üyelik Tipi</Label>
@@ -378,68 +341,41 @@ export default function AddUser() {
                 {/* Meslek */}
                 <div>
                   <Label className="text-white">Meslek</Label>
-                  <Select
-                    value={occupation}
-                    onValueChange={setOccupation}
+                  <Select 
+                    onValueChange={(value) => setOccupation({ type: value })}
                   >
-                    <SelectTrigger className="bg-zinc-800/50 border-zinc-700 text-white mt-2">
+                    <SelectTrigger className="mt-2 bg-zinc-800/50 border-zinc-700 text-white">
                       <SelectValue placeholder="Meslek seçin" />
                     </SelectTrigger>
                     <SelectContent className="bg-zinc-800 border-zinc-700">
-                      <SelectItem 
-                        value="student"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Öğrenci
-                      </SelectItem>
-                      <SelectItem 
-                        value="teacher"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Öğretmen
-                      </SelectItem>
-                      <SelectItem 
-                        value="engineer"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Mühendis
-                      </SelectItem>
-                      <SelectItem 
-                        value="doctor"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Doktor
-                      </SelectItem>
-                      <SelectItem 
-                        value="lawyer"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Avukat
-                      </SelectItem>
-                      <SelectItem 
-                        value="accountant"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Muhasebeci
-                      </SelectItem>
-                      <SelectItem 
-                        value="architect"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Mimar
-                      </SelectItem>
-                      <SelectItem 
-                        value="other"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Diğer
-                      </SelectItem>
+                      {occupationOptions.map((option) => (
+                        <SelectItem 
+                          key={option.value} 
+                          value={option.value}
+                          className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
+                        >
+                          {option.label}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
 
+                {/* Diğer Meslek Input */}
+                {occupation.type === 'other' && (
+                  <div>
+                    <Label className="text-white">Mesleğinizi Belirtin</Label>
+                    <Input
+                      value={occupation.other || ''}
+                      onChange={(e) => setOccupation(prev => ({ ...prev, other: e.target.value }))}
+                      className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-500"
+                      placeholder="Mesleğinizi yazın"
+                    />
+                  </div>
+                )}
+
                 {/* Öğrenci Bilgileri */}
-                {occupation === "student" && (
+                {occupation.type === "student" && (
                   <div className="col-span-full grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <Label className="text-white">Okuduğu Okul</Label>
@@ -459,8 +395,8 @@ export default function AddUser() {
                 )}
 
                 {/* Çalışma Bilgileri */}
-                {occupation && occupation !== "student" && (
-                  <div className="col-span-full grid grid-cols-2 gap-6">
+                {occupation.type && occupation.type !== "student" && (
+                  <div className="col-span-full grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <Label className="text-white">Çalıştığı Şirket</Label>
                       <Input
@@ -480,38 +416,28 @@ export default function AddUser() {
 
                 {/* Yüzme Beyanı */}
                 <div className="col-span-full">
-                  <Label className="text-white">Yüzme Beyanı</Label>
-                  <Select>
-                    <SelectTrigger className="bg-zinc-800/50 border-zinc-700 text-white mt-2">
-                      <SelectValue placeholder="Yüzme durumunuzu seçin" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-zinc-800 border-zinc-700">
-                      <SelectItem 
-                        value="none"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Hiç bilmiyorum
-                      </SelectItem>
-                      <SelectItem 
-                        value="beginner"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Başlangıç seviyesi
-                      </SelectItem>
-                      <SelectItem 
-                        value="intermediate"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        Orta seviye
-                      </SelectItem>
-                      <SelectItem 
-                        value="advanced"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        İleri seviye
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <Label className="text-white mb-3 block">Yüzme Beyanı</Label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <label className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg cursor-pointer hover:bg-zinc-800 transition-colors group">
+                      <input 
+                        type="checkbox" 
+                        className="w-5 h-5 rounded border-zinc-700 text-blue-500 focus:ring-offset-0 focus:ring-0 bg-zinc-700" 
+                      />
+                      <span className="text-zinc-300 group-hover:text-white transition-colors">
+                        Yüzme bilmiyorum
+                      </span>
+                    </label>
+                    
+                    <label className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg cursor-pointer hover:bg-zinc-800 transition-colors group">
+                      <input 
+                        type="checkbox" 
+                        className="w-5 h-5 rounded border-zinc-700 text-blue-500 focus:ring-offset-0 focus:ring-0 bg-zinc-700" 
+                      />
+                      <span className="text-zinc-300 group-hover:text-white transition-colors">
+                        Suya düşersem kıyafetlerle 50 metre yüzebilirim
+                      </span>
+                    </label>
+                  </div>
                 </div>
               </div>
             </Card>

@@ -1,5 +1,5 @@
+// users tablosu - ana tablo
 export interface IUser {
-  // Kişisel Bilgiler
   id: string;
   photo: string | null;
   fullName: string;
@@ -10,81 +10,113 @@ export interface IUser {
   birthDate: Date;
   birthPlace: string;
   bloodType: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | '0+' | '0-';
-  educationLevel: 'primary' | 'secondary' | 'highschool' | 'university' | 'master' | 'doctorate';
   membershipType: 'individual' | 'highschool' | 'university' | 'corporate';
+  isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
-  isActive: boolean;
-
-  // Meslek Bilgileri
-  occupation: {
-    type: string; // "student" | "teacher" | "engineer" | "doctor" | "lawyer" | "accountant" | "architect" | "other"
-    details: {
-      // Öğrenci ise
-      schoolName?: string;
-      grade?: string;
-      // Çalışan ise
-      companyName?: string;
-      department?: string;
-    };
-  };
-
-  // Yüzme Seviyesi
-  swimmingLevel: 'none' | 'beginner' | 'intermediate' | 'advanced';
-
-  // Acil Durum İletişim
-  emergencyContact: {
-    fullName: string;
-    phone: string;
-    relationship: string;
-  };
-
-  // Fatura Bilgileri
-  invoice: {
-    type: 'individual' | 'corporate';
-    fullName: string;
-    phone: string;
-    address: {
-      province: string;
-      district: string;
-      fullAddress: string;
-    };
-    // Kurumsal fatura bilgileri
-    corporate?: {
-      companyName: string;
-      taxNumber: string;
-      taxOffice: string;
-    };
-  };
-
-  // İzinler ve Onaylar
-  permissions: {
-    instagramUsername: string;
-    photoConsent: boolean;
-    communicationConsent: boolean;
-  };
 }
 
-// Form state için interface
+// user_occupations tablosu
+export interface IUserOccupation {
+  id: string;
+  userId: string;
+  type: string;
+  otherOccupation?: string;
+  schoolName?: string;
+  grade?: string;
+  companyName?: string;
+  department?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// user_swimming_declarations tablosu
+export interface IUserSwimmingDeclaration {
+  id: string;
+  userId: string;
+  cannotSwim: boolean;
+  canSwim50m: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// user_emergency_contacts tablosu
+export interface IUserEmergencyContact {
+  id: string;
+  userId: string;
+  fullName: string;
+  phone: string;
+  relationship: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// user_invoices tablosu
+export interface IUserInvoice {
+  id: string;
+  userId: string;
+  type: 'individual' | 'corporate';
+  fullName: string;
+  phone: string;
+  province: string;
+  district: string;
+  fullAddress: string;
+  companyName?: string;
+  taxNumber?: string;
+  taxOffice?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// user_permissions tablosu
+export interface IUserPermission {
+  id: string;
+  userId: string;
+  instagramUsername?: string;
+  photoConsent: boolean;
+  communicationConsent: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// user_pre_registers tablosu
+export interface IUserPreRegister {
+  id: string;
+  fullName: string;
+  identityNumber: string;
+  email: string;
+  phone: string;
+  status: 'pending' | 'approved' | 'rejected';
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// API ve form işlemleri için birleştirilmiş tip
+export type IUserWithRelations = IUser & {
+  occupation: Omit<IUserOccupation, 'id' | 'userId' | 'createdAt' | 'updatedAt'>;
+  swimmingDeclaration: Omit<IUserSwimmingDeclaration, 'id' | 'userId' | 'createdAt' | 'updatedAt'>;
+  emergencyContact: Omit<IUserEmergencyContact, 'id' | 'userId' | 'createdAt' | 'updatedAt'>;
+  invoice: Omit<IUserInvoice, 'id' | 'userId' | 'createdAt' | 'updatedAt'>;
+  permissions: Omit<IUserPermission, 'id' | 'userId' | 'createdAt' | 'updatedAt'>;
+};
+
+// Form state tipi
 export interface IUserFormState {
   isSubmitting: boolean;
-  errors: {
-    [K in keyof IUser]?: string;
-  };
+  errors: Partial<Record<keyof IUserWithRelations, string>>;
 }
 
-// API response interface
+// API response tipleri
 export interface IUserResponse {
   success: boolean;
-  data?: IUser;
+  data?: IUserWithRelations;
   error?: string;
 }
 
-// Liste response interface
 export interface IUserListResponse {
   success: boolean;
   data?: {
-    users: IUser[];
+    users: IUserWithRelations[];
     total: number;
     page: number;
     limit: number;
@@ -92,11 +124,11 @@ export interface IUserListResponse {
   error?: string;
 }
 
-// Kullanıcı oluşturma/güncelleme için DTO
-export type CreateUserDTO = Omit<IUser, 'id' | 'createdAt' | 'updatedAt'>;
+// DTO tipleri
+export type CreateUserDTO = Omit<IUserWithRelations, 'id' | 'createdAt' | 'updatedAt'>;
 export type UpdateUserDTO = Partial<CreateUserDTO>;
 
-// Filtreleme için interface
+// Filtre tipi
 export interface IUserFilters {
   search?: string;
   membershipType?: IUser['membershipType'];
@@ -107,20 +139,20 @@ export interface IUserFilters {
   limit?: number;
 }
 
-// Ön kayıt için interface
-export interface IUserPreRegister {
-  fullName: string;
-  identityNumber: string;
-  email: string;
-  phone: string;
-  status: 'pending' | 'approved' | 'rejected';
-  createdAt: Date;
-  updatedAt: Date;
-}
+// Kullanıcı durumu
+export type UserStatus = 'active' | 'passive' | 'suspended' | 'pending' | 'frozen';
 
-// Ön kayıt response interface
-export interface IUserPreRegisterResponse {
-  success: boolean;
-  data?: IUserPreRegister;
-  error?: string;
+// Kullanıcı rolleri
+export type UserRole = 'user' | 'trainer' | 'club_manager' | 'admin' | 'super_admin';
+
+// Kullanıcı izinleri
+export interface IUserPermissions {
+  canCreateUser: boolean;
+  canEditUser: boolean;
+  canDeleteUser: boolean;
+  canViewUsers: boolean;
+  canManageTrainers: boolean;
+  canManageClubs: boolean;
+  canManageEvents: boolean;
+  canManageSettings: boolean;
 } 
