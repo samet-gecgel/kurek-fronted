@@ -405,7 +405,7 @@
     "select": "Select Language"
   },
   "superAdminSidebar": {
-    "title": "Super Admin",
+    "title": "Admin Panel",
     "dashboard": "Dashboard",
     "clubs": "Clubs",
     "addClub": "Add Club",

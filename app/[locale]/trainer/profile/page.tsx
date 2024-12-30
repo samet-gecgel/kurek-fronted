@@ -258,7 +258,7 @@ export default function ProfilePage() {
                 </div>
               </Card>
 
-              {/* Şifre Deği��tirme Kartı */}
+              {/* Şifre Değiştirme Kartı */}
               <Card className="bg-zinc-900/50 border-zinc-800/50 p-6">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="p-3 rounded-full bg-blue-500/10">

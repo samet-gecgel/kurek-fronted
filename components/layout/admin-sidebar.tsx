@@ -28,7 +28,7 @@ import {
   Wallet,
   LucideIcon,
   GraduationCap,
-  Bot,
+  Sailboat,
   Package,
   CreditCard,
   Plus,
@@ -57,6 +57,7 @@ import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
+
 interface MenuItem {
   titleKey: string;
   icon: LucideIcon;
@@ -72,178 +73,178 @@ const menuItems: MenuItem[] = [
   {
     titleKey: 'dashboard',
     icon: LayoutDashboard,
-    href: '/super-admin/dashboard',
+    href: '/admin/controlpanel/dashboard',
   },
   {
     titleKey: 'clubs',
     icon: Building2,
     subItems: [
-      { titleKey: 'addClub', href: '/super-admin/clubs/add', icon: UserPlus2 }
+      { titleKey: 'addClub', href: '/admin/controlpanel/club/add', icon: UserPlus2 }
     ]
   },
   {
     titleKey: 'clubManagers',
     icon: Users,
-    href: '/super-admin/clubs/managers',
+    href: '/admin/controlpanel/club/managers',
   },
   {
     titleKey: 'userManagement',
     icon: Users,
     subItems: [
-      { titleKey: 'newUser', href: '/super-admin/users/add', icon: UserPlus2 },
-      { titleKey: 'preRegistration', href: '/super-admin/users/pre-register', icon: FileText },
-      { titleKey: 'registeredUsers', href: '/super-admin/users/registered', icon: UserCheck },
-      { titleKey: 'userGroups', href: '/super-admin/users/groups', icon: Group },
-      { titleKey: 'userNotes', href: '/super-admin/users/notes', icon: FileText },
-      { titleKey: 'userLevels', href: '/super-admin/users/levels', icon: BarChart },
-      { titleKey: 'userAvailability', href: '/super-admin/users/availability', icon: Timer }
+      { titleKey: 'newUser', href: '/admin/controlpanel/users/add', icon: UserPlus2 },
+      { titleKey: 'preRegistration', href: '/admin/controlpanel/users/pre-register', icon: FileText },
+      { titleKey: 'registeredUsers', href: '/admin/controlpanel/users/registered', icon: UserCheck },
+      { titleKey: 'userGroups', href: '/admin/controlpanel/users/groups', icon: Group },
+      { titleKey: 'userNotes', href: '/admin/controlpanel/users/notes', icon: FileText },
+      { titleKey: 'userLevels', href: '/admin/controlpanel/users/levels', icon: BarChart },
+      { titleKey: 'userAvailability', href: '/admin/controlpanel/users/availability', icon: Timer }
     ]
   },
   {
     titleKey: 'trainerManagement',
     icon: UserCog,
     subItems: [
-      { titleKey: 'personalInfo', href: '/super-admin/trainers/info', icon: FileText },
-      { titleKey: 'availability', href: '/super-admin/trainers/availability', icon: CalendarClock },
-      { titleKey: 'calendar', href: '/super-admin/trainers/calendar', icon: Calendar },
-      { titleKey: 'lessonSummary', href: '/super-admin/trainers/summary', icon: ClipboardList },
-      { titleKey: 'salary', href: '/super-admin/trainers/salary', icon: Wallet }
+      { titleKey: 'personalInfo', href: '/admin/controlpanel/trainers/info', icon: FileText },
+      { titleKey: 'availability', href: '/admin/controlpanel/trainers/availability', icon: CalendarClock },
+      { titleKey: 'calendar', href: '/admin/controlpanel/trainers/calendar', icon: Calendar },
+      { titleKey: 'lessonSummary', href: '/admin/controlpanel/trainers/summary', icon: ClipboardList },
+      { titleKey: 'salary', href: '/admin/controlpanel/trainers/salary', icon: Wallet }
     ]
   },
   {
     titleKey: 'trainingManagement',
     icon: GraduationCap,
     subItems: [
-      { titleKey: 'calendar', href: '/super-admin/training/calendar', icon: Calendar },
-      { titleKey: 'program', href: '/super-admin/training/program', icon: ClipboardList }
+      { titleKey: 'calendar', href: '/admin/controlpanel/training/calendar', icon: Calendar },
+      { titleKey: 'program', href: '/admin/controlpanel/training/program', icon: ClipboardList }
     ]
   },
   {
     titleKey: 'levelManagement',
     icon: BarChart,
-    href: '/super-admin/levels',
+    href: '/admin/controlpanel/levels',
   },
   {
     titleKey: 'boatManagement',
-    icon: Bot,
-    href: '/super-admin/boats',
+    icon: Sailboat,
+    href: '/admin/controlpanel/boats',
   },
   {
     titleKey: 'reservationManagement',
     icon: Calendar,
     subItems: [
-      { titleKey: 'settings', href: '/super-admin/reservations/settings', icon: Settings }
+      { titleKey: 'settings', href: '/admin/controlpanel/reservations/settings', icon: Settings }
     ]
   },
   {
     titleKey: 'membershipPackages',
     icon: Package,
     subItems: [
-      { titleKey: 'assign', href: '/super-admin/packages/assign', icon: UserPlus },
-      { titleKey: 'purchase', href: '/super-admin/packages/purchase', icon: CreditCard }
+      { titleKey: 'assign', href: '/admin/controlpanel/packages/assign', icon: UserPlus },
+      { titleKey: 'purchase', href: '/admin/controlpanel/packages/purchase', icon: CreditCard }
     ]
   },
   {
     titleKey: 'incomeManagement',
     icon: TrendingUp,
     subItems: [
-      { titleKey: 'addIncome', href: '/super-admin/income/add', icon: Plus },
-      { titleKey: 'incomeTypes', href: '/super-admin/income/types', icon: List },
-      { titleKey: 'currentAccounts', href: '/super-admin/income/accounts', icon: Wallet },
-      { titleKey: 'incomeReports', href: '/super-admin/income/reports', icon: FileText }
+      { titleKey: 'addIncome', href: '/admin/controlpanel/income/add', icon: Plus },
+      { titleKey: 'incomeTypes', href: '/admin/controlpanel/income/types', icon: List },
+      { titleKey: 'currentAccounts', href: '/admin/controlpanel/income/accounts', icon: Wallet },
+      { titleKey: 'incomeReports', href: '/admin/controlpanel/income/reports', icon: FileText }
     ]
   },
   {
     titleKey: 'expenseManagement',
     icon: TrendingDown,
     subItems: [
-      { titleKey: 'addExpense', href: '/super-admin/expense/add', icon: Plus },
-      { titleKey: 'expenseTypes', href: '/super-admin/expense/types', icon: List },
-      { titleKey: 'currentAccounts', href: '/super-admin/expense/accounts', icon: Wallet },
-      { titleKey: 'expenseReports', href: '/super-admin/expense/reports', icon: FileText }
+      { titleKey: 'addExpense', href: '/admin/controlpanel/expense/add', icon: Plus },
+      { titleKey: 'expenseTypes', href: '/admin/controlpanel/expense/types', icon: List },
+      { titleKey: 'currentAccounts', href: '/admin/controlpanel/expense/accounts', icon: Wallet },
+      { titleKey: 'expenseReports', href: '/admin/controlpanel/expense/reports', icon: FileText }
     ]
   },
   {
     titleKey: 'definitions',
     icon: Settings,
-    href: '/super-admin/definitions',
+    href: '/admin/controlpanel/definitions',
   },
   {
     titleKey: 'events',
     icon: Calendar,
-    href: '/super-admin/events',
+    href: '/admin/controlpanel/events',
   },
   {
     titleKey: 'socialGroups',
     icon: Users,
-    href: '/super-admin/social-groups',
+    href: '/admin/controlpanel/social-groups',
   },
   {
     titleKey: 'reports',
     icon: FileText,
     subItems: [
-      { titleKey: 'memberReports', href: '/super-admin/reports/members', icon: Users },
-      { titleKey: 'financialReports', href: '/super-admin/reports/financial', icon: Wallet },
-      { titleKey: 'calendarReports', href: '/super-admin/reports/calendar', icon: Calendar },
-      { titleKey: 'trainerReports', href: '/super-admin/reports/trainers', icon: UserCog },
-      { titleKey: 'freezeReports', href: '/super-admin/reports/freeze', icon: Timer },
-      { titleKey: 'membershipSales', href: '/super-admin/reports/membership-sales', icon: Package },
-      { titleKey: 'membershipCollections', href: '/super-admin/reports/membership-collections', icon: CreditCard },
-      { titleKey: 'debtReports', href: '/super-admin/reports/debts', icon: TrendingDown },
-      { titleKey: 'allTransactions', href: '/super-admin/reports/transactions', icon: List },
-      { titleKey: 'entranceExitMovements', href: '/super-admin/reports/entrance-exit', icon: LogIn },
-      { titleKey: 'peakHourReport', href: '/super-admin/reports/peak-hours', icon: BarChart },
-      { titleKey: 'generalSalesAnalysis', href: '/super-admin/reports/sales-analysis', icon: TrendingUp },
-      { titleKey: 'generalCollectionAnalysis', href: '/super-admin/reports/collection-analysis', icon: PieChart },
-      { titleKey: 'genderAgeAnalysis', href: '/super-admin/reports/gender-age', icon: Users },
-      { titleKey: 'productServiceSales', href: '/super-admin/reports/product-service', icon: ShoppingBag },
-      { titleKey: 'expiringMemberships', href: '/super-admin/reports/expiring-memberships', icon: Clock },
-      { titleKey: 'activeMembers', href: '/super-admin/reports/active-members', icon: UserCheck },
-      { titleKey: 'riskyMembers', href: '/super-admin/reports/risky-members', icon: AlertTriangle },
-      { titleKey: 'salesSourceReport', href: '/super-admin/reports/sales-source', icon: Target },
-      { titleKey: 'potentialMemberReport', href: '/super-admin/reports/potential-members', icon: UserPlus },
-      { titleKey: 'incomeExpenseReports', href: '/super-admin/reports/income-expense', icon: DollarSign },
-      { titleKey: 'absentMembers', href: '/super-admin/reports/absent-members', icon: UserX }
+      { titleKey: 'memberReports', href: '/admin/controlpanel/reports/members', icon: Users },
+      { titleKey: 'financialReports', href: '/admin/controlpanel/reports/financial', icon: Wallet },
+      { titleKey: 'calendarReports', href: '/admin/controlpanel/reports/calendar', icon: Calendar },
+      { titleKey: 'trainerReports', href: '/admin/controlpanel/reports/trainers', icon: UserCog },
+      { titleKey: 'freezeReports', href: '/admin/controlpanel/reports/freeze', icon: Timer },
+      { titleKey: 'membershipSales', href: '/admin/controlpanel/reports/membership-sales', icon: Package },
+      { titleKey: 'membershipCollections', href: '/admin/controlpanel/reports/membership-collections', icon: CreditCard },
+      { titleKey: 'debtReports', href: '/admin/controlpanel/reports/debts', icon: TrendingDown },
+      { titleKey: 'allTransactions', href: '/admin/controlpanel/reports/transactions', icon: List },
+      { titleKey: 'entranceExitMovements', href: '/admin/controlpanel/reports/entrance-exit', icon: LogIn },
+      { titleKey: 'peakHourReport', href: '/admin/controlpanel/reports/peak-hours', icon: BarChart },
+      { titleKey: 'generalSalesAnalysis', href: '/admin/controlpanel/reports/sales-analysis', icon: TrendingUp },
+      { titleKey: 'generalCollectionAnalysis', href: '/admin/controlpanel/reports/collection-analysis', icon: PieChart },
+      { titleKey: 'genderAgeAnalysis', href: '/admin/controlpanel/reports/gender-age', icon: Users },
+      { titleKey: 'productServiceSales', href: '/admin/controlpanel/reports/product-service', icon: ShoppingBag },
+      { titleKey: 'expiringMemberships', href: '/admin/controlpanel/reports/expiring-memberships', icon: Clock },
+      { titleKey: 'activeMembers', href: '/admin/controlpanel/reports/active-members', icon: UserCheck },
+      { titleKey: 'riskyMembers', href: '/admin/controlpanel/reports/risky-members', icon: AlertTriangle },
+      { titleKey: 'salesSourceReport', href: '/admin/controlpanel/reports/sales-source', icon: Target },
+      { titleKey: 'potentialMemberReport', href: '/admin/controlpanel/reports/potential-members', icon: UserPlus },
+      { titleKey: 'incomeExpenseReports', href: '/admin/controlpanel/reports/income-expense', icon: DollarSign },
+      { titleKey: 'absentMembers', href: '/admin/controlpanel/reports/absent-members', icon: UserX }
     ]
   },
   {
     titleKey: 'calendars',
     icon: Calendar,
     subItems: [
-      { titleKey: 'lessonCalendar', href: '/super-admin/calendars/lessons', icon: GraduationCap },
-      { titleKey: 'creditCalendar', href: '/super-admin/calendars/credits', icon: CreditCard },
-      { titleKey: 'reminderCalendar', href: '/super-admin/calendars/reminders', icon: Bell },
-      { titleKey: 'birthdayCalendar', href: '/super-admin/calendars/birthdays', icon: Gift },
-      { titleKey: 'memberNotesCalendar', href: '/super-admin/calendars/member-notes', icon: FileText }
+      { titleKey: 'lessonCalendar', href: '/admin/controlpanel/calendars/lessons', icon: GraduationCap },
+      { titleKey: 'creditCalendar', href: '/admin/controlpanel/calendars/credits', icon: CreditCard },
+      { titleKey: 'reminderCalendar', href: '/admin/controlpanel/calendars/reminders', icon: Bell },
+      { titleKey: 'birthdayCalendar', href: '/admin/controlpanel/calendars/birthdays', icon: Gift },
+      { titleKey: 'memberNotesCalendar', href: '/admin/controlpanel/calendars/member-notes', icon: FileText }
     ]
   },
   {
     titleKey: 'clubPromotionalProducts',
     icon: Gift,
-    href: '/super-admin/promotional-products',
+    href: '/admin/controlpanel/promotional-products',
   },
   {
     titleKey: 'pointOfSale',
     icon: Store,
-    href: '/super-admin/pos',
+    href: '/admin/controlpanel/pos',
   },
   {
     titleKey: 'system',
     icon: Settings,
     subItems: [
-      { titleKey: 'settings', href: '/super-admin/system/settings', icon: Settings },
-      { titleKey: 'smsMailManagement', href: '/super-admin/system/sms-mail', icon: Mail }
+      { titleKey: 'settings', href: '/admin/controlpanel/system/settings', icon: Settings },
+      { titleKey: 'smsMailManagement', href: '/admin/controlpanel/system/sms-mail', icon: Mail }
     ]
   },
   {
     titleKey: 'faq',
     icon: HelpCircle,
-    href: '/super-admin/faq',
+    href: '/admin/controlpanel/faq',
   },
   {
     titleKey: 'securityProtocols',
     icon: Lock,
-    href: '/super-admin/security',
+    href: '/admin/controlpanel/security',
   }
 ];
 
@@ -259,6 +260,7 @@ export const AdminSidebar = ({ isOpen, onToggle }: SidebarProps) => {
   const [openMenus, setOpenMenus] = useState<string[]>([]);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
+
   const toggleMenu = (titleKey: string) => {
     setOpenMenus(prev => 
       prev.includes(titleKey) 
@@ -268,7 +270,7 @@ export const AdminSidebar = ({ isOpen, onToggle }: SidebarProps) => {
   };
 
   const handleLogout = () => {
-    router.push('/super-admin/login');
+    router.push('/admin/controlpanel/login');
   };
 
   const isActive = (href: string) => pathname === href;

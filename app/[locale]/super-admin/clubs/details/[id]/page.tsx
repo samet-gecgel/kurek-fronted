@@ -16,7 +16,7 @@ import {
   Trash2,
   Clock,
 } from "lucide-react";
-import { Club } from "@/types/club";
+import { Club } from "@/types/club/club";
 import Sidebar from "@/components/layout/sidebar";
 
 
