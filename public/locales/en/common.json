@@ -1271,5 +1271,68 @@
       "edit": "Edit",
       "deactivate": "Deactivate"
     }
+  },
+  "trainerSummary": {
+    "monthlyTitle": "Monthly Training Summary",
+    "detailsTitle": "Detailed Training Records",
+    "selectMonth": "Select Month",
+    "selectYear": "Select Year",
+    "exportExcel": "Export to Excel",
+    "exportDetails": "Download Details",
+    "filter": "Filter",
+    "trainer": "Trainer",
+    "total": "Total",
+    "date": "Date",
+    "time": "Time",
+    "trainingType": "Boat Type",
+    "students": "Students",
+    "months": {
+      "1": "January",
+      "2": "February",
+      "3": "March",
+      "4": "April",
+      "5": "May",
+      "6": "June",
+      "7": "July",
+      "8": "August",
+      "9": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December"
+    }
+  },
+  "trainingCalendar": {
+    "title": "Training Calendar",
+    "subtitle": "Create and manage training schedule",
+    "viewCalendar": "View Calendar",
+    "form": {
+      "boatName": "Boat Name",
+      "boatNamePlaceholder": "Enter boat name",
+      "trainer": "Trainer",
+      "selectTrainer": "Select trainer",
+      "noTrainer": "No Trainer",
+      "boatClass": "Boat Class",
+      "selectBoatClass": "Select boat class",
+      "level": "Level",
+      "selectLevel": "Select level",
+      "capacity": "Capacity",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "recurring": "Should it repeat?",
+      "minAge": "Minimum Age",
+      "maxAge": "Maximum Age",
+      "gender": "Gender",
+      "selectGender": "Select gender",
+      "genderAll": "All",
+      "genderMale": "Male",
+      "genderFemale": "Female",
+      "note": "Note",
+      "notePlaceholder": "Enter note visible to members...",
+      "submit": "Create Schedule",
+      "date": "Date",
+      "selectDate": "Select date",
+      "recurringEnabled": "Repeat Weekly",
+      "recurringDisabled": "One Time"
+    }
   }
 }

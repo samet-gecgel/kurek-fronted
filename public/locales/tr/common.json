@@ -1255,5 +1255,68 @@
       "edit": "Düzenle",
       "deactivate": "Pasif Yap"
     }
+  },
+  "trainerSummary": {
+    "monthlyTitle": "Aylık Eğitim Özeti",
+    "detailsTitle": "Detaylı Eğitim Kayıtları",
+    "selectMonth": "Ay Seçin",
+    "selectYear": "Yıl Seçin",
+    "exportExcel": "Excel'e Aktar",
+    "exportDetails": "Detayları İndir",
+    "filter": "Filtrele",
+    "trainer": "Antrenör",
+    "total": "Toplam",
+    "date": "Tarih",
+    "time": "Saat",
+    "trainingType": "Tekne Tipi",
+    "students": "Öğrenciler",
+    "months": {
+      "1": "Ocak",
+      "2": "Şubat",
+      "3": "Mart",
+      "4": "Nisan",
+      "5": "Mayıs",
+      "6": "Haziran",
+      "7": "Temmuz",
+      "8": "Ağustos",
+      "9": "Eylül",
+      "10": "Ekim",
+      "11": "Kasım",
+      "12": "Aralık"
+    }
+  },
+  "trainingCalendar": {
+    "title": "Antrenman Takvimi",
+    "subtitle": "Antrenman programı oluşturun ve yönetin",
+    "viewCalendar": "Takvime Git",
+    "form": {
+      "boatName": "Tekne Adı",
+      "boatNamePlaceholder": "Tekne adını girin",
+      "trainer": "Antrenör",
+      "selectTrainer": "Antrenör seçin",
+      "noTrainer": "Antrenör Yok",
+      "boatClass": "Tekne Sınıfı",
+      "selectBoatClass": "Tekne sınıfı seçin",
+      "level": "Seviye",
+      "selectLevel": "Seviye seçin",
+      "capacity": "Kontenjan",
+      "startTime": "Başlangıç Saati",
+      "endTime": "Bitiş Saati",
+      "recurring": "Tekrarlansın mı?",
+      "minAge": "Minimum Yaş",
+      "maxAge": "Maksimum Yaş",
+      "gender": "Cinsiyet",
+      "selectGender": "Cinsiyet seçin",
+      "genderAll": "Hepsi",
+      "genderMale": "Erkek",
+      "genderFemale": "Kadın",
+      "note": "Not",
+      "notePlaceholder": "Üyelere görünecek notu girin...",
+      "submit": "Program Oluştur",
+      "date": "Tarih",
+      "selectDate": "Tarih seçin",
+      "recurringEnabled": "Her Hafta Tekrarla",
+      "recurringDisabled": "Bir Kez"
+    }
   }
 }
