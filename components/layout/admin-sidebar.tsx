@@ -104,7 +104,8 @@ const menuItems: MenuItem[] = [
     titleKey: 'trainerManagement',
     icon: UserCog,
     subItems: [
-      { titleKey: 'personalInfo', href: '/admin/controlpanel/trainers/info', icon: FileText },
+      { titleKey: 'trainerList', href: '/admin/controlpanel/trainers/list', icon: List },
+      //{ titleKey: 'personalInfo', href: '/admin/controlpanel/trainers/info', icon: FileText },
       { titleKey: 'availability', href: '/admin/controlpanel/trainers/availability', icon: CalendarClock },
       { titleKey: 'calendar', href: '/admin/controlpanel/trainers/calendar', icon: Calendar },
       { titleKey: 'lessonSummary', href: '/admin/controlpanel/trainers/summary', icon: ClipboardList },

@@ -14,6 +14,7 @@ export interface IUser {
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
+  availability?: IUserAvailability;
 }
 
 // user_occupations tablosu
@@ -155,4 +156,117 @@ export interface IUserPermissions {
   canManageClubs: boolean;
   canManageEvents: boolean;
   canManageSettings: boolean;
+}
+
+// Üye notu için interface
+export interface IUserNote {
+  id: string;
+  userId: string;
+  adminId: string;
+  userFullName: string; // Not yazılan üyenin adı
+  createdBy: string; // Notu yazan kişi
+  createdAt: Date;
+  content: string; // Not detayı
+  isFollowUp: boolean; // Takip edilecek mi?
+  followUpDate?: Date; // Takip tarihi
+  status: 'pending' | 'completed' | 'cancelled'; // Takip durumu
+}
+
+// Not ekleme/güncelleme için DTO
+export interface IUserNoteDTO {
+  userId: string;
+  content: string;
+  isFollowUp: boolean;
+  followUpDate?: Date;
+}
+
+// API response tipleri
+export interface IUserNoteResponse {
+  success: boolean;
+  data?: IUserNote;
+  error?: string;
+}
+
+export interface IUserNoteListResponse {
+  success: boolean;
+  data?: {
+    notes: IUserNote[];
+    total: number;
+    page: number;
+    limit: number;
+  };
+  error?: string;
+}
+
+// Filtreler için interface
+export interface IUserNoteFilters {
+  search?: string;
+  startDate?: Date;
+  endDate?: Date;
+  isFollowUp?: boolean;
+  status?: 'pending' | 'completed' | 'cancelled';
+  page?: number;
+  limit?: number;
+}
+
+// Arkadaşlık için interfaceler
+export interface IFriend {
+  id: string;
+  userId: string;
+  friendId: string;
+  status: 'pending' | 'accepted' | 'rejected';
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface IFriendWithDetails extends IFriend {
+  friend: {
+    id: string;
+    fullName: string;
+    email: string;
+    phone: string;
+    photo?: string;
+  };
+}
+
+export interface IFriendRequest {
+  id: string;
+  senderId: string;
+  receiverId: string;
+  status: 'pending' | 'accepted' | 'rejected';
+  createdAt: Date;
+  sender: {
+    id: string;
+    fullName: string;
+    photo?: string;
+  };
+  receiver: {
+    id: string;
+    fullName: string;
+    photo?: string;
+  };
+}
+
+export interface IUserAvailability {
+  id: string;
+  userId: string;
+  weekStart: Date;
+  weekEnd: Date;
+  slots: ITimeSlot[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ITimeSlot {
+  id: string;
+  day: string;
+  time: string;
+  isAvailable: boolean;
+}
+
+export interface IWeeklyAvailability {
+  id: string;
+  startDate: Date;
+  endDate: Date;
+  slots: ITimeSlot[];
 } 

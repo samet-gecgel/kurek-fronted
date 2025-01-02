@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import dynamic from 'next/dynamic';
 import { AdminSidebar } from "@/components/layout/admin-sidebar";
 
 import { Input } from "@/components/ui/input";
@@ -65,6 +65,14 @@ const membershipLabels: Record<MembershipType, string> = {
   university: 'Üniversite',
   corporate: 'Kurumsal'
 };
+
+// const MotionTr = dynamic(() => import('framer-motion').then(mod => mod.motion.tr), {
+//   ssr: false
+// });
+
+const MotionDiv = dynamic(() => import('framer-motion').then(mod => mod.motion.div), {
+  ssr: false
+});
 
 export default function RegisteredUsers() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -191,22 +199,22 @@ export default function RegisteredUsers() {
         onToggle={() => setIsSidebarOpen(!isSidebarOpen)} 
       />
       
-      <motion.div 
+      <MotionDiv 
         className={`flex-1 overflow-y-auto transition-all duration-300 ${
           isSidebarOpen ? 'md:ml-84' : 'md:ml-24'
         } relative z-0`}
       >
         <main className="w-full p-4 md:p-8 mt-14 md:mt-0">
-          <motion.div 
+          <MotionDiv 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="mb-8"
           >
             <h1 className="text-2xl font-bold text-white">Kayıtlı Üyeler</h1>
             <p className="text-zinc-400">Tüm üyeleri görüntüleyin ve yönetin</p>
-          </motion.div>
+          </MotionDiv>
 
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 hover:border-zinc-700 transition-colors"
@@ -298,15 +306,9 @@ export default function RegisteredUsers() {
                 </TableHeader>
                 <TableBody>
                   {paginatedUsers.map((user) => (
-                    <motion.tr
+                    <tr
                       key={user.id}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      whileHover={{ 
-                        backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                        transition: { duration: 0.2 }
-                      }}
-                      className="group relative border-zinc-800 cursor-pointer"
+                      className="group relative border-zinc-800 cursor-pointer hover:bg-white/3 transition-colors"
                     >
                       <TableCell className="text-white group-hover:text-blue-400 transition-colors whitespace-nowrap">
                         {user.fullName}
@@ -368,12 +370,10 @@ export default function RegisteredUsers() {
                         </div>
                       </TableCell>
 
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        whileHover={{ opacity: 1 }}
-                        className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 pointer-events-none border-l-2 border-l-blue-500/20"
+                      <div
+                        className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 pointer-events-none border-l-2 border-l-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity"
                       />
-                    </motion.tr>
+                    </tr>
                   ))}
                 </TableBody>
               </Table>
@@ -390,9 +390,9 @@ export default function RegisteredUsers() {
               </div>
             )}
 
-          </motion.div>
+          </MotionDiv>
         </main>
-      </motion.div>
+      </MotionDiv>
     </div>
   );
 } 

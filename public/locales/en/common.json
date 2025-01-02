@@ -419,6 +419,7 @@
     "userLevels": "User Levels",
     "userAvailability": "User Availability",
     "trainerManagement": "Trainer Management",
+    "trainerList": "Trainer List",
     "personalInfo": "Personal Info",
     "availability": "Availability",
     "calendar": "Calendar",
@@ -818,14 +819,43 @@
     }
   },
   "trainerAvailability": {
-    "title": "Availability Status",
-    "subtitle": "Set your weekly availability",
-    "save": "Save",
-    "saved": "Availability status saved",
-    "timeSlot": {
-      "available": "Available",
-      "notAvailable": "Not Available",
-      "pastDate": "Past Date"
+    "title": "Trainer Availability Status",
+    "subtitle": "View available trainers for selected date and time",
+    "calendar": {
+      "title": "Select Date",
+      "selectedDate": "Selected Date",
+      "months": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December"
+      },
+      "weekDays": {
+        "monday": "Mo",
+        "tuesday": "Tu",
+        "wednesday": "We",
+        "thursday": "Th",
+        "friday": "Fr",
+        "saturday": "Sa",
+        "sunday": "Su"
+      }
+    },
+    "timeSelection": {
+      "title": "Select Time"
+    },
+    "trainers": {
+      "title": "All Trainers",
+      "titleWithTime": "{time} - Available Trainers",
+      "availableHours": "Available Hours",
+      "noTrainers": "No trainers available for this date"
     }
   },
   "trainerProfile": {
@@ -1204,5 +1234,42 @@
       "status": "Open"
     },
     "saveButton": "Save Changes"
+  },
+  "trainerInfo": {
+    "title": "Trainer Information",
+    "personalInfo": {
+      "fullName": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "birthDate": "Birth Date"
+    },
+    "sections": {
+      "specializations": "Specializations",
+      "experience": "Experience",
+      "bio": "Personal Message",
+      "certificates": "Certificates",
+      "viewCertificate": "View"
+    }
+  },
+  "trainersList": {
+    "title": "Trainers",
+    "subtitle": "View and manage all trainers",
+    "search": "Search trainer...",
+    "filters": {
+      "status": "Status",
+      "selectStatus": "Select status",
+      "all": "All"
+    },
+    "table": {
+      "trainer": "Trainer",
+      "phone": "Phone",
+      "email": "Email",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "actions": {
+      "edit": "Edit",
+      "deactivate": "Deactivate"
+    }
   }
 }
