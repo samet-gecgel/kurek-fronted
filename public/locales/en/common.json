@@ -1270,7 +1270,8 @@
     "actions": {
       "edit": "Edit",
       "deactivate": "Deactivate"
-    }
+    },
+    "trainerDetail": "Click on the relevant line to see trainer details"
   },
   "trainerSummary": {
     "monthlyTitle": "Monthly Training Summary",

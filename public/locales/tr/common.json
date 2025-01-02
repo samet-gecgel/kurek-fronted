@@ -1254,7 +1254,8 @@
     "actions": {
       "edit": "Düzenle",
       "deactivate": "Pasif Yap"
-    }
+    },
+    "trainerDetail": "Antrenör detaylarını görmek için ilgili satıra tıklayın"
   },
   "trainerSummary": {
     "monthlyTitle": "Aylık Eğitim Özeti",
