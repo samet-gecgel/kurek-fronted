@@ -105,7 +105,6 @@ const menuItems: MenuItem[] = [
     icon: UserCog,
     subItems: [
       { titleKey: 'trainerList', href: '/admin/controlpanel/trainers/list', icon: List },
-      //{ titleKey: 'personalInfo', href: '/admin/controlpanel/trainers/info', icon: FileText },
       { titleKey: 'availability', href: '/admin/controlpanel/trainers/availability', icon: CalendarClock },
       { titleKey: 'calendar', href: '/admin/controlpanel/trainers/calendar', icon: Calendar },
       { titleKey: 'lessonSummary', href: '/admin/controlpanel/trainers/summary', icon: ClipboardList },
@@ -119,11 +118,6 @@ const menuItems: MenuItem[] = [
       { titleKey: 'calendar', href: '/admin/controlpanel/training/calendar', icon: Calendar },
       { titleKey: 'program', href: '/admin/controlpanel/training/program', icon: ClipboardList }
     ]
-  },
-  {
-    titleKey: 'levelManagement',
-    icon: BarChart,
-    href: '/admin/controlpanel/levels',
   },
   {
     titleKey: 'boatManagement',
