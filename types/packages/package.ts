@@ -40,4 +40,5 @@ export interface PackageFormValidation {
   level?: string;
   location?: string;
   description?: string;
+  isActive?: string;
 } 

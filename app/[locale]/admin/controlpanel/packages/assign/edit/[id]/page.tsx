@@ -62,14 +62,17 @@ export default function EditPackage({ params }: { params: { id: string } }) {
     };
 
     fetchPackageData();
-  }, [params.id]);
+  }, [params.id, router]);
 
-  const handleChange = (field: keyof PackageFormData, value: any) => {
+  const handleChange = (
+    field: keyof PackageFormData, 
+    value: string | number | boolean | null
+  ) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
     }));
-    if (errors[field]) {
+    if (field in errors && errors[field as keyof PackageFormValidation]) {
       setErrors(prev => ({
         ...prev,
         [field]: undefined
