@@ -15,6 +15,9 @@ export interface Package {
   location?: string;
   createdAt: Date;
   updatedAt: Date;
+  description?: string;
+  paymentOptions?: string[];
+  features?: string[];
 }
 
 export interface PackageFormData {

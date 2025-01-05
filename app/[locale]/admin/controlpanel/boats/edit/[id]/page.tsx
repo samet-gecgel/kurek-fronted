@@ -67,7 +67,7 @@ export default function EditBoat({ params }: { params: { id: string } }) {
     };
 
     fetchBoatData();
-  }, [params.id]);
+  }, [params.id, router]);
 
   const handlePhotoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

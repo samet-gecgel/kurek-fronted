@@ -1330,5 +1330,227 @@
       "recurringEnabled": "Repeat Weekly",
       "recurringDisabled": "One Time"
     }
+  },
+  "packageEdit": {
+    "title": "Edit Package",
+    "subtitle": "Update package information",
+    "form": {
+      "name": "Package Name",
+      "namePlaceholder": "Ex: Monthly Package",
+      "location": "Location",
+      "locationPlaceholder": "Enter location",
+      "duration": "Duration",
+      "durationType": {
+        "day": "Day",
+        "month": "Month"
+      },
+      "credits": "Usage Credits",
+      "price": "Price (₺)",
+      "level": "Level",
+      "levelPlaceholder": "Select level",
+      "levels": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      },
+      "description": "Description",
+      "descriptionPlaceholder": "Write detailed description about package...",
+      "paymentOptions": "Payment Options",
+      "features": "Package Features",
+      "addFeature": "Add new feature",
+      "status": "Status",
+      "buttons": {
+        "add": "Add",
+        "cancel": "Cancel",
+        "save": "Save Changes"
+      }
+    },
+    "validation": {
+      "nameRequired": "Package name is required",
+      "durationRequired": "Duration is required",
+      "durationTypeRequired": "Duration type is required",
+      "creditsRequired": "Usage credits is required",
+      "priceRequired": "Price is required"
+    }
+  },
+  "packageList": {
+    "title": "Membership Packages",
+    "subtitle": "View and manage all membership packages",
+    "addNew": "New Package",
+    "search": "Search package...",
+    "table": {
+      "name": "Package Name",
+      "duration": "Duration",
+      "credits": "Credits",
+      "price": "Price",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "deleteConfirm": {
+      "title": "Delete Package",
+      "message": "Are you sure you want to delete this package?",
+      "cancel": "Cancel",
+      "confirm": "Delete"
+    },
+    "durationType": {
+      "day": "Day",
+      "month": "Month"
+    },
+    "credits": "Credit",
+    "clickInfo": "Click on the relevant row to see package details"
+  },
+  "packageAdd": {
+    "title": "New Package",
+    "subtitle": "Create a new membership package",
+    "form": {
+      "name": "Package Name",
+      "namePlaceholder": "Ex: Monthly Package",
+      "location": "Location",
+      "locationPlaceholder": "Enter location",
+      "duration": "Duration",
+      "durationType": {
+        "day": "Day",
+        "month": "Month"
+      },
+      "credits": "Usage Credits",
+      "price": "Price ($)",
+      "level": "Level",
+      "levelPlaceholder": "Select level",
+      "levels": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      },
+      "description": "Description",
+      "descriptionPlaceholder": "Write detailed description about package...",
+      "paymentOptions": "Payment Options",
+      "features": "Package Features",
+      "addFeature": "Add new feature",
+      "buttons": {
+        "add": "Add",
+        "cancel": "Cancel",
+        "save": "Add Package"
+      }
+    },
+    "validation": {
+      "nameRequired": "Package name is required",
+      "durationRequired": "Duration is required",
+      "durationTypeRequired": "Duration type is required",
+      "creditsRequired": "Usage credits is required",
+      "priceRequired": "Price is required"
+    }
+  },
+  "boatList": {
+    "title": "Boats",
+    "subtitle": "View and manage all boats",
+    "addNew": "New Boat",
+    "search": "Search boat...",
+    "table": {
+      "name": "Boat Name",
+      "serialNumber": "Serial No",
+      "year": "Year",
+      "capacity": "Capacity",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "deleteConfirm": {
+      "title": "Delete Boat",
+      "message": "Are you sure you want to delete this boat?",
+      "cancel": "Cancel",
+      "confirm": "Delete"
+    }
+  },
+  "reservationList": {
+    "title": "Reservation Definitions",
+    "subtitle": "View and manage all reservation definitions",
+    "addNew": "Add Reservation",
+    "search": "Search reservation...",
+    "dialog": {
+      "title": "Define New Reservation",
+      "form": {
+        "name": "Reservation Name",
+        "namePlaceholder": "Ex: Morning Training",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "duration": "Duration (Minutes)",
+        "buttons": {
+          "cancel": "Cancel",
+          "add": "Add"
+        }
+      }
+    },
+    "table": {
+      "name": "Reservation Name",
+      "startTime": "Start",
+      "endTime": "End",
+      "duration": "Duration (min)",
+      "status": "Status"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    }
+  },
+  "reservationSettings": {
+    "title": "Reservation Settings",
+    "subtitle": "Configure general reservation settings",
+    "addNew": "New Reservation",
+    "search": "Search reservation...",
+    "dialog": {
+      "addTitle": "Define New Reservation",
+      "editTitle": "Edit Reservation"
+    },
+    "form": {
+      "name": "Reservation Name",
+      "namePlaceholder": "Ex: Morning Training",
+      "workingHours": "Working Hours",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "duration": "Duration (Minutes)",
+      "buttons": {
+        "save": "Save",
+        "add": "Add",
+        "cancel": "Cancel"
+      }
+    },
+    "table": {
+      "name": "Reservation Name",
+      "startTime": "Start",
+      "endTime": "End",
+      "duration": "Duration (min)",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "title": "Actions"
+    },
+    "deleteConfirm": {
+      "title": "Delete Reservation",
+      "message": "Are you sure you want to delete this reservation?",
+      "cancel": "Cancel",
+      "confirm": "Delete"
+    }
   }
 }

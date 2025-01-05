@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, Package } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from 'next-intl';
 import {
   Select,
   SelectContent,
@@ -34,6 +35,7 @@ const paymentOptions: PaymentOption[] = [
 const defaultFeatures = ["7/24 Erişim", "Özel Antrenör", "Grup Dersleri"];
 
 export default function AddPackage() {
+  const t = useTranslations('packageAdd');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const router = useRouter();
   
@@ -72,11 +74,11 @@ export default function AddPackage() {
   const validateForm = (): boolean => {
     const newErrors: PackageFormValidation = {};
 
-    if (!formData.name) newErrors.name = "Paket adı zorunludur";
-    if (!formData.duration) newErrors.duration = "Süre zorunludur";
-    if (!formData.durationType) newErrors.durationType = "Süre tipi zorunludur";
-    if (!formData.credits) newErrors.credits = "Kullanım hakkı zorunludur";
-    if (!formData.price) newErrors.price = "Fiyat zorunludur";
+    if (!formData.name) newErrors.name = t('validation.nameRequired');
+    if (!formData.duration) newErrors.duration = t('validation.durationRequired');
+    if (!formData.durationType) newErrors.durationType = t('validation.durationTypeRequired');
+    if (!formData.credits) newErrors.credits = t('validation.creditsRequired');
+    if (!formData.price) newErrors.price = t('validation.priceRequired');
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -140,28 +142,28 @@ export default function AddPackage() {
               <ArrowLeft className="w-5 h-5" />
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-white">Yeni Paket Ekle</h1>
-              <p className="text-zinc-400">Yeni bir paket oluşturmak için formu doldurun</p>
+              <h1 className="text-2xl font-bold text-white">{t('title')}</h1>
+              <p className="text-zinc-400">{t('subtitle')}</p>
             </div>
           </div>
 
           <div className="w-full">
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6">
               <h2 className="flex items-center gap-2 text-lg font-medium text-white mb-6">
-              <Package className="w-5 h-5 text-blue-500" />
-                Paket Bilgileri
+                <Package className="w-5 h-5 text-blue-500" />
+                {t('form.name')}
               </h2>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label className="text-zinc-400">Paket Adı</Label>
+                    <Label className="text-zinc-400">{t('form.name')}</Label>
                     <Input 
                       className={cn(
                         "bg-zinc-800/50 border-zinc-700 text-white",
                         errors.name && "border-red-500"
                       )}
-                      placeholder="Örn: Aylık Paket"
+                      placeholder={t('form.namePlaceholder')}
                       value={formData.name}
                       onChange={(e) => handleChange('name', e.target.value)}
                     />
@@ -171,13 +173,13 @@ export default function AddPackage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-zinc-400">Lokasyon</Label>
+                    <Label className="text-zinc-400">{t('form.location')}</Label>
                     <Input 
                       className={cn(
                         "bg-zinc-800/50 border-zinc-700 text-white",
                         errors.location && "border-red-500"
                       )}
-                      placeholder="Lokasyon girin"
+                      placeholder={t('form.locationPlaceholder')}
                       value={formData.location}
                       onChange={(e) => handleChange('location', e.target.value)}
                     />
@@ -187,7 +189,7 @@ export default function AddPackage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-zinc-400">Süre</Label>
+                    <Label className="text-zinc-400">{t('form.duration')}</Label>
                     <div className="flex gap-3">
                       <Input 
                         type="number"
@@ -204,14 +206,14 @@ export default function AddPackage() {
                         onValueChange={(value) => handleChange('durationType', value)}
                       >
                         <SelectTrigger className="bg-zinc-800/50 border-zinc-700 text-white w-32">
-                          <SelectValue placeholder="Süre tipi" />
+                          <SelectValue placeholder={t('form.duration')} />
                         </SelectTrigger>
                         <SelectContent className="bg-zinc-800 border-zinc-700">
                           <SelectItem value={PackageDurationType.DAY} className="text-zinc-100 focus:bg-zinc-700 focus:text-white">
-                            Gün
+                            {t('form.durationType.day')}
                           </SelectItem>
                           <SelectItem value={PackageDurationType.MONTH} className="text-zinc-100 focus:bg-zinc-700 focus:text-white">
-                            Ay
+                            {t('form.durationType.month')}
                           </SelectItem>
                         </SelectContent>
                       </Select>
@@ -222,7 +224,7 @@ export default function AddPackage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-zinc-400">Kullanım Hakkı (Kredi)</Label>
+                    <Label className="text-zinc-400">{t('form.credits')}</Label>
                     <Input 
                       type="number"
                       min="1"
@@ -239,7 +241,7 @@ export default function AddPackage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-zinc-400">Fiyat (₺)</Label>
+                    <Label className="text-zinc-400">{t('form.price')}</Label>
                     <Input 
                       type="number"
                       min="0"
@@ -257,23 +259,23 @@ export default function AddPackage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-zinc-400">Seviye</Label>
+                    <Label className="text-zinc-400">{t('form.level')}</Label>
                     <Select
                       value={formData.level}
                       onValueChange={(value) => handleChange('level', value)}
                     >
                       <SelectTrigger className="bg-zinc-800/50 border-zinc-700 text-white">
-                        <SelectValue placeholder="Seviye seçin" />
+                        <SelectValue placeholder={t('form.levelPlaceholder')} />
                       </SelectTrigger>
                       <SelectContent className="bg-zinc-800 border-zinc-700">
                         <SelectItem value="beginner" className="text-zinc-100 focus:bg-zinc-700 focus:text-white">
-                          Başlangıç
+                          {t('form.levels.beginner')}
                         </SelectItem>
                         <SelectItem value="intermediate" className="text-zinc-100 focus:bg-zinc-700 focus:text-white">
-                          Orta
+                          {t('form.levels.intermediate')}
                         </SelectItem>
                         <SelectItem value="advanced" className="text-zinc-100 focus:bg-zinc-700 focus:text-white">
-                          İleri
+                          {t('form.levels.advanced')}
                         </SelectItem>
                       </SelectContent>
                     </Select>
@@ -281,17 +283,17 @@ export default function AddPackage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-zinc-400">Açıklama</Label>
+                  <Label className="text-zinc-400">{t('form.description')}</Label>
                   <Textarea
                     className="bg-zinc-800/50 border-zinc-700 text-white min-h-[100px]"
-                    placeholder="Paket hakkında detaylı açıklama yazın..."
-                    value={formData.description || ""}
+                    placeholder={t('form.descriptionPlaceholder')}
+                    value={formData.description}
                     onChange={(e) => handleChange('description', e.target.value)}
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-zinc-400">Ödeme Seçenekleri</Label>
+                  <Label className="text-zinc-400">{t('form.paymentOptions')}</Label>
                   <div className="flex flex-wrap gap-2">
                     {paymentOptions.map(option => (
                       <button
@@ -311,7 +313,7 @@ export default function AddPackage() {
                 </div>
 
                 <div className="space-y-4">
-                  <Label className="text-zinc-400">Paket Özellikleri</Label>
+                  <Label className="text-zinc-400">{t('form.features')}</Label>
                   <div className="flex flex-wrap gap-2">
                     {selectedFeatures.map((feature, index) => (
                       <span
@@ -332,7 +334,7 @@ export default function AddPackage() {
                   <div className="flex gap-2">
                     <Input
                       className="bg-zinc-800/50 border-zinc-700 text-white"
-                      placeholder="Yeni özellik ekle"
+                      placeholder={t('form.addFeature')}
                       value={newFeature}
                       onChange={(e) => setNewFeature(e.target.value)}
                     />
@@ -340,24 +342,27 @@ export default function AddPackage() {
                       type="button"
                       onClick={handleAddFeature}
                       variant="outline"
-                      className="border-zinc-700 text-zinc-400 hover:text-white"
+                      className="bg-zinc-900 border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
                     >
-                      Ekle
+                      {t('form.buttons.add')}
                     </Button>
                   </div>
                 </div>
 
-                <div className="flex justify-end gap-3">
-                  <Button 
-                    type="button" 
-                    variant="outline"
-                    className="border-zinc-700 text-zinc-400 hover:bg-zinc-800/50"
+                <div className="flex items-center gap-4 justify-end">
+                  <Button
+                    type="button"
                     onClick={() => router.back()}
+                    variant="outline"
+                    className="bg-zinc-900 border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
                   >
-                    İptal
+                    {t('form.buttons.cancel')}
                   </Button>
-                  <Button type="submit" className="bg-blue-500 hover:bg-blue-600">
-                    Paketi Ekle
+                  <Button
+                    type="submit"
+                    className="bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                  >
+                    {t('form.buttons.save')}
                   </Button>
                 </div>
               </form>

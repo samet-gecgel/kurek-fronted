@@ -102,6 +102,18 @@ export default function TrainingCalendar() {
   const t = useTranslations('trainingCalendar');
   const router = useRouter();
 
+  // Click-outside handler
+  const handleGlobalClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLElement;
+    
+    if (showDatePicker && 
+        datePickerRef.current && 
+        !datePickerRef.current.contains(target) && 
+        !target.closest('input[type="text"]')) {
+      setShowDatePicker(false);
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -178,7 +190,10 @@ export default function TrainingCalendar() {
 
 
   return (
-    <div className="flex h-screen bg-[#09090B]">
+    <div 
+      className="flex h-screen bg-[#09090B]" 
+      onClick={handleGlobalClick}
+    >
       <AdminSidebar 
         isOpen={isSidebarOpen} 
         onToggle={() => setIsSidebarOpen(!isSidebarOpen)} 
@@ -190,7 +205,7 @@ export default function TrainingCalendar() {
         } relative z-0`}
       >
         <main className="w-full p-4 md:p-8 mt-14 md:mt-0 relative">
-          <div className="max-w-5xl mx-auto">
+          <div>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 space-y-4 md:space-y-0">
               <div>
                 <h1 className="text-2xl font-bold text-white">{t('title')}</h1>
@@ -484,9 +499,14 @@ export default function TrainingCalendar() {
                   />
                 </div>
 
-                <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600">
-                  {t('form.submit')}
-                </Button>
+                <div className="flex justify-end">
+                  <Button 
+                    type="submit" 
+                    className="bg-blue-500 hover:bg-blue-600"
+                  >
+                    {t('form.submit')}
+                  </Button>
+                </div>
               </form>
             </Card>
           </div>

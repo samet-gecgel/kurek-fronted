@@ -6,30 +6,67 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Package, PackageDurationType } from "@/types/packages/package";
-import { formatPrice } from "@/lib/utils";
+
+// Örnek veri
+const PACKAGE_DATA: Package = {
+  id: "1",
+  name: "Başlangıç Paketi",
+  duration: 1,
+  durationType: PackageDurationType.MONTH,
+  credits: 8,
+  price: 1500,
+  isActive: true,
+  level: "Başlangıç",
+  location: "Ana Şube",
+  description: "Bu paket, kürek sporuna yeni başlayanlar için özel olarak hazırlanmıştır. Temel teknikleri öğrenme ve geliştirme fırsatı sunar. Deneyimli eğitmenler eşliğinde güvenli ve profesyonel bir ortamda spor yapma imkanı. Esnek kullanım saatleri ve modern ekipmanlarla donatılmış tesislerimizde kaliteli bir deneyim yaşayın.",
+  paymentOptions: [
+    "Nakit",
+    "Kredi Kartı",
+    "Havale/EFT",
+    "Multisport"
+  ],
+  features: [
+    "7/24 Tesis Erişimi",
+    "Özel Antrenör (4 Seans)",
+    "Grup Dersleri",
+    "VIP Soyunma Odası",
+    "Duş ve Sauna",
+    "Havlu Hizmeti",
+    "Özel Dolap",
+    "Spor Malzemesi Desteği",
+    "Ücretsiz Otopark",
+    "Kafeterya İndirimi"
+  ],
+  createdAt: new Date(),
+  updatedAt: new Date()
+};
 
 export default function PackageDetails({ params }: { params: { id: string } }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [packageData, setPackageData] = useState<Package | null>(null);
   const router = useRouter();
-  const [pkg, setPkg] = useState<Package | null>(null);
 
   useEffect(() => {
-    // Simüle edilmiş veri
-    setPkg({
-      id: "1",
-      name: "Başlangıç Paketi",
-      duration: 1,
-      durationType: PackageDurationType.MONTH,
-      credits: 8,
-      price: 1500,
-      isActive: true,
-      level: "Başlangıç",
-      createdAt: new Date(),
-      updatedAt: new Date()
-    });
-  }, []);
+    // API'den veri çekme simülasyonu
+    const fetchData = async () => {
+      try {
+        // const response = await fetch(`/api/packages/${params.id}`);
+        // const data = await response.json();
+        setPackageData(PACKAGE_DATA);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching package data:', error);
+        router.push('/admin/controlpanel/packages/assign');
+      }
+    };
 
-  if (!pkg) return null;
+    fetchData();
+  }, [params.id, router]);
+
+  if (isLoading || !packageData) {
+    return <div>Loading...</div>;
+  }
 
   const formatDuration = (duration: number, type: PackageDurationType) => {
     return `${duration} ${type === PackageDurationType.MONTH ? 'Ay' : 'Gün'}`;
@@ -44,77 +81,148 @@ export default function PackageDetails({ params }: { params: { id: string } }) {
       
       <div className={`flex-1 overflow-y-auto transition-all duration-300 ${
         isSidebarOpen ? 'md:ml-84' : 'md:ml-24'
-      }`}>
-        <main className="p-4 md:p-8 mt-14 md:mt-0">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center justify-between mb-6">
-              <Button
-                variant="ghost"
-                className="text-zinc-400 hover:text-white hover:bg-zinc-800/50 transition-colors"
-                onClick={() => router.back()}
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Geri Dön
-              </Button>
+      } relative z-0`}>
+        <main className="w-full p-4 md:p-8 mt-14 md:mt-0">
+          {/* Üst Kısım - Geri Dön ve Düzenle */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+            <Button
+              variant="ghost"
+              className="text-zinc-400 hover:text-white hover:bg-zinc-800/50"
+              onClick={() => router.back()}
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Geri Dön
+            </Button>
 
-              <Button
-                onClick={() => router.push(`/admin/controlpanel/packages/assign/edit/${params.id}`)}
-                className="bg-blue-500 hover:bg-blue-600"
-              >
-                <Pencil className="w-4 h-4 mr-2" />
-                Düzenle
-              </Button>
-            </div>
+            <Button
+              onClick={() => router.push(`/admin/controlpanel/packages/assign/edit/${params.id}`)}
+              className="bg-blue-500 hover:bg-blue-600"
+            >
+              <Pencil className="w-4 h-4 mr-2" />
+              Paketi Düzenle
+            </Button>
+          </div>
 
-            <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6">
-              <div className="space-y-6">
-                <div>
-                  <h1 className="text-2xl font-bold text-white">{pkg.name}</h1>
-                  <div className="mt-2 inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500 border border-green-500/20">
-                    {pkg.isActive ? 'Aktif' : 'Pasif'}
+          {/* Paket Detayları */}
+          <div className="space-y-6">
+            {/* Ana Bilgiler Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Sol Kısım - Temel Bilgiler */}
+              <div className="md:col-span-2 space-y-6">
+                {/* Paket Bilgileri */}
+                <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-6">
+                  <h2 className="text-lg font-semibold text-white mb-4">Paket Bilgileri</h2>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="text-sm text-zinc-400">Paket Adı</label>
+                      <p className="text-white mt-1">{packageData.name}</p>
+                    </div>
+                    <div>
+                      <label className="text-sm text-zinc-400">Süre</label>
+                      <p className="text-white mt-1">{formatDuration(packageData.duration, packageData.durationType)}</p>
+                    </div>
+                    <div>
+                      <label className="text-sm text-zinc-400">Kullanım Hakkı</label>
+                      <p className="text-white mt-1">{packageData.credits} Kredi</p>
+                    </div>
+                    <div>
+                      <label className="text-sm text-zinc-400">Fiyat</label>
+                      <p className="text-white mt-1">
+                        {packageData.price.toLocaleString('tr-TR', {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2
+                        })} ₺
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex justify-between py-2 px-4 rounded-lg bg-zinc-800/50">
-                    <span className="text-zinc-400">Süre</span>
-                    <span className="text-white font-medium">
-                      {formatDuration(pkg.duration, pkg.durationType)}
-                    </span>
-                  </div>
-
-                  <div className="flex justify-between py-2 px-4 rounded-lg bg-zinc-800/50">
-                    <span className="text-zinc-400">Kullanım Hakkı</span>
-                    <span className="text-white font-medium">{pkg.credits} Kredi</span>
-                  </div>
-
-                  <div className="flex justify-between py-2 px-4 rounded-lg bg-zinc-800/50">
-                    <span className="text-zinc-400">Fiyat</span>
-                    <span className="text-white font-medium">{formatPrice(pkg.price)} ₺</span>
-                  </div>
-
-                  {pkg.level && (
-                    <div className="flex justify-between py-2 px-4 rounded-lg bg-zinc-800/50">
-                      <span className="text-zinc-400">Seviye</span>
-                      <span className="text-white font-medium">{pkg.level}</span>
+                {/* Ödeme Seçenekleri ve Özellikler */}
+                <div className="grid grid-cols-1 gap-6">
+                  {/* Ödeme Seçenekleri */}
+                  <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-6">
+                    <h2 className="text-lg font-semibold text-white mb-4">Ödeme Seçenekleri</h2>
+                    <div className="flex flex-wrap gap-2">
+                      {packageData.paymentOptions?.map((option, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1.5 rounded-full text-sm bg-zinc-800 text-zinc-300 border border-zinc-700/50 hover:bg-zinc-800/80 transition-colors"
+                        >
+                          {option}
+                        </span>
+                      ))}
                     </div>
-                  )}
-                </div>
+                  </div>
 
-                <div className="border-t border-zinc-800 pt-6">
-                  <h2 className="text-lg font-semibold text-white mb-4">Paket Geçmişi</h2>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between text-zinc-400">
-                      <span>Oluşturulma Tarihi</span>
-                      <span>{pkg.createdAt.toLocaleDateString('tr-TR')}</span>
-                    </div>
-                    <div className="flex justify-between text-zinc-400">
-                      <span>Son Güncelleme</span>
-                      <span>{pkg.updatedAt.toLocaleDateString('tr-TR')}</span>
+                  {/* Paket Özellikleri */}
+                  <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-6">
+                    <h2 className="text-lg font-semibold text-white mb-4">Paket Özellikleri</h2>
+                    <div className="flex flex-wrap gap-2">
+                      {packageData.features?.map((feature, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1.5 rounded-full text-sm bg-blue-500/10 text-blue-400 border border-blue-500/20 hover:bg-blue-500/20 transition-colors"
+                        >
+                          {feature}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
               </div>
+
+              {/* Sağ Kısım - Ek Bilgiler ve İstatistikler */}
+              <div className="space-y-6">
+                {/* Ek Bilgiler */}
+                <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-6">
+                  <h2 className="text-lg font-semibold text-white mb-4">Ek Bilgiler</h2>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="text-sm text-zinc-400">Seviye</label>
+                      <p className="text-white mt-1">{packageData.level || "Belirtilmemiş"}</p>
+                    </div>
+                    <div>
+                      <label className="text-sm text-zinc-400">Lokasyon</label>
+                      <p className="text-white mt-1">{packageData.location || "Belirtilmemiş"}</p>
+                    </div>
+                    <div>
+                      <label className="text-sm text-zinc-400">Durum</label>
+                      <p className={`mt-1 ${packageData.isActive ? 'text-green-500' : 'text-red-500'}`}>
+                        {packageData.isActive ? 'Aktif' : 'Pasif'}
+                      </p>
+                    </div>
+                    <div>
+                      <label className="text-sm text-zinc-400">Oluşturulma Tarihi</label>
+                      <p className="text-white mt-1">
+                        {packageData.createdAt.toLocaleDateString('tr-TR')}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* İstatistikler */}
+                <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-6">
+                  <h2 className="text-lg font-semibold text-white mb-4">İstatistikler</h2>
+                  <div className="space-y-4">
+                    <div className="bg-zinc-800/50 rounded-lg p-4">
+                      <p className="text-sm text-zinc-400">Toplam Satış</p>
+                      <p className="text-2xl font-semibold text-white mt-1">0</p>
+                    </div>
+                    <div className="bg-zinc-800/50 rounded-lg p-4">
+                      <p className="text-sm text-zinc-400">Aktif Kullanıcı</p>
+                      <p className="text-2xl font-semibold text-white mt-1">0</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Açıklama - Grid dışında, tam genişlikte */}
+            <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-6">
+              <h2 className="text-lg font-semibold text-white mb-4">Açıklama</h2>
+              <p className="text-zinc-300">
+                {packageData.description || "Bu paket için henüz bir açıklama eklenmemiş."}
+              </p>
             </div>
           </div>
         </main>

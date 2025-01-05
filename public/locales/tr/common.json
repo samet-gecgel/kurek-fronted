@@ -1314,5 +1314,230 @@
       "recurringEnabled": "Her Hafta Tekrarla",
       "recurringDisabled": "Bir Kez"
     }
+  },
+  "packageEdit": {
+    "title": "Paketi Düzenle",
+    "subtitle": "Paket bilgilerini güncelleyin",
+    "form": {
+      "name": "Paket Adı",
+      "namePlaceholder": "Örn: Aylık Paket",
+      "location": "Lokasyon",
+      "locationPlaceholder": "Lokasyon girin",
+      "duration": "Süre",
+      "durationType": {
+        "day": "Gün",
+        "month": "Ay"
+      },
+      "credits": "Kullanım Hakkı (Kredi)",
+      "price": "Fiyat (₺)",
+      "level": "Seviye",
+      "levelPlaceholder": "Seviye seçin",
+      "levels": {
+        "beginner": "Başlangıç",
+        "intermediate": "Orta",
+        "advanced": "İleri"
+      },
+      "description": "Açıklama",
+      "descriptionPlaceholder": "Paket hakkında detaylı açıklama yazın...",
+      "paymentOptions": "Ödeme Seçenekleri",
+      "features": "Paket Özellikleri",
+      "addFeature": "Yeni özellik ekle",
+      "status": "Durum",
+      "buttons": {
+        "add": "Ekle",
+        "cancel": "İptal",
+        "save": "Değişiklikleri Kaydet"
+      }
+    },
+    "validation": {
+      "nameRequired": "Paket adı zorunludur",
+      "durationRequired": "Süre zorunludur",
+      "durationTypeRequired": "Süre tipi zorunludur",
+      "creditsRequired": "Kullanım hakkı zorunludur",
+      "priceRequired": "Fiyat zorunludur"
+    }
+  },
+  "packageList": {
+    "title": "Üyelik Paketleri",
+    "subtitle": "Tüm üyelik paketlerini görüntüleyin ve yönetin",
+    "addNew": "Yeni Paket",
+    "search": "Paket ara...",
+    "table": {
+      "name": "Paket Adı",
+      "duration": "Süre",
+      "credits": "Kullanım Hakkı",
+      "price": "Fiyat",
+      "status": "Durum",
+      "actions": "İşlemler"
+    },
+    "status": {
+      "active": "Aktif",
+      "inactive": "Pasif"
+    },
+    "actions": {
+      "edit": "Düzenle",
+      "delete": "Sil"
+    },
+    "deleteConfirm": {
+      "title": "Paketi Sil",
+      "message": "Bu paketi silmek istediğinizden emin misiniz?",
+      "cancel": "İptal",
+      "confirm": "Sil"
+    },
+    "durationType": {
+      "day": "Gün",
+      "month": "Ay"
+    },
+    "credits": "Kredi",
+    "clickInfo": "Paket detaylarını görmek için ilgili satıra tıklayın"
+  },
+  "packageAdd": {
+    "title": "Yeni Paket",
+    "subtitle": "Yeni bir üyelik paketi oluşturun",
+    "form": {
+      "name": "Paket Adı",
+      "namePlaceholder": "Örn: Aylık Paket",
+      "location": "Lokasyon",
+      "locationPlaceholder": "Lokasyon girin",
+      "duration": "Süre",
+      "durationType": {
+        "day": "Gün",
+        "month": "Ay"
+      },
+      "credits": "Kullanım Hakkı (Kredi)",
+      "price": "Fiyat (₺)",
+      "level": "Seviye",
+      "levelPlaceholder": "Seviye seçin",
+      "levels": {
+        "beginner": "Başlangıç",
+        "intermediate": "Orta",
+        "advanced": "İleri"
+      },
+      "description": "Açıklama",
+      "descriptionPlaceholder": "Paket hakkında detaylı açıklama yazın...",
+      "paymentOptions": "Ödeme Seçenekleri",
+      "features": "Paket Özellikleri",
+      "addFeature": "Yeni özellik ekle",
+      "buttons": {
+        "add": "Ekle",
+        "cancel": "İptal",
+        "save": "Paketi Ekle"
+      }
+    },
+    "validation": {
+      "nameRequired": "Paket adı zorunludur",
+      "durationRequired": "Süre zorunludur",
+      "durationTypeRequired": "Süre tipi zorunludur",
+      "creditsRequired": "Kullanım hakkı zorunludur",
+      "priceRequired": "Fiyat zorunludur"
+    }
+  },
+  "boatList": {
+    "title": "Tekneler",
+    "subtitle": "Tüm tekneleri görüntüleyin ve yönetin",
+    "addNew": "Yeni Tekne",
+    "search": "Tekne ara...",
+    "table": {
+      "name": "Tekne Adı",
+      "serialNumber": "Seri No",
+      "year": "Üretim Yılı",
+      "capacity": "Kişi Sayısı",
+      "status": "Durum",
+      "actions": "İşlemler"
+    },
+    "status": {
+      "active": "Aktif",
+      "inactive": "Pasif"
+    },
+    "actions": {
+      "edit": "Düzenle",
+      "delete": "Sil"
+    },
+    "deleteConfirm": {
+      "title": "Tekneyi Sil",
+      "message": "Bu tekneyi silmek istediğinizden emin misiniz?",
+      "cancel": "İptal",
+      "confirm": "Sil"
+    }
+  },
+  "reservationList": {
+    "title": "Rezervasyon Tanımlamaları",
+    "subtitle": "Tüm rezervasyon tanımlamalarını görüntüleyin ve yönetin",
+    "addNew": "Rezervasyon Ekle",
+    "search": "Rezervasyon ara...",
+    "dialog": {
+      "title": "Yeni Rezervasyon Tanımla",
+      "form": {
+        "name": "Rezervasyon Adı",
+        "namePlaceholder": "Örn: Sabah Antrenmanı",
+        "startTime": "Başlangıç Saati",
+        "endTime": "Bitiş Saati",
+        "duration": "Süre (Dakika)",
+        "buttons": {
+          "cancel": "İptal",
+          "add": "Ekle"
+        }
+      }
+    },
+    "table": {
+      "name": "Rezervasyon Adı",
+      "startTime": "Başlangıç",
+      "endTime": "Bitiş",
+      "duration": "Süre (dk)",
+      "status": "Durum"
+    },
+    "status": {
+      "active": "Aktif",
+      "inactive": "Pasif"
+    }
+  },
+  "reservationSettings": {
+    "title": "Rezervasyon Ayarları",
+    "subtitle": "Genel rezervasyon ayarlarını yapılandırın",
+    "addNew": "Yeni Rezervasyon",
+    "search": "Rezervasyon ara...",
+    "dialog": {
+      "addTitle": "Yeni Rezervasyon Tanımla",
+      "editTitle": "Rezervasyonu Düzenle"
+    },
+    "form": {
+      "name": "Rezervasyon Adı",
+      "namePlaceholder": "Örn: Sabah Antrenmanı",
+      "workingHours": "Çalışma Saatleri",
+      "startTime": "Başlangıç Saati",
+      "endTime": "Bitiş Saati",
+      "duration": "Süre (Dakika)",
+      "buttons": {
+        "save": "Kaydet",
+        "add": "Ekle",
+        "cancel": "İptal"
+      }
+    },
+    "table": {
+      "name": "Rezervasyon Adı",
+      "startTime": "Başlangıç",
+      "endTime": "Bitiş",
+      "duration": "Süre (dk)",
+      "status": "Durum",
+      "actions": {
+        "edit": "Düzenle",
+        "delete": "Sil"
+      }
+    },
+    "status": {
+      "active": "Aktif",
+      "inactive": "Pasif"
+    },
+    "actions": {
+      "edit": "Düzenle",
+      "delete": "Sil",
+      "title": "İşlemler"
+    },
+    "deleteConfirm": {
+      "title": "Rezervasyonu Sil",
+      "message": "Bu rezervasyonu silmek istediğinizden emin misiniz?",
+      "cancel": "İptal",
+      "confirm": "Sil"
+    }
   }
 }
