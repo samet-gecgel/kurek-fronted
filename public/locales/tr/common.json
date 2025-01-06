@@ -1577,6 +1577,200 @@
       "addError": "Gelir eklenirken bir hata oluştu",
       "deleteSuccess": "Gelir türü başarıyla silindi",
       "deleteError": "Gelir türü silinirken bir hata oluştu"
+    },
+    "reports": {
+      "title": "Gelir Raporları",
+      "selectMonth": "Ay seçin",
+      "selectYear": "Yıl seçin",
+      "fetch": "Getir",
+      "totalIncome": "Toplam Gelir",
+      "monthlyTotalIncome": "Bu ayki toplam gelir miktarı",
+      "highestIncome": "En Yüksek Gelir",
+      "lowestIncome": "En Düşük Gelir",
+      "type": "Tür",
+      "membershipPayment": "Üyelik Ödemesi",
+      "equipmentSale": "Ekipman Satışı",
+      "monthlyTrends": "Aylık Gelir Trendleri",
+      "incomeDistribution": "Gelir Türlerine Göre Dağılım",
+      "incomeDistributionSubtitle": "Gelir türlerinin dağılımı",
+      "months": {
+        "january": "Ocak",
+        "february": "Şubat",
+        "march": "Mart",
+        "april": "Nisan",
+        "may": "Mayıs",
+        "june": "Haziran",
+        "july": "Temmuz",
+        "august": "Ağustos",
+        "september": "Eylül",
+        "october": "Ekim",
+        "november": "Kasım",
+        "december": "Aralık"
+      },
+      "table": {
+        "incomeName": "Gelir Adı",
+        "incomeType": "Gelir Türü",
+        "amount": "Tutar",
+        "dateTime": "Tarih ve Saat",
+        "description": "Açıklama"
+      }
+    }
+  },
+  "expense": {
+    "title": "Gider Yönetimi",
+    "subtitle": "Giderleri yönetin ve takip edin",
+    "addExpense": "Gider Ekle",
+    "expenseTypes": "Gider Türleri",
+    "form": {
+      "title": "Gider Bilgileri",
+      "expenseType": "Gider Türü",
+      "selectExpenseType": "Gider türü seçin",
+      "expenseName": "Gider Adı",
+      "enterExpenseName": "Gider adını girin",
+      "amount": "Tutar",
+      "enterAmount": "Tutarı girin",
+      "dateTime": "Tarih ve Saat",
+      "details": "Açıklama",
+      "enterDetails": "Açıklama girin...",
+      "date": "Tarih",
+      "time": "Saat",
+      "selectDate": "Tarih seçin"
+    },
+    "types": {
+      "title": "Gider Türleri",
+      "subtitle": "Gider türlerini yönetin",
+      "enterType": "Gider türü girin",
+      "addExpenseType": "Gider Türü Ekle",
+      "editType": "Gider Türlerini Düzenle"
+    },
+    "actions": {
+      "save": "Kaydet",
+      "cancel": "İptal",
+      "add": "Ekle",
+      "edit": "Düzenle",
+      "delete": "Sil",
+      "title": "İşlemler"
+    },
+    "messages": {
+      "addSuccess": "Gider başarıyla eklendi",
+      "addError": "Gider eklenirken bir hata oluştu",
+      "deleteSuccess": "Gider türü başarıyla silindi",
+      "deleteError": "Gider türü silinirken bir hata oluştu"
+    },
+    "reports": {
+      "title": "Gider Raporları",
+      "selectMonth": "Ay seçin",
+      "selectYear": "Yıl seçin",
+      "fetch": "Getir",
+      "totalExpense": "Toplam Gider",
+      "monthlyTotalExpense": "Bu ayki toplam gider miktarı",
+      "highestExpense": "En Yüksek Gider",
+      "lowestExpense": "En Düşük Gider",
+      "type": "Tür",
+      "rent": "Kira",
+      "utility": "Fatura",
+      "monthlyTrends": "Aylık Gider Trendleri",
+      "expenseDistribution": "Gider Türlerine Göre Dağılım",
+      "expenseDistributionSubtitle": "Gider türlerinin dağılımı",
+      "months": {
+        "january": "Ocak",
+        "february": "Şubat",
+        "march": "Mart",
+        "april": "Nisan",
+        "may": "Mayıs",
+        "june": "Haziran",
+        "july": "Temmuz",
+        "august": "Ağustos",
+        "september": "Eylül",
+        "october": "Ekim",
+        "november": "Kasım",
+        "december": "Aralık"
+      },
+      "table": {
+        "expenseName": "Gider Adı",
+        "expenseType": "Gider Türü",
+        "amount": "Tutar",
+        "dateTime": "Tarih ve Saat",
+        "description": "Açıklama"
+      }
+    }
+  },
+  "events": {
+    "title": "Etkinlikler",
+    "subtitle": "Etkinlikleri yönetin",
+    "addEvent": "Etkinlik Ekle",
+    "editEvent": "Etkinlik Düzenle",
+    "table": {
+      "name": "Etkinlik Adı",
+      "type": "Etkinlik Türü",
+      "dateTime": "Tarih ve Saat",
+      "location": "Konum",
+      "participants": "Katılımcılar",
+      "fee": "Ücret",
+      "requirements": "Katılım Şartları",
+      "program": "Program",
+      "registration": "Kayıt",
+      "contact": "İletişim",
+      "status": "Durum",
+      "actions": "İşlemler"
+    },
+    "status": {
+      "status": "Durum",
+      "active": "Aktif",
+      "inactive": "Pasif"
+    },
+    "form": {
+      "title": "Etkinlik Bilgileri",
+      "subtitle": "Yeni etkinlik ekle",
+      "editSubtitle": "Etkinlik bilgilerini düzenle",
+      "name": "Etkinlik Adı",
+      "namePlaceholder": "Etkinlik adını girin",
+      "type": "Etkinlik Türü",
+      "selectType": "Etkinlik türü seçin",
+      "typePlaceholder": "Etkinlik türü seçin",
+      "date": "Tarih",
+      "selectDate": "Tarih seçin",
+      "time": "Saat",
+      "location": "Konum",
+      "locationPlaceholder": "Etkinlik konumunu girin",
+      "maxPerson": "Maksimum Katılımcı",
+      "fee": "Etkinlik Ücreti",
+      "requirements": "Katılım Şartları",
+      "requirementsPlaceholder": "Katılım şartlarını girin",
+      "program": "Program",
+      "programPlaceholder": "Etkinlik programını girin",
+      "contact": "İletişim Bilgileri",
+      "contactName": "İletişim Kişisi",
+      "contactEmail": "E-posta",
+      "contactPhone": "Telefon",
+      "save": "Kaydet",
+      "saving": "Kaydediliyor...",
+      "saveChanges": "Değişiklikleri Kaydet",
+      "cancel": "İptal",
+      "back": "Geri Dön"
+    },
+    "details": {
+      "subtitle": "Etkinlik detaylarını görüntüle",
+      "mainInfo": "Etkinlik Bilgileri",
+      "eventDetails": "Etkinlik Detayları",
+      "eventProgram": "Etkinlik Programı",
+      "eventFee": "Etkinlik Ücreti",
+      "contactInfo": "İletişim Bilgileri",
+      "requirements": "Katılım Şartları"
+    },
+    "messages": {
+      "addSuccess": "Etkinlik başarıyla eklendi",
+      "addError": "Etkinlik eklenirken bir hata oluştu",
+      "editSuccess": "Etkinlik başarıyla güncellendi",
+      "editError": "Etkinlik güncellenirken bir hata oluştu",
+      "deleteSuccess": "Etkinlik başarıyla silindi",
+      "deleteError": "Etkinlik silinirken bir hata oluştu"
+    },
+    "deleteConfirm": {
+      "title": "Etkinliği Sil",
+      "message": "Bu etkinliği silmek istediğinizden emin misiniz?",
+      "cancel": "İptal",
+      "confirm": "Sil"
     }
   }
 }

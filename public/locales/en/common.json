@@ -1590,6 +1590,200 @@
       "addError": "An error occurred while adding income",
       "deleteSuccess": "Income type deleted successfully",
       "deleteError": "An error occurred while deleting income type"
+    },
+    "reports": {
+      "title": "Income Reports",
+      "selectMonth": "Select Month",
+      "selectYear": "Select Year",
+      "fetch": "Fetch",
+      "totalIncome": "Total Income",
+      "monthlyTotalIncome": "Total income amount for this month",
+      "highestIncome": "Highest Income",
+      "lowestIncome": "Lowest Income",
+      "type": "Type",
+      "membershipPayment": "Membership Payment",
+      "equipmentSale": "Equipment Sale",
+      "monthlyTrends": "Monthly Income Trends",
+      "incomeDistribution": "Income Distribution by Type",
+      "incomeDistributionSubtitle": "Distribution of income types",
+      "months": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December"
+      },
+      "table": {
+        "incomeName": "Income Name",
+        "incomeType": "Income Type",
+        "amount": "Amount",
+        "dateTime": "Date and Time",
+        "description": "Description"
+      }
+    }
+  },
+  "expense": {
+    "title": "Expense Management",
+    "subtitle": "Manage and track expenses",
+    "addExpense": "Add Expense",
+    "expenseTypes": "Expense Types",
+    "form": {
+      "title": "Expense Details",
+      "expenseType": "Expense Type",
+      "selectExpenseType": "Select expense type",
+      "expenseName": "Expense Name",
+      "enterExpenseName": "Enter expense name",
+      "amount": "Amount",
+      "enterAmount": "Enter amount",
+      "dateTime": "Date and Time",
+      "details": "Description",
+      "enterDetails": "Enter description...",
+      "date": "Date",
+      "time": "Time",
+      "selectDate": "Select date"
+    },
+    "types": {
+      "title": "Expense Types",
+      "subtitle": "Manage expense types",
+      "enterType": "Enter expense type",
+      "addExpenseType": "Add Expense Type",
+      "editType": "Edit Expense Types"
+    },
+    "actions": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "add": "Add",
+      "edit": "Edit",
+      "delete": "Delete",
+      "title": "Actions"
+    },
+    "messages": {
+      "addSuccess": "Expense added successfully",
+      "addError": "An error occurred while adding expense",
+      "deleteSuccess": "Expense type deleted successfully",
+      "deleteError": "An error occurred while deleting expense type"
+    },
+    "reports": {
+      "title": "Expense Reports",
+      "selectMonth": "Select Month",
+      "selectYear": "Select Year",
+      "fetch": "Fetch",
+      "totalExpense": "Total Expense",
+      "monthlyTotalExpense": "Total expense amount for this month",
+      "highestExpense": "Highest Expense",
+      "lowestExpense": "Lowest Expense",
+      "type": "Type",
+      "rent": "Rent",
+      "utility": "Utility",
+      "monthlyTrends": "Monthly Expense Trends",
+      "expenseDistribution": "Expense Distribution by Type",
+      "expenseDistributionSubtitle": "Distribution of expense types",
+      "months": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December"
+      },
+      "table": {
+        "expenseName": "Expense Name",
+        "expenseType": "Expense Type",
+        "amount": "Amount",
+        "dateTime": "Date and Time",
+        "description": "Description"
+      }
+    }
+  },
+  "events": {
+    "title": "Events",
+    "subtitle": "Manage events",
+    "addEvent": "Add Event",
+    "editEvent": "Edit Event",
+    "table": {
+      "name": "Event Name",
+      "type": "Event Type",
+      "dateTime": "Date and Time",
+      "location": "Location",
+      "participants": "Participants",
+      "fee": "Fee",
+      "requirements": "Requirements",
+      "program": "Program",
+      "registration": "Registration",
+      "contact": "Contact",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "form": {
+      "title": "Event Details",
+      "subtitle": "Add new event",
+      "editSubtitle": "Edit event details",
+      "name": "Event Name",
+      "namePlaceholder": "Enter event name",
+      "type": "Event Type",
+      "selectType": "Select event type",
+      "typePlaceholder": "Select event type",
+      "date": "Date",
+      "selectDate": "Select date",
+      "time": "Time",
+      "location": "Location",
+      "locationPlaceholder": "Enter event location",
+      "maxPerson": "Maximum Participants",
+      "fee": "Event Fee",
+      "requirements": "Requirements",
+      "requirementsPlaceholder": "Enter event requirements",
+      "program": "Program",
+      "programPlaceholder": "Enter event program",
+      "contact": "Contact Information",
+      "contactName": "Contact Person",
+      "contactEmail": "Email",
+      "contactPhone": "Phone",
+      "save": "Save",
+      "saving": "Saving...",
+      "saveChanges": "Save Changes",
+      "cancel": "Cancel",
+      "back": "Go Back"
+    },
+    "details": {
+      "subtitle": "View event details",
+      "mainInfo": "Event Information",
+      "eventDetails": "Event Details",
+      "eventProgram": "Event Program",
+      "eventFee": "Event Fee",
+      "contactInfo": "Contact Information",
+      "requirements": "Requirements"
+    },
+    "messages": {
+      "addSuccess": "Event added successfully",
+      "addError": "An error occurred while adding event",
+      "editSuccess": "Event updated successfully",
+      "editError": "An error occurred while updating event",
+      "deleteSuccess": "Event deleted successfully",
+      "deleteError": "An error occurred while deleting event"
+    },
+    "deleteConfirm": {
+      "title": "Delete Event",
+      "message": "Are you sure you want to delete this event?",
+      "cancel": "Cancel",
+      "confirm": "Delete"
     }
   }
 }
