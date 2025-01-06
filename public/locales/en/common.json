@@ -1552,5 +1552,44 @@
       "cancel": "Cancel",
       "confirm": "Delete"
     }
+  },
+  "income": {
+    "title": "Income Management",
+    "subtitle": "Manage and track incomes",
+    "addIncome": "Add Income",
+    "incomeTypes": "Income Types",
+    "form": {
+      "title": "Income Details",
+      "incomeType": "Income Type",
+      "selectIncomeType": "Select income type",
+      "incomeName": "Income Name",
+      "enterIncomeName": "Enter income name",
+      "amount": "Amount",
+      "enterAmount": "Enter amount",
+      "dateTime": "Date and Time",
+      "details": "Description",
+      "enterDetails": "Enter description..."
+    },
+    "types": {
+      "title": "Income Types",
+      "subtitle": "Manage income types",
+      "enterType": "Enter income type",
+      "addIncomeType": "Add Income Type",
+      "editType": "Edit Income Types"
+    },
+    "actions": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "add": "Add",
+      "edit": "Edit",
+      "delete": "Delete",
+      "title": "Actions"
+    },
+    "messages": {
+      "addSuccess": "Income added successfully",
+      "addError": "An error occurred while adding income",
+      "deleteSuccess": "Income type deleted successfully",
+      "deleteError": "An error occurred while deleting income type"
+    }
   }
 }

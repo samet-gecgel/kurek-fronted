@@ -1539,5 +1539,44 @@
       "cancel": "İptal",
       "confirm": "Sil"
     }
+  },
+  "income": {
+    "title": "Gelir Yönetimi",
+    "subtitle": "Gelirleri yönetin ve takip edin",
+    "addIncome": "Gelir Ekle",
+    "incomeTypes": "Gelir Türleri",
+    "form": {
+      "title": "Gelir Bilgileri",
+      "incomeType": "Gelir Türü",
+      "selectIncomeType": "Gelir türü seçin",
+      "incomeName": "Gelir Adı",
+      "enterIncomeName": "Gelir adını girin",
+      "amount": "Tutar",
+      "enterAmount": "Tutarı girin",
+      "dateTime": "Tarih ve Saat",
+      "details": "Açıklama",
+      "enterDetails": "Açıklama girin..."
+    },
+    "types": {
+      "title": "Gelir Türleri",
+      "subtitle": "Gelir türlerini yönetin",
+      "enterType": "Gelir türü girin",
+      "addIncomeType": "Gelir Türü Ekle",
+      "editType": "Gelir Türlerini Düzenle"
+    },
+    "actions": {
+      "save": "Kaydet",
+      "cancel": "İptal",
+      "add": "Ekle",
+      "edit": "Düzenle",
+      "delete": "Sil",
+      "title": "İşlemler"
+    },
+    "messages": {
+      "addSuccess": "Gelir başarıyla eklendi",
+      "addError": "Gelir eklenirken bir hata oluştu",
+      "deleteSuccess": "Gelir türü başarıyla silindi",
+      "deleteError": "Gelir türü silinirken bir hata oluştu"
+    }
   }
 }
