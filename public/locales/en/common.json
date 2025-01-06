@@ -1735,6 +1735,7 @@
     "form": {
       "title": "Event Details",
       "subtitle": "Add new event",
+      "actionEdit" : "Edit Event",
       "editSubtitle": "Edit event details",
       "name": "Event Name",
       "namePlaceholder": "Enter event name",

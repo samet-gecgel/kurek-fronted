@@ -69,7 +69,7 @@ export default function EventDetailsPage() {
             className="bg-blue-600 hover:bg-blue-700" 
             onClick={() => router.push(`/admin/controlpanel/events/edit/${eventData.id}`)}
             >
-              {t("actions.edit")}
+              {t("form.actionEdit")}
             </Button>
           </div>
 

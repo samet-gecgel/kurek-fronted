@@ -1722,6 +1722,7 @@
     "form": {
       "title": "Etkinlik Bilgileri",
       "subtitle": "Yeni etkinlik ekle",
+      "actionEdit" : "Etkinlik Düzenle",
       "editSubtitle": "Etkinlik bilgilerini düzenle",
       "name": "Etkinlik Adı",
       "namePlaceholder": "Etkinlik adını girin",
