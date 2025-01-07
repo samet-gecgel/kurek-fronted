@@ -1820,5 +1820,17 @@
     "days": "days",
     "upcomingStarts": "Upcoming Package Starts",
     "upcomingEnds": "Upcoming Package Ends"
+  },
+  "reminderCalendar": {
+    "title": "Package Reminders",
+    "description": "Track upcoming package expirations",
+    "packageReminders": "Package Reminders",
+    "creditsStatus": "Usage Status",
+    "packageEnds": "Package End Date",
+    "days": "days",
+    "noReminders": {
+      "title": "No reminders for this date",
+      "subtitle": "You can view reminders by selecting another date"
+    }
   }
 }

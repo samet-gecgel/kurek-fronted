@@ -1807,5 +1807,17 @@
     "days": "gün",
     "upcomingStarts": "Yaklaşan Paket Başlangıçları",
     "upcomingEnds": "Yaklaşan Paket Bitişleri"
+  },
+  "reminderCalendar": {
+    "title": "Paket Hatırlatıcıları",
+    "description": "Yaklaşan paket bitişlerini takip edin",
+    "packageReminders": "Paket Hatırlatıcıları",
+    "creditsStatus": "Kullanım Durumu",
+    "packageEnds": "Paket Bitiş Tarihi",
+    "days": "gün",
+    "noReminders": {
+      "title": "Bu tarihte hatırlatıcı bulunmamaktadır",
+      "subtitle": "Başka bir tarih seçerek hatırlatıcıları görüntüleyebilirsiniz"
+    }
   }
 }

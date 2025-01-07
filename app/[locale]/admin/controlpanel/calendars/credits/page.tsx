@@ -317,11 +317,6 @@ export default function CreditsCalendarPage() {
                 animate={{ opacity: 1, x: 0 }}
               >
                 <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-lg font-semibold text-white">
-                      {format(date, "MMMM yyyy", { locale: calendarLocale })}
-                    </h2>
-                  </div>
                   <Calendar
                     mode="single"
                     selected={date}
