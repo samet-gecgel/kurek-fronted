@@ -1883,5 +1883,38 @@
     "selectStatus": "Durum Seçin",
     "updateSuccess": "Durum başarıyla güncellendi",
     "updateError": "Durum güncellenirken bir hata oluştu"
+  },
+  "faq": {
+    "title": "Sık Sorulan Sorular",
+    "description": "Üyeleriniz için sık sorulan soruları yönetin",
+    "searchPlaceholder": "Soru veya cevap ara...",
+    "addFAQ": "Soru Ekle",
+    "editFAQ": "Soruyu Düzenle",
+    "question": "Soru",
+    "answer": "Cevap",
+    "image": "Görsel",
+    "dragAndDrop": "Görsel yüklemek için tıklayın veya sürükleyin",
+    "createdAt": "Oluşturulma Tarihi",
+    "updatedAt": "Güncellenme Tarihi",
+    "cancel": "İptal",
+    "add": "Ekle",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "showMore": "Devamını Göster",
+    "showLess": "Gizle",
+    "deleteConfirm": {
+      "title": "Soruyu Sil",
+      "message": "Bu soruyu silmek istediğinizden emin misiniz?",
+      "confirm": "Sil",
+      "cancel": "İptal"
+    },
+    "messages": {
+      "addSuccess": "Soru başarıyla eklendi",
+      "addError": "Soru eklenirken bir hata oluştu",
+      "editSuccess": "Soru başarıyla güncellendi",
+      "editError": "Soru güncellenirken bir hata oluştu",
+      "deleteSuccess": "Soru başarıyla silindi",
+      "deleteError": "Soru silinirken bir hata oluştu"
+    }
   }
 }

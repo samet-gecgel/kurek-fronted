@@ -1896,5 +1896,38 @@
     "selectStatus": "Select Status",
     "updateSuccess": "Status updated successfully",
     "updateError": "An error occurred while updating status"
+  },
+  "faq": {
+    "title": "FAQ",
+    "description": "Manage frequently asked questions for your members",
+    "searchPlaceholder": "Search questions or answers...",
+    "addFAQ": "Add Question",
+    "editFAQ": "Edit Question",
+    "question": "Question",
+    "answer": "Answer",
+    "image": "Image",
+    "dragAndDrop": "Click or drag to upload image",
+    "createdAt": "Created At",
+    "updatedAt": "Updated At",
+    "cancel": "Cancel",
+    "add": "Add",
+    "save": "Save",
+    "delete": "Delete",
+    "showMore": "Show More",
+    "showLess": "Show Less",
+    "deleteConfirm": {
+      "title": "Delete Question",
+      "message": "Are you sure you want to delete this question?",
+      "confirm": "Delete",
+      "cancel": "Cancel"
+    },
+    "messages": {
+      "addSuccess": "Question added successfully",
+      "addError": "An error occurred while adding question",
+      "editSuccess": "Question updated successfully",
+      "editError": "An error occurred while updating question",
+      "deleteSuccess": "Question deleted successfully",
+      "deleteError": "An error occurred while deleting question"
+    }
   }
 }
