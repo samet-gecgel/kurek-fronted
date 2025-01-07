@@ -62,6 +62,8 @@ interface Student {
 
 interface Lesson {
   id: string;
+  trainerId: string;
+  trainerName: string;
   time: string;
   boatType: string;
   level: string;
@@ -87,6 +89,8 @@ export default function CalendarPage() {
   const [lessons, setLessons] = useState<Lesson[]>([
     {
       id: "1",
+      trainerId: "t1",
+      trainerName: "Ahmet Yılmaz",
       time: "09:00",
       boatType: "Dört Tek",
       level: "Başlangıç",
@@ -100,6 +104,8 @@ export default function CalendarPage() {
     },
     {
       id: "2",
+      trainerId: "t1",
+      trainerName: "Ahmet Yılmaz",
       time: "10:30",
       boatType: "Dört Tek",
       level: "İleri Seviye",
@@ -113,6 +119,8 @@ export default function CalendarPage() {
     },
     {
       id: "3",
+      trainerId: "t1",
+      trainerName: "Ahmet Yılmaz",
       time: "13:00",
       boatType: "Dört Tek",
       level: "Orta Seviye",
@@ -126,6 +134,8 @@ export default function CalendarPage() {
     },
     {
       id: "4",
+      trainerId: "t1",
+      trainerName: "Ahmet Yılmaz",
       time: "14:30",
       boatType: "Dört Tek",
       level: "Başlangıç",
@@ -139,6 +149,8 @@ export default function CalendarPage() {
     },
     {
       id: "5",
+      trainerId: "t1",
+      trainerName: "Ahmet Yılmaz",
       time: "16:00",
       boatType: "Dört Tek",
       level: "İleri Seviye",

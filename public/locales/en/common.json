@@ -1786,5 +1786,39 @@
       "cancel": "Cancel",
       "confirm": "Delete"
     }
+  },
+  "lessonCalendar": {
+    "trainer": "Trainer",
+    "title": "Lesson Calendar",
+    "description": "Track your daily lesson schedule and take attendance",
+    "attended": "Attended",
+    "notAttended": "Not Attended",
+    "waiting": "Waiting",
+    "emptySlot": "Empty Slot",
+    "status": {
+      "title": "Status Indicators"
+    },
+    "noLessons": {
+      "title": "No lessons scheduled for this date.",
+      "subtitle": "You can view lessons by selecting another date."
+    }
+  },
+  "packageCalendar": {
+    "title": "Package Calendar",
+    "description": "Track member package start and end dates",
+    "startDates": "Start Dates",
+    "endDates": "End Dates",
+    "creditsStatus": "Usage Status",
+    "noEvents": {
+      "title": "No package records for this date",
+      "subtitle": "You can view packages by selecting another date"
+    },
+    "packageStarts": "Package Start Date",
+    "packageEnds": "Package End Date",
+    "remainingDays": "Remaining Time",
+    "daysUntilEnd": "Time Until End",
+    "days": "days",
+    "upcomingStarts": "Upcoming Package Starts",
+    "upcomingEnds": "Upcoming Package Ends"
   }
 }

@@ -1773,5 +1773,39 @@
       "cancel": "İptal",
       "confirm": "Sil"
     }
+  },
+  "lessonCalendar": {
+    "trainer": "Antrenör",
+    "title": "Ders Takvimi",
+    "description": "Günlük ders programınızı takip edin ve yoklama alın",
+    "attended": "Derse katıldı",
+    "notAttended": "Derse katılmadı",
+    "waiting": "Beklemede",
+    "emptySlot": "Boş Kontenjan",
+    "status": {
+      "title": "Durum Göstergeleri"
+    },
+    "noLessons": {
+      "title": "Bu tarihte planlanmış ders bulunmamaktadır.",
+      "subtitle": "Başka bir tarih seçerek dersleri görüntüleyebilirsiniz."
+    }
+  },
+  "packageCalendar": {
+    "title": "Paket Takvimi",
+    "description": "Üye paketlerinin başlangıç ve bitiş tarihlerini takip edin",
+    "startDates": "Başlangıç Tarihleri",
+    "endDates": "Bitiş Tarihleri",
+    "creditsStatus": "Kullanım Durumu",
+    "packageStarts": "Paket Başlangıç Tarihi",
+    "packageEnds": "Paket Bitiş Tarihi",
+    "noEvents": {
+      "title": "Bu tarihte paket kaydı bulunmamaktadır",
+      "subtitle": "Başka bir tarih seçerek paketleri görüntüleyebilirsiniz"
+    },
+    "remainingDays": "Kalan Süre",
+    "daysUntilEnd": "Bitiş Süre",
+    "days": "gün",
+    "upcomingStarts": "Yaklaşan Paket Başlangıçları",
+    "upcomingEnds": "Yaklaşan Paket Bitişleri"
   }
 }
