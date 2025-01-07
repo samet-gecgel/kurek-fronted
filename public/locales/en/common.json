@@ -1832,5 +1832,69 @@
       "title": "No reminders for this date",
       "subtitle": "You can view reminders by selecting another date"
     }
+  },
+  "birthdayCalendar": {
+    "title": "Birthday Calendar",
+    "description": "Track member birthdays and send celebration messages",
+    "birthdays": "Birthdays",
+    "sendMessage": "Send Message",
+    "messageSent": "Message Sent",
+    "messageFailed": "Try Again",
+    "noBirthdays": {
+      "title": "No birthdays for this date",
+      "subtitle": "You can view birthdays by selecting another date"
+    },
+    "messages": {
+      "sendSuccess": "Birthday message sent successfully",
+      "sendError": "An error occurred while sending message"
+    },
+    "autoMessage": {
+      "sent": "Auto message sent",
+      "pending": "Message will be sent",
+      "failed": "Message failed"
+    },
+    "memberInfo": "Member Information",
+    "contactInfo": "Contact Information",
+    "email": "Email",
+    "phone": "Phone",
+    "birthDate": "Birth Date",
+    "messageStatus": {
+      "title": "Message Status",
+      "pending": "Message Will Be Sent",
+      "sent": "Message Sent",
+      "failed": "Message Failed"
+    },
+    "notifications": {
+      "sendSuccess": "Birthday message sent successfully",
+      "sendError": "An error occurred while sending message",
+      "autoSendSuccess": "Auto message sent successfully",
+      "autoSendError": "An error occurred while sending auto message"
+    }
+  },
+  "memberNoteCalendar": {
+    "title": "Member Notes Calendar",
+    "description": "View follow-up notes created for members",
+    "followUpNotes": "Follow-up Notes",
+    "status": {
+      "pending": "Pending",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "noNotes": {
+      "title": "No notes for this date",
+      "subtitle": "You can view notes by selecting another date"
+    },
+    "updateStatus": "Update Status",
+    "currentStatus": "Current Status",
+    "cancel": "Cancel",
+    "save": "Save",
+    "createdBy": "Created By",
+    "createdAt": "Created At",
+    "followUpDate": "Follow-up Date",
+    "noteDetails": "Note Details",
+    "memberInfo": "Member Information",
+    "selectStatus": "Select Status",
+    "updateSuccess": "Status updated successfully",
+    "updateError": "An error occurred while updating status"
   }
 }

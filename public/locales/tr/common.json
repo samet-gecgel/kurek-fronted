@@ -1819,5 +1819,69 @@
       "title": "Bu tarihte hatırlatıcı bulunmamaktadır",
       "subtitle": "Başka bir tarih seçerek hatırlatıcıları görüntüleyebilirsiniz"
     }
+  },
+  "birthdayCalendar": {
+    "title": "Doğum Günü Takvimi",
+    "description": "Üyelerin doğum günlerini takip edin ve kutlama mesajları gönderin",
+    "birthdays": "Doğum Günleri",
+    "sendMessage": "Mesaj Gönder",
+    "messageSent": "Mesaj Gönderildi",
+    "messageFailed": "Tekrar Dene",
+    "noBirthdays": {
+      "title": "Bu tarihte doğum günü bulunmamaktadır",
+      "subtitle": "Başka bir tarih seçerek doğum günlerini görüntüleyebilirsiniz"
+    },
+    "messages": {
+      "sendSuccess": "Doğum günü mesajı başarıyla gönderildi",
+      "sendError": "Mesaj gönderilirken bir hata oluştu"
+    },
+    "autoMessage": {
+      "sent": "Otomatik mesaj gönderildi",
+      "pending": "Mesaj gönderilecek",
+      "failed": "Mesaj gönderilemedi"
+    },
+    "memberInfo": "Üye Bilgileri",
+    "contactInfo": "İletişim Bilgileri",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "birthDate": "Doğum Tarihi",
+    "messageStatus": {
+      "title": "Mesaj Durumu",
+      "pending": "Mesaj Gönderilecek",
+      "sent": "Mesaj Gönderildi",
+      "failed": "Mesaj Gönderilemedi"
+    },
+    "notifications": {
+      "sendSuccess": "Doğum günü mesajı başarıyla gönderildi",
+      "sendError": "Mesaj gönderilirken bir hata oluştu",
+      "autoSendSuccess": "Otomatik mesaj başarıyla gönderildi",
+      "autoSendError": "Otomatik mesaj gönderilirken bir hata oluştu"
+    }
+  },
+  "memberNoteCalendar": {
+    "title": "Üye Notları Takvimi",
+    "description": "Üyeler için oluşturulan takip notlarını görüntüleyin",
+    "followUpNotes": "Takip Notları",
+    "status": {
+      "pending": "Bekliyor",
+      "completed": "Tamamlandı",
+      "cancelled": "İptal"
+    },
+    "noNotes": {
+      "title": "Bu tarihte not bulunmamaktadır",
+      "subtitle": "Başka bir tarih seçerek notları görüntüleyebilirsiniz"
+    },
+    "updateStatus": "Durum Güncelle",
+    "currentStatus": "Mevcut Durum",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "createdBy": "Oluşturan",
+    "createdAt": "Oluşturma Tarihi",
+    "followUpDate": "Takip Tarihi",
+    "noteDetails": "Not Detayları",
+    "memberInfo": "Üye Bilgileri",
+    "selectStatus": "Durum Seçin",
+    "updateSuccess": "Durum başarıyla güncellendi",
+    "updateError": "Durum güncellenirken bir hata oluştu"
   }
 }
