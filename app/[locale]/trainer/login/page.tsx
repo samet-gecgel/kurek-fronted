@@ -7,7 +7,6 @@ import { ArrowLeft, Eye, EyeOff, Lock, Mail, AlertCircle } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
-import { LanguageSelector } from "@/components/language-selector";
 
 export default function TrainerLogin() {
   const t = useTranslations('trainerLogin');
@@ -51,13 +50,7 @@ export default function TrainerLogin() {
             </Link>
           </motion.div>
 
-          {/* Language Selector */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-          >
-            <LanguageSelector />
-          </motion.div>
+
         </div>
 
         {/* Login Form */}

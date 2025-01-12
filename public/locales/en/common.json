@@ -29,7 +29,9 @@
     "events": "Events",
     "friends": "Friends",
     "reservations": "My Reservations",
-    "logout": "Logout"
+    "logout": "Logout",
+    "availability": "Availability",
+    "levels": "Level Assessment"
   },
   "navigation": {
     "home": "Home",
@@ -331,9 +333,11 @@
       }
     },
     "register": {
-      "title": "Register",
+      "title": "Create Account",
       "backToHome": "Back to Home",
       "form": {
+        "accountInfo": "Account Information",
+        "personalInfo": "Personal Information",
         "email": {
           "label": "Email Address",
           "placeholder": "example@email.com"
@@ -346,11 +350,90 @@
           "label": "Confirm Password",
           "placeholder": "••••••••"
         },
-        "submit": "Register"
+        "fullName": {
+          "label": "Full Name",
+          "placeholder": "Enter your full name"
+        },
+        "identityNumber": {
+          "label": "Identity Number",
+          "placeholder": "Enter your identity number"
+        },
+        "phone": {
+          "label": "Phone Number",
+          "placeholder": "Enter your phone number"
+        },
+        "gender": {
+          "label": "Gender",
+          "placeholder": "Select gender",
+          "options": {
+            "male": "Male",
+            "female": "Female"
+          }
+        },
+        "birthDate": {
+          "label": "Birth Date",
+          "placeholder": "Select birth date"
+        },
+        "bloodType": {
+          "label": "Blood Type",
+          "placeholder": "Select blood type"
+        },
+        "emergency": {
+          "title": "Emergency Contact",
+          "fullName": {
+            "label": "Full Name",
+            "placeholder": "Enter contact person's name"
+          },
+          "phone": {
+            "label": "Phone Number",
+            "placeholder": "Enter contact person's phone"
+          },
+          "relation": {
+            "label": "Relation",
+            "placeholder": "Enter relation"
+          }
+        },
+        "consents": {
+          "title": "Permissions",
+          "photoConsent": {
+            "title": "Photo Sharing Permission",
+            "description": "I allow my photos to be shared on social media and the club's website"
+          },
+          "communicationConsent": {
+            "title": "Communication Permission",
+            "description": "I allow receiving notifications about events and announcements"
+          }
+        },
+        "social": {
+          "title": "Social Media",
+          "instagram": "Instagram Username",
+          "instagramPlaceholder": "@username"
+        },
+        "photo": {
+          "title": "Profile Photo",
+          "select": "Select photo",
+          "guide": "Upload a clear photo of your face. Maximum size: 5MB",
+          "errors": {
+            "size": "File size must be less than 5MB",
+            "type": "Please select an image file"
+          }
+        }
+      },
+      "buttons": {
+        "back": "Back",
+        "continue": "Continue",
+        "complete": "Complete Registration"
       },
       "login": {
         "text": "Already have an account?",
         "link": "Sign In"
+      },
+      "errors": {
+        "fillAllFields": "Please fill in all fields",
+        "passwordsDontMatch": "Passwords do not match",
+        "invalidEmail": "Please enter a valid email address",
+        "registrationFailed": "Registration failed",
+        "unexpectedError": "An unexpected error occurred"
       }
     },
     "registerDetails": {
@@ -430,6 +513,7 @@
     "levelManagement": "Level Management",
     "boatManagement": "Boat Management",
     "reservationManagement": "Reservation Management",
+    "reservationSettings": "Reservation Settings",
     "settings": "Settings",
     "membershipPackages": "Membership Packages",
     "assign": "Assign Package",
@@ -500,13 +584,38 @@
     "logout": "Logout"
   },
   "profile": {
-    "title": "Profile Information",
-    "description": "Edit your personal information",
-    "saveButton": "Save Changes",
+    "title": "Profile",
+    "description": "You can update your profile information",
+    "saveButton": "Save",
     "photo": {
       "change": "Change Photo",
-      "sizeError": "File size must be less than 5MB",
-      "typeError": "Please select an image file"
+      "typeError": "Please select a valid image file",
+      "sizeError": "File size must be less than 5MB"
+    },
+    "password": {
+      "title": "Change Password",
+      "description": "Change your password regularly for account security",
+      "change": "Change Password",
+      "current": "Current Password",
+      "new": "New Password",
+      "confirm": "Confirm New Password",
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+    "billing": {
+      "title": "Billing Information",
+      "description": "You can update your billing information",
+      "edit": "Edit",
+      "type": {
+        "label": "Billing Type",
+        "individual": "Individual",
+        "corporate": "Corporate"
+      },
+      "companyName": "Company Name",
+      "taxNumber": "Tax Number",
+      "taxOffice": "Tax Office",
+      "cancel": "Cancel",
+      "save": "Save"
     },
     "basicInfo": {
       "title": "Basic Information",
@@ -517,58 +626,59 @@
     },
     "personalInfo": {
       "title": "Personal Information",
-      "birthDate": "Birth Date",
-      "birthPlace": "Birth Place",
+      "birthDate": "Date of Birth",
+      "birthPlace": "Place of Birth",
+      "gender": "Gender",
+      "genderOptions": {
+        "male": "Male",
+        "female": "Female"
+      },
       "bloodType": {
         "label": "Blood Type",
-        "select": "Select Blood Type"
+        "select": "Select blood type"
       },
       "occupation": "Occupation",
-      "canSwim": {
-        "label": "Can you swim?",
-        "yes": "Yes",
-        "no": "No"
+      "school": "School",
+      "schoolPlaceholder": "School name",
+      "grade": "Grade",
+      "gradePlaceholder": "Grade information",
+      "company": "Company",
+      "companyPlaceholder": "Company name",
+      "department": "Department",
+      "departmentPlaceholder": "Department information",
+      "swimming": {
+        "title": "Swimming Declaration",
+        "canSwim": "I can swim",
+        "canSwimWithClothes": "I can swim with clothes"
       }
     },
     "emergency": {
-      "title": "Emergency Contact",
+      "title": "Emergency Contact Information",
       "name": "Full Name",
       "phone": "Phone",
-      "relation": "Relation"
+      "relation": "Relationship"
     },
-    "photoConsent": {
-      "label": "Would you like us to share your photos?",
-      "instagram": "@username"
-    },
-    "password": {
-      "title": "Change Password",
-      "description": "Change your password regularly to ensure your account security.",
-      "change": "Change Password",
-      "current": "Current Password",
-      "new": "New Password",
-      "confirm": "Confirm Password",
-      "cancel": "Cancel",
-      "save": "Save"
-    },
-    "billing": {
-      "title": "Billing Information",
-      "edit": "Edit Billing Information",
-      "type": {
-        "label": "Billing Type",
-        "individual": "Individual",
-        "corporate": "Corporate"
+    "consents": {
+      "title": "Permissions and Consents",
+      "instagram": "Instagram Username",
+      "photo": {
+        "title": "Photo Usage Permission",
+        "description": "I allow the club to use my photos"
       },
-      "fullName": "Full Name",
-      "phone": "Phone",
-      "city": "City",
-      "district": "District",
-      "address": "Address",
-      "addressTitle": "Address Title",
-      "companyName": "Company Name",
-      "taxNumber": "Tax Number",
-      "taxOffice": "Tax Office",
-      "cancel": "Cancel",
-      "save": "Save"
+      "communication": {
+        "title": "Communication Permission",
+        "description": "I want to receive SMS and email notifications"
+      }
+    },
+    "occupation": {
+      "student": "Student",
+      "teacher": "Teacher",
+      "engineer": "Engineer",
+      "doctor": "Doctor",
+      "lawyer": "Lawyer",
+      "accountant": "Accountant",
+      "architect": "Architect",
+      "other": "Other"
     }
   },
   "userEvents": {
@@ -680,34 +790,6 @@
       "link": "Contact administrator"
     }
   },
-  "trainerRegister": {
-    "title": "Trainer Registration",
-    "subtitle": "Register to join our trainer team",
-    "backToHome": "Back to Home",
-    "form": {
-      "email": {
-        "label": "Email Address",
-        "placeholder": "example@email.com"
-      },
-      "password": {
-        "label": "Password",
-        "placeholder": "••••••••"
-      },
-      "confirmPassword": {
-        "label": "Confirm Password",
-        "placeholder": "••••••••"
-      },
-      "submit": "Continue"
-    },
-    "errors": {
-      "passwordMatch": "Passwords do not match!",
-      "passwordLength": "Password must be at least 6 characters!"
-    },
-    "login": {
-      "text": "Already have an account?",
-      "link": "Sign In"
-    }
-  },
   "trainerRegisterDetails": {
     "title": "Trainer Information",
     "subtitle": "Please fill in your trainer information completely",
@@ -742,7 +824,10 @@
         "file": "Certificate File",
         "selectFile": "Select File",
         "noFileSelected": "No file selected",
-        "selected": "Selected file:"
+        "selected": "Selected file:",
+        "remove": "Remove",
+        "namePlaceholder": "Enter certificate name",
+        "institutionPlaceholder": "Enter institution name"
       },
       "consent": {
         "privacy": "I have read and accept the privacy agreement",
@@ -752,36 +837,49 @@
     }
   },
   "trainerCalendar": {
-    "title": "Lesson Calendar",
+    "title": "Calendar",
     "subtitle": "Track your daily lesson schedule and take attendance",
+    "loading": "Loading...",
     "attendance": {
       "title": "Attendance",
       "take": "Take Attendance",
-      "present": "Present",
-      "absent": "Absent",
       "cancel": "Cancel",
       "save": "Save",
       "saved": "Attendance saved",
+      "boatClass": {
+        "title": "Boat Classes",
+        "1x_bot_takip": "1X Boat Follow",
+        "2x_bot_takip": "2X Boat Follow",
+        "2x_ozel_ders": "2X Private Lesson",
+        "4x_dumen": "4X Coxed"
+      },
       "actions": {
         "present": "Present",
         "absent": "Absent",
-        "presentIcon": "✓",
-        "absentIcon": "✕"
+        "excused": "Excused"
       }
     },
     "status": {
       "title": "Status Indicators",
       "present": "Attended class",
       "absent": "Did not attend",
-      "pending": "Pending"
+      "excused": "Excused",
+      "pending": "Pending",
+      "scheduled": "Scheduled",
+      "cancelled": "Cancelled",
+      "completed": "Completed",
+      "cancelledBy": "Cancellation Date",
+      "weatherCancellation": "Cancelled due to weather conditions",
+      "equipmentCancellation": "Cancelled due to equipment malfunction",
+      "otherCancellation": "Cancelled due to other reasons",
+      "dateFormat": {
+        "separator": " • ",
+        "date": "MM/dd/yyyy"
+      }
     },
     "noLessons": {
       "title": "No lessons scheduled for this date.",
       "subtitle": "You can view lessons by selecting another date."
-    },
-    "loading": "Loading...",
-    "dateFormat": {
-      "fullDate": "MMMM d, yyyy"
     }
   },
   "trainerSidebar": {
@@ -789,7 +887,8 @@
     "menu": {
       "calendar": "Calendar",
       "availability": "Availability",
-      "profile": "Profile"
+      "profile": "Profile",
+      "summary": "Lesson Summary"
     },
     "logout": "Logout"
   },
@@ -819,11 +918,21 @@
     }
   },
   "trainerAvailability": {
-    "title": "Trainer Availability Status",
-    "subtitle": "View available trainers for selected date and time",
+    "title": "Availability Status",
+    "subtitle": "Select the hours you are available for training",
+    "save": "Save",
+    "saved": "Availability status has been saved",
+    "timeSlot": {
+      "pastDate": "Past date cannot be selected",
+      "available": "I am available at this time",
+      "notAvailable": "I am not available at this time"
+    },
     "calendar": {
       "title": "Select Date",
       "selectedDate": "Selected Date",
+      "previousWeek": "Previous Week",
+      "nextWeek": "Next Week",
+      "dateRange": "You can set your availability for the next 30 days from today",
       "months": {
         "january": "January",
         "february": "February",
@@ -839,23 +948,14 @@
         "december": "December"
       },
       "weekDays": {
-        "monday": "Mo",
-        "tuesday": "Tu",
-        "wednesday": "We",
-        "thursday": "Th",
-        "friday": "Fr",
-        "saturday": "Sa",
-        "sunday": "Su"
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
       }
-    },
-    "timeSelection": {
-      "title": "Select Time"
-    },
-    "trainers": {
-      "title": "All Trainers",
-      "titleWithTime": "{time} - Available Trainers",
-      "availableHours": "Available Hours",
-      "noTrainers": "No trainers available for this date"
     }
   },
   "trainerProfile": {
@@ -1274,28 +1374,24 @@
     "trainerDetail": "Click on the relevant line to see trainer details"
   },
   "trainerSummary": {
-    "monthlyTitle": "Monthly Training Summary",
-    "detailsTitle": "Detailed Training Records",
-    "search": "Search trainer...",
-    "selectMonth": "Select date range",
-    "filter": "Filter",
+    "title": "Lesson Summary",
+    "subtitle": "Detailed summary of your lessons",
+    "search": "Search member...",
+    "selectDateRange": "Select date range",
     "exportExcel": "Export to Excel",
-    "trainer": "Trainer",
-    "total": "Total",
-    "months": {
-      "1": "January",
-      "2": "February",
-      "3": "March",
-      "4": "April",
-      "5": "May",
-      "6": "June",
-      "7": "July",
-      "8": "August",
-      "9": "September",
-      "10": "October",
-      "11": "November",
-      "12": "December"
-    }
+    "date": "Date",
+    "time": "Time",
+    "boatClass": "Boat Class",
+    "students": "Students",
+    "status": {
+      "title": "Status",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "scheduled": "Scheduled"
+    },
+    "totalLessons": "Total Lessons",
+    "lessonsByBoatClass": "Lessons by Boat Class",
+    "filter": "Filter"
   },
   "trainingCalendar": {
     "title": "Training Calendar",
@@ -1363,81 +1459,6 @@
         "add": "Add",
         "cancel": "Cancel",
         "save": "Save Changes"
-      }
-    },
-    "validation": {
-      "nameRequired": "Package name is required",
-      "durationRequired": "Duration is required",
-      "durationTypeRequired": "Duration type is required",
-      "creditsRequired": "Usage credits is required",
-      "priceRequired": "Price is required"
-    }
-  },
-  "packageList": {
-    "title": "Membership Packages",
-    "subtitle": "View and manage all membership packages",
-    "addNew": "New Package",
-    "search": "Search package...",
-    "table": {
-      "name": "Package Name",
-      "duration": "Duration",
-      "credits": "Credits",
-      "price": "Price",
-      "status": "Status",
-      "actions": "Actions"
-    },
-    "status": {
-      "active": "Active",
-      "inactive": "Inactive"
-    },
-    "actions": {
-      "edit": "Edit",
-      "delete": "Delete"
-    },
-    "deleteConfirm": {
-      "title": "Delete Package",
-      "message": "Are you sure you want to delete this package?",
-      "cancel": "Cancel",
-      "confirm": "Delete"
-    },
-    "durationType": {
-      "day": "Day",
-      "month": "Month"
-    },
-    "credits": "Credit",
-    "clickInfo": "Click on the relevant row to see package details"
-  },
-  "packageAdd": {
-    "title": "New Package",
-    "subtitle": "Create a new membership package",
-    "form": {
-      "name": "Package Name",
-      "namePlaceholder": "Ex: Monthly Package",
-      "location": "Location",
-      "locationPlaceholder": "Enter location",
-      "duration": "Duration",
-      "durationType": {
-        "day": "Day",
-        "month": "Month"
-      },
-      "credits": "Usage Credits",
-      "price": "Price ($)",
-      "level": "Level",
-      "levelPlaceholder": "Select level",
-      "levels": {
-        "beginner": "Beginner",
-        "intermediate": "Intermediate",
-        "advanced": "Advanced"
-      },
-      "description": "Description",
-      "descriptionPlaceholder": "Write detailed description about package...",
-      "paymentOptions": "Payment Options",
-      "features": "Package Features",
-      "addFeature": "Add new feature",
-      "buttons": {
-        "add": "Add",
-        "cancel": "Cancel",
-        "save": "Add Package"
       }
     },
     "validation": {
@@ -1928,6 +1949,182 @@
       "editError": "An error occurred while updating question",
       "deleteSuccess": "Question deleted successfully",
       "deleteError": "An error occurred while deleting question"
+    }
+  },
+  "userAvailability": {
+    "title": "Availability Status",
+    "subtitle": "Select the hours you are available for training",
+    "save": "Save",
+    "saved": "Availability status has been saved",
+    "timeSlot": {
+      "pastDate": "Past date cannot be selected",
+      "available": "I am available at this time",
+      "notAvailable": "I am not available at this time"
+    },
+    "calendar": {
+      "title": "Select Date",
+      "selectedDate": "Selected Date",
+      "previousWeek": "Previous Week",
+      "nextWeek": "Next Week",
+      "dateRange": "You can set your availability for the next 30 days from today",
+      "months": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December"
+      },
+      "weekDays": {
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+      }
+    }
+  },
+  "userLevels": {
+    "title": "Level Assessment",
+    "subtitle": "Check the options that match your rowing experience",
+    "save": "Save",
+    "saved": "Your level information has been saved"
+  },
+  "trainerRegister": {
+    "backToHome": "Back to Home",
+    "backToStep1": "Go Back",
+    "step1": {
+      "title": "Create Trainer Account",
+      "subtitle": "Enter your account information",
+      "email": {
+        "label": "Email Address",
+        "placeholder": "example@email.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "••••••••"
+      },
+      "confirmPassword": {
+        "label": "Confirm Password",
+        "placeholder": "••••••••"
+      },
+      "continue": "Continue"
+    },
+    "step2": {
+      "title": "Profile Information",
+      "subtitle": "Enter your trainer information",
+      "profileImage": "Select Photo",
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name"
+      },
+      "phone": {
+        "label": "Phone",
+        "placeholder": "Enter your phone number"
+      },
+      "birthDate": {
+        "label": "Birth Date",
+        "placeholder": "Select your birth date"
+      },
+      "expertise": {
+        "label": "Areas of Expertise",
+        "placeholder": "Add new expertise",
+        "add": "Add"
+      },
+      "experience": {
+        "label": "Experience",
+        "placeholder": "Describe your experience in detail..."
+      },
+      "personalMessage": {
+        "label": "Personal Message",
+        "placeholder": "Briefly introduce yourself..."
+      },
+      "certificates": {
+        "title": "Certificates",
+        "addNew": "Add New Certificate",
+        "name": "Certificate Name",
+        "institution": "Institution",
+        "date": "Date",
+        "file": "File",
+        "selectFile": "Select File",
+        "noFile": "No file selected",
+        "selected": "Selected file:",
+        "remove": "Remove",
+        "namePlaceholder": "Enter certificate name",
+        "institutionPlaceholder": "Enter institution name"
+      },
+      "consent": {
+        "privacy": "I have read and accept the privacy agreement",
+        "dataProcessing": "I have read and accept the explicit consent text"
+      },
+      "submit": "Complete Registration"
+    },
+    "errors": {
+      "fillAllFields": "Please fill in all fields",
+      "passwordMatch": "Passwords do not match",
+      "passwordLength": "Password must be at least 6 characters",
+      "invalidEmail": "Please enter a valid email address",
+      "unexpectedError": "An unexpected error occurred",
+      "consentRequired": "Please accept privacy and data processing agreements"
+    },
+    "login": {
+      "text": "Already have an account?",
+      "link": "Sign In"
+    }
+  },
+  "packageAdd": {
+    "title": "Add New Package",
+    "subtitle": "Create a new package and configure its settings",
+    "form": {
+      "name": "Package Name",
+      "namePlaceholder": "Enter package name",
+      "location": "Location",
+      "locationPlaceholder": "Enter location information",
+      "duration": "Duration",
+      "durationType": {
+        "day": "Day",
+        "month": "Month"
+      },
+      "credits": "Credits",
+      "price": "Price",
+      "level": "Level",
+      "levelPlaceholder": "Select level",
+      "levels": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      },
+      "description": "Description",
+      "descriptionPlaceholder": "Enter package description",
+      "paymentOptions": "Payment Options",
+      "features": "Features",
+      "addFeature": "Add new feature",
+      "ibanDetails": "IBAN Details",
+      "recipientName": "Recipient Name",
+      "recipientNamePlaceholder": "Enter recipient's full name",
+      "iban": "IBAN Number",
+      "buttons": {
+        "add": "Add",
+        "save": "Save",
+        "cancel": "Cancel"
+      }
+    },
+    "validation": {
+      "nameRequired": "Package name is required",
+      "durationRequired": "Duration is required",
+      "durationTypeRequired": "Duration type is required",
+      "creditsRequired": "Credits are required",
+      "priceRequired": "Price is required",
+      "ibanRequired": "IBAN number is required",
+      "recipientNameRequired": "Recipient name is required"
     }
   }
 }

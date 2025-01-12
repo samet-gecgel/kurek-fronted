@@ -28,7 +28,6 @@ const BOATS = [
     branch: "KÜREK",
     class: "1X",
     brand: "Filippi",
-    isActive: true
   },
   {
     id: "2",
@@ -39,7 +38,6 @@ const BOATS = [
     branch: "KANO",
     class: "2X",
     brand: "Nelo",
-    isActive: false
   }
 ];
 
@@ -112,7 +110,6 @@ export default function BoatsList() {
                     <TableHead className="text-zinc-400 hover:text-white transition-colors font-medium whitespace-nowrap min-w-[200px]">{t('table.serialNumber')}</TableHead>
                     <TableHead className="text-zinc-400 hover:text-white transition-colors font-medium whitespace-nowrap min-w-[150px]">{t('table.year')}</TableHead>
                     <TableHead className="text-zinc-400 hover:text-white transition-colors font-medium whitespace-nowrap min-w-[150px]">{t('table.capacity')}</TableHead>
-                    <TableHead className="text-zinc-400 hover:text-white transition-colors font-medium whitespace-nowrap min-w-[150px]">{t('table.status')}</TableHead>
                     <TableHead className="text-zinc-400 hover:text-white transition-colors font-medium text-right whitespace-nowrap min-w-[120px]">{t('table.actions')}</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -143,19 +140,6 @@ export default function BoatsList() {
                       <TableCell>
                         <div className="text-white group-hover:text-white/90 transition-colors whitespace-nowrap">
                           {boat.capacity}
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className={`px-2 py-1 rounded-full text-sm font-medium inline-flex items-center justify-center
-                          ${boat.isActive 
-                            ? 'bg-green-500/10 text-green-500' 
-                            : 'bg-red-500/10 text-red-500'
-                          }`}
-                        >
-                          <div className={`w-1.5 h-1.5 rounded-full mr-2
-                            ${boat.isActive ? 'bg-green-500' : 'bg-red-500'}`}
-                          />
-                          {boat.isActive ? t('status.active') : t('status.inactive')}
                         </div>
                       </TableCell>
                       <TableCell className="text-right">

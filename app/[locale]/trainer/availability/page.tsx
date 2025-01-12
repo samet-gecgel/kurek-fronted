@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 import { TrainerSidebar } from "@/components/layout/trainer-sidebar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { addDays, format } from "date-fns";
+import { addDays, format, isBefore, startOfToday, isAfter } from "date-fns";
 import { tr, enUS } from "date-fns/locale";
-import { Check } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 
@@ -36,7 +36,8 @@ export default function AvailabilityPage() {
   const locale = params.locale as string;
   const dateLocale = locale === 'tr' ? tr : enUS;
 
-  const currentWeekStart = new Date();
+  const today = startOfToday();
+  const [currentWeekStart, setCurrentWeekStart] = useState(today);
   
   const [weekSchedule, setWeekSchedule] = useState<DaySchedule[]>(() => 
     Array.from({ length: 7 }, (_, i) => ({
@@ -48,12 +49,36 @@ export default function AvailabilityPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const isDateSelectable = (date: Date) => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const endDate = new Date(today);
-    endDate.setDate(today.getDate() + 7);
-    
-    return date >= today && date <= endDate;
+    const today = startOfToday();
+    const maxDate = addDays(today, 30);
+    return !isBefore(date, today) && !isAfter(date, maxDate);
+  };
+
+  const handlePreviousWeek = () => {
+    const newStartDate = addDays(currentWeekStart, -7);
+    if (!isBefore(newStartDate, today)) {
+      setCurrentWeekStart(newStartDate);
+      setWeekSchedule(
+        Array.from({ length: 7 }, (_, i) => ({
+          date: addDays(newStartDate, i),
+          timeSlots: TIME_SLOTS,
+        }))
+      );
+    }
+  };
+
+  const handleNextWeek = () => {
+    const newStartDate = addDays(currentWeekStart, 7);
+    const maxDate = addDays(today, 30);
+    if (!isAfter(newStartDate, maxDate)) {
+      setCurrentWeekStart(newStartDate);
+      setWeekSchedule(
+        Array.from({ length: 7 }, (_, i) => ({
+          date: addDays(newStartDate, i),
+          timeSlots: TIME_SLOTS,
+        }))
+      );
+    }
   };
 
   const handleTimeSlotToggle = (dayIndex: number, slotId: string) => {
@@ -108,12 +133,30 @@ export default function AvailabilityPage() {
           <Card className="bg-zinc-900/50 border-zinc-800">
             <div className="p-4 md:p-6 overflow-x-auto">
               <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center">
+                <div className="flex items-center gap-4">
+                  <Button
+                    onClick={handlePreviousWeek}
+                    variant="outline"
+                    size="icon"
+                    className="bg-zinc-800 border-zinc-700"
+                    disabled={isBefore(addDays(currentWeekStart, -7), today)}
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </Button>
                   <h2 className="text-base md:text-xl font-semibold text-white">
                     {format(currentWeekStart, locale === 'tr' ? 'd MMMM' : 'MMMM d', { locale: dateLocale })}
                     {" "}-{" "}
                     {format(addDays(currentWeekStart, 6), locale === 'tr' ? 'd MMMM yyyy' : 'MMMM d, yyyy', { locale: dateLocale })}
                   </h2>
+                  <Button
+                    onClick={handleNextWeek}
+                    variant="outline"
+                    size="icon"
+                    className="bg-zinc-800 border-zinc-700"
+                    disabled={isAfter(addDays(currentWeekStart, 7), addDays(today, 30))}
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
                 </div>
                 <Button
                   onClick={handleSave}
@@ -122,6 +165,10 @@ export default function AvailabilityPage() {
                   {t('save')}
                 </Button>
               </div>
+
+              <p className="text-sm text-zinc-400 mb-6">
+                {t('calendar.dateRange')}
+              </p>
 
               <div className="grid grid-cols-8 gap-2 md:gap-4 min-w-[650px]">
                 {/* Saat sütunu */}

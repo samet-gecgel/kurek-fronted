@@ -10,51 +10,135 @@ import { Label } from "@/components/ui/label";
 import { PhoneInput } from "@/components/ui/phone-input";
 import DatePicker from "@/components/ui/datePicker";
 import {
-  User,
-  Mail,
-  Phone,
-  Calendar,
-  Upload,
-  Save,
-  X,
-  Instagram,
-  CreditCard,
+  User, Mail, Phone, Calendar, Upload, Save,
+  X, Instagram, CreditCard
 } from "lucide-react";
 import Image from "next/image";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import { 
+  AddUserRequest, Gender, BloodType, MembershipType, 
+  OccupationType, InvoiceType
+} from "@/types/admin/add-user";
 
 export default function AddUser() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
-  const [membershipType, setMembershipType] = useState<string>('');
-  const [phone, setPhone] = useState('');
-  const [emergencyPhone, setEmergencyPhone] = useState('');
-  const [birthDate, setBirthDate] = useState<Date | null>(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [occupation, setOccupation] = useState<{type: string; other?: string}>({ type: '' });
-  const [invoicePhone, setInvoicePhone] = useState('');
-  const [invoiceType, setInvoiceType] = useState<string>('');
+  const [formData, setFormData] = useState<AddUserRequest>({
+    profileImage: undefined,
+    fullName: "",
+    identityNumber: "",
+    email: "",
+    phone: "",
+    gender: Gender.MALE,
+    birthDate: new Date(),
+    birthPlace: "",
+    bloodType: BloodType.A_POSITIVE,
+    membershipType: MembershipType.INDIVIDUAL,
+    occupation: {
+      type: OccupationType.STUDENT,
+    },
+    swimmingDeclaration: {
+      canSwim: false,
+      canSwimWithClothes: false
+    },
+    emergencyContact: {
+      fullName: "",
+      phone: "",
+      relation: ""
+    },
+    invoiceDetails: {
+      type: InvoiceType.INDIVIDUAL,
+      fullName: "",
+      phone: "",
+      address: {
+        province: "",
+        district: "",
+        fullAddress: ""
+      }
+    },
+    photoConsent: false,
+    communicationConsent: false,
+    instagramHandle: ""
+  });
 
   const occupationOptions = [
-    { value: 'student', label: 'Öğrenci' },
-    { value: 'teacher', label: 'Öğretmen' },
-    { value: 'engineer', label: 'Mühendis' },
-    { value: 'doctor', label: 'Doktor' },
-    { value: 'lawyer', label: 'Avukat' },
-    { value: 'accountant', label: 'Muhasebeci' },
-    { value: 'architect', label: 'Mimar' },
-    { value: 'other', label: 'Diğer' }
+    { value: OccupationType.STUDENT, label: 'Öğrenci' },
+    { value: OccupationType.TEACHER, label: 'Öğretmen' },
+    { value: OccupationType.ENGINEER, label: 'Mühendis' },
+    { value: OccupationType.DOCTOR, label: 'Doktor' },
+    { value: OccupationType.LAWYER, label: 'Avukat' },
+    { value: OccupationType.ACCOUNTANT, label: 'Muhasebeci' },
+    { value: OccupationType.ARCHITECT, label: 'Mimar' },
+    { value: OccupationType.OTHER, label: 'Diğer' }
   ];
 
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      // Dosya tipi kontrolü
+      if (!file.type.startsWith('image/')) {
+        alert('Lütfen geçerli bir resim dosyası seçin');
+        return;
+      }
+
+      // Boyut kontrolü (5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Dosya boyutu 5MB\'dan küçük olmalıdır');
+        return;
+      }
+
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPhotoPreview(reader.result as string);
+        setFormData(prev => ({ ...prev, profileImage: reader.result as string }));
       };
       reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Form validasyonu
+    if (!formData.fullName || !formData.identityNumber || !formData.email || !formData.phone) {
+      alert('Lütfen zorunlu alanları doldurun');
+      return;
+    }
+
+    // TC Kimlik validasyonu
+    if (formData.identityNumber.length !== 11) {
+      alert('TC Kimlik numarası 11 haneli olmalıdır');
+      return;
+    }
+
+    // Kurumsal fatura için validasyon
+    if (formData.invoiceDetails.type === InvoiceType.CORPORATE) {
+      if (!formData.invoiceDetails.corporateDetails?.taxNumber || 
+          !formData.invoiceDetails.corporateDetails?.taxOffice) {
+        alert('Kurumsal fatura için vergi bilgilerini doldurun');
+        return;
+      }
+    }
+
+    try {
+      const response = await fetch('/api/admin/users/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        alert('Üye başarıyla eklendi');
+        // Başarılı işlem sonrası yönlendirme yapılabilir
+      } else {
+        alert(`Hata: ${data.message}`);
+      }
+    } catch (error) {
+      console.error('İşlem hatası:', error);
+      alert('Bir hata oluştu');
     }
   };
 
@@ -90,17 +174,17 @@ export default function AddUser() {
                   <Label className="text-white">Fotoğraf</Label>
                   <div className="mt-4">
                     <div className="relative w-40 h-40 mx-auto">
-                      {photoPreview ? (
+                      {formData.profileImage ? (
                         <div className="relative w-full h-full group">
                           <Image
-                            src={photoPreview}
+                            src={formData.profileImage}
                             alt="Photo Preview"
                             fill
                             className="rounded-2xl object-cover border-2 border-zinc-800"
                           />
                           <div className="absolute inset-0 bg-black/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <button
-                              onClick={() => setPhotoPreview(null)}
+                              onClick={() => setFormData(prev => ({ ...prev, profileImage: undefined }))}
                               className="bg-red-500/80 hover:bg-red-500 p-2 rounded-full text-white"
                             >
                               <X size={20} />
@@ -137,6 +221,8 @@ export default function AddUser() {
                     <Input
                       placeholder="Ad ve soyadı girin"
                       className="pl-10 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                      value={formData.fullName}
+                      onChange={(e) => setFormData(prev => ({ ...prev, fullName: e.target.value }))}
                     />
                   </div>
                 </div>
@@ -147,9 +233,12 @@ export default function AddUser() {
                   <div className="relative mt-2">
                     <CreditCard className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
                     <Input
+                      type="number"
                       placeholder="TC Kimlik numarası"
                       className="pl-10 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
                       maxLength={11}
+                      value={formData.identityNumber}
+                      onChange={(e) => setFormData(prev => ({ ...prev, identityNumber: e.target.value }))}
                     />
                   </div>
                 </div>
@@ -163,6 +252,8 @@ export default function AddUser() {
                       type="email"
                       placeholder="E-posta adresi"
                       className="pl-10 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                      value={formData.email}
+                      onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                     />
                   </div>
                 </div>
@@ -175,8 +266,8 @@ export default function AddUser() {
                     <PhoneInput
                       placeholder="Telefon numarası"
                       className="pl-10 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
-                      value={phone}
-                      onChange={(value) => setPhone(value)}
+                      value={formData.phone}
+                      onChange={(value) => setFormData(prev => ({ ...prev, phone: value }))}
                     />
                   </div>
                 </div>
@@ -184,19 +275,24 @@ export default function AddUser() {
                 {/* Cinsiyet */}
                 <div>
                   <Label className="text-white">Cinsiyet</Label>
-                  <Select>
+                  <Select
+                    value={formData.gender}
+                    onValueChange={(value: Gender) => 
+                      setFormData(prev => ({ ...prev, gender: value }))
+                    }
+                  >
                     <SelectTrigger className="bg-zinc-800/50 border-zinc-700 text-white mt-2">
                       <SelectValue placeholder="Cinsiyet seçin" />
                     </SelectTrigger>
                     <SelectContent className="bg-zinc-800 border-zinc-700">
                       <SelectItem 
-                        value="male" 
+                        value={Gender.MALE}
                         className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
                       >
                         Erkek
                       </SelectItem>
                       <SelectItem 
-                        value="female"
+                        value={Gender.FEMALE}
                         className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
                       >
                         Kadın
@@ -213,7 +309,7 @@ export default function AddUser() {
                     <Input
                       readOnly
                       placeholder="Doğum tarihi seçin"
-                      value={birthDate ? new Date(birthDate).toLocaleDateString('tr-TR') : ''}
+                      value={formData.birthDate ? new Date(formData.birthDate).toLocaleDateString('tr-TR') : ''}
                       className="pl-10 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400 cursor-pointer"
                       onClick={() => setShowDatePicker(true)}
                     />
@@ -223,7 +319,7 @@ export default function AddUser() {
                         <div className="absolute z-50 mt-2">
                           <DatePicker
                             onDateSelect={(date) => {
-                              setBirthDate(date);
+                              setFormData(prev => ({ ...prev, birthDate: date }));
                               setShowDatePicker(false);
                             }}
                           />
@@ -239,65 +335,33 @@ export default function AddUser() {
                   <Input
                     placeholder="Doğum yeri"
                     className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                    value={formData.birthPlace}
+                    onChange={(e) => setFormData(prev => ({ ...prev, birthPlace: e.target.value }))}
                   />
                 </div>
 
                 {/* Kan Grubu */}
                 <div>
                   <Label className="text-white">Kan Grubu</Label>
-                  <Select>
+                  <Select
+                    value={formData.bloodType}
+                    onValueChange={(value: BloodType) => 
+                      setFormData(prev => ({ ...prev, bloodType: value }))
+                    }
+                  >
                     <SelectTrigger className="bg-zinc-800/50 border-zinc-700 text-white mt-2">
                       <SelectValue placeholder="Kan grubu seçin" />
                     </SelectTrigger>
                     <SelectContent className="bg-zinc-800 border-zinc-700">
-                      <SelectItem 
-                        value="A+" 
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        A Rh+
-                      </SelectItem>
-                      <SelectItem 
-                        value="A-"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        A Rh-
-                      </SelectItem>
-                      <SelectItem 
-                        value="B+"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        B Rh+
-                      </SelectItem>
-                      <SelectItem 
-                        value="B-"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        B Rh-
-                      </SelectItem>
-                      <SelectItem 
-                        value="AB+"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        AB Rh+
-                      </SelectItem>
-                      <SelectItem 
-                        value="AB-"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        AB Rh-
-                      </SelectItem>
-                      <SelectItem 
-                        value="0+"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        0 Rh+
-                      </SelectItem>
-                      <SelectItem 
-                        value="0-"
-                        className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
-                      >
-                        0 Rh-
-                      </SelectItem>
+                      {Object.values(BloodType).map((type) => (
+                        <SelectItem 
+                          key={type}
+                          value={type}
+                          className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
+                        >
+                          {type}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
@@ -305,31 +369,37 @@ export default function AddUser() {
                 {/* Üyelik Tipi */}
                 <div>
                   <Label className="text-white">Üyelik Tipi</Label>
-                  <Select value={membershipType} onValueChange={setMembershipType}>
+                  <Select
+                    value={formData.membershipType}
+                    onValueChange={(value: MembershipType) => setFormData(prev => ({ 
+                      ...prev, 
+                      membershipType: value 
+                    }))}
+                  >
                     <SelectTrigger className="bg-zinc-800/50 border-zinc-700 text-white mt-2">
                       <SelectValue placeholder="Üyelik tipi seçin" />
                     </SelectTrigger>
                     <SelectContent className="bg-zinc-800 border-zinc-700">
                       <SelectItem 
-                        value="individual"
+                        value={MembershipType.INDIVIDUAL}
                         className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
                       >
                         Bireysel Üye
                       </SelectItem>
                       <SelectItem 
-                        value="highschool"
+                        value={MembershipType.HIGH_SCHOOL_STUDENT}
                         className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
                       >
                         Lise Öğrencisi
                       </SelectItem>
                       <SelectItem 
-                        value="university"
+                        value={MembershipType.UNIVERSITY_STUDENT}
                         className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
                       >
                         Üniversite Öğrencisi
                       </SelectItem>
                       <SelectItem 
-                        value="corporate"
+                        value={MembershipType.CORPORATE}
                         className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
                       >
                         Kurumsal Üye
@@ -342,7 +412,14 @@ export default function AddUser() {
                 <div>
                   <Label className="text-white">Meslek</Label>
                   <Select 
-                    onValueChange={(value) => setOccupation({ type: value })}
+                    value={formData.occupation.type}
+                    onValueChange={(value: OccupationType) => setFormData(prev => ({ 
+                      ...prev, 
+                      occupation: { 
+                        ...prev.occupation, 
+                        type: value 
+                      } 
+                    }))}
                   >
                     <SelectTrigger className="mt-2 bg-zinc-800/50 border-zinc-700 text-white">
                       <SelectValue placeholder="Meslek seçin" />
@@ -362,12 +439,18 @@ export default function AddUser() {
                 </div>
 
                 {/* Diğer Meslek Input */}
-                {occupation.type === 'other' && (
+                {formData.occupation.type === OccupationType.OTHER && (
                   <div>
                     <Label className="text-white">Mesleğinizi Belirtin</Label>
                     <Input
-                      value={occupation.other || ''}
-                      onChange={(e) => setOccupation(prev => ({ ...prev, other: e.target.value }))}
+                      value={formData.occupation.otherOccupation || ''}
+                      onChange={(e) => setFormData(prev => ({ 
+                        ...prev, 
+                        occupation: { 
+                          ...prev.occupation, 
+                          otherOccupation: e.target.value 
+                        } 
+                      }))}
                       className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-500"
                       placeholder="Mesleğinizi yazın"
                     />
@@ -375,13 +458,21 @@ export default function AddUser() {
                 )}
 
                 {/* Öğrenci Bilgileri */}
-                {occupation.type === "student" && (
+                {formData.occupation.type === OccupationType.STUDENT && (
                   <div className="col-span-full grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <Label className="text-white">Okuduğu Okul</Label>
                       <Input
                         placeholder="Okul adı"
                         className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                        value={formData.occupation.schoolName || ''}
+                        onChange={(e) => setFormData(prev => ({ 
+                          ...prev, 
+                          occupation: { 
+                            ...prev.occupation, 
+                            schoolName: e.target.value 
+                          } 
+                        }))}
                       />
                     </div>
                     <div>
@@ -389,19 +480,35 @@ export default function AddUser() {
                       <Input
                         placeholder="Sınıf bilgisi"
                         className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                        value={formData.occupation.grade || ''}
+                        onChange={(e) => setFormData(prev => ({ 
+                          ...prev, 
+                          occupation: { 
+                            ...prev.occupation, 
+                            grade: e.target.value 
+                          } 
+                        }))}
                       />
                     </div>
                   </div>
                 )}
 
                 {/* Çalışma Bilgileri */}
-                {occupation.type && occupation.type !== "student" && (
+                {formData.occupation.type && formData.occupation.type !== OccupationType.STUDENT && (
                   <div className="col-span-full grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <Label className="text-white">Çalıştığı Şirket</Label>
                       <Input
                         placeholder="Şirket adı"
                         className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                        value={formData.occupation.companyName || ''}
+                        onChange={(e) => setFormData(prev => ({ 
+                          ...prev, 
+                          occupation: { 
+                            ...prev.occupation, 
+                            companyName: e.target.value 
+                          } 
+                        }))}
                       />
                     </div>
                     <div>
@@ -409,6 +516,14 @@ export default function AddUser() {
                       <Input
                         placeholder="Departman bilgisi"
                         className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                        value={formData.occupation.department || ''}
+                        onChange={(e) => setFormData(prev => ({ 
+                          ...prev, 
+                          occupation: { 
+                            ...prev.occupation, 
+                            department: e.target.value 
+                          } 
+                        }))}
                       />
                     </div>
                   </div>
@@ -421,20 +536,36 @@ export default function AddUser() {
                     <label className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg cursor-pointer hover:bg-zinc-800 transition-colors group">
                       <input 
                         type="checkbox" 
+                        checked={formData.swimmingDeclaration.canSwim}
+                        onChange={(e) => setFormData(prev => ({
+                          ...prev,
+                          swimmingDeclaration: {
+                            ...prev.swimmingDeclaration,
+                            canSwim: e.target.checked
+                          }
+                        }))}
                         className="w-5 h-5 rounded border-zinc-700 text-blue-500 focus:ring-offset-0 focus:ring-0 bg-zinc-700" 
                       />
                       <span className="text-zinc-300 group-hover:text-white transition-colors">
-                        Yüzme bilmiyorum
+                        Yüzme biliyorum
                       </span>
                     </label>
                     
                     <label className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg cursor-pointer hover:bg-zinc-800 transition-colors group">
                       <input 
                         type="checkbox" 
+                        checked={formData.swimmingDeclaration.canSwimWithClothes}
+                        onChange={(e) => setFormData(prev => ({
+                          ...prev,
+                          swimmingDeclaration: {
+                            ...prev.swimmingDeclaration,
+                            canSwimWithClothes: e.target.checked
+                          }
+                        }))}
                         className="w-5 h-5 rounded border-zinc-700 text-blue-500 focus:ring-offset-0 focus:ring-0 bg-zinc-700" 
                       />
                       <span className="text-zinc-300 group-hover:text-white transition-colors">
-                        Suya düşersem kıyafetlerle 50 metre yüzebilirim
+                        Kıyafetlerle yüzebilirim
                       </span>
                     </label>
                   </div>
@@ -449,28 +580,59 @@ export default function AddUser() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <Label className="text-white">Ad Soyad</Label>
-                  <Input
-                    placeholder="Acil durumda aranacak kişinin adı soyadı"
-                    className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
-                  />
+                  <div className="relative mt-2">
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
+                    <Input
+                      placeholder="Acil durumda aranacak kişinin adı soyadı"
+                      className="pl-10 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                      value={formData.emergencyContact.fullName}
+                      onChange={(e) => setFormData(prev => ({
+                        ...prev,
+                        emergencyContact: {
+                          ...prev.emergencyContact,
+                          fullName: e.target.value
+                        }
+                      }))}
+                    />
+                  </div>
                 </div>
 
                 <div>
                   <Label className="text-white">Telefon</Label>
-                  <PhoneInput
-                    placeholder="Acil durumda aranacak telefon"
-                    className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
-                    value={emergencyPhone}
-                    onChange={(value) => setEmergencyPhone(value)}
-                  />
+                  <div className="relative mt-2">
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
+                    <PhoneInput
+                      placeholder="Acil durumda aranacak telefon"
+                      className="pl-10 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                      value={formData.emergencyContact.phone}
+                      onChange={(value) => setFormData(prev => ({
+                        ...prev,
+                        emergencyContact: {
+                          ...prev.emergencyContact,
+                          phone: value
+                        }
+                      }))}
+                    />
+                  </div>
                 </div>
 
                 <div>
                   <Label className="text-white">Yakınlık Derecesi</Label>
-                  <Input
-                    placeholder="Örn: Anne, Baba, Eş, Kardeş"
-                    className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
-                  />
+                  <div className="relative mt-2">
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
+                    <Input
+                      placeholder="Örn: Anne, Baba, Eş, Kardeş"
+                      className="pl-10 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                      value={formData.emergencyContact.relation}
+                      onChange={(e) => setFormData(prev => ({
+                        ...prev,
+                        emergencyContact: {
+                          ...prev.emergencyContact,
+                          relation: e.target.value
+                        }
+                      }))}
+                    />
+                  </div>
                 </div>
               </div>
             </Card>
@@ -483,21 +645,30 @@ export default function AddUser() {
                 <div>
                   <Label className="text-white">Fatura Tipi</Label>
                   <Select
-                    value={invoiceType}
-                    onValueChange={setInvoiceType}
+                    value={formData.invoiceDetails.type}
+                    onValueChange={(value: InvoiceType) => setFormData(prev => ({
+                      ...prev,
+                      invoiceDetails: {
+                        ...prev.invoiceDetails,
+                        type: value,
+                        corporateDetails: value === InvoiceType.CORPORATE 
+                          ? { companyName: '', taxNumber: '', taxOffice: '' }
+                          : undefined
+                      }
+                    }))}
                   >
                     <SelectTrigger className="bg-zinc-800/50 border-zinc-700 text-white mt-2">
                       <SelectValue placeholder="Fatura tipi seçin" />
                     </SelectTrigger>
                     <SelectContent className="bg-zinc-800 border-zinc-700">
                       <SelectItem 
-                        value="individual"
+                        value={InvoiceType.INDIVIDUAL}
                         className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
                       >
                         Bireysel
                       </SelectItem>
                       <SelectItem 
-                        value="corporate"
+                        value={InvoiceType.CORPORATE}
                         className="text-zinc-100 focus:bg-zinc-700 focus:text-white cursor-pointer"
                       >
                         Kurumsal
@@ -507,63 +678,39 @@ export default function AddUser() {
                 </div>
 
                 <div>
-                  <Label className="text-white">Ad Soyad</Label>
+                  <Label className="text-white">Ad Soyad / Firma Adı</Label>
                   <Input
-                    placeholder="Fatura için ad soyad"
+                    placeholder="Fatura için ad soyad veya firma adı"
                     className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                    value={formData.invoiceDetails.fullName}
+                    onChange={(e) => setFormData(prev => ({
+                      ...prev,
+                      invoiceDetails: {
+                        ...prev.invoiceDetails,
+                        fullName: e.target.value
+                      }
+                    }))}
                   />
                 </div>
 
-                <div>
-                  <Label className="text-white">Telefon</Label>
-                  <PhoneInput
-                    placeholder="Fatura için telefon"
-                    className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
-                    value={invoicePhone}
-                    onChange={(value) => setInvoicePhone(value)}
-                  />
-                </div>
-
-                <div>
-                  <Label className="text-white">İl</Label>
-                  <Input
-                    placeholder="İl"
-                    className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
-                  />
-                </div>
-
-                <div>
-                  <Label className="text-white">İlçe</Label>
-                  <Input
-                    placeholder="İlçe"
-                    className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
-                  />
-                </div>
-
-                <div className="col-span-full">
-                  <Label className="text-white">Adres</Label>
-                  <Input
-                    placeholder="Fatura adresi"
-                    className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
-                  />
-                </div>
-
-                {/* Kurumsal Bilgiler */}
-                {invoiceType === "corporate" && (
+                {formData.invoiceDetails.type === InvoiceType.CORPORATE && (
                   <>
-                    <div>
-                      <Label className="text-white">Firma Adı</Label>
-                      <Input
-                        placeholder="Firma adı"
-                        className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
-                      />
-                    </div>
-
                     <div>
                       <Label className="text-white">Vergi Numarası</Label>
                       <Input
                         placeholder="Vergi numarası"
                         className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                        value={formData.invoiceDetails.corporateDetails?.taxNumber}
+                        onChange={(e) => setFormData(prev => ({
+                          ...prev,
+                          invoiceDetails: {
+                            ...prev.invoiceDetails,
+                            corporateDetails: {
+                              ...prev.invoiceDetails.corporateDetails!,
+                              taxNumber: e.target.value
+                            }
+                          }
+                        }))}
                       />
                     </div>
 
@@ -572,10 +719,94 @@ export default function AddUser() {
                       <Input
                         placeholder="Vergi dairesi"
                         className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                        value={formData.invoiceDetails.corporateDetails?.taxOffice}
+                        onChange={(e) => setFormData(prev => ({
+                          ...prev,
+                          invoiceDetails: {
+                            ...prev.invoiceDetails,
+                            corporateDetails: {
+                              ...prev.invoiceDetails.corporateDetails!,
+                              taxOffice: e.target.value
+                            }
+                          }
+                        }))}
                       />
                     </div>
                   </>
                 )}
+
+                <div>
+                  <Label className="text-white">Telefon</Label>
+                  <PhoneInput
+                    placeholder="Fatura için telefon"
+                    className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                    value={formData.invoiceDetails.phone}
+                    onChange={(value) => setFormData(prev => ({
+                      ...prev,
+                      invoiceDetails: {
+                        ...prev.invoiceDetails,
+                        phone: value
+                      }
+                    }))}
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-white">İl</Label>
+                  <Input
+                    placeholder="İl"
+                    className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                    value={formData.invoiceDetails.address.province}
+                    onChange={(e) => setFormData(prev => ({
+                      ...prev,
+                      invoiceDetails: {
+                        ...prev.invoiceDetails,
+                        address: {
+                          ...prev.invoiceDetails.address,
+                          province: e.target.value
+                        }
+                      }
+                    }))}
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-white">İlçe</Label>
+                  <Input
+                    placeholder="İlçe"
+                    className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                    value={formData.invoiceDetails.address.district}
+                    onChange={(e) => setFormData(prev => ({
+                      ...prev,
+                      invoiceDetails: {
+                        ...prev.invoiceDetails,
+                        address: {
+                          ...prev.invoiceDetails.address,
+                          district: e.target.value
+                        }
+                      }
+                    }))}
+                  />
+                </div>
+
+                <div className="col-span-full">
+                  <Label className="text-white">Adres</Label>
+                  <Input
+                    placeholder="Fatura adresi"
+                    className="mt-2 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                    value={formData.invoiceDetails.address.fullAddress}
+                    onChange={(e) => setFormData(prev => ({
+                      ...prev,
+                      invoiceDetails: {
+                        ...prev.invoiceDetails,
+                        address: {
+                          ...prev.invoiceDetails.address,
+                          fullAddress: e.target.value
+                        }
+                      }
+                    }))}
+                  />
+                </div>
               </div>
             </Card>
 
@@ -591,35 +822,61 @@ export default function AddUser() {
                     <Input
                       placeholder="Instagram kullanıcı adı"
                       className="pl-10 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                      value={formData.instagramHandle}
+                      onChange={(e) => setFormData(prev => ({ 
+                        ...prev, 
+                        instagramHandle: e.target.value 
+                      }))}
                     />
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   <label className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg cursor-pointer hover:bg-zinc-800 transition-colors group">
-                    <Switch />
+                    <Switch
+                      checked={formData.photoConsent}
+                      onCheckedChange={(checked) => setFormData(prev => ({
+                        ...prev,
+                        photoConsent: checked
+                      }))}
+                    />
                     <div>
-                      <p className="text-zinc-300 group-hover:text-white transition-colors">Fotoğraf Kullanım İzni</p>
-                      <p className="text-sm text-zinc-500">Fotoğraflarımın kulüp tarafından kullanılmasına izin veriyorum</p>
+                      <p className="text-zinc-300 group-hover:text-white transition-colors">
+                        Fotoğraf Kullanım İzni
+                      </p>
+                      <p className="text-sm text-zinc-500">
+                        Fotoğraflarımın kulüp tarafından kullanılmasına izin veriyorum
+                      </p>
                     </div>
                   </label>
 
                   <label className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg cursor-pointer hover:bg-zinc-800 transition-colors group">
-                    <Switch />
+                    <Switch
+                      checked={formData.communicationConsent}
+                      onCheckedChange={(checked) => setFormData(prev => ({
+                        ...prev,
+                        communicationConsent: checked
+                      }))}
+                    />
                     <div>
-                      <p className="text-zinc-300 group-hover:text-white transition-colors">İletişim İzni</p>
-                      <p className="text-sm text-zinc-500">SMS ve e-posta ile bilgilendirme almak istiyorum</p>
+                      <p className="text-zinc-300 group-hover:text-white transition-colors">
+                        İletişim İzni
+                      </p>
+                      <p className="text-sm text-zinc-500">
+                        SMS ve e-posta ile bilgilendirme almak istiyorum
+                      </p>
                     </div>
                   </label>
                 </div>
               </div>
             </Card>
 
-            {/* Form Submit Buttons */}
+            {/* Form Submit Button */}
             <div className="flex items-center justify-end gap-4 mt-8">
               <Button
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-600"
+                onClick={handleSubmit}
               >
                 <Save className="w-4 h-4 mr-2" />
                 Üyeyi Kaydet

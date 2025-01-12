@@ -128,7 +128,7 @@ const menuItems: MenuItem[] = [
     titleKey: 'reservationManagement',
     icon: Calendar,
     subItems: [
-      { titleKey: 'settings', href: '/admin/controlpanel/reservations/settings', icon: Settings }
+      { titleKey: 'reservationSettings', href: '/admin/controlpanel/reservations/settings', icon: Settings }
     ]
   },
   {

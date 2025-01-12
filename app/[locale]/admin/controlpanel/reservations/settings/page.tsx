@@ -31,7 +31,6 @@ interface Reservation {
   startTime: string;
   endTime: string;
   duration: number;
-  isActive: boolean;
 }
 
 // Örnek veri
@@ -42,7 +41,6 @@ const RESERVATIONS = [
     startTime: "07:00",
     endTime: "08:30",
     duration: 90,
-    isActive: true
   },
   {
     id: "2",
@@ -50,7 +48,6 @@ const RESERVATIONS = [
     startTime: "12:00",
     endTime: "13:30",
     duration: 90,
-    isActive: true
   }
 ];
 
@@ -242,9 +239,6 @@ export default function ReservationsList() {
                     <TableHead className="text-zinc-400 hover:text-white transition-colors font-medium whitespace-nowrap min-w-[100px]">
                       {t('table.duration')}
                     </TableHead>
-                    <TableHead className="text-zinc-400 hover:text-white transition-colors font-medium whitespace-nowrap min-w-[100px]">
-                      {t('table.status')}
-                    </TableHead>
                     <TableHead className="text-zinc-400 hover:text-white transition-colors font-medium whitespace-nowrap min-w-[100px] text-right">
                       {t('actions.title')}
                     </TableHead>
@@ -264,19 +258,6 @@ export default function ReservationsList() {
                       <TableCell className="text-white group-hover:text-white/90 transition-colors whitespace-nowrap">{reservation.startTime}</TableCell>
                       <TableCell className="text-white group-hover:text-white/90 transition-colors whitespace-nowrap">{reservation.endTime}</TableCell>
                       <TableCell className="text-white group-hover:text-white/90 transition-colors whitespace-nowrap">{reservation.duration}</TableCell>
-                      <TableCell className="whitespace-nowrap">
-                        <div className={`px-2 py-1 rounded-full text-sm font-medium inline-flex items-center justify-center
-                          ${reservation.isActive 
-                            ? 'bg-green-500/10 text-green-500' 
-                            : 'bg-red-500/10 text-red-500'
-                          }`}
-                        >
-                          <div className={`w-1.5 h-1.5 rounded-full mr-2
-                            ${reservation.isActive ? 'bg-green-500' : 'bg-red-500'}`}
-                          />
-                          {reservation.isActive ? t('status.active') : t('status.inactive')}
-                        </div>
-                      </TableCell>
                       <TableCell className="text-right whitespace-nowrap">
                         <div className="flex items-center justify-end gap-2">
                           <Button

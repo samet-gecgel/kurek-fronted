@@ -9,7 +9,8 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
-  Menu
+  Menu,
+  FileText
 } from "lucide-react";
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
@@ -29,6 +30,11 @@ export function TrainerSidebar({ isOpen, onToggle }: { isOpen: boolean; onToggle
       title: t('menu.calendar'),
       href: `/${locale}/trainer/calendar`,
       icon: Calendar,
+    },
+    {
+      title: t('menu.summary'),
+      href: `/${locale}/trainer/summary`,
+      icon: FileText,
     },
     {
       title: t('menu.availability'),

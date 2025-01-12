@@ -1,48 +1,32 @@
-export interface TrainerProfile {
+export interface Certificate {
+  name: string;
+  institution: string;
+  date: Date;
+  pdfUrl?: string;
+}
+
+// Trainer-Expertise ilişkisi için basit interface
+export interface TrainerExpertise {
   id: string;
+  trainerId: string;
+  name: string;
+}
+
+
+export interface TrainerProfile {
   fullName: string;
   email: string;
   phone: string;
   birthDate: Date;
-  photoUrl: string | null;
-  bio: string;
+  trainerExpertise: TrainerExpertise[];
   experience: string;
-  specializations: TrainerExpertise[];
-  certificates: TrainerCertificate[];
-  education: TrainerEducation[];
-  achievements: TrainerAchievement[];
+  certificates: Certificate[];
+  photoUrl: string;
+  bio: string;
 }
 
-export interface TrainerCertificate {
-  id: string;
-  name: string;
-  institution: string;
-  date: Date;
-  documentUrl?: string;
-}
-
-export interface TrainerEducation {
-  id: string;
-  school: string;
-  degree: string;
-  field: string;
-  startDate: Date;
-  endDate?: Date;
-  isOngoing: boolean;
-}
-
-export interface TrainerAchievement {
-  id: string;
-  title: string;
-  description: string;
-  date: Date;
-}
-
-export interface TrainerExpertise {
-  id: string;
-  name: string;
-  yearsOfExperience: number;
-  level: 'beginner' | 'intermediate' | 'advanced' | 'expert';
-  certificationDate?: Date;
-  certificationNumber?: string;
+export interface PasswordForm {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
 }

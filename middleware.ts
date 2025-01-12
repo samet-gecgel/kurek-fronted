@@ -15,28 +15,39 @@ const intlMiddleware = createMiddleware({
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Cookie'den dil tercihini al
-  const preferredLocale = request.cookies.get('preferredLocale')?.value;
-  
+  // Sadece NEXT_LOCALE cookie'sini kontrol et
+  const preferredLocale = request.cookies.get('NEXT_LOCALE')?.value;
+
   // Eğer pathname'de locale yoksa veya kök dizinse
   if (!pathname.match(/^\/(?:tr|en)(?:\/|$)/)) {
-    // Cookie varsa ve geçerli bir locale ise onu kullan, yoksa varsayılan locale'i kullan
-    const locale = preferredLocale && locales.includes(preferredLocale) 
-      ? preferredLocale 
-      : defaultLocale;
+    let locale;
+
+    if (preferredLocale && locales.includes(preferredLocale)) {
+      // Cookie varsa onu kullan
+      locale = preferredLocale;
+    } else {
+      // Cookie yoksa tarayıcı dilini kontrol et
+      const acceptLanguage = request.headers.get('accept-language');
+      if (acceptLanguage) {
+        const browserLocales = acceptLanguage.split(',')
+          .map(lang => lang.split(';')[0].split('-')[0]);
+        
+        locale = browserLocales.find(lang => locales.includes(lang));
+      }
+      
+      locale = locale || defaultLocale;
+    }
 
     // Tercih edilen dile yönlendir
     const newUrl = new URL(`/${locale}${pathname}`, request.url);
     return NextResponse.redirect(newUrl);
   }
 
-  // Diğer tüm durumlar için next-intl middleware'ini kullan
   return intlMiddleware(request);
 }
 
 export const config = {
   matcher: [
-    // Skip all internal paths (_next, api)
     '/((?!api|_next|_vercel|.*\\.|images|favicon.ico|404).*)'
   ]
 };

@@ -6,6 +6,7 @@ import { useLocale } from 'next-intl';
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 export function LanguageSelector() {
   const t = useTranslations('language');
@@ -23,6 +24,12 @@ export function LanguageSelector() {
   const currentLanguage = languages.find(lang => lang.code === locale);
 
   const handleLanguageChange = (newLocale: string) => {
+    Cookies.set('NEXT_LOCALE', newLocale, { 
+      expires: 365,
+      path: '/',
+      sameSite: 'lax'
+    });
+
     const newPath = pathname.replace(`/${locale}/`, `/${newLocale}/`);
     router.push(newPath);
     setIsOpen(false);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AdminSidebar } from "@/components/layout/admin-sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,6 +18,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { PackageFormData, PackageFormValidation, PackageDurationType } from "@/types/packages/package";
 import { cn } from "@/lib/utils";
+import { IBANInput } from "@/components/ui/iban-input";
 
 interface PaymentOption {
   id: string;
@@ -34,6 +35,20 @@ const paymentOptions: PaymentOption[] = [
 
 const defaultFeatures = ["7/24 Erişim", "Özel Antrenör", "Grup Dersleri"];
 
+interface LocationOption {
+  id: number;
+  location: string;
+}
+
+// Örnek lokasyon verileri
+const MOCK_LOCATIONS: LocationOption[] = [
+  { id: 1, location: "Beşiktaş Merkez Şube" },
+  { id: 2, location: "Kadıköy Şube" },
+  { id: 3, location: "Bakırköy Marina" },
+  { id: 4, location: "Sarıyer Sahil Tesisi" },
+  { id: 5, location: "Maltepe Sahil Kulübü" }
+];
+
 export default function AddPackage() {
   const t = useTranslations('packageAdd');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -47,7 +62,8 @@ export default function AddPackage() {
     price: 0,
     isActive: true,
     level: "",
-    location: ""
+    locationId: 0,
+    ibanDetails: undefined
   });
 
   const [errors, setErrors] = useState<PackageFormValidation>({});
@@ -57,6 +73,44 @@ export default function AddPackage() {
   const [selectedPaymentOptions, setSelectedPaymentOptions] = useState<string[]>([
     'cash', 'credit_card', 'iban', 'corporate', 'multisport'
   ]);
+
+  const [locations, setLocations] = useState<LocationOption[]>([]);
+  const [isLoadingLocations, setIsLoadingLocations] = useState(false);
+
+  useEffect(() => {
+    const fetchLocations = async () => {
+      setIsLoadingLocations(true);
+      try {
+        // API hazır olana kadar mock veriyi kullan
+        setLocations(MOCK_LOCATIONS);
+        
+        // API hazır olduğunda bu kısmı aktif et
+        // const response = await fetch('/api/club/locations');
+        // const data = await response.json();
+        // setLocations(data);
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+      } finally {
+        setIsLoadingLocations(false);
+      }
+    };
+
+    fetchLocations();
+  }, []);
+
+  useEffect(() => {
+    if (selectedPaymentOptions.includes('iban')) {
+      setFormData(prev => ({
+        ...prev,
+        ibanDetails: prev.ibanDetails || { iban: '', recipientName: '' }
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        ibanDetails: undefined
+      }));
+    }
+  }, [selectedPaymentOptions]);
 
   const handleChange = (field: keyof PackageFormData, value: string | number | boolean) => {
     setFormData(prev => ({
@@ -79,6 +133,15 @@ export default function AddPackage() {
     if (!formData.durationType) newErrors.durationType = t('validation.durationTypeRequired');
     if (!formData.credits) newErrors.credits = t('validation.creditsRequired');
     if (!formData.price) newErrors.price = t('validation.priceRequired');
+
+    if (selectedPaymentOptions.includes('iban')) {
+      if (!formData.ibanDetails?.iban) {
+        newErrors.iban = t('validation.ibanRequired');
+      }
+      if (!formData.ibanDetails?.recipientName) {
+        newErrors.recipientName = t('validation.recipientNameRequired');
+      }
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -174,17 +237,28 @@ export default function AddPackage() {
 
                   <div className="space-y-2">
                     <Label className="text-zinc-400">{t('form.location')}</Label>
-                    <Input 
-                      className={cn(
-                        "bg-zinc-800/50 border-zinc-700 text-white",
-                        errors.location && "border-red-500"
-                      )}
-                      placeholder={t('form.locationPlaceholder')}
-                      value={formData.location}
-                      onChange={(e) => handleChange('location', e.target.value)}
-                    />
-                    {errors.location && (
-                      <span className="text-sm text-red-500">{errors.location}</span>
+                    <Select
+                      value={formData.locationId?.toString()}
+                      onValueChange={(value) => handleChange('locationId', parseInt(value))}
+                      disabled={isLoadingLocations}
+                    >
+                      <SelectTrigger className="bg-zinc-800/50 border-zinc-700 text-white">
+                        <SelectValue placeholder={t('form.locationPlaceholder')} />
+                      </SelectTrigger>
+                      <SelectContent className="bg-zinc-800 border-zinc-700">
+                        {locations.map((location) => (
+                          <SelectItem 
+                            key={location.id} 
+                            value={location.id.toString()}
+                            className="text-zinc-100 focus:bg-zinc-700 focus:text-white"
+                          >
+                            {location.location}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {errors.locationId && (
+                      <span className="text-sm text-red-500">{errors.locationId}</span>
                     )}
                   </div>
 
@@ -311,6 +385,48 @@ export default function AddPackage() {
                     ))}
                   </div>
                 </div>
+
+                {selectedPaymentOptions.includes('iban') && (
+                  <div className="space-y-4 p-4 bg-zinc-800/20 rounded-lg border border-zinc-700/50">
+                    <h3 className="text-white font-medium">{t('form.ibanDetails')}</h3>
+                    
+                    <div className="space-y-2">
+                      <Label className="text-zinc-400">{t('form.recipientName')}</Label>
+                      <Input
+                        className="bg-zinc-800/50 border-zinc-700 text-white"
+                        placeholder={t('form.recipientNamePlaceholder')}
+                        value={formData.ibanDetails?.recipientName || ''}
+                        onChange={(e) => setFormData(prev => ({
+                          ...prev,
+                          ibanDetails: {
+                            ...prev.ibanDetails!,
+                            recipientName: e.target.value
+                          }
+                        }))}
+                      />
+                      {errors.recipientName && (
+                        <span className="text-sm text-red-500">{errors.recipientName}</span>
+                      )}
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label className="text-zinc-400">{t('form.iban')}</Label>
+                      <IBANInput
+                        value={formData.ibanDetails?.iban || ''}
+                        onChange={(value) => setFormData(prev => ({
+                          ...prev,
+                          ibanDetails: {
+                            ...prev.ibanDetails!,
+                            iban: value
+                          }
+                        }))}
+                      />
+                      {errors.iban && (
+                        <span className="text-sm text-red-500">{errors.iban}</span>
+                      )}
+                    </div>
+                  </div>
+                )}
 
                 <div className="space-y-4">
                   <Label className="text-zinc-400">{t('form.features')}</Label>

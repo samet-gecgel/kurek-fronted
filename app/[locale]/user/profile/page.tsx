@@ -22,6 +22,11 @@ import Image from "next/image";
 import { UserSidebar } from "@/components/layout/user-sidebar";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { useTranslations } from 'next-intl';
+import { Gender, BloodType, OccupationType } from "@/types/admin/add-user";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { PhoneInput } from "@/components/ui/phone-input";
 
 interface BillingInfo {
   fullName: string;
@@ -44,9 +49,16 @@ interface UserProfile {
   phone: string;
   birthDate: Date;
   birthPlace: string;
-  bloodType: string;
-  canSwim: boolean;
-  occupation: string;
+  bloodType: BloodType;
+  gender: Gender;
+  occupation: {
+    type: OccupationType;
+    otherOccupation?: string;
+    schoolName?: string;
+    grade?: string;
+    companyName?: string;
+    department?: string;
+  };
   emergencyContact: {
     name: string;
     phone: string;
@@ -55,8 +67,13 @@ interface UserProfile {
   billingInfo: BillingInfo;
   registrationType: "individual" | "student" | "corporate";
   photoUrl: string;
-  sharePhotos: boolean;
-  instagramHandle?: string;
+  swimmingDeclaration: {
+    canSwim: boolean;
+    canSwimWithClothes: boolean;
+  };
+  photoConsent: boolean;
+  communicationConsent: boolean;
+  instagramHandle: string;
 }
 
 interface PasswordForm {
@@ -70,12 +87,16 @@ export default function ProfilePage() {
     fullName: "Ahmet Yılmaz",
     tcNo: "12345678901",
     email: "ahmet@example.com",
-    phone: "+90 555 123 4567",
+    phone: "555 123 4567",
     birthDate: new Date(1990, 0, 1),
     birthPlace: "İstanbul",
-    bloodType: "A+",
-    canSwim: true,
-    occupation: "Mühendis",
+    bloodType: BloodType.A_POSITIVE,
+    gender: Gender.MALE,
+    occupation: {
+      type: OccupationType.STUDENT,
+      schoolName: "",
+      grade: ""
+    },
     emergencyContact: {
       name: "Mehmet Yılmaz",
       phone: "+90 555 987 6543",
@@ -92,7 +113,12 @@ export default function ProfilePage() {
     },
     registrationType: "individual",
     photoUrl: "https://cdn.icon-icons.com/icons2/3550/PNG/512/trainer_man_people_avatar_person_icon_224822.png",
-    sharePhotos: false,
+    swimmingDeclaration: {
+      canSwim: true,
+      canSwimWithClothes: false,
+    },
+    photoConsent: false,
+    communicationConsent: false,
     instagramHandle: "",
   });
 
@@ -114,17 +140,6 @@ export default function ProfilePage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const t = useTranslations('profile');
-
-  const bloodTypes = [
-    { value: "A+", label: "A+" },
-    { value: "A-", label: "A-" },
-    { value: "B+", label: "B+" },
-    { value: "B-", label: "B-" },
-    { value: "AB+", label: "AB+" },
-    { value: "AB-", label: "AB-" },
-    { value: "0+", label: "0+" },
-    { value: "0-", label: "0-" }
-  ];
 
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -162,6 +177,17 @@ export default function ProfilePage() {
 
   // Input ve Textarea için ortak className
   const inputClassName = "bg-zinc-900 border-zinc-700 text-zinc-100 focus:border-blue-500/50 focus:ring-blue-500/20 placeholder:text-zinc-500";
+
+  const occupationOptions = [
+    { value: OccupationType.STUDENT, label: t('occupation.student') },
+    { value: OccupationType.TEACHER, label: t('occupation.teacher') },
+    { value: OccupationType.ENGINEER, label: t('occupation.engineer') },
+    { value: OccupationType.DOCTOR, label: t('occupation.doctor') },
+    { value: OccupationType.LAWYER, label: t('occupation.lawyer') },
+    { value: OccupationType.ACCOUNTANT, label: t('occupation.accountant') },
+    { value: OccupationType.ARCHITECT, label: t('occupation.architect') },
+    { value: OccupationType.OTHER, label: t('occupation.other') }
+  ];
 
   return (
     <div className="flex md:flex-row flex-col h-screen bg-[#09090B]">
@@ -343,10 +369,9 @@ export default function ProfilePage() {
                         <label className="text-sm font-medium text-zinc-400 block mb-2">
                           {t('basicInfo.phone')}
                         </label>
-                        <Input
+                        <PhoneInput
                           value={profile.phone}
-                          onChange={(e) => setProfile({...profile, phone: e.target.value})}
-                          className={inputClassName}
+                          onChange={(value) => setProfile({...profile, phone: value})}
                         />
                       </div>
                     </div>
@@ -362,7 +387,7 @@ export default function ProfilePage() {
                         </label>
                         <div className="relative">
                           <Input
-                            value={format(profile.birthDate, "d MMMM yyyy", { locale: tr })}
+                            value={format(profile.birthDate, "dd.MM.yyyy", { locale: tr })}
                             readOnly
                             className={`${inputClassName} cursor-pointer`}
                             onClick={() => setShowDatePicker(!showDatePicker)}
@@ -399,55 +424,195 @@ export default function ProfilePage() {
 
                       <div>
                         <label className="text-sm font-medium text-zinc-400 block mb-2">
+                          {t('personalInfo.gender')}
+                        </label>
+                        <Select
+                          value={profile.gender}
+                          onValueChange={(value: Gender) => setProfile(prev => ({ ...prev, gender: value }))}
+                        >
+                          <SelectTrigger className="bg-zinc-800/50 border-zinc-700 text-white">
+                            <SelectValue placeholder={t('personalInfo.gender')} />
+                          </SelectTrigger>
+                          <SelectContent className="bg-zinc-800 border-zinc-700">
+                            <SelectItem value={Gender.MALE} className="text-zinc-100 focus:bg-zinc-700 focus:text-white">
+                              {t('personalInfo.genderOptions.male')}
+                            </SelectItem>
+                            <SelectItem value={Gender.FEMALE} className="text-zinc-100 focus:bg-zinc-700 focus:text-white">
+                              {t('personalInfo.genderOptions.female')}
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <label className="text-sm font-medium text-zinc-400 block mb-2">
                           {t('personalInfo.bloodType.label')}
                         </label>
-                        <select
+                        <Select
                           value={profile.bloodType}
-                          onChange={(e) => setProfile({...profile, bloodType: e.target.value})}
-                          className="w-full bg-zinc-900 border border-zinc-700 rounded-lg py-2 px-3 text-zinc-100 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-colors"
+                          onValueChange={(value: BloodType) => setProfile(prev => ({ ...prev, bloodType: value }))}
                         >
-                          <option value="">{t('personalInfo.bloodType.select')}</option>
-                          {bloodTypes.map((type) => (
-                            <option key={type.value} value={type.value}>
-                              {type.label}
-                            </option>
-                          ))}
-                        </select>
+                          <SelectTrigger className="bg-zinc-800/50 border-zinc-700 text-white">
+                            <SelectValue placeholder={t('personalInfo.bloodType.select')} />
+                          </SelectTrigger>
+                          <SelectContent className="bg-zinc-800 border-zinc-700">
+                            {Object.values(BloodType).map((type) => (
+                              <SelectItem 
+                                key={type} 
+                                value={type}
+                                className="text-zinc-100 focus:bg-zinc-700 focus:text-white"
+                              >
+                                {type}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </div>
 
                       <div>
                         <label className="text-sm font-medium text-zinc-400 block mb-2">
                           {t('personalInfo.occupation')}
                         </label>
-                        <Input
-                          value={profile.occupation}
-                          onChange={(e) => setProfile({...profile, occupation: e.target.value})}
-                          className={inputClassName}
-                        />
+                        <Select
+                          value={profile.occupation.type}
+                          onValueChange={(value: OccupationType) => setProfile(prev => ({
+                            ...prev,
+                            occupation: { type: value }
+                          }))}
+                        >
+                          <SelectTrigger className="bg-zinc-800/50 border-zinc-700 text-white">
+                            <SelectValue placeholder={t('personalInfo.occupation')} />
+                          </SelectTrigger>
+                          <SelectContent className="bg-zinc-800 border-zinc-700">
+                            {occupationOptions.map((option) => (
+                              <SelectItem 
+                                key={option.value} 
+                                value={option.value}
+                                className="text-zinc-100 focus:bg-zinc-700 focus:text-white"
+                              >
+                                {option.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </div>
 
-                      <div>
-                        <label className="text-sm font-medium text-zinc-400 block mb-2">
-                          {t('personalInfo.canSwim.label')}
+                      {/* Öğrenci Bilgileri */}
+                      {profile.occupation.type === OccupationType.STUDENT && (
+                        <div className="col-span-full grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div>
+                            <label className="text-sm font-medium text-zinc-400 block mb-2">
+                              {t('personalInfo.school')}
+                            </label>
+                            <Input
+                              value={profile.occupation.schoolName || ''}
+                              onChange={(e) => setProfile(prev => ({
+                                ...prev,
+                                occupation: {
+                                  ...prev.occupation,
+                                  schoolName: e.target.value
+                                }
+                              }))}
+                              className={inputClassName}
+                              placeholder={t('personalInfo.schoolPlaceholder')}
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm font-medium text-zinc-400 block mb-2">
+                              {t('personalInfo.grade')}
+                            </label>
+                            <Input
+                              value={profile.occupation.grade || ''}
+                              onChange={(e) => setProfile(prev => ({
+                                ...prev,
+                                occupation: {
+                                  ...prev.occupation,
+                                  grade: e.target.value
+                                }
+                              }))}
+                              className={inputClassName}
+                              placeholder={t('personalInfo.gradePlaceholder')}
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Çalışma Bilgileri */}
+                      {profile.occupation.type !== OccupationType.STUDENT && (
+                        <div className="col-span-full grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div>
+                            <label className="text-sm font-medium text-zinc-400 block mb-2">
+                              {t('personalInfo.company')}
+                            </label>
+                            <Input
+                              value={profile.occupation.companyName || ''}
+                              onChange={(e) => setProfile(prev => ({
+                                ...prev,
+                                occupation: {
+                                  ...prev.occupation,
+                                  companyName: e.target.value
+                                }
+                              }))}
+                              className={inputClassName}
+                              placeholder={t('personalInfo.companyPlaceholder')}
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm font-medium text-zinc-400 block mb-2">
+                              {t('personalInfo.department')}
+                            </label>
+                            <Input
+                              value={profile.occupation.department || ''}
+                              onChange={(e) => setProfile(prev => ({
+                                ...prev,
+                                occupation: {
+                                  ...prev.occupation,
+                                  department: e.target.value
+                                }
+                              }))}
+                              className={inputClassName}
+                              placeholder={t('personalInfo.departmentPlaceholder')}
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Yüzme Beyanı */}
+                      <div className="col-span-full">
+                        <label className="text-sm font-medium text-zinc-400 block mb-3">
+                          {t('personalInfo.swimming.title')}
                         </label>
-                        <div className="flex gap-4">
-                          <label className="flex items-center gap-2">
-                            <input
-                              type="radio"
-                              checked={profile.canSwim}
-                              onChange={() => setProfile({...profile, canSwim: true})}
-                              className="text-blue-500"
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          <label className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg cursor-pointer hover:bg-zinc-800 transition-colors group">
+                            <Switch
+                              checked={profile.swimmingDeclaration.canSwim}
+                              onCheckedChange={(checked) => setProfile(prev => ({
+                                ...prev,
+                                swimmingDeclaration: {
+                                  ...prev.swimmingDeclaration,
+                                  canSwim: checked
+                                }
+                              }))}
                             />
-                            <span className="text-zinc-400">{t('personalInfo.canSwim.yes')}</span>
+                            <span className="text-zinc-300 group-hover:text-white transition-colors">
+                              {t('personalInfo.swimming.canSwim')}
+                            </span>
                           </label>
-                          <label className="flex items-center gap-2">
-                            <input
-                              type="radio"
-                              checked={!profile.canSwim}
-                              onChange={() => setProfile({...profile, canSwim: false})}
-                              className="text-blue-500"
+                          
+                          <label className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg cursor-pointer hover:bg-zinc-800 transition-colors group">
+                            <Switch
+                              checked={profile.swimmingDeclaration.canSwimWithClothes}
+                              onCheckedChange={(checked) => setProfile(prev => ({
+                                ...prev,
+                                swimmingDeclaration: {
+                                  ...prev.swimmingDeclaration,
+                                  canSwimWithClothes: checked
+                                }
+                              }))}
                             />
-                            <span className="text-zinc-400">{t('personalInfo.canSwim.no')}</span>
+                            <span className="text-zinc-300 group-hover:text-white transition-colors">
+                              {t('personalInfo.swimming.canSwimWithClothes')}
+                            </span>
                           </label>
                         </div>
                       </div>
@@ -475,13 +640,13 @@ export default function ProfilePage() {
                         <label className="text-sm font-medium text-zinc-400 block mb-2">
                           {t('emergency.phone')}
                         </label>
-                        <Input
+                        <PhoneInput
                           value={profile.emergencyContact.phone}
-                          onChange={(e) => setProfile({
+                          onChange={(value) => setProfile({
                             ...profile,
-                            emergencyContact: {...profile.emergencyContact, phone: e.target.value}
+                            emergencyContact: {...profile.emergencyContact, phone: value}
                           })}
-                          className={inputClassName}
+                          className="pl-10"
                         />
                       </div>
                       <div>
@@ -500,34 +665,62 @@ export default function ProfilePage() {
                     </div>
                   </div>
 
-                  {/* Fotoğraf İzni ve Instagram */}
-                  <div className="md:col-span-2 flex flex-col md:flex-row items-start justify-between md:items-center gap-6 p-4 bg-zinc-800/30 rounded-lg border border-zinc-700/50">
-                    <div className="flex items-center gap-3">
-                      <label className="relative inline-flex items-center cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={profile.sharePhotos}
-                          onChange={(e) => setProfile({...profile, sharePhotos: e.target.checked})}
-                          className="sr-only peer"
-                        />
-                        <div className="w-11 h-6 bg-zinc-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
-                      </label>
-                      <span className="text-sm text-zinc-400">{t('photoConsent.label')}</span>
-                    </div>
-
-                    <div className="flex items-center gap-3 w-full md:w-auto">
-                      <div className="relative flex-1 md:w-64">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <Instagram className="h-4 w-4 text-zinc-500" />
+                  {/* İzinler ve Onaylar */}
+                  <div className="mt-6">
+                    <h3 className="text-lg font-medium text-white mb-4">{t('consents.title')}</h3>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <Label className="text-white mb-4 block">Instagram Adresi</Label>
+                        <div className="relative">
+                          <Instagram className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
+                          <Input
+                            placeholder="Instagram kullanıcı adı"
+                            className="pl-10 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-400"
+                            value={profile.instagramHandle}
+                            onChange={(e) => setProfile(prev => ({ 
+                              ...prev, 
+                              instagramHandle: e.target.value.startsWith('@') ? e.target.value : '@' + e.target.value 
+                            }))}
+                          />
                         </div>
-                        <Input
-                          value={profile.instagramHandle}
-                          onChange={(e) => setProfile({...profile, instagramHandle: e.target.value})}
-                          className={`${inputClassName} pl-9 ${!profile.sharePhotos ? 'opacity-50' : ''}`}
-                          placeholder={t('photoConsent.instagram')}
-                          disabled={!profile.sharePhotos}
-                        />
                       </div>
+
+                      <label className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg cursor-pointer hover:bg-zinc-800 transition-colors group">
+                        <Switch
+                          checked={profile.photoConsent}
+                          onCheckedChange={(checked) => setProfile(prev => ({
+                            ...prev,
+                            photoConsent: checked
+                          }))}
+                        />
+                        <div>
+                          <p className="text-zinc-300 group-hover:text-white transition-colors">
+                            {t('consents.photo.title')}
+                          </p>
+                          <p className="text-sm text-zinc-500">
+                            {t('consents.photo.description')}
+                          </p>
+                        </div>
+                      </label>
+
+                      <label className="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-lg cursor-pointer hover:bg-zinc-800 transition-colors group">
+                        <Switch
+                          checked={profile.communicationConsent}
+                          onCheckedChange={(checked) => setProfile(prev => ({
+                            ...prev,
+                            communicationConsent: checked
+                          }))}
+                        />
+                        <div>
+                          <p className="text-zinc-300 group-hover:text-white transition-colors">
+                            {t('consents.communication.title')}
+                          </p>
+                          <p className="text-sm text-zinc-500">
+                            {t('consents.communication.description')}
+                          </p>
+                        </div>
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -703,13 +896,13 @@ export default function ProfilePage() {
                 <label className="text-sm font-medium text-zinc-400 block mb-2">
                   {t('billing.phone')}
                 </label>
-                <Input
+                <PhoneInput
                   value={profile.billingInfo.phone}
-                  onChange={(e) => setProfile({
+                  onChange={(value) => setProfile({
                     ...profile,
-                    billingInfo: {...profile.billingInfo, phone: e.target.value}
+                    billingInfo: {...profile.billingInfo, phone: value}
                   })}
-                  className={inputClassName}
+                  className="pl-10"
                 />
               </div>
 

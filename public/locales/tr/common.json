@@ -314,6 +314,8 @@
       "title": "Üye Ol",
       "backToHome": "Ana Sayfaya Dön",
       "form": {
+        "accountInfo": "Hesap Bilgileri",
+        "personalInfo": "Kişisel Bilgiler",
         "email": {
           "label": "E-posta Adresi",
           "placeholder": "ornek@email.com"
@@ -326,11 +328,90 @@
           "label": "Şifre Tekrar",
           "placeholder": "••••••••"
         },
-        "submit": "Üye Ol"
+        "fullName": {
+          "label": "Ad Soyad",
+          "placeholder": "Adınızı ve soyadınızı girin"
+        },
+        "identityNumber": {
+          "label": "TC Kimlik No",
+          "placeholder": "TC Kimlik numaranızı girin"
+        },
+        "phone": {
+          "label": "Telefon Numarası",
+          "placeholder": "Telefon numaranızı girin"
+        },
+        "gender": {
+          "label": "Cinsiyet",
+          "placeholder": "Cinsiyet seçin",
+          "options": {
+            "male": "Erkek",
+            "female": "Kadın"
+          }
+        },
+        "birthDate": {
+          "label": "Doğum Tarihi",
+          "placeholder": "Doğum tarihi seçin"
+        },
+        "bloodType": {
+          "label": "Kan Grubu",
+          "placeholder": "Kan grubu seçin"
+        },
+        "emergency": {
+          "title": "Acil Durum İletişim",
+          "fullName": {
+            "label": "Ad Soyad",
+            "placeholder": "İletişim kurulacak kişinin adı"
+          },
+          "phone": {
+            "label": "Telefon Numarası",
+            "placeholder": "İletişim kurulacak kişinin telefonu"
+          },
+          "relation": {
+            "label": "Yakınlık",
+            "placeholder": "Yakınlık derecesi"
+          }
+        },
+        "consents": {
+          "title": "İzinler",
+          "photoConsent": {
+            "title": "Fotoğraf Paylaşım İzni",
+            "description": "Fotoğraflarımın sosyal medya ve kulüp web sitesinde paylaşılmasına izin veriyorum"
+          },
+          "communicationConsent": {
+            "title": "İletişim İzni",
+            "description": "Etkinlik ve duyurular hakkında bildirim almak istiyorum"
+          }
+        },
+        "social": {
+          "title": "Sosyal Medya",
+          "instagram": "Instagram Kullanıcı Adı",
+          "instagramPlaceholder": "@kullaniciadi"
+        },
+        "photo": {
+          "title": "Profil Fotoğrafı",
+          "select": "Fotoğraf seçin",
+          "guide": "Yüzünüzün net göründüğü bir fotoğraf yükleyin. Maksimum boyut: 5MB",
+          "errors": {
+            "size": "Dosya boyutu 5MB'dan küçük olmalıdır",
+            "type": "Lütfen bir resim dosyası seçin"
+          }
+        }
+      },
+      "buttons": {
+        "back": "Geri",
+        "continue": "Devam Et",
+        "complete": "Kaydı Tamamla"
       },
       "login": {
         "text": "Zaten hesabınız var mı?",
         "link": "Giriş Yapın"
+      },
+      "errors": {
+        "fillAllFields": "Lütfen tüm alanları doldurun",
+        "passwordsDontMatch": "Şifreler eşleşmiyor",
+        "invalidEmail": "Geçerli bir e-posta adresi girin",
+        "registrationFailed": "Kayıt işlemi başarısız oldu",
+        "unexpectedError": "Beklenmeyen bir hata oluştu"
       }
     },
     "registerDetails": {
@@ -410,7 +491,8 @@
     "levelManagement": "Seviye Yönetimi",
     "boatManagement": "Tekne Yönetimi",
     "reservationManagement": "Rezervasyon Yönetimi",
-    "settings": "Rezervasyon Ayarları",
+    "reservationSettings": "Rezervasyon Ayarları",
+    "settings": "Ayarlar",
     "membershipPackages": "Üyelik Paketleri",
     "assign": "Üyelik Paketi Atama",
     "purchase": "Üyelik Paket Satın Alma",
@@ -487,16 +569,43 @@
     "events": "Etkinlikler",
     "friends": "Arkadaşlarım",
     "reservations": "Rezervasyonlarım",
-    "logout": "Çıkış Yap"
+    "logout": "Çıkış Yap",
+    "availability": "Müsaitlikler",
+    "levels": "Seviye Belirleme"
   },
   "profile": {
-    "title": "Profil Bilgileri",
-    "description": "Kişisel bilgilerinizi düzenleyin",
-    "saveButton": "Değişiklikleri Kaydet",
+    "title": "Profil",
+    "description": "Profil bilgilerinizi güncelleyebilirsiniz",
+    "saveButton": "Kaydet",
     "photo": {
       "change": "Fotoğraf Değiştir",
-      "sizeError": "Dosya boyutu 5MB'dan küçük olmalıdır",
-      "typeError": "Lütfen bir resim dosyası seçin"
+      "typeError": "Lütfen geçerli bir resim dosyası seçin",
+      "sizeError": "Dosya boyutu 5MB'dan küçük olmalıdır"
+    },
+    "password": {
+      "title": "Şifre Değiştir",
+      "description": "Hesap güvenliğiniz için şifrenizi düzenli olarak değiştirin",
+      "change": "Şifre Değiştir",
+      "current": "Mevcut Şifre",
+      "new": "Yeni Şifre",
+      "confirm": "Yeni Şifre (Tekrar)",
+      "cancel": "İptal",
+      "save": "Kaydet"
+    },
+    "billing": {
+      "title": "Fatura Bilgileri",
+      "description": "Fatura bilgilerinizi güncelleyebilirsiniz",
+      "edit": "Düzenle",
+      "type": {
+        "label": "Fatura Tipi",
+        "individual": "Bireysel",
+        "corporate": "Kurumsal"
+      },
+      "companyName": "Firma Adı",
+      "taxNumber": "Vergi No",
+      "taxOffice": "Vergi Dairesi",
+      "cancel": "İptal",
+      "save": "Kaydet"
     },
     "basicInfo": {
       "title": "Temel Bilgiler",
@@ -509,56 +618,57 @@
       "title": "Kişisel Bilgiler",
       "birthDate": "Doğum Tarihi",
       "birthPlace": "Doğum Yeri",
+      "gender": "Cinsiyet",
+      "genderOptions": {
+        "male": "Erkek",
+        "female": "Kadın"
+      },
       "bloodType": {
         "label": "Kan Grubu",
-        "select": "Kan Grubu Seçin"
+        "select": "Kan grubu seçin"
       },
       "occupation": "Meslek",
-      "canSwim": {
-        "label": "Yüzme Biliyor musunuz?",
-        "yes": "Evet",
-        "no": "Hayır"
+      "school": "Okul",
+      "schoolPlaceholder": "Okul adı",
+      "grade": "Sınıf",
+      "gradePlaceholder": "Sınıf bilgisi",
+      "company": "Şirket",
+      "companyPlaceholder": "Şirket adı",
+      "department": "Departman",
+      "departmentPlaceholder": "Departman bilgisi",
+      "swimming": {
+        "title": "Yüzme Beyanı",
+        "canSwim": "Yüzme biliyorum",
+        "canSwimWithClothes": "Kıyafetlerle yüzebilirim"
       }
     },
     "emergency": {
-      "title": "Acil Durum İletişim",
+      "title": "Acil Durum İletişim Bilgileri",
       "name": "Ad Soyad",
       "phone": "Telefon",
-      "relation": "Yakınlık"
+      "relation": "Yakınlık Derecesi"
     },
-    "photoConsent": {
-      "label": "Fotoğraflarınızı paylaşmamızı istiyor musunuz?",
-      "instagram": "@kullaniciadi"
-    },
-    "password": {
-      "title": "Şifre Değiştirme",
-      "description": "Hesap güvenliğiniz için şifrenizi düzenli olarak değiştirin.",
-      "change": "Şifre Değiştir",
-      "current": "Mevcut Şifre",
-      "new": "Yeni Şifre",
-      "confirm": "Şifre Tekrar",
-      "cancel": "İptal",
-      "save": "Kaydet"
-    },
-    "billing": {
-      "title": "Fatura Bilgileri",
-      "edit": "Fatura Bilgilerini Düzenle",
-      "type": {
-        "label": "Fatura Tipi",
-        "individual": "Bireysel",
-        "corporate": "Kurumsal"
+    "consents": {
+      "title": "İzinler ve Onaylar",
+      "instagram": "Instagram Kullanıcı Adı",
+      "photo": {
+        "title": "Fotoğraf Kullanım İzni",
+        "description": "Fotoğraflarımın kulüp tarafından kullanılmasına izin veriyorum"
       },
-      "fullName": "Ad Soyad",
-      "phone": "Telefon",
-      "city": "İl",
-      "district": "İlçe",
-      "address": "Adres",
-      "addressTitle": "Adres Başlığı",
-      "companyName": "Firma Adı",
-      "taxNumber": "Vergi Numarası",
-      "taxOffice": "Vergi Dairesi",
-      "cancel": "İptal",
-      "save": "Kaydet"
+      "communication": {
+        "title": "İletişim İzni",
+        "description": "SMS ve e-posta ile bilgilendirme almak istiyorum"
+      }
+    },
+    "occupation": {
+      "student": "Öğrenci",
+      "teacher": "Öğretmen",
+      "engineer": "Mühendis",
+      "doctor": "Doktor",
+      "lawyer": "Avukat",
+      "accountant": "Muhasebeci",
+      "architect": "Mimar",
+      "other": "Diğer"
     }
   },
   "userEvents": {
@@ -671,10 +781,11 @@
     }
   },
   "trainerRegister": {
-    "title": "Antrenör Kaydı",
-    "subtitle": "Antrenör ekibimize katılmak için kayıt olun",
     "backToHome": "Ana Sayfaya Dön",
-    "form": {
+    "backToStep1": "Geri Dön",
+    "step1": {
+      "title": "Antrenör Hesabı Oluştur",
+      "subtitle": "Hesap bilgilerinizi girin",
       "email": {
         "label": "E-posta Adresi",
         "placeholder": "ornek@email.com"
@@ -687,91 +798,113 @@
         "label": "Şifre Tekrar",
         "placeholder": "••••••••"
       },
-      "submit": "Devam Et"
+      "continue": "Devam Et"
     },
-    "errors": {
-      "passwordMatch": "Şifreler eşleşmiyor!",
-      "passwordLength": "Şifre en az 6 karakter olmalıdır!"
-    },
-    "login": {
-      "text": "Zaten hesabınız var mı?",
-      "link": "Giriş Yapın"
-    }
-  },
-  "trainerRegisterDetails": {
-    "title": "Antrenör Bilgileri",
-    "subtitle": "Lütfen antrenör bilgilerinizi eksiksiz doldurunuz",
-    "form": {
-      "profileImage": {
-        "label": "Profil Resmi Ekle"
+    "step2": {
+      "title": "Profil Bilgileri",
+      "subtitle": "Antrenör bilgilerinizi girin",
+      "profileImage": "Fotoğraf Seç",
+      "fullName": {
+        "label": "Ad Soyad",
+        "placeholder": "Adınızı ve soyadınızı girin"
       },
-      "basicInfo": {
-        "fullName": "Ad Soyad",
-        "phone": "Telefon",
-        "birthDate": "Doğum Tarihi",
-        "phoneError": "Telefon numarası 10 haneli olmalıdır"
+      "phone": {
+        "label": "Telefon",
+        "placeholder": "Telefon numaranızı girin"
       },
-      "specialization": {
+      "birthDate": {
+        "label": "Doğum Tarihi",
+        "placeholder": "Doğum tarihinizi seçin"
+      },
+      "expertise": {
         "label": "Uzmanlık Alanları",
-        "placeholder": "Örn: Kürek, Tekne Sınıfı A, Antrenman Programlama"
+        "placeholder": "Yeni uzmanlık alanı ekle",
+        "add": "Ekle"
       },
       "experience": {
         "label": "Deneyim",
-        "placeholder": "Deneyimlerinizi detaylı bir şekilde yazınız"
+        "placeholder": "Deneyimlerinizi detaylı bir şekilde anlatın..."
       },
       "personalMessage": {
         "label": "Kişisel Mesaj",
-        "placeholder": "Kendinizi kısaca tanıtın"
+        "placeholder": "Kendinizi kısaca tanıtın..."
       },
       "certificates": {
         "title": "Sertifikalar",
         "addNew": "Yeni Sertifika Ekle",
         "name": "Sertifika Adı",
         "institution": "Kurum",
-        "date": "Alınma Tarihi",
-        "file": "Sertifika Dosyası",
+        "date": "Tarih",
+        "file": "Dosya",
         "selectFile": "Dosya Seç",
-        "noFileSelected": "Dosya seçilmedi",
-        "selected": "Seçilen dosya:"
+        "noFile": "Dosya seçilmedi",
+        "selected": "Seçilen dosya:",
+        "remove": "Kaldır",
+        "namePlaceholder": "Sertifika adını girin",
+        "institutionPlaceholder": "Kurum adını girin"
       },
       "consent": {
-        "privacy": "Gizlilik sözleşmesini okudum ve kabul ediyorum",
-        "dataProcessing": "Açık rıza metnini okudum ve kabul ediyorum"
+        "privacy": "Gizlilik politikasını kabul ediyorum",
+        "dataProcessing": "Veri işleme sözleşmesini kabul ediyorum"
       },
       "submit": "Kaydı Tamamla"
+    },
+    "errors": {
+      "fillAllFields": "Lütfen tüm alanları doldurun",
+      "passwordMatch": "Şifreler eşleşmiyor",
+      "passwordLength": "Şifre en az 6 karakter olmalıdır",
+      "invalidEmail": "Geçerli bir e-posta adresi girin",
+      "unexpectedError": "Beklenmeyen bir hata oluştu",
+      "consentRequired": "Lütfen gizlilik ve veri işleme sözleşmelerini kabul edin"
+    },
+    "login": {
+      "text": "Zaten hesabınız var mı?",
+      "link": "Giriş Yapın"
     }
   },
   "trainerCalendar": {
-    "title": "Ders Takvimi",
+    "title": "Takvim",
     "subtitle": "Günlük ders programınızı takip edin ve yoklama alın",
+    "loading": "Yükleniyor...",
     "attendance": {
       "title": "Yoklama",
       "take": "Yoklama Al",
-      "present": "Geldi",
-      "absent": "Gelmedi",
       "cancel": "İptal",
       "save": "Kaydet",
       "saved": "Yoklama kaydedildi",
+      "boatClass": {
+        "title": "Tekne Sınıfları",
+        "1x_bot_takip": "1X Bot Takip",
+        "2x_bot_takip": "2X Bot Takip",
+        "2x_ozel_ders": "2X Özel Ders",
+        "4x_dumen": "4X Dümen"
+      },
       "actions": {
         "present": "Geldi",
         "absent": "Gelmedi",
-        "presentIcon": "✓",
-        "absentIcon": "✕"
+        "excused": "Raporlu"
       }
     },
     "status": {
       "title": "Durum Göstergeleri",
       "present": "Derse katıldı",
       "absent": "Derse katılmadı",
-      "pending": "Beklemede"
+      "excused": "Raporlu",
+      "pending": "Beklemede",
+      "scheduled": "Planlandı",
+      "cancelled": "İptal Edildi",
+      "completed": "Tamamlandı",
+      "cancelledBy": "İptal Edilme Tarihi",
+      "weatherCancellation": "Hava şartları nedeniyle iptal edildi",
+      "equipmentCancellation": "Ekipman arızası nedeniyle iptal edildi",
+      "otherCancellation": "Diğer sebeplerle iptal edildi",
+      "dateFormat": {
+        "separator": " • "
+      }
     },
     "noLessons": {
       "title": "Bu tarihte planlanmış ders bulunmamaktadır.",
       "subtitle": "Başka bir tarih seçerek dersleri görüntüleyebilirsiniz."
-    },
-    "loading": "Yükleniyor...",
-    "dateFormat": {
-      "fullDate": "d MMMM yyyy"
     }
   },
   "trainerSidebar": {
@@ -779,7 +912,8 @@
     "menu": {
       "calendar": "Takvim",
       "availability": "Müsaitlik",
-      "profile": "Profil"
+      "profile": "Profil",
+      "summary": "Ders Özeti"
     },
     "logout": "Çıkış Yap"
   },
@@ -809,11 +943,21 @@
     }
   },
   "trainerAvailability": {
-    "title": "Antrenör Müsaitlik Durumu",
-    "subtitle": "Seçilen tarih ve saatteki müsait antrenörleri görüntüleyin",
+    "title": "Müsaitlik Durumu",
+    "subtitle": "Antrenman verebileceğiniz saatleri seçin",
+    "save": "Kaydet",
+    "saved": "Müsaitlik durumu kaydedildi",
+    "timeSlot": {
+      "pastDate": "Geçmiş tarih seçilemez",
+      "available": "Bu saatte müsaitim",
+      "notAvailable": "Bu saatte müsait değilim"
+    },
     "calendar": {
       "title": "Tarih Seçin",
       "selectedDate": "Seçili Tarih",
+      "previousWeek": "Önceki Hafta",
+      "nextWeek": "Sonraki Hafta",
+      "dateRange": "Bugünden itibaren 30 gün içinde müsaitlik durumunuzu belirtebilirsiniz",
       "months": {
         "january": "Ocak",
         "february": "Şubat",
@@ -829,23 +973,14 @@
         "december": "Aralık"
       },
       "weekDays": {
-        "monday": "Pt",
-        "tuesday": "Sa",
-        "wednesday": "Ça",
-        "thursday": "Pe",
-        "friday": "Cu",
-        "saturday": "Ct",
-        "sunday": "Pz"
+        "monday": "Pazartesi",
+        "tuesday": "Salı",
+        "wednesday": "Çarşamba",
+        "thursday": "Perşembe",
+        "friday": "Cuma",
+        "saturday": "Cumartesi",
+        "sunday": "Pazar"
       }
-    },
-    "timeSelection": {
-      "title": "Saat Seçin"
-    },
-    "trainers": {
-      "title": "Tüm Antrenörler",
-      "titleWithTime": "{time} - Müsait Antrenörler",
-      "availableHours": "Müsait Saatler",
-      "noTrainers": "Bu tarihte müsait antrenör bulunmuyor"
     }
   },
   "trainerProfile": {
@@ -1258,28 +1393,24 @@
     "trainerDetail": "Antrenör detaylarını görmek için ilgili satıra tıklayın"
   },
   "trainerSummary": {
-    "monthlyTitle": "Aylık Eğitim Özeti",
-    "detailsTitle": "Detaylı Eğitim Kayıtları",
-    "search": "Antrenör ara...",
-    "selectMonth": "Tarih aralığı seçin",
-    "filter": "Filtrele",
+    "title": "Ders Özeti",
+    "subtitle": "Verdiğiniz derslerin detaylı özeti",
+    "search": "Üye ara...",
+    "selectDateRange": "Tarih aralığı seçin",
     "exportExcel": "Excel'e Aktar",
-    "trainer": "Antrenör",
-    "total": "Toplam",
-    "months": {
-      "1": "Ocak",
-      "2": "Şubat",
-      "3": "Mart",
-      "4": "Nisan",
-      "5": "Mayıs",
-      "6": "Haziran",
-      "7": "Temmuz",
-      "8": "Ağustos",
-      "9": "Eylül",
-      "10": "Ekim",
-      "11": "Kasım",
-      "12": "Aralık"
-    }
+    "date": "Tarih",
+    "time": "Saat",
+    "boatClass": "Tekne Sınıfı",
+    "students": "Öğrenciler",
+    "status": {
+      "title": "Durum",
+      "completed": "Tamamlandı",
+      "cancelled": "İptal Edildi",
+      "scheduled": "Planlandı"
+    },
+    "totalLessons": "Toplam Ders",
+    "lessonsByBoatClass": "Tekne Sınıfına Göre Dersler",
+    "filter": "Filtrele"
   },
   "trainingCalendar": {
     "title": "Antrenman Takvimi",
@@ -1392,20 +1523,20 @@
     "clickInfo": "Paket detaylarını görmek için ilgili satıra tıklayın"
   },
   "packageAdd": {
-    "title": "Yeni Paket",
-    "subtitle": "Yeni bir üyelik paketi oluşturun",
+    "title": "Yeni Paket Ekle",
+    "subtitle": "Yeni bir paket oluşturun ve ayarlarını yapılandırın",
     "form": {
       "name": "Paket Adı",
-      "namePlaceholder": "Örn: Aylık Paket",
+      "namePlaceholder": "Paket adını girin",
       "location": "Lokasyon",
-      "locationPlaceholder": "Lokasyon girin",
+      "locationPlaceholder": "Lokasyon bilgisini girin",
       "duration": "Süre",
       "durationType": {
         "day": "Gün",
         "month": "Ay"
       },
-      "credits": "Kullanım Hakkı (Kredi)",
-      "price": "Fiyat (₺)",
+      "credits": "Kredi",
+      "price": "Fiyat",
       "level": "Seviye",
       "levelPlaceholder": "Seviye seçin",
       "levels": {
@@ -1414,22 +1545,28 @@
         "advanced": "İleri"
       },
       "description": "Açıklama",
-      "descriptionPlaceholder": "Paket hakkında detaylı açıklama yazın...",
+      "descriptionPlaceholder": "Paket açıklamasını girin",
       "paymentOptions": "Ödeme Seçenekleri",
-      "features": "Paket Özellikleri",
+      "features": "Özellikler",
       "addFeature": "Yeni özellik ekle",
+      "ibanDetails": "IBAN Bilgileri",
+      "recipientName": "Alıcı Adı",
+      "recipientNamePlaceholder": "Alıcının ad ve soyadını girin",
+      "iban": "IBAN Numarası",
       "buttons": {
         "add": "Ekle",
-        "cancel": "İptal",
-        "save": "Paketi Ekle"
+        "save": "Kaydet",
+        "cancel": "İptal"
       }
     },
     "validation": {
       "nameRequired": "Paket adı zorunludur",
       "durationRequired": "Süre zorunludur",
       "durationTypeRequired": "Süre tipi zorunludur",
-      "creditsRequired": "Kullanım hakkı zorunludur",
-      "priceRequired": "Fiyat zorunludur"
+      "creditsRequired": "Kredi sayısı zorunludur",
+      "priceRequired": "Fiyat zorunludur",
+      "ibanRequired": "IBAN numarası zorunludur",
+      "recipientNameRequired": "Alıcı adı zorunludur"
     }
   },
   "boatList": {
@@ -1916,5 +2053,52 @@
       "deleteSuccess": "Soru başarıyla silindi",
       "deleteError": "Soru silinirken bir hata oluştu"
     }
+  },
+  "userAvailability": {
+    "title": "Müsaitlik Durumu",
+    "subtitle": "Antrenman yapabileceğiniz saatleri seçin",
+    "save": "Kaydet",
+    "saved": "Müsaitlik durumu kaydedildi",
+    "timeSlot": {
+      "pastDate": "Geçmiş tarih seçilemez",
+      "available": "Bu saatte müsaitim",
+      "notAvailable": "Bu saatte müsait değilim"
+    },
+    "calendar": {
+      "title": "Tarih Seçin",
+      "selectedDate": "Seçili Tarih",
+      "months": {
+        "january": "Ocak",
+        "february": "Şubat",
+        "march": "Mart",
+        "april": "Nisan",
+        "may": "Mayıs",
+        "june": "Haziran",
+        "july": "Temmuz",
+        "august": "Ağustos",
+        "september": "Eylül",
+        "october": "Ekim",
+        "november": "Kasım",
+        "december": "Aralık"
+      },
+      "weekDays": {
+        "monday": "Pazartesi",
+        "tuesday": "Salı",
+        "wednesday": "Çarşamba",
+        "thursday": "Perşembe",
+        "friday": "Cuma",
+        "saturday": "Cumartesi",
+        "sunday": "Pazar"
+      },
+      "previousWeek": "Önceki Hafta",
+      "nextWeek": "Sonraki Hafta",
+      "dateRange": "Bugünden itibaren 30 gün içinde müsaitlik durumunuzu belirtebilirsiniz"
+    }
+  },
+  "userLevels": {
+    "title": "Seviye Belirleme",
+    "subtitle": "Kürek sporu deneyiminizi belirlemek için size uyan seçenekleri işaretleyin",
+    "save": "Kaydet",
+    "saved": "Seviye bilgileriniz kaydedildi"
   }
 }

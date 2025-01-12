@@ -28,6 +28,16 @@ export function UserSidebar({ isOpen, onToggle }: { isOpen: boolean; onToggle: (
       icon: Activity,
     },
     {
+      title: t('availability'),
+      href: "/user/availability",
+      icon: Calendar,
+    },
+    {
+      title: t('levels'),
+      href: "/user/levels",
+      icon: Activity,
+    },
+    {
       title: t('reservations'),
       href: "/user/reservations",
       icon: Calendar,

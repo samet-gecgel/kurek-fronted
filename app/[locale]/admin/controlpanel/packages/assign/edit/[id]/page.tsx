@@ -42,7 +42,7 @@ const PACKAGE_DATA: PackageFormData = {
   price: 1500,
   isActive: true,
   level: "beginner",
-  location: "Ana Şube",
+  locationId: 1,
   description: "Bu paket, kürek sporuna yeni başlayanlar için özel olarak hazırlanmıştır.",
   paymentOptions: ["cash", "credit_card", "iban", "multisport"],
   features: ["7/24 Erişim", "Özel Antrenör", "Grup Dersleri"]
@@ -62,7 +62,7 @@ export default function EditPackage({ params }: { params: { id: string } }) {
     price: 0,
     isActive: true,
     level: "",
-    location: "",
+    locationId: 0,
     description: "",
     features: [],
     paymentOptions: []
@@ -231,14 +231,14 @@ export default function EditPackage({ params }: { params: { id: string } }) {
                     <Input 
                       className={cn(
                         "bg-zinc-800/50 border-zinc-700 text-white",
-                        errors.location && "border-red-500"
+                        errors.locationId && "border-red-500"
                       )}
                       placeholder={t('form.locationPlaceholder')}
-                      value={formData.location}
-                      onChange={(e) => handleChange('location', e.target.value)}
+                      value={formData.locationId}
+                      onChange={(e) => handleChange('locationId', parseInt(e.target.value))}
                     />
-                    {errors.location && (
-                      <span className="text-sm text-red-500">{errors.location}</span>
+                    {errors.locationId && (
+                      <span className="text-sm text-red-500">{errors.locationId}</span>
                     )}
                   </div>
 

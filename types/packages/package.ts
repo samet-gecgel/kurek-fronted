@@ -28,10 +28,14 @@ export interface PackageFormData {
   price: number;
   isActive: boolean;
   level?: string;
-  location?: string;
+  locationId: number;
   description?: string;
   features?: string[];
   paymentOptions?: string[];
+  ibanDetails?: {
+    iban: string;
+    recipientName: string;
+  };
 }
 
 export interface PackageFormValidation {
@@ -41,7 +45,9 @@ export interface PackageFormValidation {
   credits?: string;
   price?: string;
   level?: string;
-  location?: string;
+  locationId?: string;
   description?: string;
   isActive?: string;
+  iban?: string;
+  recipientName?: string;
 } 

@@ -6,7 +6,6 @@ import Link from "next/link";
 import { ArrowLeft, Eye, EyeOff, Lock, Mail } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
-import { LanguageSelector } from "@/components/language-selector";
 
 export default function Login() {
   const t = useTranslations('auth.login');
@@ -54,13 +53,6 @@ export default function Login() {
               <ArrowLeft size={20} />
               <span>{t('backToHome')}</span>
             </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-          >
-            <LanguageSelector />
           </motion.div>
         </div>
 

@@ -38,7 +38,7 @@ export default function ClubManagers() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [managers, setManagers] = useState<Manager[]>([
     {
-      id: 1,
+      id: "1",
       name: "Ahmet Yılmaz",
       email: "ahmet@admin.com",
       phone: "+90 555 123 4567",
@@ -47,7 +47,7 @@ export default function ClubManagers() {
       isPrimaryManager: true
     },
     {
-      id: 2,
+      id: "2",
       name: "Mehmet Demir",
       email: "mehmet@admin.com",
       phone: "+90 555 987 6543",
@@ -84,7 +84,7 @@ export default function ClubManagers() {
       .toUpperCase();
   };
 
-  const handleDeleteManager = (id: number) => {
+    const handleDeleteManager = (id: string) => {
     setManagers(prev => prev.filter(manager => manager.id !== id));
   };
 
@@ -136,7 +136,7 @@ export default function ClubManagers() {
     if (hasError) return;
 
     const newManager = {
-      id: managers.length + 1,
+      id: String(managers.length + 1),
       name: formData.name,
       email: formData.email,
       phone: formData.phone,

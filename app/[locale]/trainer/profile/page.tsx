@@ -23,39 +23,9 @@ import DatePicker from "@/components/ui/datePicker";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
-
-interface Certificate {
-  name: string;
-  institution: string;
-  date: Date;
-  pdfUrl?: string;
-}
-
-// Trainer-Expertise ilişkisi için basit interface
-interface TrainerExpertise {
-  id: string;
-  trainerId: string;
-  name: string;
-}
+import { PasswordForm, TrainerExpertise, TrainerProfile } from "@/types/trainer/trainer";
 
 
-interface TrainerProfile {
-  fullName: string;
-  email: string;
-  phone: string;
-  birthDate: Date;
-  trainerExpertise: TrainerExpertise[];
-  experience: string;
-  certificates: Certificate[];
-  photoUrl: string;
-  bio: string;
-}
-
-interface PasswordForm {
-  currentPassword: string;
-  newPassword: string;
-  confirmPassword: string;
-}
 
 
 
@@ -331,7 +301,7 @@ export default function ProfilePage() {
                       </label>
                       <div className="relative">
                         <Input
-                          value={format(profile.birthDate, "d MMMM yyyy", { locale: dateLocale })}
+                          value={format(profile.birthDate, "dd.MM.yyyy", { locale: dateLocale })}
                           readOnly
                           className={`${inputClassName} cursor-pointer`}
                           onClick={() => setShowDatePicker(true)}

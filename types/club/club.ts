@@ -66,7 +66,7 @@ export interface ClubWorkingHour {
 }
 
 export interface ClubLocation {
-  id?: number;
+  id: number;
   location: string;
 }
 
