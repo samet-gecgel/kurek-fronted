@@ -1809,19 +1809,29 @@
     }
   },
   "lessonCalendar": {
-    "trainer": "Trainer",
     "title": "Lesson Calendar",
     "description": "Track your daily lesson schedule and take attendance",
-    "attended": "Attended",
-    "notAttended": "Not Attended",
-    "waiting": "Waiting",
-    "emptySlot": "Empty Slot",
+    "trainer": "Trainer",
+    "takeAttendance": "Take Attendance",
+    "lessonCanceled": "Lesson Canceled",
+    "cancelLesson": "Cancel Lesson",
+    "cancelReason": "Cancellation Reason",
     "status": {
       "title": "Status Indicators"
     },
+    "attended": "Attended",
+    "notAttended": "Not Attended",
+    "waiting": "Waiting",
     "noLessons": {
-      "title": "No lessons scheduled for this date.",
-      "subtitle": "You can view lessons by selecting another date."
+      "title": "No lessons scheduled for this date",
+      "subtitle": "You can view lessons by selecting another date"
+    },
+    "cancelDialog": {
+      "title": "Cancel Lesson",
+      "description": "Are you sure you want to cancel this lesson?",
+      "reasonPlaceholder": "Enter cancellation reason...",
+      "cancel": "Cancel",
+      "confirm": "Confirm"
     }
   },
   "packageCalendar": {

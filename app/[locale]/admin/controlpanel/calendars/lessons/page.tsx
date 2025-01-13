@@ -10,6 +10,9 @@ import { tr } from "date-fns/locale";
 import { motion } from "framer-motion";
 import { useParams } from 'next/navigation';
 import { enUS } from 'date-fns/locale';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 
 const lessonCardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -37,7 +40,7 @@ interface Student {
     name: string;
     position: string; // Teknedeki pozisyonu (1, 2, 3, 4)
     attended: boolean | null;
-  }
+}
 
 
 interface Lesson {
@@ -49,6 +52,8 @@ interface Lesson {
   level: string;
   date: string;
   students: Student[];
+  isCanceled?: boolean;  // Ders iptal edildi mi?
+  cancelReason?: string; // İptal nedeni
 }
 
 
@@ -61,7 +66,9 @@ const sampleSchedule: Lesson[] = [
     time: "09:00",
     type: "Dört Tek",
     level: "Başlangıç",
-    date: "2025-01-08",
+    date: "2025-01-07",
+    isCanceled: true,
+    cancelReason: "Kötü hava koşulları",
     students: [
       { id: "m1", name: "Ali Kaya", position: "1", attended: null },
       { id: "m2", name: "Mehmet Demir", position: "2", attended: null },
@@ -119,52 +126,128 @@ const sampleSchedule: Lesson[] = [
 // Ders kartı içeriği için ayrı bir bileşen
 const LessonCard = ({ lesson }: { lesson: Lesson }) => {
   const t = useTranslations("lessonCalendar");
-  
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [cancelReason, setCancelReason] = useState("");
+
+  const handleCancelLesson = () => {
+    // API çağrısı yapılacak
+    console.log("Ders iptal edildi:", { lessonId: lesson.id, reason: cancelReason });
+    setIsDialogOpen(false);
+    setCancelReason("");
+  };
+
   return (
-    <motion.div
-      variants={lessonCardVariants}
-      className="bg-zinc-900/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-white/10 transition-all duration-300"
-    >
-      <div className="p-4 border-b border-zinc-800/50">
-        <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between mb-3">
-          <span className="text-2xl font-bold text-white">{lesson.time}</span>
-          <span className="text-sm text-zinc-400">
-            <span className="font-medium text-zinc-500">{t('trainer')}:</span> {lesson.trainerName}
-          </span>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <Badge variant="outline" className="bg-zinc-800/50 text-zinc-300 border-zinc-700">
-            {lesson.type}
-          </Badge>
-          <Badge variant="outline" className="bg-zinc-800/50 text-zinc-300 border-zinc-700">
-            {lesson.level}
-          </Badge>
-        </div>
-      </div>
-      <div className="p-4">
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
-          {lesson.students.map((student) => (
-            <div
-              key={student.id}
-              className="bg-zinc-800/50 rounded-lg p-3 flex items-center justify-between group hover:bg-zinc-800/70 transition-all duration-200"
-            >
-              <span className="text-zinc-200 font-medium">{student.name}</span>
+    <>
+      <motion.div
+        variants={lessonCardVariants}
+        className={`bg-zinc-900/30 backdrop-blur-sm rounded-2xl overflow-hidden border transition-all duration-300 
+          ${lesson.isCanceled 
+            ? 'border-red-500/20 hover:border-red-500/30' 
+            : 'border-white/5 hover:border-white/10'
+          }`}
+      >
+        <div className="p-4 border-b border-zinc-800/50">
+          <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between mb-3">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl font-bold text-white">{lesson.time}</span>
               <div className="flex items-center gap-2">
-                {student.attended === true && (
-                  <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                )}
-                {student.attended === false && (
-                  <div className="w-2 h-2 rounded-full bg-red-500" />
-                )}
-                {student.attended === null && (
-                  <div className="w-2 h-2 rounded-full bg-zinc-500" />
-                )}
+                <span className="text-sm text-zinc-400">{t('trainer')}:</span>
+                <span className="text-sm font-medium text-zinc-300">{lesson.trainerName}</span>
               </div>
             </div>
-          ))}
+            <div className="flex items-center gap-2">
+              {!lesson.isCanceled ? (
+                <button 
+                  className="px-3 py-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg text-sm font-medium transition-colors"
+                  onClick={() => setIsDialogOpen(true)}
+                >
+                  {t('cancelLesson')}
+                </button>
+              ) : (
+                <div className="px-3 py-1.5 bg-red-500/10 text-red-400 rounded-lg text-sm font-medium">
+                  {t('lessonCanceled')}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-wrap gap-2">
+              <Badge variant="outline" className="bg-zinc-800/50 text-zinc-300 border-zinc-700">
+                {lesson.type}
+              </Badge>
+              <Badge variant="outline" className="bg-zinc-800/50 text-zinc-300 border-zinc-700">
+                {lesson.level}
+              </Badge>
+            </div>
+            {lesson.isCanceled && lesson.cancelReason && (
+              <div className="text-sm text-red-400">
+                <span className="font-medium">{t('cancelReason')}:</span> {lesson.cancelReason}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-    </motion.div>
+        <div className="p-4">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
+            {lesson.students.map((student) => (
+              <div
+                key={student.id}
+                className="bg-zinc-800/50 rounded-lg p-3 flex items-center justify-between group hover:bg-zinc-800/70 transition-all duration-200"
+              >
+                <span className="text-zinc-200 font-medium">{student.name}</span>
+                <div className="flex items-center gap-2">
+                  {student.attended === true && (
+                    <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                  )}
+                  {student.attended === false && (
+                    <div className="w-2 h-2 rounded-full bg-red-500" />
+                  )}
+                  {student.attended === null && (
+                    <div className="w-2 h-2 rounded-full bg-zinc-500" />
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="sm:max-w-[425px] bg-zinc-900 border-zinc-800">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-semibold text-white">
+              {t('cancelDialog.title')}
+            </DialogTitle>
+            <DialogDescription className="text-zinc-400">
+              {t('cancelDialog.description')}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-4">
+            <Textarea
+              value={cancelReason}
+              onChange={(e) => setCancelReason(e.target.value)}
+              placeholder={t('cancelDialog.reasonPlaceholder')}
+              className="bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-500"
+            />
+          </div>
+          <DialogFooter className="mt-6">
+            <Button
+              variant="ghost"
+              onClick={() => setIsDialogOpen(false)}
+              className="text-zinc-300 hover:text-white hover:bg-zinc-800"
+            >
+              {t('cancelDialog.cancel')}
+            </Button>
+            <Button
+              onClick={handleCancelLesson}
+              className="bg-red-500/10 hover:bg-red-500/20 text-red-400"
+              disabled={!cancelReason.trim()}
+            >
+              {t('cancelDialog.confirm')}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 
@@ -173,23 +256,34 @@ export default function LessonCalendarPage() {
   const params = useParams();
   const locale = params.locale as string;
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date>(() => {
+    const initialDate = new Date('2025-01-07');
+    initialDate.setHours(0, 0, 0, 0);
+    return initialDate;
+  });
 
   // Takvim için locale seçimi
   const calendarLocale = locale === 'tr' ? tr : enUS;
 
+  // Seçilen tarihe ait dersleri filtrele
   const selectedDateLessons = sampleSchedule.filter(lesson => {
     const lessonDate = new Date(lesson.date);
-    return (
-      lessonDate.getDate() === date.getDate() &&
-      lessonDate.getMonth() === date.getMonth() &&
-      lessonDate.getFullYear() === date.getFullYear()
-    );
+    const selectedDate = new Date(date);
+    
+    // Saat bilgilerini sıfırla
+    lessonDate.setHours(0, 0, 0, 0);
+    selectedDate.setHours(0, 0, 0, 0);
+    
+    return lessonDate.getTime() === selectedDate.getTime();
   });
 
+  // Dersleri saate göre sırala
   const sortedLessons = selectedDateLessons.sort((a, b) => 
     a.time.localeCompare(b.time)
   );
+
+  // Takvimde işaretlenecek günleri belirle
+  const hasLessonDates = sampleSchedule.map(lesson => new Date(lesson.date));
 
   return (
     <div className="flex h-screen bg-[#09090B]">
@@ -236,6 +330,23 @@ export default function LessonCalendarPage() {
                     locale={calendarLocale}
                     showOutsideDays={false}
                     weekStartsOn={1}
+                    modifiers={{
+                      hasLesson: (date) => {
+                        return hasLessonDates.some(lessonDate => 
+                          lessonDate.getDate() === date.getDate() &&
+                          lessonDate.getMonth() === date.getMonth() &&
+                          lessonDate.getFullYear() === date.getFullYear()
+                        );
+                      }
+                    }}
+                    modifiersStyles={{
+                      hasLesson: {
+                        color: 'rgb(59 130 246)',
+                        fontWeight: '600',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderRadius: '4px'
+                      }
+                    }}
                   />
                 </div>
 

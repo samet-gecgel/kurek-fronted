@@ -1912,19 +1912,29 @@
     }
   },
   "lessonCalendar": {
-    "trainer": "Antrenör",
     "title": "Ders Takvimi",
     "description": "Günlük ders programınızı takip edin ve yoklama alın",
-    "attended": "Derse katıldı",
-    "notAttended": "Derse katılmadı",
-    "waiting": "Beklemede",
-    "emptySlot": "Boş Kontenjan",
+    "trainer": "Antrenör",
+    "takeAttendance": "Yoklama Al",
+    "lessonCanceled": "Ders İptal Edildi",
+    "cancelLesson": "Dersi İptal Et",
+    "cancelReason": "İptal Nedeni",
     "status": {
       "title": "Durum Göstergeleri"
     },
+    "attended": "Derse katıldı",
+    "notAttended": "Derse katılmadı",
+    "waiting": "Beklemede",
     "noLessons": {
-      "title": "Bu tarihte planlanmış ders bulunmamaktadır.",
-      "subtitle": "Başka bir tarih seçerek dersleri görüntüleyebilirsiniz."
+      "title": "Bu tarihte ders bulunmamaktadır",
+      "subtitle": "Başka bir tarih seçerek dersleri görüntüleyebilirsiniz"
+    },
+    "cancelDialog": {
+      "title": "Dersi İptal Et",
+      "description": "Bu dersi iptal etmek istediğinizden emin misiniz?",
+      "reasonPlaceholder": "İptal nedenini yazın...",
+      "cancel": "Vazgeç",
+      "confirm": "İptal Et"
     }
   },
   "packageCalendar": {
