@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
-import { LanguageSelector } from "@/components/language-selector";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import LanguageSwitcher from "../LanguageSwitcher";
 
 export function TrainerSidebar({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => void }) {
   const t = useTranslations('trainerSidebar');
@@ -63,7 +63,7 @@ export function TrainerSidebar({ isOpen, onToggle }: { isOpen: boolean; onToggle
       {/* Dil seçici */}
       {isOpen && (
         <div className="mb-4">
-          <LanguageSelector />
+          <LanguageSwitcher />
         </div>
       )}
 

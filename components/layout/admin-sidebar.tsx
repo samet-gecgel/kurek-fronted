@@ -52,10 +52,10 @@ import {
   Bell,
   Mail
 } from 'lucide-react';
-import { LanguageSelector } from "@/components/language-selector";
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import LanguageSwitcher from '../LanguageSwitcher';
 
 
 interface MenuItem {
@@ -295,7 +295,7 @@ export const AdminSidebar = ({ isOpen, onToggle }: SidebarProps) => {
               {isOpen && <h1 className="text-base font-semibold text-white">{t('title')}</h1>}
             </div>
             {isOpen && <div className="flex-shrink-0">
-              <LanguageSelector />
+              <LanguageSwitcher />
             </div>}
           </div>
 
@@ -394,7 +394,7 @@ export const AdminSidebar = ({ isOpen, onToggle }: SidebarProps) => {
                   <h1 className="text-sm font-semibold text-white">{t('title')}</h1>
                 </div>
                 <div className="flex-shrink-0">
-                  <LanguageSelector />
+                  <LanguageSwitcher />
                 </div>
               </div>
 

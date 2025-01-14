@@ -13,6 +13,9 @@ import { enUS } from 'date-fns/locale';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Status } from "@/types/enums/Status";
+import { BoatClass } from "@/types/enums/BoatClass";
+import { LessonLevel } from "@/types/enums/LessonLevel";
 
 const lessonCardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -35,21 +38,21 @@ const containerVariants = {
     }
   }
 };
+
 interface Student {
     id: string;
     name: string;
-    position: string; // Teknedeki pozisyonu (1, 2, 3, 4)
-    attended: boolean | null;
+    position: string;
+    attended: Status;
 }
-
 
 interface Lesson {
   id: string;
   trainerId: string;
   trainerName: string;
   time: string;
-  type: string;
-  level: string;
+  type: BoatClass;
+  level: LessonLevel;
   date: string;
   students: Student[];
   isCanceled?: boolean;  // Ders iptal edildi mi?
@@ -64,16 +67,36 @@ const sampleSchedule: Lesson[] = [
     trainerId: "t1",
     trainerName: "Ahmet Yılmaz",
     time: "09:00",
-    type: "Dört Tek",
-    level: "Başlangıç",
+    type: BoatClass.QUAD_COXED,
+    level: LessonLevel.BEGINNER,
     date: "2025-01-07",
     isCanceled: true,
     cancelReason: "Kötü hava koşulları",
     students: [
-      { id: "m1", name: "Ali Kaya", position: "1", attended: null },
-      { id: "m2", name: "Mehmet Demir", position: "2", attended: null },
-      { id: "m3", name: "Ayşe Çelik", position: "3", attended: null },
-      { id: "m4", name: "Can Yıldız", position: "4", attended: null }
+      { 
+        id: "m1", 
+        name: "Ali Kaya", 
+        position: "1", 
+        attended: Status.ABSENT 
+      },
+      { 
+        id: "m2", 
+        name: "Mehmet Demir", 
+        position: "2", 
+        attended: Status.EXCUSED,
+      },
+      { 
+        id: "m3", 
+        name: "Ayşe Çelik", 
+        position: "3", 
+        attended: Status.ATTENDED 
+      },
+      { 
+        id: "m4", 
+        name: "Can Yıldız", 
+        position: "4", 
+        attended: Status.ATTENDED 
+      }
     ]
   },
   {
@@ -81,14 +104,14 @@ const sampleSchedule: Lesson[] = [
     trainerId: "t2",
     trainerName: "Can Yıldız",
     time: "09:00",
-    type: "Dört Tek",
-    level: "İleri Seviye",
+    type: BoatClass.QUAD_COXED,
+    level: LessonLevel.ADVANCED,
     date: "2025-01-08",
     students: [
-      { id: "m5", name: "Zeynep Ak", position: "1", attended: null },
-      { id: "m6", name: "Ece Demir", position: "2", attended: null },
-      { id: "m7", name: "Berk Şahin", position: "3", attended: null },
-      { id: "m8", name: "Deniz Kara", position: "4", attended: null }
+      { id: "m5", name: "Zeynep Ak", position: "1", attended: Status.WAITING },
+      { id: "m6", name: "Ece Demir", position: "2", attended: Status.WAITING },
+      { id: "m7", name: "Berk Şahin", position: "3", attended: Status.WAITING },
+      { id: "m8", name: "Deniz Kara", position: "4", attended: Status.WAITING }
     ]
   },
   {
@@ -96,14 +119,14 @@ const sampleSchedule: Lesson[] = [
     trainerId: "t3",
     trainerName: "Mehmet Demir",
     time: "10:30",
-    type: "Dört Tek",
-    level: "Orta Seviye",
+    type: BoatClass.DOUBLE_FOLLOW,
+    level: LessonLevel.INTERMEDIATE,
     date: "2025-01-07",
     students: [
-      { id: "m9", name: "Selin Yılmaz", position: "1", attended: true },
-      { id: "m10", name: "Burak Kaya", position: "2", attended: false },
-      { id: "m11", name: "Elif Demir", position: "3", attended: true },
-      { id: "m12", name: "Mert Can", position: "4", attended: true }
+      { id: "m9", name: "Selin Yılmaz", position: "1", attended: Status.ATTENDED },
+      { id: "m10", name: "Burak Kaya", position: "2", attended: Status.ABSENT },
+      { id: "m11", name: "Elif Demir", position: "3", attended: Status.ATTENDED },
+      { id: "m12", name: "Mert Can", position: "4", attended: Status.EXCUSED }
     ]
   },
   {
@@ -111,14 +134,14 @@ const sampleSchedule: Lesson[] = [
     trainerId: "t1",
     trainerName: "Ahmet Yılmaz",
     time: "10:30",
-    type: "Dört Tek",
-    level: "Başlangıç",
+    type: BoatClass.QUAD_COXED,
+    level: LessonLevel.BEGINNER,
     date: "2025-01-07",
     students: [
-      { id: "m13", name: "İrem Su", position: "1", attended: null },
-      { id: "m14", name: "Kaan Yıldırım", position: "2", attended: null },
-      { id: "m15", name: "Ceren Deniz", position: "3", attended: null },
-      { id: "m16", name: "Yusuf Kaya", position: "4", attended: null }
+      { id: "m13", name: "İrem Su", position: "1", attended: Status.WAITING },
+      { id: "m14", name: "Kaan Yıldırım", position: "2", attended: Status.WAITING },
+      { id: "m15", name: "Ceren Deniz", position: "3", attended: Status.WAITING },
+      { id: "m16", name: "Yusuf Kaya", position: "4", attended: Status.WAITING }
     ]
   }
 ];
@@ -195,12 +218,15 @@ const LessonCard = ({ lesson }: { lesson: Lesson }) => {
               >
                 <span className="text-zinc-200 font-medium">{student.name}</span>
                 <div className="flex items-center gap-2">
-                  {student.attended === true && (
+                  {student.attended === Status.ATTENDED && (
                     <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                  )}
-                  {student.attended === false && (
-                    <div className="w-2 h-2 rounded-full bg-red-500" />
-                  )}
+                    )}
+                    {student.attended === Status.ABSENT && (
+                      <div className="w-2 h-2 rounded-full bg-red-500" />
+                    )}
+                    {student.attended === Status.EXCUSED && (
+                      <div className="w-2 h-2 rounded-full bg-yellow-500" />
+                    )}
                   {student.attended === null && (
                     <div className="w-2 h-2 rounded-full bg-zinc-500" />
                   )}
@@ -317,11 +343,6 @@ export default function LessonCalendarPage() {
             >
               <div className="sticky top-4 space-y-4">
                 <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
-                  {/* <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-lg font-semibold text-white">
-                      {format(date, "MMMM yyyy", { locale: calendarLocale })}
-                    </h2>
-                  </div> */}
                   <Calendar
                     mode="single"
                     selected={date}
@@ -343,7 +364,11 @@ export default function LessonCalendarPage() {
                       hasLesson: {
                         color: 'rgb(59 130 246)',
                         fontWeight: '600',
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                      },
+                      selected: {
+                        color: 'rgb(255 255 255)', // text-white
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)', // bg-blue-500
+                        fontWeight: '600',
                         borderRadius: '4px'
                       }
                     }}
@@ -360,6 +385,10 @@ export default function LessonCalendarPage() {
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-red-500" />
                       <span className="text-sm text-zinc-400">{t("notAttended")}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-yellow-500" />
+                      <span className="text-sm text-zinc-400">{t("excused")}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-zinc-500" />

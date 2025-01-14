@@ -17,6 +17,9 @@ import {
 } from "@/components/ui/dialog";
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
+import { Status } from "@/types/enums/Status";
+import { BoatClass } from "@/types/enums/BoatClass";
+import { LessonLevel } from "@/types/enums/LessonLevel";
 
 const lessonCardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -53,38 +56,12 @@ const containerVariants = {
   }
 };
 
-// Tekne sınıfı enum'u
-enum BoatClass {
-  SINGLE_FOLLOW = "1X_BOT_TAKIP",
-  DOUBLE_FOLLOW = "2X_BOT_TAKIP",
-  DOUBLE_PRIVATE = "2X_OZEL_DERS",
-  QUAD_COXED = "4X_DUMEN"
-}
-
-// Katılım durumu enum'u
-enum AttendanceStatus {
-  PRESENT = "PRESENT",
-  ABSENT = "ABSENT",
-  EXCUSED = "EXCUSED" // Raporlu
-}
-
-// Ders durumu enum'u
-enum LessonStatus {
-  SCHEDULED = "SCHEDULED",
-  CANCELLED = "CANCELLED",
-  COMPLETED = "COMPLETED"
-}
-
-interface BoatAssignment {
-  boatClass: BoatClass;
-  count: number;
-}
 
 interface Student {
   id: string;
   name: string;
   position: string;
-  attended: AttendanceStatus | null;
+  attended: Status;
 }
 
 interface Lesson {
@@ -92,14 +69,14 @@ interface Lesson {
   trainerId: string;
   trainerName: string;
   time: string;
-  boatAssignments: BoatAssignment[];
-  level: string;
+  type: BoatClass;
+  level: LessonLevel;
   date: string;
   students: Student[];
-  status: LessonStatus;
-  cancellationReason?: string; // İptal sebebi
-  cancelledBy?: string; // Kim tarafından iptal edildi
-  cancelledAt?: string; // Ne zaman iptal edildi
+  status: Status;
+  cancelReason?: string; 
+  canceledBy?: string;
+  canceledAt?: string;
 }
 
 export default function CalendarPage() {
@@ -107,12 +84,7 @@ export default function CalendarPage() {
   const params = useParams();
   const locale = params.locale as string;
   const [mounted, setMounted] = useState(false);
-  const [date, setDate] = useState<Date>(() => {
-    if (typeof window !== 'undefined') {
-      return new Date(2024, 11, 17);
-    }
-    return new Date();
-  });
+  const [date, setDate] = useState<Date>(new Date());
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
   const [isAttendanceDialogOpen, setIsAttendanceDialogOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -123,125 +95,99 @@ export default function CalendarPage() {
       trainerId: "t1",
       trainerName: "Ahmet Yılmaz",
       time: "09:00",
-      boatAssignments: [
-        { boatClass: BoatClass.SINGLE_FOLLOW, count: 1 },
-        { boatClass: BoatClass.DOUBLE_FOLLOW, count: 2 },
-      ],
-      level: "Başlangıç",
-      date: "2024-12-17",
+      type: BoatClass.QUAD_COXED,
+      level: LessonLevel.BEGINNER,
+      date: "2025-01-17",
       students: [
-        { id: "s1", name: "Ahmet Yılmaz", position: "1", attended: null },
-        { id: "s2", name: "Mehmet Demir", position: "2", attended: null },
-        { id: "s3", name: "Ali Kaya", position: "3", attended: null },
-        { id: "s4", name: "Ayşe Çelik", position: "4", attended: null },
+        { id: "s1", name: "Ahmet Yılmaz", position: "1", attended: Status.WAITING },
+        { id: "s2", name: "Mehmet Demir", position: "2", attended: Status.WAITING },
+        { id: "s3", name: "Ali Kaya", position: "3", attended: Status.WAITING },
+        { id: "s4", name: "Ayşe Çelik", position: "4", attended: Status.WAITING }
       ],
-      status: LessonStatus.SCHEDULED
+      status: Status.SCHEDULED
     },
     {
       id: "2",
       trainerId: "t1",
       trainerName: "Ahmet Yılmaz",
       time: "10:30",
-      boatAssignments: [
-        { boatClass: BoatClass.SINGLE_FOLLOW, count: 1 },
-        { boatClass: BoatClass.DOUBLE_FOLLOW, count: 2 },
-        { boatClass: BoatClass.DOUBLE_PRIVATE, count: 3 },
-        { boatClass: BoatClass.QUAD_COXED, count: 4 }
-      ],
-      level: "İleri Seviye",
-      date: "2024-12-17",
+      type: BoatClass.DOUBLE_FOLLOW,
+      level: LessonLevel.ADVANCED,
+      date: "2025-01-17",
       students: [
-        { id: "s5", name: "Can Yıldız", position: "1", attended: null },
-        { id: "s6", name: "Zeynep Ak", position: "2", attended: null },
-        { id: "s7", name: "Ece Demir", position: "3", attended: null },
-        { id: "s8", name: "Berk Şahin", position: "4", attended: null },
+        { id: "s5", name: "Can Yıldız", position: "1", attended: Status.WAITING },
+        { id: "s6", name: "Zeynep Ak", position: "2", attended: Status.WAITING },
+        { id: "s7", name: "Ece Demir", position: "3", attended: Status.WAITING },
+        { id: "s8", name: "Berk Şahin", position: "4", attended: Status.WAITING }
       ],
-      status: LessonStatus.SCHEDULED
+      status: Status.SCHEDULED
     },
     {
       id: "3",
-      trainerId: "t1",
-      trainerName: "Ahmet Yılmaz",
-      time: "13:00",
-      boatAssignments: [
-        { boatClass: BoatClass.SINGLE_FOLLOW, count: 1 },
-        { boatClass: BoatClass.DOUBLE_FOLLOW, count: 2 },
-        { boatClass: BoatClass.DOUBLE_PRIVATE, count: 3 },
-        { boatClass: BoatClass.QUAD_COXED, count: 4 }
-      ],
-      level: "Orta Seviye",
-      date: "2024-12-20", // 20 Aralık dersleri
+      trainerId: "t2",
+      trainerName: "Mehmet Demir",
+      time: "14:00",
+      type: BoatClass.SINGLE_FOLLOW,
+      level: LessonLevel.INTERMEDIATE,
+      date: "2025-01-17",
       students: [
-        { id: "s9", name: "Deniz Yılmaz", position: "1", attended: null },
-        { id: "s10", name: "Elif Kara", position: "2", attended: null },
-        { id: "s11", name: "Burak Demir", position: "3", attended: null },
-        { id: "s12", name: "Selin Ak", position: "4", attended: null },
+        { id: "s9", name: "Deniz Kara", position: "1", attended: Status.ATTENDED },
+        { id: "s10", name: "Selin Yılmaz", position: "2", attended: Status.ABSENT },
+        { id: "s11", name: "Burak Kaya", position: "3", attended: Status.ATTENDED },
+        { id: "s12", name: "Elif Demir", position: "4", attended: Status.EXCUSED }
       ],
-      status: LessonStatus.SCHEDULED
+      status: Status.IN_PROGRESS
     },
     {
       id: "4",
       trainerId: "t1",
       trainerName: "Ahmet Yılmaz",
-      time: "14:30",
-      boatAssignments: [
-        { boatClass: BoatClass.SINGLE_FOLLOW, count: 1 },
-        { boatClass: BoatClass.DOUBLE_FOLLOW, count: 2 },
-        { boatClass: BoatClass.DOUBLE_PRIVATE, count: 3 },
-        { boatClass: BoatClass.QUAD_COXED, count: 4 }
-      ],
-      level: "Başlangıç",
-      date: "2024-12-20",
+      time: "15:30",
+      type: BoatClass.DOUBLE_PRIVATE,
+      level: LessonLevel.BEGINNER,
+      date: "2025-01-18",
       students: [
-        { id: "s13", name: "Mert Can", position: "1", attended: null },
-        { id: "s14", name: "İrem Su", position: "2", attended: null },
-        { id: "s15", name: "Kaan Yıldırım", position: "3", attended: null },
-        { id: "s16", name: "Ceren Deniz", position: "4", attended: null },
+        { id: "s13", name: "İrem Su", position: "1", attended: Status.WAITING },
+        { id: "s14", name: "Kaan Yıldırım", position: "2", attended: Status.WAITING },
+        { id: "s15", name: "Ceren Deniz", position: "3", attended: Status.WAITING },
+        { id: "s16", name: "Yusuf Kaya", position: "4", attended: Status.WAITING }
       ],
-      status: LessonStatus.SCHEDULED
+      status: Status.SCHEDULED
     },
     {
       id: "5",
-      trainerId: "t1",
-      trainerName: "Ahmet Yılmaz",
+      trainerId: "t3",
+      trainerName: "Ayşe Çelik",
       time: "16:00",
-      boatAssignments: [
-        { boatClass: BoatClass.SINGLE_FOLLOW, count: 1 },
-        { boatClass: BoatClass.DOUBLE_FOLLOW, count: 2 },
-        { boatClass: BoatClass.DOUBLE_PRIVATE, count: 3 },
-        { boatClass: BoatClass.QUAD_COXED, count: 4 }
-      ],
-      level: "İleri Seviye",
-      date: "2024-12-20",
+      type: BoatClass.QUAD_COXED,
+      level: LessonLevel.ADVANCED,
+      date: "2025-01-20",
       students: [
-        { id: "s17", name: "Yusuf Kaya", position: "1", attended: null },
-        { id: "s18", name: "Zehra Demir", position: "2", attended: null },
-        { id: "s19", name: "Emre Can", position: "3", attended: null },
-        { id: "s20", name: "Aylin Yıldız", position: "4", attended: null },
+        { id: "s17", name: "Yusuf Kaya", position: "1", attended: Status.WAITING },
+        { id: "s18", name: "Zehra Demir", position: "2", attended: Status.WAITING },
+        { id: "s19", name: "Emre Can", position: "3", attended: Status.WAITING },
+        { id: "s20", name: "Aylin Yıldız", position: "4", attended: Status.WAITING }
       ],
-      status: LessonStatus.SCHEDULED
+      status: Status.SCHEDULED
     },
     {
       id: "6",
       trainerId: "t1",
       trainerName: "Ahmet Yılmaz",
       time: "11:00",
-      boatAssignments: [
-        { boatClass: BoatClass.SINGLE_FOLLOW, count: 1 },
-        { boatClass: BoatClass.DOUBLE_FOLLOW, count: 1 }
-      ],
-      level: "Başlangıç",
-      date: "2024-12-17",
+      type: BoatClass.SINGLE_FOLLOW,
+      level: LessonLevel.BEGINNER,
+      date: "2025-01-17",
       students: [
-        { id: "s21", name: "Yağmur Kaya", position: "1", attended: null },
-        { id: "s22", name: "Arda Demir", position: "2", attended: null },
-        { id: "s23", name: "Sude Yılmaz", position: "3", attended: null },
-        { id: "s24", name: "Emir Can", position: "4", attended: null },
+        { id: "s21", name: "Yağmur Kaya", position: "1", attended: Status.WAITING },
+        { id: "s22", name: "Arda Demir", position: "2", attended: Status.WAITING },
+        { id: "s23", name: "Sude Yılmaz", position: "3", attended: Status.WAITING },
+        { id: "s24", name: "Emir Can", position: "4", attended: Status.WAITING }
       ],
-      status: LessonStatus.CANCELLED,
-      cancellationReason: t('status.weatherCancellation'),
-      cancelledBy: "Admin",
-      cancelledAt: "2024-12-16T15:30:00"
+      status: Status.CANCELLED,
+      cancelReason: t('status.weatherCancellation'),
+      canceledBy: "Admin",
+      canceledAt: "2025-01-16T15:30:00"
     }
   ]);
 
@@ -258,7 +204,7 @@ export default function CalendarPage() {
     setDate(newDate);
   };
 
-  const handleAttendance = (lessonId: string, studentId: string, attended: AttendanceStatus) => {
+  const handleAttendance = (lessonId: string, studentId: string, attended: Status) => {
     const updatedLessons = lessons.map(lesson => {
       if (lesson.id === lessonId) {
         return {
@@ -341,16 +287,19 @@ export default function CalendarPage() {
         <div className={`
           bg-zinc-900/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 
           hover:border-white/10 transition-all duration-300 shadow-lg hover:shadow-xl
-          ${lesson.status === LessonStatus.CANCELLED ? 'opacity-75' : ''}
+          ${lesson.status === Status.CANCELLED ? 'opacity-75' : ''}
         `}>
           <div className="p-4 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-800/50">
             <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
               <h3 className="text-3xl font-bold text-white">{lesson.time}</h3>
               <div className="flex flex-wrap gap-2">
+              <Badge variant="outline" className="bg-zinc-800/50 text-zinc-300 border-zinc-700">
+                {lesson.type}
+              </Badge>
                 <Badge className="bg-zinc-800/80 text-zinc-300 px-3 py-1">
                   {lesson.level}
                 </Badge>
-                {lesson.status === LessonStatus.CANCELLED && (
+                {lesson.status === Status.CANCELLED && (
                   <Badge variant="destructive" className="px-3 py-1">
                     {t('status.cancelled')}
                   </Badge>
@@ -358,13 +307,13 @@ export default function CalendarPage() {
               </div>
             </div>
             
-            {lesson.status === LessonStatus.CANCELLED ? (
+            {lesson.status === Status.CANCELLED ? (
               <div className="flex flex-col gap-1">
-                <p className="text-red-400 text-sm">{lesson.cancellationReason}</p>
+                <p className="text-red-400 text-sm">{lesson.cancelReason}</p>
                 <p className="text-zinc-500 text-xs">
                   {t('status.cancelledBy')}
                   {t('status.dateFormat.separator')}
-                  {new Date(lesson.cancelledAt!).toLocaleString(locale, {
+                  {new Date(lesson.canceledAt!).toLocaleString(locale, {
                     year: 'numeric',
                     month: '2-digit',
                     day: '2-digit',
@@ -377,7 +326,7 @@ export default function CalendarPage() {
               <Button
                 onClick={() => openAttendanceDialog(lesson)}
                 className="bg-zinc-800 hover:bg-zinc-700 text-white"
-                disabled={[LessonStatus.CANCELLED, LessonStatus.COMPLETED].includes(lesson.status)}
+                disabled={[Status.CANCELLED, Status.COMPLETED].includes(lesson.status)}
               >
                 {t('attendance.take')}
               </Button>
@@ -400,14 +349,17 @@ export default function CalendarPage() {
                     <span className="text-white font-medium text-lg">
                       {student.name}
                     </span>
-                    {student.attended === AttendanceStatus.PRESENT && (
+                    {student.attended === Status.ATTENDED && (
                       <div className="w-2 h-2 rounded-full bg-green-500" />
                     )}
-                    {student.attended === AttendanceStatus.ABSENT && (
+                    {student.attended === Status.ABSENT && (
                       <div className="w-2 h-2 rounded-full bg-red-500" />
                     )}
-                    {student.attended === AttendanceStatus.EXCUSED && (
+                    {student.attended === Status.EXCUSED && (
                       <div className="w-2 h-2 rounded-full bg-yellow-500" />
+                    )}
+                    {student.attended === Status.WAITING && (
+                      <div className="w-2 h-2 rounded-full bg-zinc-500" />
                     )}
                   </div>
                 </motion.div>
@@ -434,23 +386,7 @@ export default function CalendarPage() {
           </DialogTitle>
         </DialogHeader>
 
-        {/* Tekne Sınıfları Gösterimi */}
-        <div className="space-y-4 mb-6">
-          <h3 className="text-sm font-medium text-zinc-400">{t('attendance.boatClass.title')}</h3>
-          <div className="flex flex-wrap gap-2">
-            {selectedLesson?.boatAssignments.map((assignment) => (
-              assignment.count > 0 && (
-                <Badge 
-                  key={assignment.boatClass}
-                  className="bg-zinc-800 text-zinc-200 px-3 py-1.5"
-                >
-                  {t(`attendance.boatClass.${assignment.boatClass.toLowerCase()}`)}
-                  <span className="ml-2 text-zinc-400">×{assignment.count}</span>
-                </Badge>
-              )
-            ))}
-          </div>
-        </div>
+
         
         <div className="grid grid-cols-1 gap-3">
           {selectedLesson?.students.map((student) => (
@@ -460,42 +396,42 @@ export default function CalendarPage() {
                 <div className="flex gap-2">
                   <Button 
                     size="sm"
-                    onClick={() => handleAttendance(selectedLesson.id, student.id, AttendanceStatus.PRESENT)}
+                    onClick={() => handleAttendance(selectedLesson.id, student.id, Status.ATTENDED)}
                     className={`
                       flex-1 relative overflow-hidden transition-all duration-300
-                      ${student.attended === AttendanceStatus.PRESENT 
+                      ${student.attended === Status.ATTENDED 
                         ? "bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 border-emerald-500/50" 
                         : "hover:bg-zinc-700/30 border-zinc-700/50"
                       }
                     `}
                   >
-                    {student.attended === AttendanceStatus.PRESENT ? "✓" : t('attendance.actions.present')}
+                    {student.attended === Status.ATTENDED ? "✓" : t('attendance.actions.present')}
                   </Button>
                   <Button 
                     size="sm"
-                    onClick={() => handleAttendance(selectedLesson.id, student.id, AttendanceStatus.ABSENT)}
+                    onClick={() => handleAttendance(selectedLesson.id, student.id, Status.ABSENT)}
                     className={`
                       flex-1 relative overflow-hidden transition-all duration-300
-                      ${student.attended === AttendanceStatus.ABSENT 
+                      ${student.attended === Status.ABSENT 
                         ? "bg-rose-500/20 text-rose-300 hover:bg-rose-500/30 border-rose-500/50" 
                         : "hover:bg-zinc-700/30 border-zinc-700/50"
                       }
                     `}
                   >
-                    {student.attended === AttendanceStatus.ABSENT ? "✕" : t('attendance.actions.absent')}
+                    {student.attended === Status.ABSENT ? "✕" : t('attendance.actions.absent')}
                   </Button>
                   <Button 
                     size="sm"
-                    onClick={() => handleAttendance(selectedLesson.id, student.id, AttendanceStatus.EXCUSED)}
+                    onClick={() => handleAttendance(selectedLesson.id, student.id, Status.EXCUSED)}
                     className={`
                       flex-1 relative overflow-hidden transition-all duration-300
-                      ${student.attended === AttendanceStatus.EXCUSED 
+                      ${student.attended === Status.EXCUSED 
                         ? "bg-yellow-500/20 text-yellow-300 hover:bg-yellow-500/30 border-yellow-500/50" 
                         : "hover:bg-zinc-700/30 border-zinc-700/50"
                       }
                     `}
                   >
-                    {student.attended === AttendanceStatus.EXCUSED ? "!" : t('attendance.actions.excused')}
+                    {student.attended === Status.EXCUSED ? "!" : t('attendance.actions.excused')}
                   </Button>
                 </div>
               </div>
@@ -570,6 +506,12 @@ export default function CalendarPage() {
                         hasLesson: {
                           color: 'rgb(59 130 246)', // text-blue-500
                           fontWeight: '600'
+                        },
+                        selected: {
+                          color: 'rgb(255 255 255)', // text-white
+                          backgroundColor: 'rgba(59, 130, 246, 0.1)', // bg-blue-500
+                          fontWeight: '600',
+                          borderRadius: '4px'
                         }
                       }}
                     />
@@ -588,6 +530,10 @@ export default function CalendarPage() {
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-red-500" />
                       <span className="text-sm text-zinc-400">{t('status.absent')}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-yellow-500" />
+                      <span className="text-sm text-zinc-400">{t('status.excused')}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-zinc-500" />

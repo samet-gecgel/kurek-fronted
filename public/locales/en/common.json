@@ -1822,6 +1822,7 @@
     "attended": "Attended",
     "notAttended": "Not Attended",
     "waiting": "Waiting",
+    "excused": "Excused",
     "noLessons": {
       "title": "No lessons scheduled for this date",
       "subtitle": "You can view lessons by selecting another date"
@@ -2136,5 +2137,16 @@
       "ibanRequired": "IBAN number is required",
       "recipientNameRequired": "Recipient name is required"
     }
+  },
+  "attendance": {
+    "title": "Take Attendance",
+    "present": "Present",
+    "absent": "Absent",
+    "excused": "Excused",
+    "save": "Save",
+    "cancel": "Cancel",
+    "excuseReason": "Excuse Reason",
+    "excuseDate": "Excuse Date",
+    "excuseDocument": "Excuse Document"
   }
 }

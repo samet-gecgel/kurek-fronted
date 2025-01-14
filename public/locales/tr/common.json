@@ -1925,6 +1925,7 @@
     "attended": "Derse katıldı",
     "notAttended": "Derse katılmadı",
     "waiting": "Beklemede",
+    "excused": "Raporlu",
     "noLessons": {
       "title": "Bu tarihte ders bulunmamaktadır",
       "subtitle": "Başka bir tarih seçerek dersleri görüntüleyebilirsiniz"
@@ -2110,5 +2111,16 @@
     "subtitle": "Kürek sporu deneyiminizi belirlemek için size uyan seçenekleri işaretleyin",
     "save": "Kaydet",
     "saved": "Seviye bilgileriniz kaydedildi"
+  },
+  "attendance": {
+    "title": "Yoklama Al",
+    "present": "Katıldı",
+    "absent": "Katılmadı",
+    "excused": "Raporlu",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "excuseReason": "Rapor Nedeni",
+    "excuseDate": "Rapor Tarihi",
+    "excuseDocument": "Rapor Belgesi"
   }
 }
