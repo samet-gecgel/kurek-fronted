@@ -1,7 +1,7 @@
 {
   "adminSidebar": {
     "dashboard": "Dashboard",
-    "clubs": "Clubs",
+    "clubs": "My Club",
     "managers": "Club Managers",
     "trainers": "Trainers",
     "users": "Users",
@@ -490,7 +490,7 @@
   "superAdminSidebar": {
     "title": "Admin Panel",
     "dashboard": "Dashboard",
-    "clubs": "Clubs",
+    "clubs": "My Club",
     "addClub": "Add Club",
     "clubManagers": "Club Managers",
     "userManagement": "User Management",
@@ -2148,5 +2148,123 @@
     "excuseReason": "Excuse Reason",
     "excuseDate": "Excuse Date",
     "excuseDocument": "Excuse Document"
+  },
+  "colors": {
+    "navy": "Navy Blue",
+    "royal-blue": "Royal Blue",
+    "crimson": "Crimson",
+    "emerald": "Emerald"
+  },
+  "club": {
+    "myClub": {
+      "title": "My Club Information",
+      "subtitle": "View and edit club information",
+      "editButton": "Edit",
+      
+      "sections": {
+        "basicInfo": {
+          "title": "Club Basic Information",
+          "badge": "Basic Info",
+          "foundationYear": "Founded",
+          "clubColors": "Club Colors",
+          "clubType": "Club Type",
+          "types": {
+            "recreational": "Recreational",
+            "competitive": "Competition Focused"
+          },
+          "targetAudience": "Target Audience",
+          "missionVision": {
+            "title": "Mission and Vision",
+            "mission": "Our Mission",
+            "vision": "Our Vision"
+          },
+          "clubPhotos": "Club Photos",
+          "photo": "Photo"
+        },
+        "contact": {
+          "title": "Contact and Location Information",
+          "address": {
+            "label": "Address",
+            "title": "Address"
+          },
+          "phone": {
+            "label": "Phone",
+            "title": "Phone"
+          },
+          "email": {
+            "label": "Email",
+            "title": "Email"
+          },
+          "website": {
+            "label": "Website",
+            "title": "Website"
+          },
+          "socialMedia": {
+            "title": "Social Media",
+            "platforms": {
+              "twitter": "Twitter",
+              "instagram": "Instagram",
+              "facebook": "Facebook",
+              "youtube": "YouTube"
+            }
+          },
+          "showOnMap": "Show on Map"
+        },
+        "activities": {
+          "title": "Club Activities and Target Audience",
+          "ageCategories": {
+            "title": "Target Age Categories",
+            "suffix": "years"
+          },
+          "userTypes": {
+            "title": "User Types"
+          },
+          "trainingLevels": {
+            "title": "Training and Competition Levels"
+          },
+          "boatClasses": {
+            "title": "Boat Classes Used"
+          },
+          "workingHours": {
+            "title": "Working Days and Hours",
+            "status": {
+              "open": "Open",
+              "closed": "Closed"
+            }
+          }
+        },
+        "facilities": {
+          "title": "Facility Information",
+          "photos": {
+            "title": "Facility Photos",
+            "photo": "Facility Photo"
+          },
+          "features": {
+            "title": "Facility Features",
+            "gym": "Indoor Gym",
+            "lockerRoom": "Shower and Locker Room",
+            "cafe": "Cafe",
+            "status": {
+              "available": "Available",
+              "notAvailable": "Not Available"
+            }
+          },
+          "lockerRoom": {
+            "title": "Locker Room Photos",
+            "photo": "Locker Room"
+          }
+        },
+        "technical":{
+          "title" : "Technical and Organizational Information",
+          "trainingLocation" : "Training Locations"
+        },
+        "clubAchievements" : {
+          "title" : "Club Achievements and Highlights",
+          "competition" : "Competitions Participated",
+          "successes" : "Successes",
+          "socialresponsibility" : "Social Responsibility Projects"
+        }
+      }
+    }
   }
 }

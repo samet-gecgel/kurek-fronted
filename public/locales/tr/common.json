@@ -1,7 +1,7 @@
 {
   "adminSidebar": {
     "dashboard": "Ana Panel",
-    "clubs": "Kulüpler",
+    "clubs": "Kulübüm",
     "managers": "Kulüp Yöneticileri",
     "trainers": "Antrenörler",
     "users": "Üyeler",
@@ -468,7 +468,7 @@
   "superAdminSidebar": {
     "title": "Yönetici Paneli",
     "dashboard": "Ana Panel",
-    "clubs": "Kulüpler",
+    "clubs": "Kulübüm",
     "addClub": "Yeni Kulüp Ekle",
     "clubManagers": "Kulüp Yöneticileri",
     "userManagement": "Üye Yönetimi",
@@ -2122,5 +2122,123 @@
     "excuseReason": "Rapor Nedeni",
     "excuseDate": "Rapor Tarihi",
     "excuseDocument": "Rapor Belgesi"
+  },
+  "colors": {
+    "navy": "Lacivert",
+    "royal-blue": "Kraliyet Mavisi",
+    "crimson": "Koyu Kırmızı",
+    "emerald": "Zümrüt Yeşili"
+  },
+  "club": {
+    "myClub": {
+      "title": "Kulüp Bilgilerim",
+      "subtitle": "Kulüp bilgilerini görüntüle ve düzenle",
+      "editButton": "Düzenle",
+      
+      "sections": {
+        "basicInfo": {
+          "title": "Kulüp Temel Bilgileri",
+          "badge": "Temel Bilgiler",
+          "foundationYear": "Kuruluş",
+          "clubColors": "Kulüp Renkleri",
+          "clubType": "Kulüp Türü",
+          "types": {
+            "recreational": "Rekreatif",
+            "competitive": "Yarış Odaklı"
+          },
+          "targetAudience": "Hedef Kitle",
+          "missionVision": {
+            "title": "Misyon ve Vizyon",
+            "mission": "Misyonumuz",
+            "vision": "Vizyonumuz"
+          },
+          "clubPhotos": "Kulüp Fotoğrafları",
+          "photo": "Fotoğraf"
+        },
+        "contact": {
+          "title": "İletişim ve Lokasyon Bilgileri",
+          "address": {
+            "label": "Adres",
+            "title": "Adres"
+          },
+          "phone": {
+            "label": "Telefon",
+            "title": "Telefon"
+          },
+          "email": {
+            "label": "E-posta",
+            "title": "E-posta"
+          },
+          "website": {
+            "label": "Website",
+            "title": "Website"
+          },
+          "socialMedia": {
+            "title": "Sosyal Medya",
+            "platforms": {
+              "twitter": "Twitter",
+              "instagram": "Instagram",
+              "facebook": "Facebook",
+              "youtube": "YouTube"
+            }
+          },
+          "showOnMap": "Haritada Göster"
+        },
+        "activities": {
+          "title": "Kulüp Faaliyetleri ve Hedef Kitle",
+          "ageCategories": {
+            "title": "Hedef Yaş Kategorisi",
+            "suffix": "yaş"
+          },
+          "userTypes": {
+            "title": "Kullanıcı Tipi"
+          },
+          "trainingLevels": {
+            "title": "Eğitim ve Yarış Düzeyi"
+          },
+          "boatClasses": {
+            "title": "Kullanılan Tekne Sınıfları"
+          },
+          "workingHours": {
+            "title": "Çalışma Günleri ve Saatleri",
+            "status": {
+              "open": "Açık",
+              "closed": "Kapalı"
+            }
+          }
+        },
+        "facilities": {
+          "title": "Tesis Bilgileri",
+          "photos": {
+            "title": "Tesis Fotoğrafları",
+            "photo": "Tesis Fotoğrafı"
+          },
+          "features": {
+            "title": "Tesis Özellikleri",
+            "gym": "Kapalı Spor Salonu",
+            "lockerRoom": "Duş ve Soyunma Odası",
+            "cafe": "Cafe",
+            "status": {
+              "available": "Var",
+              "notAvailable": "Yok"
+            }
+          },
+          "lockerRoom": {
+            "title": "Soyunma Odası Fotoğrafları",
+            "photo": "Soyunma Odası"
+          }
+        },
+        "technical":{
+          "title" : "Teknik ve Organizasyon Bilgileri",
+          "trainingLocation" : "Antrenman Lokasyonları"
+        },
+        "clubAchievements" : {
+          "title" : "Kulüp Başarıları ve Öne Çıkan Özellikler",
+          "competition" : "Katıldığı Yarışmalar",
+          "successes" : "Başarılar",
+          "socialresponsibility" : "Sosyal Sorumluluk Projeleri"
+        }
+      }
+    }
   }
 }

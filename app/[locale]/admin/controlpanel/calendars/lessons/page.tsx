@@ -282,11 +282,7 @@ export default function LessonCalendarPage() {
   const params = useParams();
   const locale = params.locale as string;
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [date, setDate] = useState<Date>(() => {
-    const initialDate = new Date('2025-01-07');
-    initialDate.setHours(0, 0, 0, 0);
-    return initialDate;
-  });
+  const [date, setDate] = useState<Date>(new Date());
 
   // Takvim için locale seçimi
   const calendarLocale = locale === 'tr' ? tr : enUS;

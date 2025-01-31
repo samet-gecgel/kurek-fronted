@@ -192,8 +192,8 @@ export default function AddClub() {
             <div className="flex items-center gap-2">
               <div className="h-8 w-1 bg-gradient-to-b from-white via-white/50 to-transparent rounded-full" />
               <div className="flex-1">
-                <h1 className="text-lg md:text-xl font-semibold text-white">Yeni Kulüp Ekle</h1>
-                <p className="text-xs md:text-sm text-zinc-400 mt-0.5">Yeni bir spor kulübü kaydı oluşturun</p>
+                <h1 className="text-lg md:text-xl font-semibold text-white">Kulüp Bilgilerim</h1>
+                <p className="text-xs md:text-sm text-zinc-400 mt-0.5">Kulüp bilgilerimi güncelle</p>
               </div>
             </div>
           </motion.div>
